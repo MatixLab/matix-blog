@@ -1,0 +1,29 @@
+---
+import GuideCard from "@/components/cards/guide-card.astro";
+import DocsPageHeader from "@/components/page-header.astro";
+import DocsLayout from "@/layouts/docs-layout.astro";
+import { getGuides } from "@/lib/fetchers";
+
+const guides = await getGuides();
+---
+
+<DocsLayout title="Blog" description="Lorem ipsum dolor sit amet">
+  <section class="container max-w-6xl py-10">
+    <DocsPageHeader
+      heading="Guides"
+      text="This section includes end-to-end guides for developing Astro v4 apps."
+    />
+
+    {
+      guides?.length ? (
+        <div class="grid gap-4 md:grid-cols-2 md:gap-6">
+          {guides.map((guide) => (
+            <GuideCard {...guide} />
+          ))}
+        </div>
+      ) : (
+        <p>No guides published.</p>
+      )
+    }
+  </section>
+</DocsLayout>

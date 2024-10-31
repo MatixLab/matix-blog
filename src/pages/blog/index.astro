@@ -1,0 +1,20 @@
+---
+import BlogHeader from "@/components/blog-header.astro";
+import BlogCard from "@/components/cards/blog-card.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+import { getPosts } from "@/lib/fetchers";
+
+const posts = await getPosts();
+---
+
+<MainLayout title="Static Blog">
+  <section class="container py-10">
+    <BlogHeader title="Blog" />
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-11 lg:gap-y-16 lg:gap-x-8"
+    >
+      {posts.map((post) => <BlogCard {...post} />)}
+    </div>
+  </section>
+</MainLayout>

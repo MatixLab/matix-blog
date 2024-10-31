@@ -1,0 +1,61 @@
+---
+import { Icons } from "@/icons";
+import type { MenuItem } from "@/types";
+
+import { Image } from "astro:assets";
+import { cn } from "@/lib/utils";
+
+type Props = {
+  title: string;
+  items: MenuItem[] | undefined;
+};
+
+const { title, items } = Astro.props;
+---
+
+<div id="" class="grid grid-cols-3 xl:grid-cols-4 py-8 gap-x-8 gap-y-6">
+  <h3 class="text-lg text-foreground font-semibold col-span-3 xl:col-span-1">
+    {title}
+  </h3>
+  <div
+    class="col-span-3 grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-y-7 lg:gap-x-7"
+  >
+    {
+      items &&
+        items.map((item) => (
+          <a
+            href={item.disabled ? undefined : item.href}
+            class={cn(
+              "group bg-background rounded-xl overflow-hidden card_border",
+              item.disabled && "cursor-default"
+            )}
+            {...(item.forceReload ? { "data-astro-reload": true } : {})}
+          >
+            <div class="relative aspect-[4/2]">
+              <Image
+                loading="eager"
+                width={740}
+                height={350}
+                src={
+                  item.image ? item.image : "/images/examples/placeholder.jpg"
+                }
+                alt="placeholder"
+                class="size-full object-cover object-top"
+              />
+              {item.disabled && (
+                <p class="absolute z-10 top-3 right-3 text-foreground bg-gray-900 bg-opacity-35 rounded-full flex items-center justify-center p-1.5">
+                  <span class="sr-only">Work on it actually!</span>
+                  <Icons.wrenchSrewdriver className="size-6 text-white" />
+                </p>
+              )}
+            </div>
+
+            <div class="py-3 px-4 border-t">
+              <p class="font-medium text-foreground mb-1.5">{item.title}</p>
+              <p class="text-sm text-muted-foreground/85">{item.description}</p>
+            </div>
+          </a>
+        ))
+    }
+  </div>
+</div>

@@ -1,0 +1,86 @@
+---
+import { ThemeToggle } from "@/components/theme-toggle";
+import { footerLinks, siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  className?: string;
+};
+
+const { className } = Astro.props;
+---
+
+<footer class={cn("border-t", className)}>
+  <div
+    class="container grid grid-cols-1 gap-6 py-14 sm:grid-cols-2 md:grid-cols-5"
+  >
+    {
+      footerLinks.map((section) => (
+        <div>
+          <span class="text-sm font-medium text-foreground">
+            {section.title}
+          </span>
+          <ul class="mt-4 list-inside space-y-3">
+            {section.items?.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-muted-foreground hover:text-primary"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+    <div class="flex flex-col items-end md:col-span-2">
+      Form Newsletter coming soon!
+      <!-- <NewsletterForm client:only="react" /> -->
+    </div>
+  </div>
+
+  <div class="border-t py-4">
+    <div class="container flex items-center justify-between">
+      <p class="text-left text-sm text-muted-foreground">
+        <span class="text-muted-foreground text-sm pr-4">
+          Copyright &copy; 2024. All rights reserved.
+        </span>
+        Built by{" "}
+        <a
+          href={siteConfig.links.twitter}
+          target="_blank"
+          rel="noreferrer"
+          class="font-medium underline underline-offset-4"
+        >
+          {siteConfig.author}
+        </a>
+        . Hosted on{" "}
+        <a
+          href="https://cloudflare.com"
+          target="_blank"
+          rel="noreferrer"
+          class="font-medium underline underline-offset-4"
+        >
+          Cloudflare
+        </a>.
+      </p>
+
+      <!--
+        <div class="flex items-center gap-3">
+          <a
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noreferrer"
+            class="font-medium underline underline-offset-4"
+          >
+            <Icon name="github" class="size-5" />
+          </a>
+          <ThemeToggle client:load />
+         -->
+      </div>
+    </div>
+  </div>
+</footer>
