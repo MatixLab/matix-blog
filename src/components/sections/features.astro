@@ -1,8 +1,8 @@
 ---
-import { Button } from "@/components/ui/button";
-import { features } from "@/config/landing";
-import { Icon } from "astro-icon/components";
-import HeaderSection from "./header-section.astro";
+import { Button } from '@/components/ui/button'
+import { features } from '@/config/landing'
+import { Icon } from 'astro-icon/components'
+import HeaderSection from './header-section.astro';
 ---
 
 <section>
@@ -16,7 +16,7 @@ import HeaderSection from "./header-section.astro";
 
       <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
-          features.map((feature) => (
+          features.map(feature => (
             <div class="group relative overflow-hidden rounded-2xl border bg-background p-5 md:p-8">
               <div
                 aria-hidden="true"
@@ -45,7 +45,6 @@ import HeaderSection from "./header-section.astro";
                   <Button
                     variant="secondary"
                     size="sm"
-                    rounded="xl"
                     className="px-4"
                   >
                     <a href="/" class="flex items-center gap-2">

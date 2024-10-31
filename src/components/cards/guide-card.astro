@@ -1,10 +1,10 @@
 ---
-import { formatDate } from "@/lib/utils";
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry } from 'astro:content'
+import { formatDate } from '@/lib/utils'
 
-type Props = CollectionEntry<"guides">;
+type Props = CollectionEntry<'guides'>
 
-const slug = Astro.props.slug;
+const slug = Astro.props.slug
 const guide = Astro.props.data;
 ---
 
@@ -20,14 +20,14 @@ const guide = Astro.props.data;
   }
   <div class="flex flex-col justify-between space-y-4">
     <div class="space-y-2">
-      <h2 class="font-heading text-2xl" transition:name={"title-" + slug}>
+      <h2 class="font-heading text-2xl" transition:name={`title-${slug}`}>
         {guide.title}
       </h2>
       {
-        guide.description && (  
+        guide.description && (
           <p
             class="text-muted-foreground"
-            transition:name={"desc-" + slug}
+            transition:name={`desc-${slug}`}
           >
             {guide.description}
           </p>
@@ -38,7 +38,7 @@ const guide = Astro.props.data;
       guide.pubDate && (
         <span
           class="font-medium text-sm text-muted-foreground"
-          transition:name={"date-" + slug}
+          transition:name={`date-${slug}`}
         >
           {formatDate(guide.pubDate)}
         </span>

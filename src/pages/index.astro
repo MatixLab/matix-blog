@@ -1,23 +1,150 @@
 ---
-import ExampleGrid from "@/components/example-grid.astro";
-import PageHeader from "@/components/page-header.astro";
-import { navMenuConfig } from "@/config/nav-menu";
-import MainLayout from "@/layouts/main-layout.astro";
-
-const examples = navMenuConfig.examplesNav[0].items;
-const pages = navMenuConfig.pagesNav[0].items;
+import { Button } from '@/components/ui/button'
+import { hobbies } from '@/config/about.ts'
+import MainLayout from '@/layouts/main-layout.astro'
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components';
 ---
 
-<MainLayout title="">
-  <div class="bg-background-200">
-    <section class="container py-12">
-      <PageHeader
-        heading="Discovery"
-        text="Differents pages and examples apps built with Astro v4.5, shadcn/ui & react js. Fully Open Source."
-      />
+<MainLayout title="About" description="Lorem ipsum dolor sit amet">
+  <section class="space-y-5">
+    <section
+      class="relative container max-w-screen-md mb-28 mt-16 sm:mt-20 lg:mt-28"
+    >
+      <div class="flex h-full flex-col justify-between">
+        <div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <h1 class="text-4xl font-heading text-foreground">AnthonyZhu</h1>
+            <p class="text-base text-muted-foreground mt-0.5">
+              Fullstack Developer
+            </p>
+          </div>
+          <div>
+            <p class="mb-12 text-base text-muted-foreground">
+              Hi there! I'm AnthonyZhu, a web dev enthusiast with a passion for
+              user interfaces.
+              <br />
+              What's up with you?
+            </p>
+            <div class="flex items-center gap-3">
+              <Button className="rounded-xl">
+                <Icon name="lucide:mail" class="mr-2 size-4" />
+                <a href="mailto:">Talk with me</a>
+              </Button>
 
-      <ExampleGrid title="Pages" items={pages} />
-      <ExampleGrid title="Examples Apps" items={examples} />
+              <Button variant="outline" className="rounded-xl">
+                <Icon name="lucide:briefcase" class="mr-2.5 size-4" />
+                <a href="https://wwwhuakucha.top/" target="_blank">My works</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <div class="relative z-10 flex flex-col justify-center overflow-hidden lg:overflow-visible pb-16">
+      <div class="mx-auto flex w-max -translate-x-[15%] justify-center lg:w-full lg:translate-x-0">
+        <div class="relative z-10 mx-auto max-w-4xl px-4 md:max-w-6xl md:px-12 lg:max-w-5xl lg:px-6 xl:max-w-[80rem] xl:px-6 2xl:px-0">
+          { /* 4 columns */ }
+          <div class="grid grid-cols-4 items-center gap-4 md:gap-6">
+            {/* First Column */}
+            <div class="space-y-4 md:space-y-6">
+              <Image
+                class="h-full w-auto object-cover overflow-hidden rounded-xl"
+                src={hobbies[0].image}
+                alt={hobbies[0].alt}
+                width={800}
+                height={1226}
+                loading="eager"
+              />
+              <div class="h-52 overflow-hidden rounded-xl">
+                <Image
+                  class="w-full h-full object-cover"
+                  src={hobbies[1].image}
+                  alt={hobbies[1].alt}
+                  width={800}
+                  height={1334}
+                />
+              </div>
+            </div>
+
+            {/* Second Column */}
+            <div class="space-y-4 md:space-y-6">
+              <div class="h-48 overflow-hidden rounded-xl">
+                <Image
+                  class="w-full h-full object-cover"
+                  src={hobbies[2].image}
+                  alt={hobbies[2].alt}
+                  width={800}
+                  height={983}
+                  loading="eager"
+                />
+              </div>
+              <Image
+                class="rounded-xl"
+                src={hobbies[3].image}
+                alt={hobbies[3].alt}
+                width={800}
+                height={1108}
+                loading="eager"
+              />
+              <div class="relative h-48 overflow-hidden rounded-xl">
+                <Image
+                  class="w-full h-full object-cover"
+                  src={hobbies[4].image}
+                  alt={hobbies[4].alt}
+                  width={1260}
+                  height={750}
+                />
+              </div>
+            </div>
+
+            {/* Third Column */}
+            <div class="space-y-4 md:space-y-6">
+              <div class="h-56 overflow-hidden rounded-xl">
+                <Image
+                  class="w-full h-full object-cover"
+                  src={hobbies[5].image}
+                  alt={hobbies[5].alt}
+                  width={800}
+                  height={1334}
+                  loading="eager"
+                />
+              </div>
+              <div class="h-80 w-full overflow-hidden rounded-xl xl:h-[28rem]">
+                <Image
+                  class="w-full h-full object-cover"
+                  src={hobbies[6].image}
+                  alt={hobbies[6].alt}
+                  width={801}
+                  height={2477}
+                />
+              </div>
+            </div>
+
+            {/* Fourth Column */}
+            <div class="space-y-4 md:space-y-6">
+              <div class="overflow-hidden rounded-xl bg-white">
+                <Image
+                  src={hobbies[7].image}
+                  alt={hobbies[7].alt}
+                  width={800}
+                  height={900}
+                  loading="eager"
+                />
+              </div>
+              <div class="overflow-hidden rounded-xl bg-white">
+                <Image
+                  src={hobbies[8].image}
+                  alt={hobbies[8].alt}
+                  width={800}
+                  height={900}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </MainLayout>

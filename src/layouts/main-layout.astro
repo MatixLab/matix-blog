@@ -1,22 +1,22 @@
 ---
-import Footer from "@/components/layout/footer.astro";
-import Header from "@/components/layout/header.astro";
-import { MainNavigationMenu } from "@/components/main-navigation-menu";
-import { cn } from "@/lib/utils";
-import BaseLayout from "./base-layout.astro";
-import { SheetMobileNav } from "@/components/layout/sheet-mobile-nav";
-import { navMenuConfig } from "@/config/nav-menu";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { siteConfig } from "@/config/site";
-import { Icon } from "astro-icon/components";
+import Footer from '@/components/layout/footer.astro'
+import Header from '@/components/layout/header.astro'
+import { SheetMobileNav } from '@/components/layout/sheet-mobile-nav'
+import { MainNavigationMenu } from '@/components/main-navigation-menu'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { navMenuConfig } from '@/config/nav-menu'
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
+import BaseLayout from './base-layout.astro'
 // import { marketingConfig } from "@/config/marketing";
 // import MainNav from "@/components/layout/main-nav.astro";
 
 type Props = {
-  title: string;
-  description?: string;
-  mainClass?: string;
-};
+  title: string
+  description?: string
+  mainClass?: string
+}
 
 const { title, description, mainClass } = Astro.props;
 ---

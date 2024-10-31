@@ -1,7 +1,7 @@
 ---
-import { testimonials } from "@/config/landing";
-import { Image } from "astro:assets";
-import HeaderSection from "./header-section.astro";
+import { testimonials } from '@/config/landing'
+import { Image } from 'astro:assets'
+import HeaderSection from './header-section.astro';
 ---
 
 <section>
@@ -14,7 +14,7 @@ import HeaderSection from "./header-section.astro";
 
     <div class="column-1 gap-5 space-y-5 md:columns-2 lg:columns-3 xl:columns-4">
       {
-        testimonials.map((item) => (
+        testimonials.map(item => (
           <div class="break-inside-avoid">
             <div class="relative rounded-xl border bg-muted/25">
               <div class="flex flex-col px-4 py-5 sm:p-6">

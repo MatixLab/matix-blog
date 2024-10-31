@@ -2,12 +2,12 @@ import {
   Calendar,
   Clock,
   Flame,
-  Tv2,
   type LucideIcon,
   type LucideProps,
-} from "lucide-react";
+  Tv2,
+} from 'lucide-react'
 
-export type Icon = LucideIcon;
+export type Icon = LucideIcon
 
 export const Icons = {
   flame: Flame,
@@ -49,7 +49,8 @@ export const Icons = {
         stroke="currentColor"
         fill="currentColor"
         strokeWidth="0px"
-      ></path>
+      >
+      </path>
     </svg>
   ),
   wrenchSrewdriver: ({ ...props }: LucideProps) => (
@@ -70,4 +71,4 @@ export const Icons = {
       />
     </svg>
   ),
-};
+}

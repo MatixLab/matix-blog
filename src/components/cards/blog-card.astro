@@ -1,10 +1,10 @@
 ---
-import { Badge } from "@/components/ui/badge";
-import { formatDate } from "@/lib/utils";
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry } from 'astro:content'
+import { Badge } from '@/components/ui/badge'
+import { formatDate } from '@/lib/utils'
+import { Image } from 'astro:assets'
 
-type Props = CollectionEntry<"blog">;
+type Props = CollectionEntry<'blog'>
 
 const post = Astro.props;
 ---
@@ -28,15 +28,15 @@ const post = Astro.props;
   <div class="flex items-center justify-between">
     <a
       href={`/blog/category/${post.data.category}`}
-      transition:name={"badge-cat-" + post.slug}
+      transition:name={`badge-cat-${post.slug}`}
     >
-      <Badge radius="md" className="capitalize">
+      <Badge className="capitalize">
         {post.data.category}
       </Badge>
     </a>
     <span
       class="font-medium text-muted-foreground"
-      transition:name={"date-" + post.slug}
+      transition:name={`date-${post.slug}`}
     >
       {formatDate(post.data.pubDate)}
     </span>
@@ -46,7 +46,7 @@ const post = Astro.props;
     <a href={`/blog/${post.slug}/`} class="group-hover:underline">
       <h2
         class="font-heading text-xl md:text-2xl leading-snug line-clamp-3"
-        transition:name={"title-" + post.slug}
+        transition:name={`title-${post.slug}`}
       >
         {post.data.title}
       </h2>

@@ -1,21 +1,20 @@
 ---
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Icon } from "astro-icon/components"
+import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
 import { Image } from 'astro:assets'
 import logo from '../../../public/logo.png'
 
 type Props = {
-  className?: string;
-};
+  className?: string
+}
 
 const { className } = Astro.props;
 ---
 
 <header
   class={cn(
-    "flex items-center h-16 md:h-18 z-50 sticky top-0 bg-background",
-    className
+    'flex items-center h-16 md:h-18 z-50 sticky top-0 bg-background',
+    className,
   )}
 >
   <div class="relative container flex items-center justify-between w-full">
@@ -39,7 +38,7 @@ const { className } = Astro.props;
       class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden"
     >
       <a href="/" aria-label="Astronomy homepage">
-        <Icon name="stars-outline" class="size-8" />
+        <Image src={logo} alt="Logo" class="size-8" />
       </a>
     </div>
 
