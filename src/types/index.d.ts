@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro'
+
 export interface NavItem {
   title: string
   href: string
@@ -5,7 +7,7 @@ export interface NavItem {
 }
 
 export type MenuItem = NavItem & {
-  image?: string
+  image?: ImageMetadata
   // menu desc
   description?: string
   // is new feature
@@ -41,6 +43,10 @@ export interface SiteConfig {
     twitter: string
     github: string
   }
+  page: {
+    pageSize: number
+    itemMaxNum: number
+  }
 }
 
 export interface DocsConfig {
@@ -48,9 +54,11 @@ export interface DocsConfig {
   sidebarNav: SidebarNavItem[]
 }
 
+/**
+ * Nav Menu Config Definition
+ */
 export interface NavMenuConfig {
   pagesNav: SidebarNavItem[]
-  examplesNav: SidebarNavItem[]
   links: MenuItem[]
 }
 
@@ -67,7 +75,7 @@ export interface InfoList {
 
 export interface InfoLdg {
   title: string
-  image: string
+  image: ImageMetadata
   description: string
   list: InfoList[]
 }

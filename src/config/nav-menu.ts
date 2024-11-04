@@ -1,4 +1,10 @@
 import type { NavMenuConfig } from '@/types'
+import about from '@/assets/images/examples/about.jpg'
+import blogDb from '@/assets/images/examples/blog-db.jpg'
+import changelog from '@/assets/images/examples/changelog.jpg'
+import documentation from '@/assets/images/examples/documentation.jpg'
+import landing from '@/assets/images/examples/landing.jpg'
+import staticBlog from '@/assets/images/examples/static-blog.jpg'
 
 export const navMenuConfig: NavMenuConfig = {
   pagesNav: [
@@ -9,40 +15,21 @@ export const navMenuConfig: NavMenuConfig = {
           title: 'Landing',
           href: '/landing',
           description: 'A landing page template with differents sections.',
-          image: '/images/examples/landing.jpg',
-        },
-        {
-          title: 'Changelog',
-          href: '/releases',
-          description: 'A reproduction of Starlog template with Tailwind CSS.',
-          image: '/images/examples/changelog.jpg',
-        },
-      ],
-    },
-  ],
-  examplesNav: [
-    {
-      title: 'Examples',
-      items: [
-        {
-          title: 'Static Blog',
-          href: '/blog',
-          description: 'A Markdown/MDX blog built using Content Collections.',
-          image: '/images/examples/static-blog.jpg',
+          image: landing,
         },
         {
           title: 'Docs',
           href: '/docs/getting-started',
           description:
             'A Markdown/MDX docs site built using Content Collections.',
-          image: '/images/examples/documentation.jpg',
+          image: documentation,
         },
         {
           title: 'Anime List',
           href: '/animes',
           description:
             'Fetch anime content from an graphql endpoint. Tabs component.',
-          image: '/images/examples/blog-db.jpg',
+          image: blogDb,
           disabled: true,
         },
         {
@@ -50,7 +37,15 @@ export const navMenuConfig: NavMenuConfig = {
           href: '/blog-db',
           description:
             'Blog built using Astro DB. With categories, views & likes.',
-          image: '/images/examples/blog-db.jpg',
+          image: blogDb,
+          launched: true,
+        },
+        {
+          title: 'Discovery',
+          href: '/discovery',
+          description:
+            'Blog built using Astro DB. With categories, views & likes.',
+          image: blogDb,
           launched: true,
         },
       ],
@@ -58,10 +53,22 @@ export const navMenuConfig: NavMenuConfig = {
   ],
   links: [
     {
-      title: 'Profile',
+      title: 'Blog',
+      href: '/blog',
+      description: 'A Markdown/MDX blog built using Content Collections.',
+      image: staticBlog,
+    },
+    {
+      title: 'About',
       href: '/about',
       description: 'A simple page with a masonry gallery and little text.',
-      image: '/images/examples/about.jpg',
+      image: about,
+    },
+    {
+      title: 'Changelog',
+      href: '/releases',
+      description: 'A reproduction of Starlog template with Tailwind CSS.',
+      image: changelog,
     },
   ],
 }

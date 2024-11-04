@@ -1,7 +1,6 @@
 ---
-import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import logo from '../../../public/logo.png'
 
 type Props = {
@@ -20,28 +19,23 @@ const { className } = Astro.props;
   <div class="relative container flex items-center justify-between w-full">
     <div class="flex items-center gap-6 md:gap-8 lg:gap-10">
       <a href="/" class="hidden items-center space-x-2 md:flex">
-        <Image src={logo} alt="Logo" class="size-8" />
-        <span class="hidden font-bold sm:inline-block">
-          {siteConfig.name}
-        </span>
+        <Picture src={logo} alt="Logo" class="size-8" loading="eager" />
       </a>
 
+      <!-- mobile-nav-header -->
       <slot name="mobile-nav-header" />
-
       <div class="hidden md:flex">
+        <!-- normal nav menu -->
         <slot name="left-header" />
       </div>
     </div>
 
     <!-- logo mobile center -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden"
-    >
+    <div class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden">
       <a href="/" aria-label="Astronomy homepage">
-        <Image src={logo} alt="Logo" class="size-8" />
+        <Picture src={logo} alt="Logo" class="size-8" loading="eager" />
       </a>
     </div>
-
     <slot name="right-header" />
   </div>
 </header>

@@ -1,47 +1,26 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content'
 
-const blog = defineCollection({
-  // Type-check frontmatter using a schema
+export const blog = defineCollection({
+  type: 'content',
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       description: z.string(),
-      cover: z.string(),
-      category: z.string(),
-      // Transform string to Date object
+      cover: image(),
+      category: z.string().array(),
       pubDate: z
         .string()
         .or(z.date())
-        .transform((val) => new Date(val)),
+        .transform(val => new Date(val)),
       updatedDate: z
         .string()
-        .optional()
-        .transform((str) => (str ? new Date(str) : undefined)),
+        .or(z.date())
+        .transform(val => new Date(val)),
     }),
-});
+})
 
-const docs = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-});
-
-const guides = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    published: z.boolean().default(true),
-    featured: z.boolean().default(false),
-    pubDate: z
-      .string()
-      .or(z.date())
-      .transform((val) => new Date(val)),
-  }),
-});
-
-const releases = defineCollection({
-  // Type-check frontmatter using a schema
+export const releases = defineCollection({
+  type: 'content',
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -51,9 +30,8 @@ const releases = defineCollection({
         src: image(),
         alt: z.string(),
       }),
-      // Transform string to Date object
       date: z.date({ coerce: true }),
     }),
-});
+})
 
-export const collections = { blog, docs, guides, releases };
+export const collections = { blog, releases }

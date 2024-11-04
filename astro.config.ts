@@ -1,36 +1,35 @@
-import { 
-  defineConfig,
-  passthroughImageService
-} from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import cloudflare from '@astrojs/cloudflare';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
-import icon from 'astro-icon';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeSlug from 'rehype-slug'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypePrettyCode from 'rehype-pretty-code'
+import cloudflare from '@astrojs/cloudflare'
+import mdx from '@astrojs/mdx'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
 import { transformerCopyButton } from '@rehype-pretty/transformers'
 import {
-  transformerNotationDiff,
-  transformerNotationFocus,
-  transformerMetaHighlight,
-  transformerRenderWhitespace,
-  transformerNotationHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationErrorLevel,
   transformerCompactLineOptions,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+  transformerNotationDiff,
+  transformerNotationErrorLevel,
+  transformerNotationFocus,
+  transformerNotationHighlight,
   transformerNotationWordHighlight,
+  transformerRenderWhitespace,
 } from '@shikijs/transformers'
-
+import {
+  defineConfig,
+  passthroughImageService,
+} from 'astro/config'
+import icon from 'astro-icon'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
 
 /**
- * @see  https://astro.build/config
+ * https://astro.build/config
  */
 export default defineConfig({
-  site: 'https://huakucha.top',
+  site: 'http://localhost:4321/',
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -38,16 +37,21 @@ export default defineConfig({
     mdx({
       optimize: true,
     }),
+    /**
+     *  https://docs.astro.build/zh-cn/guides/integrations-guide/sitemap
+     */
     sitemap(),
     react(),
-    icon()
+    icon(),
   ],
-  // https://docs.astro.build/zh-cn/basics/rendering-modes/
+  /**
+   * https://docs.astro.build/zh-cn/basics/rendering-modes/
+   */
   output: 'hybrid',
   adapter: cloudflare({
     platformProxy: {
-      enabled: true
-    }
+      enabled: true,
+    },
   }),
   markdown: {
     syntaxHighlight: false,
@@ -73,8 +77,8 @@ export default defineConfig({
           keepBackground: true,
           theme: 'github-dark-default',
           defaultLang: {
-            block: "plaintext",
-            inline: "plaintext",
+            block: 'plaintext',
+            inline: 'plaintext',
           },
           transformers: [
             transformerCopyButton({
@@ -89,25 +93,30 @@ export default defineConfig({
         {
           behavior: 'wrap',
           properties: {
-            className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
+            className: ['subheading-anchor'],
+            ariaLabel: 'Link to section',
           },
         },
       ],
       [
-        rehypeExternalLinks, {
+        rehypeExternalLinks,
+        {
           target: '_blank',
           rel: ['nofollow', 'noreferrer', 'noopener'],
         },
       ],
-    ]
+    ],
   },
   image: {
-    service: passthroughImageService()
+    service: passthroughImageService(),
+  },
+  experimental: {
+    contentIntellisense: true,
+    directRenderScript: true,
   },
   vite: {
     ssr: {
       external: ['node:buffer'],
-    }
+    },
   },
 })

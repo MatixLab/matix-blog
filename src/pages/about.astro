@@ -1,8 +1,8 @@
 ---
 import { Button } from '@/components/ui/button'
 import { hobbies } from '@/config/about.ts'
-import MainLayout from '@/layouts/main-layout.astro'
-import { Image } from 'astro:assets'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { Picture } from 'astro:assets'
 import { Icon } from 'astro-icon/components';
 ---
 
@@ -49,7 +49,7 @@ import { Icon } from 'astro-icon/components';
           <div class="grid grid-cols-4 items-center gap-4 md:gap-6">
             {/* First Column */}
             <div class="space-y-4 md:space-y-6">
-              <Image
+              <Picture
                 class="h-full w-auto object-cover overflow-hidden rounded-xl"
                 src={hobbies[0].image}
                 alt={hobbies[0].alt}
@@ -58,7 +58,7 @@ import { Icon } from 'astro-icon/components';
                 loading="eager"
               />
               <div class="h-52 overflow-hidden rounded-xl">
-                <Image
+                <Picture
                   class="w-full h-full object-cover"
                   src={hobbies[1].image}
                   alt={hobbies[1].alt}
@@ -71,7 +71,7 @@ import { Icon } from 'astro-icon/components';
             {/* Second Column */}
             <div class="space-y-4 md:space-y-6">
               <div class="h-48 overflow-hidden rounded-xl">
-                <Image
+                <Picture
                   class="w-full h-full object-cover"
                   src={hobbies[2].image}
                   alt={hobbies[2].alt}
@@ -80,7 +80,7 @@ import { Icon } from 'astro-icon/components';
                   loading="eager"
                 />
               </div>
-              <Image
+              <Picture
                 class="rounded-xl"
                 src={hobbies[3].image}
                 alt={hobbies[3].alt}
@@ -89,7 +89,7 @@ import { Icon } from 'astro-icon/components';
                 loading="eager"
               />
               <div class="relative h-48 overflow-hidden rounded-xl">
-                <Image
+                <Picture
                   class="w-full h-full object-cover"
                   src={hobbies[4].image}
                   alt={hobbies[4].alt}
@@ -102,7 +102,7 @@ import { Icon } from 'astro-icon/components';
             {/* Third Column */}
             <div class="space-y-4 md:space-y-6">
               <div class="h-56 overflow-hidden rounded-xl">
-                <Image
+                <Picture
                   class="w-full h-full object-cover"
                   src={hobbies[5].image}
                   alt={hobbies[5].alt}
@@ -112,7 +112,7 @@ import { Icon } from 'astro-icon/components';
                 />
               </div>
               <div class="h-80 w-full overflow-hidden rounded-xl xl:h-[28rem]">
-                <Image
+                <Picture
                   class="w-full h-full object-cover"
                   src={hobbies[6].image}
                   alt={hobbies[6].alt}
@@ -125,7 +125,7 @@ import { Icon } from 'astro-icon/components';
             {/* Fourth Column */}
             <div class="space-y-4 md:space-y-6">
               <div class="overflow-hidden rounded-xl bg-white">
-                <Image
+                <Picture
                   src={hobbies[7].image}
                   alt={hobbies[7].alt}
                   width={800}
@@ -134,7 +134,7 @@ import { Icon } from 'astro-icon/components';
                 />
               </div>
               <div class="overflow-hidden rounded-xl bg-white">
-                <Image
+                <Picture
                   src={hobbies[8].image}
                   alt={hobbies[8].alt}
                   width={800}

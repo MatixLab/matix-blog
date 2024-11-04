@@ -1,5 +1,6 @@
 ---
-import { Image } from "astro:assets";
+import staticBlog from '@/assets/images/examples/static-blog.jpg'
+import { Picture } from 'astro:assets';
 ---
 
 <div class="pb-6 sm:pb-16">
@@ -10,9 +11,9 @@ import { Image } from "astro:assets";
       <div
         class="relative aspect-video overflow-hidden rounded-xl md:rounded-lg border"
       >
-        <Image
+        <Picture
           class="size-full object-cover object-center"
-          src="/images/examples/static-blog.jpg"
+          src={staticBlog}
           alt="preview landing"
           width={2000}
           height={1000}

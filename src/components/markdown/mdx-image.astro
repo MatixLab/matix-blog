@@ -1,0 +1,26 @@
+---
+import { cn } from '@/lib/utils'
+import { Picture } from 'astro:assets'
+
+interface Props {
+  src: string
+  alt: string
+  width: number
+  height: number
+  className?: string
+  loading?: 'eager' | 'lazy' | undefined | null
+}
+const { src, alt, className, height, width, loading } = Astro.props;
+---
+
+<Picture
+  class:list={cn(
+    'w-full h-full object-cover rounded-md overflow-hidden border',
+    className,
+  )}
+  width={width}
+  height={height}
+  src={src}
+  loading={loading}
+  alt={alt}
+/>

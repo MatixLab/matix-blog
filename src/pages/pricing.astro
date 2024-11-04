@@ -1,8 +1,8 @@
 ---
-import { buttonVariants } from "@/components/ui/button";
-import MainLayout from "@/layouts/main-layout.astro";
-import { cn } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
+import { buttonVariants } from '@/components/ui/button'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { cn } from '@/lib/utils'
+import { Icon } from 'astro-icon/components';
 ---
 
 <MainLayout title="Pricing" mainClass="flex-1 bg-background-200">
@@ -55,14 +55,14 @@ import { Icon } from "astro-icon/components";
             Billed Monthly
           </p>
         </div>
-        <a href="/login" class={cn(buttonVariants({ size: "lg" }))}>
+        <a href="/login" class={cn(buttonVariants({ size: 'lg' }))}>
           Get Started
         </a>
       </div>
     </div>
     <div class="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
       <p class="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-        Astronomy is a demo app.{" "}
+        Astronomy is a demo app.{' '}
         <strong>You can test the upgrade and won&apos;t be charged.</strong>
       </p>
     </div>

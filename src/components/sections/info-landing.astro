@@ -1,7 +1,7 @@
 ---
 import type { InfoLdg } from '@/types'
 import { cn } from '@/lib/utils'
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
 
 interface Props {
@@ -53,7 +53,7 @@ const { reverse, data } = Astro.props;
       )}
     >
       <div class="relative aspect-video">
-        <Image
+        <Picture
           class="size-full object-cover object-center"
           src={data.image}
           alt={data.title}

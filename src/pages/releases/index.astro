@@ -1,11 +1,11 @@
 ---
-import PageHeader from "@/components/page-header.astro";
-import { Badge } from "@/components/ui/badge";
-import MainLayout from "@/layouts/main-layout.astro";
-import { formatDate } from "@/lib/utils";
-import { getCollection } from "astro:content";
+import PageHeader from '@/components/PageHeader.astro'
+import { Badge } from '@/components/ui/badge'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { formatDate } from '@/lib/utils'
+import { getCollection } from 'astro:content'
 
-const posts = await getCollection("releases");
+const posts = await getCollection('releases')
 posts.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
@@ -18,7 +18,7 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
 
     <ul class="pt-6">
       {
-        posts.map((post) => (
+        posts.map(post => (
           <li class="flex flex-col max-md:gap-y-4 md:flex-row w-full">
             <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
               <div class="md:sticky md:top-24 w-auto mr-6">
@@ -28,7 +28,6 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
                 >
                   <Badge
                     variant="default"
-                    radius="lg"
                     className="w-14 h-7 justify-center text-md bg_release_version text-white"
                   >
                     {post.data.versionNumber}

@@ -1,28 +1,28 @@
 ---
-import BlogPostLayout from '@/layouts/blog-post.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogPostLayout from '@/layouts/BlogContent.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection('blog')
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
 }
 
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'blog'>
 
-const post = Astro.props;
-const slug = Astro.params.slug;
-const { Content } = await post.render();
+const post = Astro.props
+const slug = Astro.params.slug
+const { Content } = await post.render()
 
 if (!slug || !post) {
   return new Response(null, {
     status: 404,
-    statusText: 'Not found'
-  });
+    statusText: 'Not found',
+  })
 }
 ---
 <BlogPostLayout {...post}>
-	<Content />
+  <Content />
 </BlogPostLayout>

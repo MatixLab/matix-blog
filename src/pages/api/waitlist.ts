@@ -1,6 +1,6 @@
-export const prerender = false;
+import type { APIRoute } from 'astro'
 
-import type { APIRoute } from "astro";
+export const prerender = false
 // import { WaitingList, db, sql } from "astro:db";
 
 export const GET: APIRoute = async () => {
@@ -20,11 +20,11 @@ export const GET: APIRoute = async () => {
     JSON.stringify({
       count: 100,
     }),
-    { status: 200 }
-  );
-};
+    { status: 200 },
+  )
+}
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async () => {
   // const { email } = await request.json();
 
   // if (!email) {
@@ -52,8 +52,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   return new Response(
     JSON.stringify({
-      message: "success",
+      message: 'success',
     }),
-    { status: 200 }
-  );
-};
+    { status: 200 },
+  )
+}

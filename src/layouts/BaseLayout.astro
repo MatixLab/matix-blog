@@ -1,0 +1,32 @@
+---
+import BaseHead from '@/components/seo/base-head.astro'
+import TailwindIndicator from '@/components/util/tailwind-indicator.astro'
+import { cn } from '@/lib/utils'
+import { Toaster } from 'sonner'
+
+type Props = {
+  title: string
+  description?: string
+  bodyClass?: string
+}
+
+const { title, description, bodyClass } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class={cn(
+    'flex flex-col min-h-screen',
+    bodyClass,
+    )}
+  >
+    <!-- Background -->
+    <slot />
+    <TailwindIndicator />
+    <Toaster richColors client:only="react" />
+  </body>
+</html>
+
