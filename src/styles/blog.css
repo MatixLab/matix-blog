@@ -22,3 +22,13 @@
   transform-origin: bottom left;
   transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
 }
+
+.prose a {
+  @apply no-underline text-blue-500 after:content-['_↗'] font-normal hover:underline hover:underline-offset-2;
+}
+
+
+a.subheading-anchor {
+  @apply after:content-none;
+}
+

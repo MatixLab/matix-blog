@@ -66,7 +66,7 @@ export const MdxComponents = {
   ),
   a: ({ className, ...props }: Props) => (
     <a
-      className={cn('font-medium underline underline-offset-4', className)}
+      className={cn('text-red-200 underline underline-offset-4', className)}
       {...props}
     />
   ),

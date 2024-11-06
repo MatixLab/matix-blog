@@ -1,17 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import { cn, formatDate } from '@/lib/utils'
 import { Picture } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
+import { HashIcon } from 'lucide-react'
 import MainLayout from './MainLayout.astro'
 
 type Props = CollectionEntry<'blog'>
 
 const slug = Astro.props.slug
-const { title, description, pubDate, updatedDate, cover, category }
-  = Astro.props.data;
+const { title, description, updatedDate, cover, category } = Astro.props.data;
 ---
 
 <MainLayout title={title} description={description}>
@@ -29,40 +28,46 @@ const { title, description, pubDate, updatedDate, cover, category }
     </button>
 
     <article class="prose dark:prose-invert max-w-none">
-      <a
-        href={`/blog/category/${category}`}
-        transition:name={`badge-cat-${slug}`}
-      >
-        <Badge className="capitalize">
-          {category}
-        </Badge>
-      </a>
+      <h1 class="text-4xl mt-4 " transition:name={`title-${slug}`}>
+        {title}
+      </h1>
+      <div class="flex items-center font-normal space-x-4">
+        <span
+          class="text-ds-gray-700 text-sm"
+          transition:name={`date-${slug}`}
+        >
+         { formatDate(updatedDate) }
+        </span>
+        {
+          category.map((cat: string) => {
+            return (
+              <a
+                class="flex items-center justify-center space-x-1 group no-underline after:!content-none"
+                href={`/blog/category/${cat}`}
+                transition:name={`badge-cat-${slug}`}
+              >
+                <HashIcon className="size-3 text-ds-gray-700 hover:scale-150 duration-150 ease-in-out"></HashIcon>
+                <span class={cn(
+                  'text-sm  text-ds-gray-700 link',
+                )}
+                >{cat}</span>
+              </a>
+            )
+          })
+        }
+      </div>
       <Picture
-        class="rounded-xl overflow-hidden my-6"
+        class="rounded-xl overflow-hidden"
         width={720}
         height={360}
         src={cover}
         alt={title}
         transition:name={`img-${slug}`}
       />
-      <div class="flex items-center justify-between">
-        <span
-          class="font-medium text-muted-foreground"
-          transition:name={`date-${slug}`}
-        >
-          {formatDate(pubDate)}
-          {
-            updatedDate && (
-              <span>- Last updated on {formatDate(updatedDate)}</span>
-            )
-          }
-        </span>
-      </div>
-      <h1 class="font-heading text-4xl my-4" transition:name={`title-${slug}`}>
-        {title}
-      </h1>
-      <p>{description}</p>
-      <hr class="my-6" />
+      <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
+        {description}
+      </blockquote>
+      <hr class="my-6 max-w-24 mx-auto" />
       <slot />
     </article>
   </div>

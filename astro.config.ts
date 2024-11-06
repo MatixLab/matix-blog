@@ -74,7 +74,7 @@ export default defineConfig({
       [
         rehypePrettyCode,
         {
-          keepBackground: true,
+          keepBackground: false,
           theme: 'github-dark-default',
           defaultLang: {
             block: 'plaintext',
@@ -91,7 +91,6 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behavior: 'wrap',
           properties: {
             className: ['subheading-anchor'],
             ariaLabel: 'Link to section',
