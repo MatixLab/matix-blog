@@ -1,4 +1,5 @@
 ---
+import { MdxComponents } from '@/components/markdown/mdx-components'
 import BlogPostLayout from '@/layouts/BlogContent.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
@@ -24,5 +25,5 @@ if (!slug || !post) {
 }
 ---
 <BlogPostLayout {...post}>
-  <Content />
+  <Content components={{ ...MdxComponents }} />
 </BlogPostLayout>

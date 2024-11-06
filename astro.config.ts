@@ -35,7 +35,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     mdx({
-      optimize: true,
+      optimize: false,
     }),
     /**
      *  https://docs.astro.build/zh-cn/guides/integrations-guide/sitemap
@@ -91,9 +91,11 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
+          behavior: 'prepend',
           properties: {
             className: ['subheading-anchor'],
             ariaLabel: 'Link to section',
+            ariaHidden: 'true',
           },
         },
       ],

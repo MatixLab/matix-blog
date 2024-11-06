@@ -33,24 +33,29 @@ const { title, description, updatedDate, cover, category } = Astro.props.data;
       </h1>
       <div class="flex items-center font-normal space-x-4">
         <span
-          class="text-ds-gray-700 text-sm"
+          class="text-ds-gray-600 text-sm mr-2"
           transition:name={`date-${slug}`}
         >
-         { formatDate(updatedDate) }
+          { formatDate(updatedDate) }
         </span>
         {
           category.map((cat: string) => {
             return (
               <a
-                class="flex items-center justify-center space-x-1 group no-underline after:!content-none"
+                class={cn(
+                  'flex items-center justify-center space-x-[2px] group no-underline',
+                  'after:!content-none hover:!no-underline',
+                )}
                 href={`/blog/category/${cat}`}
                 transition:name={`badge-cat-${slug}`}
               >
-                <HashIcon className="size-3 text-ds-gray-700 hover:scale-150 duration-150 ease-in-out"></HashIcon>
-                <span class={cn(
-                  'text-sm  text-ds-gray-700 link',
+                <HashIcon className={cn(
+                  'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
                 )}
-                >{cat}</span>
+                ></HashIcon>
+                <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
+                  {cat}
+                </span>
               </a>
             )
           })

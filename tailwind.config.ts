@@ -4,7 +4,6 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import animate from 'tailwindcss-animate'
 
 const config: Config = {
-  important: true,
   darkMode: ['class'],
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {

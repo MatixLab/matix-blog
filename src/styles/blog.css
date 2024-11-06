@@ -24,11 +24,11 @@
 }
 
 .prose a {
-  @apply no-underline text-blue-500 after:content-['_↗'] font-normal hover:underline hover:underline-offset-2;
+  @apply no-underline text-blue-500 after:content-['__↗'] font-normal;
+  @apply hover:underline hover:underline-offset-4 hover:decoration-wavy;
 }
 
 
-a.subheading-anchor {
+a[aria-hidden='true'] {
   @apply after:content-none;
 }
-
