@@ -1,7 +1,9 @@
 ---
 import { Button } from '@/components/ui/button'
 import { features } from '@/config/landing'
-import { Icon } from 'astro-icon/components'
+import {
+  ArrowUpRight,
+} from 'lucide-react'
 import HeaderSection from './header-section.astro';
 ---
 
@@ -49,7 +51,7 @@ import HeaderSection from './header-section.astro';
                   >
                     <a href="/" class="flex items-center gap-2">
                       <span>Visit the site</span>
-                      <Icon name="lucide:arrow-up-right" class="size-4" />
+                      <ArrowUpRight className="size-4" />
                     </a>
                   </Button>
                 </div>

@@ -2,7 +2,10 @@
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
-import { Icon } from 'astro-icon/components';
+import { Icon } from 'astro-icon/components'
+import {
+  ArrowRight,
+} from 'lucide-react'
 ---
 
 <section class="space-y-6 py-12 sm:py-20 lg:py-20">
@@ -41,7 +44,7 @@ import { Icon } from 'astro-icon/components';
         class={cn(buttonVariants({ size: 'lg' }), 'gap-2')}
       >
         <span>Go Pricing</span>
-        <Icon name="lucide:arrow-right" class="size-4" />
+        <ArrowRight className="size-4" />
       </a>
       <a
         href={siteConfig.links.github}

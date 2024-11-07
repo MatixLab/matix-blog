@@ -3,8 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import { buttonVariants } from '@/components/ui/button'
 import { cn, formatDate } from '@/lib/utils'
 import { Picture } from 'astro:assets'
-import { Icon } from 'astro-icon/components'
-import { HashIcon } from 'lucide-react'
+import { ChevronLeft, HashIcon } from 'lucide-react'
 import MainLayout from './MainLayout.astro'
 
 type Props = CollectionEntry<'blog'>
@@ -23,7 +22,7 @@ const { title, description, updatedDate, cover, category } = Astro.props.data;
       )}
       transition:animate="slide"
     >
-      <Icon name="lucide:chevron-left" class="mr-2 size-4" />
+      <ChevronLeft className="mr-2 size-4" />
       {' '}Back
     </button>
 

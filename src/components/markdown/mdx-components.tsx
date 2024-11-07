@@ -66,7 +66,7 @@ export const MdxComponents = {
   ),
   a: ({ className, ...props }: Props) => (
     <a
-      className={cn('no-underline underline-offset-4', className)}
+      className={cn('no-underline underline-offset-4 link', className)}
       {...props}
     >
     </a>
@@ -140,7 +140,8 @@ export const MdxComponents = {
       )}
       tabIndex={0}
       {...props}
-    />
+    >
+    </pre>
   ),
   Image,
   Callout,

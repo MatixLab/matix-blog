@@ -4,7 +4,7 @@ import { buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
 import { getCollection } from 'astro:content'
-import { Icon } from 'astro-icon/components'
+import { ChevronLeft } from 'lucide-react'
 
 export async function getStaticPaths() {
   const releases = await getCollection('releases')
@@ -35,7 +35,7 @@ const { Content } = await release.render();
               )}
               transition:animate="slide"
             >
-              <Icon name="lucide:chevron-left" class="mr-2 size-4" />
+              <ChevronLeft className="mr-2 size-4" />
               {' '}Back
             </button>
             <Badge

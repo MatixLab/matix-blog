@@ -282,18 +282,69 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-
-  .callout>* {
-    @apply my-0 !important;
+  /* scrollbar */ 
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar:horizontal {
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
+    background: #fff;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(0deg 0% 81.51%);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
   }
 
-  .font-icon-callout {
-    font-family: Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  /* slide-enter */
+  @keyframes slide-enter {
+    0% {
+      transform: translateY(10px);
+      opacity: 0
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 100
+    }
   }
 
-  /* MdxComponent: For <code></code> with no parent <pre></pre> */
-  :not(pre)>code {
-    @apply relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-background text-foreground;
+  @media (prefers-reduced-motion:no-preference) {
+    [slide-enter],
+    .slide-enter,
+    .slide-enter-content > * {
+      --enter-stage: 0;
+      --enter-step: 150ms;
+      --enter-initial: 0ms;
+      animation: slide-enter 3s both 1;
+      animation-delay: calc(var(--enter-initial) + var(--enter-stage) * var(--enter-step));
+    }
+
+    .slide-enter-content > *:nth-child(1) { --enter-stage: 1; }
+    .slide-enter-content > *:nth-child(2) { --enter-stage: 2; }
+    .slide-enter-content > *:nth-child(3) { --enter-stage: 3; }
+    .slide-enter-content > *:nth-child(4) { --enter-stage: 4; }
+    .slide-enter-content > *:nth-child(5) { --enter-stage: 5; }
+    .slide-enter-content > *:nth-child(6) { --enter-stage: 6; }
+    .slide-enter-content > *:nth-child(7) { --enter-stage: 7; }
+    .slide-enter-content > *:nth-child(8) { --enter-stage: 8; }
+    .slide-enter-content > *:nth-child(9) { --enter-stage: 9; }
+    .slide-enter-content > *:nth-child(10) { --enter-stage: 10; }
+    .slide-enter-content > *:nth-child(11) { --enter-stage: 11; }
+    .slide-enter-content > *:nth-child(12) { --enter-stage: 12; }
+    .slide-enter-content > *:nth-child(13) { --enter-stage: 13; }
+    .slide-enter-content > *:nth-child(14) { --enter-stage: 14; }
+    .slide-enter-content > *:nth-child(15) { --enter-stage: 15; }
+    .slide-enter-content > *:nth-child(16) { --enter-stage: 16; }
+    .slide-enter-content > *:nth-child(17) { --enter-stage: 17; }
+    .slide-enter-content > *:nth-child(18) { --enter-stage: 18; }
+    .slide-enter-content > *:nth-child(19) { --enter-stage: 19; }
+    .slide-enter-content > *:nth-child(20) { --enter-stage: 20; }
   }
 }
 

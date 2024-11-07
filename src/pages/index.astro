@@ -1,7 +1,7 @@
 ---
 import { Button } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { Icon } from 'astro-icon/components';
+import { Briefcase, Mail } from 'lucide-react'
 ---
 
 <MainLayout title="About" description="Lorem ipsum dolor sit amet">
@@ -26,12 +26,12 @@ import { Icon } from 'astro-icon/components';
             </p>
             <div class="flex items-center gap-3">
               <Button className="rounded-xl">
-                <Icon name="lucide:mail" class="mr-2 size-4" />
+                <Mail className="mr-2 size-4" />
                 <a href="mailto:">Talk with me</a>
               </Button>
 
               <Button variant="outline" className="rounded-xl">
-                <Icon name="lucide:briefcase" class="mr-2.5 size-4" />
+                <Briefcase className="mr-2.5 size-4" />
                 <span>My works</span>
               </Button>
             </div>

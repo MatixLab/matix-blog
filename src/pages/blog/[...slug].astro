@@ -17,6 +17,8 @@ const post = Astro.props
 const slug = Astro.params.slug
 const { Content } = await post.render()
 
+console.log(await post.render())
+
 if (!slug || !post) {
   return new Response(null, {
     status: 404,
@@ -25,5 +27,5 @@ if (!slug || !post) {
 }
 ---
 <BlogPostLayout {...post}>
-  <Content components={{ ...MdxComponents }} />
+  <Content components={MdxComponents} />
 </BlogPostLayout>
