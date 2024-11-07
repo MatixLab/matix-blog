@@ -1,9 +1,8 @@
 import Callout from '@/components/markdown/callout.astro'
-
 import MdxCard from '@/components/markdown/mdx-card.astro'
 import { cn } from '@/lib/utils'
-import { Image } from 'astro:assets'
 import * as React from 'react'
+import { CopyButton } from './copy-button'
 
 interface Props {
   className?: string
@@ -66,7 +65,7 @@ export const MdxComponents = {
   ),
   a: ({ className, ...props }: Props) => (
     <a
-      className={cn('no-underline underline-offset-4 link', className)}
+      className={cn('no-underline underline-offset-4', className)}
       {...props}
     >
     </a>
@@ -78,10 +77,10 @@ export const MdxComponents = {
     />
   ),
   ul: ({ className, ...props }: Props) => (
-    <ul className={cn('my-6 ml-6 list-disc', className)} {...props} />
+    <ul className={cn('my-6 ml-1 list-disc', className)} {...props} />
   ),
   ol: ({ className, ...props }: Props) => (
-    <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
+    <ol className={cn('my-6 ml-1 list-decimal', className)} {...props} />
   ),
   li: ({ className, ...props }: Props) => (
     <li className={cn('mt-2', className)} {...props} />
@@ -95,13 +94,13 @@ export const MdxComponents = {
       {...props}
     />
   ),
-  img: ({
-    className,
-    alt,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img className={cn('rounded-md border', className)} alt={alt} {...props} />
-  ),
+  // img: ({
+  //   className,
+  //   alt,
+  //   ...props
+  // }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  //   <img className={cn('rounded-md border', className)} alt={alt} {...props} src={props.src?.src} />
+  // ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-y-auto">
@@ -132,18 +131,36 @@ export const MdxComponents = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }: Props) => (
-    <pre
-      className={cn(
-        'mb-4 mt-6 overflow-x-auto rounded-lg border bg-black p-4',
-        className,
-      )}
-      tabIndex={0}
-      {...props}
-    >
-    </pre>
-  ),
-  Image,
+  pre: ({
+    className,
+    __rawString__,
+    __withMeta__,
+    __src__,
+    ...props
+  }: React.HTMLAttributes<HTMLPreElement> & {
+    __rawString__?: string
+    __withMeta__?: boolean
+    __src__?: string
+  }) => {
+    return (
+      <>
+        <pre
+          className={cn(
+            'max-h-[650px] overflow-x-auto bg-black py-4 ',
+            className,
+          )}
+          {...props}
+        />
+        {__rawString__ && (
+          <CopyButton
+            value={__rawString__}
+            src={__src__}
+            className={cn('absolute right-4 top-4', __withMeta__ && 'top-16')}
+          />
+        )}
+      </>
+    )
+  },
   Callout,
   Card: MdxCard,
 }

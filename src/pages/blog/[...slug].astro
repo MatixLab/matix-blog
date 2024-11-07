@@ -1,4 +1,5 @@
 ---
+import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import BlogPostLayout from '@/layouts/BlogContent.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
@@ -17,8 +18,6 @@ const post = Astro.props
 const slug = Astro.params.slug
 const { Content } = await post.render()
 
-console.log(await post.render())
-
 if (!slug || !post) {
   return new Response(null, {
     status: 404,
@@ -27,5 +26,5 @@ if (!slug || !post) {
 }
 ---
 <BlogPostLayout {...post}>
-  <Content components={MdxComponents} />
+  <Content components={{ ...MdxComponents, img: IMG, Image: IMG }} />
 </BlogPostLayout>

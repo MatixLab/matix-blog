@@ -1,0 +1,19 @@
+---
+import { Image } from 'astro:assets'
+
+const props = Astro.props;
+---
+
+<figure>
+  <Image
+    alt={props.alt}
+    src={props.src}
+    class="w-full object-cover"
+    style="color: transparent;"
+  />
+  <figcaption
+    class="mt-2 break-all text-center text-xs text-ds-gray-600"
+  >
+    {props.alt}
+  </figcaption>
+</figure>

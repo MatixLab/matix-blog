@@ -47,5 +47,6 @@
     "pcss",
     "postcss"
   ],
-  "css.customData": [".vscode/tailwindcss.json"]
+  "css.customData": [".vscode/tailwindcss.json"],
+  "mdx.server.enable": true
 }

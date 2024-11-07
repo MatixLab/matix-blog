@@ -14,19 +14,24 @@ interface PaginationProps {
   totalPages: number
   baseUrl: string
   className?: string
+  suffix?: string
 }
 
 export function PaginationComponent({
   currentPage,
   totalPages,
   baseUrl,
+  suffix,
 }: PaginationProps) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   const getPageUrl = (page: number) => {
-    if (page === 1)
-      return baseUrl
-    return `${baseUrl}${page}`
+    const url = [baseUrl]
+    if (suffix)
+      url.push(suffix)
+    if (page !== 1)
+      url.push(String(page))
+    return url.join('')
   }
 
   return (

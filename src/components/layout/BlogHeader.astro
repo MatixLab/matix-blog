@@ -1,7 +1,6 @@
 ---
 import { FilterMobile } from '@/components/mobile/BlogFilter'
 import { buttonVariants } from '@/components/ui/button'
-import { navMenuConfig } from '@/config/nav-menu'
 import {
   getCategories,
 } from '@/lib/fetchers'
@@ -15,7 +14,7 @@ type Props = {
 }
 
 const { title, description } = Astro.props
-const { category } = Astro.params
+const { category = '' } = Astro.params
 ---
 
 <h1 class="inline-block font-heading text-4xl font-semibold">{title}</h1>
@@ -30,10 +29,8 @@ const { category } = Astro.params
 }
 <div class="flex items-start justify-between my-6 max-md:gap-4">
   <FilterMobile
-    mainNavItems={[...navMenuConfig.links]}
-    sidebarNavItems={[
-    ...navMenuConfig.pagesNav,
-  ]}
+    categories={categories as string[]}
+    category={category}
     slot="mobile-nav-header"
     client:load
   />

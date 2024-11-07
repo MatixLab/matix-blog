@@ -58,6 +58,7 @@ page.data.forEach((post) => {
         currentPage={page.currentPage}
         totalPages={page.lastPage}
         baseUrl="/blog/category"
+        suffix={`/${category}`}
         client:load
       />
     </div>

@@ -16,7 +16,12 @@
   @apply no-underline text-blue-500 font-normal;
 }
 
-/* hiiden link content */
+/* remove image margin y */
+.prose img {
+  @apply my-0;
+}
+
+/* hidden link content */
 a[aria-hidden='true'] {
   @apply after:content-none;
 }
