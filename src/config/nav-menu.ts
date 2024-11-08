@@ -65,8 +65,8 @@ export const navMenuConfig: NavMenuConfig = {
       image: about,
     },
     {
-      title: 'Changelog',
-      href: '/releases',
+      title: 'Timeline',
+      href: '/timeline',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: changelog,
     },

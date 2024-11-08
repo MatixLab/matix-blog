@@ -5,42 +5,42 @@ import MainLayout from '@/layouts/MainLayout.astro'
 import { formatDate } from '@/lib/utils'
 import { getCollection } from 'astro:content'
 
-const posts = await getCollection('releases')
-posts.sort((a, b) => +b.data.date - +a.data.date);
+const timeline = await getCollection('timeline')
+timeline.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
-<MainLayout title="Changelog">
+<MainLayout title="Timeline">
   <section class="container max-w-screen-lg space-y-6 pt-12">
     <PageHeader
-      heading="Changelog"
+      heading="Timeline"
       text="Reproduce Astro Starlog template with Tailwind CSS & shadcn/ui."
     />
 
     <ul class="pt-6">
       {
-        posts.map(post => (
+        timeline.map(timeline => (
           <li class="flex flex-col max-md:gap-y-4 md:flex-row w-full">
             <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
               <div class="md:sticky md:top-24 w-auto mr-6">
                 <a
-                  href={`/releases/${post.slug}`}
+                  href={`/timeline/${timeline.slug}`}
                   class="flex flex-col gap-y-2 pb-4"
                 >
                   <Badge
                     variant="default"
                     className="w-14 h-7 justify-center text-md bg_release_version text-white"
                   >
-                    {post.data.versionNumber}
+                    {timeline.data.versionNumber}
                   </Badge>
                   <span class="text-sm text-muted-foreground">
-                    {formatDate(post.data.date)}
+                    {formatDate(timeline.data.date)}
                   </span>
                 </a>
               </div>
             </div>
 
             <div class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-24">
-              {post.render().then(({ Content }) => (
+              {timeline.render().then(({ Content }) => (
                 <Content />
               ))}
             </div>

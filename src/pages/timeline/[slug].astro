@@ -7,19 +7,19 @@ import { getCollection } from 'astro:content'
 import { ChevronLeft } from 'lucide-react'
 
 export async function getStaticPaths() {
-  const releases = await getCollection('releases')
+  const timeline = await getCollection('timeline')
 
-  return releases.map(release => ({
+  return timeline.map(release => ({
     params: { slug: release.slug },
     props: { release },
   }))
 }
 
-const { release } = Astro.props
-const { Content } = await release.render();
+const { timeline } = Astro.props
+const { Content } = await timeline.render();
 ---
 
-<MainLayout title={release.data.title}>
+<MainLayout title={timeline.data.title}>
   <section class="container max-w-screen-lg pt-12">
     <div
       class="flex flex-col max-md:gap-y-4 md:flex-row w-full"
@@ -42,10 +42,10 @@ const { Content } = await release.render();
               variant="default"
               className="w-14 h-7 justify-center text-md bg_release_version text-white"
             >
-              {release.data.versionNumber}
+              {timeline.data.versionNumber}
             </Badge>
             <span class="text-sm text-muted-foreground">
-              {formatDate(release.data.date)}
+              {formatDate(timeline.data.date)}
             </span>
           </div>
         </div>

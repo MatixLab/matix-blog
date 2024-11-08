@@ -19,7 +19,7 @@ export const blog = defineCollection({
     }),
 })
 
-export const releases = defineCollection({
+export const timeline = defineCollection({
   type: 'content',
   schema: ({ image }) =>
     z.object({
@@ -34,4 +34,4 @@ export const releases = defineCollection({
     }),
 })
 
-export const collections = { blog, releases }
+export const collections = { blog, timeline }

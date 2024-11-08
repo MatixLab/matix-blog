@@ -33,7 +33,7 @@ export const footerLinks: SidebarNavItem[] = [
       { title: 'Security', href: '#' },
       { title: 'Customization', href: '#' },
       { title: 'Customers', href: '#' },
-      { title: 'Changelog', href: '#' },
+      { title: 'Timeline', href: '#' },
     ],
   },
   {
