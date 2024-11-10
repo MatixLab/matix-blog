@@ -40,13 +40,13 @@ export default defineConfig({
     react(),
     icon({
       include: {
-        lucide: [
+        'lucide': [
           'laptop',
           'settings',
           'search',
         ],
-        mdi: ['*'],
-        ri: ['*'],
+        'mdi': ['*'],
+        'simple-icons': ['*'],
       },
     }),
   ],

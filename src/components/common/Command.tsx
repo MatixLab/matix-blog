@@ -5,18 +5,10 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
 } from '@/components/ui/command'
 import { navMenuConfig } from '@/config/nav-menu'
 import { cn } from '@/lib/utils'
-import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
-  Smile,
-  User,
-} from 'lucide-react'
+import { Icon } from 'astro-icon/components'
 import * as React from 'react'
 
 const links = navMenuConfig.links
@@ -37,7 +29,7 @@ export function Command() {
 
   return (
     <>
-      <p className="text-sm text-muted-foreground my-auto" onClick={() => { setOpen(open => !open) }}>
+      <p className="text-sm text-muted-foreground my-auto hover:cursor-pointer" onClick={() => { setOpen(open => !open) }}>
         <kbd className={cn(
           'pointer-events-none inline-flex select-none items-center gap-1 rounded',
           'border bg-muted px-1.5 text-muted-foreground opacity-100',
@@ -61,17 +53,15 @@ export function Command() {
                           href={link.href}
                           aria-label={link.title}
                           className="block w-full h-full cursor-pointer"
-                          onClick={() => { setOpen(open => !open)} }
+                          onClick={() => { setOpen(open => !open) }}
                         >
                           {link.title}
                         </a>
                       </CommandItem>
                     )
                   })
-
                 )
               : null}
-
           </CommandGroup>
         </CommandList>
       </CommandDialog>

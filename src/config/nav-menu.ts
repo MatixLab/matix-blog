@@ -18,27 +18,12 @@ export const navMenuConfig: NavMenuConfig = {
           image: landing,
         },
         {
-          title: 'Docs',
-          href: '/docs/getting-started',
-          description:
-            'A Markdown/MDX docs site built using Content Collections.',
-          image: documentation,
-        },
-        {
           title: 'Anime List',
           href: '/animes',
           description:
             'Fetch anime content from an graphql endpoint. Tabs component.',
           image: blogDb,
           disabled: true,
-        },
-        {
-          title: 'Blog DB',
-          href: '/blog-db',
-          description:
-            'Blog built using Astro DB. With categories, views & likes.',
-          image: blogDb,
-          launched: true,
         },
         {
           title: 'Discovery',
@@ -57,12 +42,6 @@ export const navMenuConfig: NavMenuConfig = {
       href: '/blog',
       description: 'A Markdown/MDX blog built using Content Collections.',
       image: staticBlog,
-    },
-    {
-      title: 'About',
-      href: '/about',
-      description: 'A simple page with a masonry gallery and little text.',
-      image: about,
     },
     {
       title: 'Timeline',
