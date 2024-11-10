@@ -34,4 +34,15 @@ export const timeline = defineCollection({
     }),
 })
 
+export const weekly = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      cover: image(),
+      date: z.date({ coerce: true }),
+    }),
+})
+
 export const collections = { blog, timeline }

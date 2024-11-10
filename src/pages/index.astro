@@ -1,43 +1,127 @@
 ---
-import { Button } from '@/components/ui/button'
+import { siteConfig } from '@/config/site'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { Briefcase, Mail } from 'lucide-react'
+import { getPosts } from '@/lib/fetchers'
+import { cn, formatSimpleDate } from '@/lib/utils'
+import { type CollectionEntry } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+import { domAnimation, LazyMotion } from 'framer-motion'
+
+const allPosts = await getPosts()
+const posts: {
+  [prop: string]: CollectionEntry<'blog'>[]
+} = {}
+allPosts.forEach((ele) => {
+  const year = ele.data.pubDate.getFullYear()
+  if (!posts[year])
+posts[year] = []
+  posts[year].push(ele)
+})
+
+const years = Object.keys(posts).toSorted((a, b) => {
+  return Number(b) - Number(a)
+});
 ---
 
-<MainLayout title="About" description="Lorem ipsum dolor sit amet">
-  <section class="space-y-5">
-    <section
-      class="relative container max-w-screen-md mb-28 mt-16 sm:mt-20 lg:mt-28"
-    >
-      <div class="flex h-full flex-col justify-between">
-        <div class="grid gap-8 sm:grid-cols-2">
-          <div>
-            <h1 class="text-4xl font-heading text-foreground">AnthonyZhu</h1>
-            <p class="text-base text-muted-foreground mt-0.5">
-              Fullstack Developer
-            </p>
-          </div>
-          <div>
-            <p class="mb-12 text-base text-muted-foreground">
-              Hi there! I'm AnthonyZhu, a web dev enthusiast with a passion for
-              user interfaces.
-              <br />
-              What's up with you?
-            </p>
-            <div class="flex items-center gap-3">
-              <Button className="rounded-xl">
-                <Mail className="mr-2 size-4" />
-                <a href="mailto:">Talk with me</a>
-              </Button>
-
-              <Button variant="outline" className="rounded-xl">
-                <Briefcase className="mr-2.5 size-4" />
-                <span>My works</span>
-              </Button>
-            </div>
+<MainLayout title="About" description="Anthony's homepage">
+  <div id="scroll-area" class="scrollable-area relative flex w-full flex-col">
+    <div class="flex w-full px-6 py-4 lg:px-8 lg:py-12">
+      <div class="mx-auto w-full lg:mb-0 lg:max-w-3xl">
+        <div class="space-y-2">
+          <p class="text-ds-gray-1000">Hi 👋 I'm AnthonyZhu.</p>
+          <p class="text-ds-gray-1000 pt-4">You can find me on:</p>
+          <div class="flex space-x-8 ml-4">
+            <a href={siteConfig.links.github} target="_blank">
+              <Icon name="simple-icons:github" class="size-5 inline-flex" />
+            </a>
+            <a href={siteConfig.links.twitter} target="_blank">
+              <Icon name="simple-icons:x" class="size-5 inline-flex" />
+            </a>
           </div>
         </div>
+        <div class="mb-4 mt-8">
+          <a href="/blog">
+            <h2
+              class="underline decoration-wavy underline-offset-4 after:content-['_↗'] after:text-sm"
+            >
+              Writing
+            </h2>
+          </a>
+        </div>
+        <LazyMotion features={domAnimation}>
+          <div class="text-sm">
+            <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
+              <span class="col-span-1 hidden text-left md:grid">Year</span>
+              <span class="col-span-6 md:col-span-5">
+                <span class="grid grid-cols-4 items-center md:grid-cols-8">
+                  <span class="col-span-1 text-left">Date</span>
+                  <span class="col-span-2 md:col-span-6">Title</span>
+                </span>
+              </span>
+            </div>
+
+            <div class="group/list-wrapper">
+              {
+                years.map((year: string) => {
+                  const postsData = posts[year]
+                  return (
+                    <ul class="group/list list-none">
+                      {postsData.map((item, itemIndex) => {
+                        return (
+                          <li class="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300">
+                            <span
+                              class={cn(
+                                'pointer-events-none col-span-1 hidden items-center tabular-nums transition-colors duration-300',
+                                ' group-hover/list:text-gray-900 md:grid',
+                                itemIndex === 0 && 'border-t border-gray-200',
+                              )}
+                            >
+                              {itemIndex === 0 ? year : ''}
+                            </span>
+                            <a
+                              href={`/blog/${item.slug}`}
+                              class="col-span-6 group-hover/list-item:text-gray-900 md:col-span-5"
+                            >
+                              <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
+                                <span class="col-span-1 text-left tabular-nums">
+                                  <time
+                                    datetime={item.data.pubDate.toDateString()}
+                                    class="hidden md:block"
+                                  >
+                                    {formatSimpleDate(item.data.updatedDate)}
+                                  </time>
+                                  <time
+                                    datetime={item.data.pubDate.toDateString()}
+                                    class="md:hidden"
+                                  >
+                                    {formatSimpleDate(item.data.updatedDate)}
+                                  </time>
+                                </span>
+                                <span
+                                  class="col-span-2 line-clamp-4 md:col-span-6"
+                                  transition:name={`title-${item.slug}`}
+                                >
+                                  {item.data.title}
+                                </span>
+                              </span>
+                            </a>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </LazyMotion>
       </div>
-    </section>
-  </section>
+    </div>
+  </div>
 </MainLayout>
+
+<style>
+  .scrollable-area {
+    @apply h-full overflow-y-auto overflow-x-hidden;
+  }
+</style>

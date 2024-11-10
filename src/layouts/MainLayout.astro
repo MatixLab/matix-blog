@@ -25,7 +25,12 @@ const segment = extractSegmentURL(Astro.url.pathname)
 
 <BaseLayout title={title} description={description}>
   <Header className="border-b">
-    <MainNavigationMenu slot="left-header" segment={segment} client:load />
+    <!-- slot: left-header /  mobile-nav-header-->
+    <MainNavigationMenu
+      slot="left-header"
+      segment={segment}
+      client:load
+    />
     <SheetMobileNav
       mainNavItems={[...navMenuConfig.links]}
       sidebarNavItems={[
@@ -49,7 +54,11 @@ const segment = extractSegmentURL(Astro.url.pathname)
     </div>
   </Header>
 
-  <main class={cn(mainClass)}>
+  <main class={cn(
+      'flex-1  slide-enter-content',
+      mainClass,
+    )}
+  >
     <slot />
   </main>
   <Footer />
