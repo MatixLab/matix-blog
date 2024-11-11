@@ -72,7 +72,6 @@ export default defineConfig({
               return
             }
             node.__rawString__ = codeEl.children?.[0].value
-            node.__src__ = node.properties?.__src__
           }
         })
       },
@@ -94,18 +93,12 @@ export default defineConfig({
             transformerNotationErrorLevel(),
             transformerMetaHighlight(),
             transformerMetaWordHighlight(),
+            transformerCopyButton(),
           ],
         },
       ],
       () => (tree) => {
         visit(tree, (node) => {
-          // showLineNumbers
-          if (node?.type === 'element' && node?.tagName === 'code') {
-            if ('data-theme' in node.properties) {
-              node.properties['data-line-numbers-max-digits'] = '3'
-              node.properties['data-line-numbers'] = ''
-            }
-          }
           if (node?.type === 'element' && node?.tagName === 'figure') {
             if (!('data-rehype-pretty-code-figure' in node.properties)) {
               return
@@ -114,12 +107,8 @@ export default defineConfig({
             if (preElement.tagName !== 'pre') {
               return
             }
-            preElement.properties.__withMeta__ = node.children.at(0).tagName === 'div'
+            preElement.properties.__withMeta__ = node.children.at(0).tagName === 'code'
             preElement.properties.__rawString__ = node.__rawString__
-
-            if (node.__src__) {
-              preElement.properties.__src__ = node.__src__
-            }
           }
         })
       },

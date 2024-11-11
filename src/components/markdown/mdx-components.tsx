@@ -135,12 +135,10 @@ export const MdxComponents = {
     className,
     __rawString__,
     __withMeta__,
-    __src__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
     __rawString__?: string
     __withMeta__?: boolean
-    __src__?: string
   }) => {
     return (
       <>
@@ -154,7 +152,6 @@ export const MdxComponents = {
         {__rawString__ && (
           <CopyButton
             value={__rawString__}
-            src={__src__}
             className={cn('absolute right-4 top-4', __withMeta__ && 'top-16')}
           />
         )}

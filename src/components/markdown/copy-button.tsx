@@ -8,23 +8,12 @@ interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   src?: string
 }
 
-export async function copyToClipboardWithMeta(value: string) {
-  navigator.clipboard.writeText(value)
-}
-
 export function CopyButton({
   value,
   className,
-  src,
   ...props
 }: CopyButtonProps) {
   const [hasCopied, setHasCopied] = React.useState(false)
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setHasCopied(false)
-    }, 3000)
-  }, [hasCopied])
 
   return (
     <Button
@@ -34,15 +23,14 @@ export function CopyButton({
         'relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50',
         className,
       )}
+      data-copy={value}
       onClick={() => {
-        copyToClipboardWithMeta(
-          value,
-        )
-        setHasCopied(true)
+        console.log(1)
+        // window.navigator.clipboard.writeText(value)
       }}
       {...props}
     >
-      <span className="">Copy</span>
+      <span className="sr-only">Copy</span>
       {hasCopied
         ? (
             <Check className="h-3 w-3" />

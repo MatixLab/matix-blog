@@ -1,8 +1,8 @@
 ---
 import Command from '@/components/common/Command'
 import { MainNavigationMenu } from '@/components/common/MainNavigationMenu'
-import Footer from '@/components/layout/Footer.astro'
-import Header from '@/components/layout/Header.astro'
+import SiteFooter from '@/components/layout/SiteFooter.astro'
+import SiteHeader from '@/components/layout/SiteHeader.astro'
 import { SheetMobileNav } from '@/components/mobile/sheet-mobile-nav'
 
 import { ThemeToggle } from '@/components/util/theme-toggle'
@@ -24,42 +24,44 @@ const segment = extractSegmentURL(Astro.url.pathname)
 ---
 
 <BaseLayout title={title} description={description}>
-  <Header className="border-b">
-    <!-- slot: left-header /  mobile-nav-header-->
-    <MainNavigationMenu
-      slot="left-header"
-      segment={segment}
-      client:load
-    />
-    <SheetMobileNav
-      mainNavItems={[...navMenuConfig.links]}
-      sidebarNavItems={[
-        ...navMenuConfig.pagesNav,
-      ]}
-      slot="mobile-nav-header"
-      client:load
-    />
+  <div class="relative flex min-h-screen flex-col bg-background">
+    <SiteHeader className="border-b">
+      <!-- slot: left-header /  mobile-nav-header-->
+      <MainNavigationMenu
+        slot="left-header"
+        segment={segment}
+        client:load
+      />
+      <SheetMobileNav
+        mainNavItems={[...navMenuConfig.links]}
+        sidebarNavItems={[
+          ...navMenuConfig.pagesNav,
+        ]}
+        slot="mobile-nav-header"
+        client:load
+      />
 
-    <div class="flex items-center gap-x-4" slot="right-header">
-      <Command client:load />
-      <a
-        href={siteConfig.links.github}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="github"
-      >
-        <Icon name="github" class="size-5" />
-      </a>
-      <ThemeToggle client:load />
-    </div>
-  </Header>
+      <div class="flex items-center gap-x-4" slot="right-header">
+        <Command client:load />
+        <a
+          href={siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="github"
+        >
+          <Icon name="github" class="size-5" />
+        </a>
+        <ThemeToggle client:load />
+      </div>
+    </SiteHeader>
 
-  <main class={cn(
-      'flex-1  slide-enter-content',
-      mainClass,
-    )}
-  >
-    <slot />
-  </main>
-  <Footer />
+    <main class={cn(
+        'flex-1  slide-enter-content',
+        mainClass,
+      )}
+    >
+      <slot />
+    </main>
+    <SiteFooter />
+  </div>
 </BaseLayout>

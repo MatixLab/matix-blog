@@ -48,7 +48,6 @@ export default function Command() {
                   links.map((link) => {
                     return (
                       <CommandItem key={link.href} asChild>
-                        <Icon name="github" class="size-4" />
                         <a
                           href={link.href}
                           aria-label={link.title}
