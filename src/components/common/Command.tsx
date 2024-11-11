@@ -8,12 +8,11 @@ import {
 } from '@/components/ui/command'
 import { navMenuConfig } from '@/config/nav-menu'
 import { cn } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
 import * as React from 'react'
 
 const links = navMenuConfig.links
 
-export function Command() {
+export default function Command() {
   const [open, setOpen] = React.useState(false)
 
   React.useEffect(() => {
