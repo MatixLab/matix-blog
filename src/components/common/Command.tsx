@@ -12,7 +12,7 @@ import * as React from 'react'
 
 const links = navMenuConfig.links
 
-export function Command() {
+export default function Command() {
   const [open, setOpen] = React.useState(false)
 
   React.useEffect(() => {

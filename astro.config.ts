@@ -22,6 +22,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
+import { visit } from 'unist-util-visit'
 
 /**
  * https://astro.build/config
@@ -63,6 +64,18 @@ export default defineConfig({
     syntaxHighlight: false,
     rehypePlugins: [
       rehypeSlug,
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === 'element' && node?.tagName === 'pre') {
+            const [codeEl] = node.children
+            if (codeEl.tagName !== 'code') {
+              return
+            }
+            node.__rawString__ = codeEl.children?.[0].value
+            node.__src__ = node.properties?.__src__
+          }
+        })
+      },
       // rehypeHeadingIds,
       [
         rehypePrettyCode,
@@ -81,13 +94,35 @@ export default defineConfig({
             transformerNotationErrorLevel(),
             transformerMetaHighlight(),
             transformerMetaWordHighlight(),
-            transformerCopyButton({
-              visibility: 'hover',
-              feedbackDuration: 3_000,
-            }),
           ],
         },
       ],
+      () => (tree) => {
+        visit(tree, (node) => {
+          // showLineNumbers
+          if (node?.type === 'element' && node?.tagName === 'code') {
+            if ('data-theme' in node.properties) {
+              node.properties['data-line-numbers-max-digits'] = '3'
+              node.properties['data-line-numbers'] = ''
+            }
+          }
+          if (node?.type === 'element' && node?.tagName === 'figure') {
+            if (!('data-rehype-pretty-code-figure' in node.properties)) {
+              return
+            }
+            const preElement = node.children.at(-1)
+            if (preElement.tagName !== 'pre') {
+              return
+            }
+            preElement.properties.__withMeta__ = node.children.at(0).tagName === 'div'
+            preElement.properties.__rawString__ = node.__rawString__
+
+            if (node.__src__) {
+              preElement.properties.__src__ = node.__src__
+            }
+          }
+        })
+      },
       [
         rehypeAutolinkHeadings,
         {
