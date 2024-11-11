@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/command'
 import { navMenuConfig } from '@/config/nav-menu'
 import { cn } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
 import * as React from 'react'
 
 const links = navMenuConfig.links
@@ -49,6 +48,7 @@ export function Command() {
                   links.map((link) => {
                     return (
                       <CommandItem key={link.href} asChild>
+                        <Icon name="github" class="size-4" />
                         <a
                           href={link.href}
                           aria-label={link.title}
