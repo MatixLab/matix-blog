@@ -1,0 +1,25 @@
+---
+import { CopyButton } from '@/components/markdown/copy-button'
+import { cn } from '@/lib/utils'
+
+const props = Astro.props
+---
+
+<figure class="relative">
+  <pre
+    class={cn(
+    'flex  max-h-[500px] overflow-x-auto bg-black',
+    props.class,
+  )}
+    style={{ ...props?.style }}
+  >
+    <slot />
+    {props.__rawstring__ && (
+      <CopyButton
+        value={props.__rawstring__}
+        className={cn('absolute right-2 top-2', props.__withMeta__ && 'top-16')}
+        client:load
+      />
+    )}
+  </pre>
+</figure>

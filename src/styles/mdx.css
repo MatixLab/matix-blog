@@ -25,7 +25,3 @@
 a[aria-hidden='true'] {
   @apply after:content-none;
 }
-
-[data-rehype-pretty-code-figure] {
-  @apply relative;
-}

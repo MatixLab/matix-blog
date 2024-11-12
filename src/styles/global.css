@@ -346,6 +346,7 @@
     .slide-enter-content > *:nth-child(19) { --enter-stage: 19; }
     .slide-enter-content > *:nth-child(20) { --enter-stage: 20; }
   }
+
 }
 
 .text-gradient_indigo-purple {

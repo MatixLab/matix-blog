@@ -3,7 +3,6 @@ import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import { transformerCopyButton } from '@rehype-pretty/transformers'
 import {
   transformerMetaHighlight,
   transformerMetaWordHighlight,
@@ -20,9 +19,7 @@ import {
 import icon from 'astro-icon'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
-import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
-import { visit } from 'unist-util-visit'
 
 /**
  * https://astro.build/config
@@ -61,57 +58,37 @@ export default defineConfig({
     },
   }),
   markdown: {
-    syntaxHighlight: false,
-    rehypePlugins: [
-      rehypeSlug,
-      () => (tree) => {
-        visit(tree, (node) => {
-          if (node?.type === 'element' && node?.tagName === 'pre') {
-            const [codeEl] = node.children
-            if (codeEl.tagName !== 'code') {
-              return
-            }
-            node.__rawString__ = codeEl.children?.[0].value
-          }
-        })
-      },
-      // rehypeHeadingIds,
-      [
-        rehypePrettyCode,
+    shikiConfig: {
+      theme: 'github-dark-default',
+      transformers: [
+        transformerNotationDiff(),
+        transformerNotationHighlight(),
+        transformerNotationWordHighlight(),
+        transformerNotationFocus(),
+        transformerNotationErrorLevel(),
+        transformerMetaHighlight(),
+        transformerMetaWordHighlight(),
         {
-          keepBackground: false,
-          theme: 'github-dark-default',
-          defaultLang: {
-            block: 'plaintext',
-            inline: 'plaintext',
+          pre(node) {
+            node.properties.__rawString__ = this.source
           },
-          transformers: [
-            transformerNotationDiff(),
-            transformerNotationHighlight(),
-            transformerNotationWordHighlight(),
-            transformerNotationFocus(),
-            transformerNotationErrorLevel(),
-            transformerMetaHighlight(),
-            transformerMetaWordHighlight(),
-            transformerCopyButton(),
-          ],
         },
       ],
-      () => (tree) => {
-        visit(tree, (node) => {
-          if (node?.type === 'element' && node?.tagName === 'figure') {
-            if (!('data-rehype-pretty-code-figure' in node.properties)) {
-              return
-            }
-            const preElement = node.children.at(-1)
-            if (preElement.tagName !== 'pre') {
-              return
-            }
-            preElement.properties.__withMeta__ = node.children.at(0).tagName === 'code'
-            preElement.properties.__rawString__ = node.__rawString__
-          }
-        })
-      },
+    },
+    rehypePlugins: [
+      rehypeSlug,
+      // rehypeHeadingIds,
+      // [
+      //   rehypePrettyCode,
+      //   {
+      //     keepBackground: false,
+      //     theme: 'github-dark-default',
+      //     defaultLang: {
+      //       block: 'plaintext',
+      //       inline: 'plaintext',
+      //     },
+      //   },
+      // ],
       [
         rehypeAutolinkHeadings,
         {

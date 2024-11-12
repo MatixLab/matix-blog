@@ -3,9 +3,10 @@ import { cn } from '@/lib/utils'
 import { Check, Copy } from 'lucide-react'
 import * as React from 'react'
 
-interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface CopyButtonProps {
   value: string
   src?: string
+  className?: string
 }
 
 export function CopyButton({
@@ -14,6 +15,11 @@ export function CopyButton({
   ...props
 }: CopyButtonProps) {
   const [hasCopied, setHasCopied] = React.useState(false)
+  React.useEffect(() => {
+    setTimeout(() => {
+      setHasCopied(false)
+    }, 3000)
+  }, [hasCopied])
 
   return (
     <Button
@@ -25,8 +31,8 @@ export function CopyButton({
       )}
       data-copy={value}
       onClick={() => {
-        console.log(1)
-        // window.navigator.clipboard.writeText(value)
+        window.navigator.clipboard.writeText(value)
+        setHasCopied(true)
       }}
       {...props}
     >
