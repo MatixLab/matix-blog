@@ -9,9 +9,11 @@ type Props = {
   title: string
   description?: string
   bodyClass?: string
+  bgType?: 'default'
+  bgClass?: string
 }
 
-const { title, description, bodyClass } = Astro.props;
+const { title, description, bodyClass, bgType, bgClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,7 +26,9 @@ const { title, description, bodyClass } = Astro.props;
     bodyClass,
     )}
   >
-    <Bg type="default" />
+    {
+      bgType && <Bg type={bgType} bgClass={bgClass} />
+    }
     <!-- Background -->
     <slot />
     <TailwindIndicator />

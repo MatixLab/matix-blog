@@ -17,13 +17,20 @@ type Props = {
   title: string
   description?: string
   mainClass?: string
+  bgType?: 'default'
+  bgClass?: string
 }
 
-const { title, description, mainClass } = Astro.props
+const { title, description, mainClass, bgType, bgClass } = Astro.props
 const segment = extractSegmentURL(Astro.url.pathname)
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  bgType={bgType}
+  bgClass={bgClass}
+>
   <div class="relative flex min-h-screen flex-col bg-background">
     <SiteHeader className="border-b">
       <!-- slot: left-header /  mobile-nav-header-->

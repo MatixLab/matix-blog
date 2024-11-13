@@ -12,7 +12,11 @@ const slug = Astro.props.slug
 const { title, description, updatedDate, cover, category } = Astro.props.data;
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout
+  title={title}
+  description={description}
+  bgType="default"
+>
   <div class="relative container max-w-screen-md py-10">
     <button
       onclick="history.back()"

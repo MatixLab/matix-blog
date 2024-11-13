@@ -1,34 +1,128 @@
 ---
-import PageHeader from '@/components/PageHeader.astro'
+import { Button } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
+import { cn } from '@/lib/utils'
 import { getCollection } from 'astro:content'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const timeline = await getCollection('timeline')
 timeline.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
-<MainLayout title="Weekly">
-  <section class="container max-w-screen-lg space-y-6 pt-12">
-    <PageHeader
-      heading="Weekly"
-      text="Reproduce Astro Starlog template with Tailwind CSS & shadcn/ui."
-    />
-    <div id="dialog"></div>
-    <button id="inc">
-      add
-    </button>
+<MainLayout
+  title="Weekly"
+  description="Anthony's Weekly"
+  mainClass={cn(
+    'container items-start md:grid',
+    'md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 px-0',
+  )}
+  bgType="default"
+  bgClass="bg-blue-200"
+>
+  <!-- sider -->
+  <aside
+    class={cn(
+      'fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)]',
+      'w-full shrink-0 border-r border-border/40 dark:border-border md:sticky md:block',
+    )}
+  >
+  <div class="h-full overflow-auto py-6 lg:py-8">
+    <div class="w-full">
+      <div class="pb-4">
+        <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm space-y-4 ml-12">
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+          <a>20241114 期</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </aside>
+  <section class="relative py-6 w-full">
+    <div class="space-y-2">
+      <h1 class="scroll-m-20 text-3xl font-bold tracking-tight">
+        Button
+      </h1>
+      <p class="text-base text-muted-foreground">
+        Displays a button or a component that looks like a button.
+      </p>
+    </div>
+    <div class="pb-12 pt-8">
+      <p>
+        content component
+      </p>
+    </div>
+    <div class="flex flex-row items-center justify-between">
+      <Button variant="ghost" asChild>
+        <a
+          href="/blog"
+          class={cn(
+            'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors ',
+            'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+            'disabled:pointer-events-none disabled:opacity-50',
+            '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+            ' hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2',
+          )}
+        >
+          <ChevronLeft />
+          <span>
+            上一期
+          </span>
+        </a>
+      </Button>
+      <Button variant="ghost" className="ml-auto" asChild>
+        <a
+          href="/blog"
+          class={cn(
+            'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors ',
+            'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
+            'disabled:pointer-events-none disabled:opacity-50',
+            '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+            ' hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2',
+          )}
+        >
+          <span>
+            下一期
+          </span>
+          <ChevronRight />
+        </a>
+      </Button>
+    </div>
   </section>
 </MainLayout>
 
 <script>
-import { count } from '@/store/count'
-
-count.subscribe((v) => {
-  document.getElementById('dialog').innerText = v
-})
-
-document.getElementById('inc')?.addEventListener('click', () => {
-  const newV = count.get() + 1
-  count.set(newV)
-})
 </script>
+
+<style>
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+</style>
