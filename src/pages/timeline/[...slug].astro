@@ -7,11 +7,11 @@ import { getCollection } from 'astro:content'
 import { ChevronLeft } from 'lucide-react'
 
 export async function getStaticPaths() {
-  const timeline = await getCollection('timeline')
+  const timelineData = await getCollection('timeline')
 
-  return timeline.map(release => ({
-    params: { slug: release.slug },
-    props: { release },
+  return timelineData.map(timeline => ({
+    params: { slug: timeline.slug },
+    props: { timeline },
   }))
 }
 

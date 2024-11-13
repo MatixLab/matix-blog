@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import * as React from 'react'
 
 const links = navMenuConfig.links
-const pages = navMenuConfig.pagesNav[0]
+const portfolios = navMenuConfig.portfolio[0]
 
 const ListItem: React.FC<MenuItem> = ({
   title,
@@ -113,10 +113,10 @@ export function MainNavigationMenu({
           : null}
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">{pages.title}</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">{portfolios.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {pages.items?.map(page => (
+              {portfolios.items?.map(page => (
                 <ListItem key={page.title} {...page} />
               ))}
             </ul>

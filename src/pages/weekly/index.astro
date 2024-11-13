@@ -1,0 +1,34 @@
+---
+import PageHeader from '@/components/PageHeader.astro'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { getCollection } from 'astro:content'
+
+const timeline = await getCollection('timeline')
+timeline.sort((a, b) => +b.data.date - +a.data.date);
+---
+
+<MainLayout title="Weekly">
+  <section class="container max-w-screen-lg space-y-6 pt-12">
+    <PageHeader
+      heading="Weekly"
+      text="Reproduce Astro Starlog template with Tailwind CSS & shadcn/ui."
+    />
+    <div id="dialog"></div>
+    <button id="inc">
+      add
+    </button>
+  </section>
+</MainLayout>
+
+<script>
+import { count } from '@/store/count'
+
+count.subscribe((v) => {
+  document.getElementById('dialog').innerText = v
+})
+
+document.getElementById('inc')?.addEventListener('click', () => {
+  const newV = count.get() + 1
+  count.set(newV)
+})
+</script>

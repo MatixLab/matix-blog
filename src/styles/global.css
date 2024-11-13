@@ -357,14 +357,6 @@
   background-clip: text;
 }
 
-.bg_release_version {
-  background: linear-gradient(25deg,
-      #3a084e,
-      #5b0e81,
-      #bc4c9b,
-      #df7f4f) !important;
-}
-
 /* Vercel card style */
 .card_border {
   box-shadow: var(--ds-shadow-border), 0 4px 6px rgba(0, 0, 0, .04);

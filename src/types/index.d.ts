@@ -36,6 +36,7 @@ export type SidebarNavItem = {
 export interface SiteConfig {
   author: string
   name: string
+  title: string
   description: string
   url: string
   ogImage: string
@@ -49,24 +50,15 @@ export interface SiteConfig {
   }
 }
 
-export interface DocsConfig {
-  mainNav: MainNavItem[]
-  sidebarNav: SidebarNavItem[]
-}
-
 /**
  * Nav Menu Config Definition
  */
 export interface NavMenuConfig {
-  pagesNav: SidebarNavItem[]
   links: MenuItem[]
+  portfolio: SidebarNavItem[]
 }
 
-export interface SubscriptionPlan {
-  name: string
-  description: string
-  stripePriceId: string
-}
+/* landing page */
 export interface InfoList {
   icon: string
   title: string

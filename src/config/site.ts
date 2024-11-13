@@ -3,6 +3,7 @@ import type { SidebarNavItem, SiteConfig } from '@/types'
 export const siteConfig: SiteConfig = {
   author: 'AnthonyZhu',
   name: 'AnthonyZhu',
+  title: 'Anthony\'s Blog',
   description: 'An modern example app built using Astro & shadcn-ui. Inspired by taxonomy.',
   url: 'https://www.huakucha.top',
   ogImage: 'https://www.huakucha.top/og.jpg',

@@ -1,15 +1,13 @@
 import type { NavMenuConfig } from '@/types'
-import about from '@/assets/images/examples/about.jpg'
 import blogDb from '@/assets/images/examples/blog-db.jpg'
 import changelog from '@/assets/images/examples/changelog.jpg'
-import documentation from '@/assets/images/examples/documentation.jpg'
 import landing from '@/assets/images/examples/landing.jpg'
 import staticBlog from '@/assets/images/examples/static-blog.jpg'
 
 export const navMenuConfig: NavMenuConfig = {
-  pagesNav: [
+  portfolio: [
     {
-      title: 'Pages',
+      title: 'Portfolio',
       items: [
         {
           title: 'Landing',
@@ -48,6 +46,12 @@ export const navMenuConfig: NavMenuConfig = {
       href: '/timeline',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: changelog,
+    },
+    {
+      title: 'Weekly',
+      href: '/weekly',
+      description: 'A reproduction of Starlog template with Tailwind CSS.',
+      image: staticBlog,
     },
   ],
 }
