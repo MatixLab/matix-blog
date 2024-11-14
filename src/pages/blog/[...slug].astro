@@ -27,7 +27,8 @@ if (!slug || !post) {
 }
 ---
 <BlogPostLayout {...post}>
-  <Content components={{
+  <Content
+    components={{
     ...MdxComponents,
     img: IMG,
     Image: IMG,

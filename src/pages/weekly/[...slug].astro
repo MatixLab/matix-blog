@@ -6,10 +6,30 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
+import { type CollectionEntry } from 'astro:content'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const weeklyData = await getWeeklys()
 
+export async function getStaticPaths() {
+  const weeklys = await getWeeklys()
+  return weeklys.map(weekly => ({
+    params: { slug: weekly.slug },
+    props: weekly,
+  }))
+}
+
+type Props = CollectionEntry<'weekly'>
+
+const weekly = Astro.props
+const slug = Astro.params.slug
+const { Content } = await weekly.render()
+if (!slug || !weekly) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
 ---
 
 <MainLayout
@@ -19,7 +39,6 @@ const weeklyData = await getWeeklys()
     'container items-start md:grid',
     'md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10',
   )}
-
   bgType="default"
   bgClass="bg-blue-200"
 >
@@ -59,20 +78,13 @@ const weeklyData = await getWeeklys()
         </p>
       </div>
       <div class="pb-12 pt-8">
-        {
-          weeklyData[0]
-            .render()
-            .then(({ Content }) => (
-              <Content components={{
-                  ...MdxComponents,
-                  img: IMG,
-                  Image: IMG,
-                  pre: Pre,
-                }}
-              />
-            ),
-          )
-        }
+        <Content components={{
+            ...MdxComponents,
+            img: IMG,
+            Image: IMG,
+            pre: Pre,
+          }}
+        />
       </div>
       <!-- footer link -->
       <div class="flex flex-row items-center justify-between">

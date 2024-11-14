@@ -60,3 +60,5 @@ Check out [our documentation](https://docs.astro.build) or jump into our [Discor
 This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
 
 This site is built with  [Cloudflare Page](https://developers.cloudflare.com/workers/frameworks/framework-guides/astro/)
+
+[sanity with astro](https://github.com/sanity-io/sanity-template-astro-clean/)

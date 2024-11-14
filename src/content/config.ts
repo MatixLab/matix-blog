@@ -41,7 +41,7 @@ export const weekly = defineCollection({
       title: z.string(),
       description: z.string(),
       cover: image(),
-      date: z.date({ coerce: true }),
+      pubDate: z.date({ coerce: true }),
     }),
 })
 

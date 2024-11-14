@@ -4,12 +4,17 @@ import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import { Button, buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getWeeklys } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
+import { type CollectionEntry } from 'astro:content'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const weeklyData = await getWeeklys()
+interface Props {
+  weeklyData: CollectionEntry<'weekly'>[]
+}
 
+const {
+  weeklyData,
+} = Astro.props
 ---
 
 <MainLayout
@@ -19,7 +24,6 @@ const weeklyData = await getWeeklys()
     'container items-start md:grid',
     'md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10',
   )}
-
   bgType="default"
   bgClass="bg-blue-200"
 >
@@ -59,20 +63,13 @@ const weeklyData = await getWeeklys()
         </p>
       </div>
       <div class="pb-12 pt-8">
-        {
-          weeklyData[0]
-            .render()
-            .then(({ Content }) => (
-              <Content components={{
-                  ...MdxComponents,
-                  img: IMG,
-                  Image: IMG,
-                  pre: Pre,
-                }}
-              />
-            ),
-          )
-        }
+        <Content components={{
+            ...MdxComponents,
+            img: IMG,
+            Image: IMG,
+            pre: Pre,
+          }}
+        />
       </div>
       <!-- footer link -->
       <div class="flex flex-row items-center justify-between">
