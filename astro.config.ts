@@ -53,6 +53,7 @@ export default defineConfig({
    */
   output: 'hybrid',
   adapter: cloudflare({
+    imageService: 'cloudflare',
     platformProxy: {
       enabled: true,
     },
@@ -78,17 +79,6 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug,
       // rehypeHeadingIds,
-      // [
-      //   rehypePrettyCode,
-      //   {
-      //     keepBackground: false,
-      //     theme: 'github-dark-default',
-      //     defaultLang: {
-      //       block: 'plaintext',
-      //       inline: 'plaintext',
-      //     },
-      //   },
-      // ],
       [
         rehypeAutolinkHeadings,
         {
