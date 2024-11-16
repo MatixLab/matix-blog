@@ -23,7 +23,7 @@ posts[year] = []
   posts[year].push(ele)
 })
 
-const years = Object.keys(posts).toSorted((a, b) => {
+const years = Object.keys(posts).sort((a, b) => {
   return Number(b) - Number(a)
 });
 ---
