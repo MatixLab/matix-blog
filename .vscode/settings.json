@@ -48,5 +48,10 @@
     "postcss"
   ],
   "css.customData": [".vscode/tailwindcss.json"],
-  "mdx.server.enable": true
+  "mdx.server.enable": true,
+  "files.exclude": {
+    ".astro": true,
+    ".wrangler": true,
+    "dist": true
+  }
 }

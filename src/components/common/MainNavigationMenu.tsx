@@ -115,11 +115,28 @@ export function MainNavigationMenu({
         <NavigationMenuItem>
           <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">{portfolios.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {portfolios.items?.map(page => (
-                <ListItem key={page.title} {...page} />
-              ))}
-            </ul>
+            <div className="grid w-[350px] gap-2 p-2 md:w-[450px] md:grid-cols-2 lg:w-[550px]">
+              <div>
+                <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
+                  Bookmarks
+                </div>
+                <ul>
+                  {portfolios.items?.map(page => (
+                    <ListItem key={page.title} {...page} />
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
+                  Tools
+                </div>
+                <ul>
+                  {portfolios.items?.map(page => (
+                    <ListItem key={page.title} {...page} />
+                  ))}
+                </ul>
+              </div>
+            </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>

@@ -12,40 +12,44 @@ export const navMenuConfig: NavMenuConfig = {
         {
           title: 'Landing',
           href: '/landing',
-          description: 'A landing page template with differents sections.',
+          description: 'A landing page template',
           image: landing,
         },
         {
-          title: 'Anime List',
-          href: '/animes',
-          description:
-            'Fetch anime content from an graphql endpoint. Tabs component.',
+          title: 'Bookmarks',
+          href: '/bookmarks',
+          description: 'Fetch anime content',
           image: blogDb,
           disabled: true,
         },
         {
           title: 'Discovery',
           href: '/discovery',
-          description:
-            'Blog built using Astro DB. With categories, views & likes.',
+          description: 'Discovery page',
           image: blogDb,
           launched: true,
+        },
+        {
+          title: 'Timeline',
+          href: '/timeline',
+          description: 'A reproduction of Starlog template with Tailwind CSS.',
+          image: changelog,
         },
       ],
     },
   ],
   links: [
     {
-      title: 'Blog',
+      title: 'Post',
       href: '/blog',
       description: 'A Markdown/MDX blog built using Content Collections.',
       image: staticBlog,
     },
     {
-      title: 'Timeline',
-      href: '/timeline',
+      title: 'Space',
+      href: '/workspace',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
-      image: changelog,
+      image: staticBlog,
     },
     {
       title: 'Weekly',

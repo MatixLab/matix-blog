@@ -41,8 +41,11 @@ export const weekly = defineCollection({
       title: z.string(),
       description: z.string(),
       cover: image(),
-      pubDate: z.date({ coerce: true }),
+      pubDate: z
+        .string()
+        .or(z.date())
+        .transform(val => new Date(val)),
     }),
 })
 
-export const collections = { blog, timeline }
+export const collections = { blog, timeline, weekly }

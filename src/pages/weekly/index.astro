@@ -1,116 +1,123 @@
 ---
-import IMG from '@/components/markdown/IMG.astro'
-import { MdxComponents } from '@/components/markdown/mdx-components'
-import Pre from '@/components/markdown/Pre.astro'
-import { Button, buttonVariants } from '@/components/ui/button'
+import type { CollectionEntry } from 'astro:content'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys } from '@/lib/fetchers'
-import { cn } from '@/lib/utils'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { cn, formatSimpleDate } from '@/lib/utils'
+import { domAnimation, LazyMotion } from 'framer-motion'
 
 const weeklyData = await getWeeklys()
+
+const weeklys: {
+  [prop: string]: CollectionEntry<'weekly'>[]
+} = {}
+
+weeklyData.forEach((ele) => {
+  const year = ele.data.pubDate.getFullYear()
+  if (!weeklys[year])
+  weeklys[year] = []
+  weeklys[year].push(ele)
+})
+
+const years = Object.keys(weeklys).sort((a, b) => {
+  return Number(b) - Number(a)
+});
 
 ---
 
 <MainLayout
   title="Weekly"
-  description="Anthony's Weekly"
-  mainClass={cn(
-    'container items-start md:grid',
-    'md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10',
-  )}
-
+  description="Anthony's weekly"
   bgType="default"
-  bgClass="bg-blue-200"
+  bgClass="dark:bg-transparent"
 >
-  <!-- sider -->
-  <aside
-    class={cn(
-      'fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)]',
-      'w-full shrink-0 border-r border-border/40 dark:border-border md:sticky md:block',
-    )}
-  >
-    <div class="h-full overflow-auto py-6 lg:py-8 pb-4">
-      <div class="w-full">
-        <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm space-y-4 ml-12">
-        {
-          weeklyData.map((item) => {
-            return (
-              <a
-                href={`/weekly/${item.slug}`}
-              >
-                {item.data.title}
-              </a>
-            )
-          })
-        }
+  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col max-w-screen-lg space-y-6 pt-8">
+    <!-- <PageHeader
+      heading="Weekly"
+    /> -->
+    <div class="flex w-full py-4 lg:py-4 px-8">
+      <div class="w-full lg:mb-0 lg:max-w-3xl">
+        <div class="mb-4 flex justify-between">
+          <p class="font-bold text-xl">
+            Weekly &nbsp; Report
+          </p>
         </div>
-      </div>
-    </div>
-  </aside>
-  <section class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-    <div class="mx-auto w-full min-w-0 max-w-3xl">
-      <div class="space-y-2">
-        <h1 class="scroll-m-20 text-3xl font-bold tracking-tight">
-          Button
-        </h1>
-        <p class="text-base text-muted-foreground">
-          Displays a button or a component that looks like a button.
-        </p>
-      </div>
-      <div class="pb-12 pt-8">
-        {
-          weeklyData[0]
-            .render()
-            .then(({ Content }) => (
-              <Content components={{
-                  ...MdxComponents,
-                  img: IMG,
-                  Image: IMG,
-                  pre: Pre,
-                }}
-              />
-            ),
-          )
-        }
-      </div>
-      <!-- footer link -->
-      <div class="flex flex-row items-center justify-between">
-        <Button variant="ghost" asChild>
-          <a
-            href="/blog"
-            class={cn(buttonVariants({ variant: 'outline' }))}
-          >
-            <ChevronLeft />
-            <span>
-              上一期
-            </span>
-          </a>
-        </Button>
-        <Button variant="ghost" className="ml-auto" asChild>
-          <a
-            href="/blog"
-            class={cn(buttonVariants({ variant: 'outline' }))}
-          >
-            <span>
-              下一期
-            </span>
-            <ChevronRight />
-          </a>
-        </Button>
-      </div>
-    </div>
-    <div class="hidden text-sm xl:block">
+        <LazyMotion features={domAnimation}>
+          <div class="text-sm">
+            <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
+              <span class="col-span-1 hidden text-left md:grid">Year</span>
+              <span class="col-span-6 md:col-span-5">
+                <span class="grid grid-cols-4 items-center md:grid-cols-8">
+                  <span class="col-span-1 text-left">Date</span>
+                  <span class="col-span-2 md:col-span-6">Title</span>
+                </span>
+              </span>
+            </div>
 
+            <div class="group/list-wrapper">
+              {
+                years.map((year: string) => {
+                  const postsData = weeklys[year]
+                  return (
+                    <ul class="group/list list-none">
+                      {postsData.map((item, itemIndex) => {
+                        return (
+                          <li class="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300">
+                            <span
+                              class={cn(
+                                'pointer-events-none col-span-1 hidden items-center tabular-nums transition-colors duration-300',
+                                ' group-hover/list:text-gray-900 dark:group-hover/list:text-ds-gray-500 md:grid',
+                                itemIndex === 0 && 'border-t border-gray-200',
+                              )}
+                            >
+                              {itemIndex === 0 ? year : ''}
+                            </span>
+                            <a
+                              href={`/weekly/${item.slug}`}
+                              class={cn(
+                                'col-span-6 md:col-span-5',
+                                'dark:group-hover/list-item:text-ds-gray-500 group-hover/list-item:text-gray-900',
+                              )}
+                            >
+                              <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
+                                <span class="col-span-1 text-left tabular-nums">
+                                  <time
+                                    datetime={item.data.pubDate.toDateString()}
+                                    class="hidden md:block"
+                                  >
+                                    {formatSimpleDate(item.data.pubDate)}
+                                  </time>
+                                  <time
+                                    datetime={item.data.pubDate.toDateString()}
+                                    class="md:hidden"
+                                  >
+                                    {formatSimpleDate(item.data.pubDate)}
+                                  </time>
+                                </span>
+                                <span
+                                  class="col-span-2 line-clamp-4 md:col-span-6"
+                                  transition:name={`title-${item.slug}`}
+                                >
+                                  第 {itemIndex} 期: &nbsp;&nbsp;{item.data.title}
+                                </span>
+                              </span>
+                            </a>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </LazyMotion>
+      </div>
     </div>
-  </section>
+  </div>
 </MainLayout>
 
-<script>
-</script>
-
 <style>
-  .no-scrollbar {
-    scrollbar-width: none;
+  .scrollable-area {
+    @apply h-full overflow-y-auto overflow-x-hidden;
   }
 </style>

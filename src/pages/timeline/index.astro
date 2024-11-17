@@ -9,7 +9,9 @@ const timeline = await getCollection('timeline')
 timeline.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
-<MainLayout title="Timeline">
+<MainLayout
+  title="Timeline"
+>
   <section class="container max-w-screen-lg space-y-6 pt-12">
     <PageHeader
       heading="Timeline"

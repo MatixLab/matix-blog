@@ -43,9 +43,9 @@ const { className } = Astro.props;
     </section>
   */}
 
-  <section class="border-t py-4">
+  <!-- <section class="border-t py-4">
     <div class="container flex items-center justify-between">
-      <p class="text-left text-sm text-muted-foreground">
+      <div class="text-left text-sm text-muted-foreground">
         <span class="text-muted-foreground text-sm pr-4">
           Copyright &copy; 2024. All rights reserved.
         </span>
@@ -67,7 +67,36 @@ const { className } = Astro.props;
         >
           Cloudflare
         </a>.
-      </p>
       </div>
-  </section>
+      </div>
+  </section> -->
+  <div class="container max-w-3xl">
+    <div class="py-4">
+      <div class="md:flex text-sm text-muted-foreground justify-between">
+        <div>
+          Copyright © 2024 {siteConfig.author}.
+        </div>
+        <div>
+          Built by{' '}
+          <a
+            href={siteConfig.links.twitter}
+            target="_blank"
+            rel="noreferrer nofollow"
+            class="font-medium underline underline-offset-4"
+          >
+            {siteConfig.author}
+          </a>
+          . Hosted on{' '}
+          <a
+            href="https://cloudflare.com"
+            target="_blank"
+            rel="noreferrer nofollow"
+            class="font-medium underline underline-offset-4"
+          >
+            Cloudflare
+          </a>.
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

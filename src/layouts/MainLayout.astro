@@ -17,11 +17,12 @@ type Props = {
   title: string
   description?: string
   mainClass?: string
-  bgType?: 'default'
+  bgType?: 'default' | false
   bgClass?: string
+  slideContent?: boolean
 }
 
-const { title, description, mainClass, bgType, bgClass } = Astro.props
+const { title, description, mainClass, bgType, bgClass, slideContent = true } = Astro.props
 const segment = extractSegmentURL(Astro.url.pathname)
 ---
 
@@ -63,7 +64,8 @@ const segment = extractSegmentURL(Astro.url.pathname)
     </SiteHeader>
 
     <main class={cn(
-        'flex-1  slide-enter-content',
+        'flex-1',
+        slideContent && 'slide-enter-content',
         mainClass,
       )}
     >
