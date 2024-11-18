@@ -70,7 +70,7 @@ const { title, description, updatedDate, cover, category } = Astro.props.data;
         height={360}
         src={cover}
         alt={title}
-        loading="eager"
+        loading="lazy"
         transition:name={`img-${slug}`}
       />
       <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">

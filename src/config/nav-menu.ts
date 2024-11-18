@@ -46,14 +46,14 @@ export const navMenuConfig: NavMenuConfig = {
       image: staticBlog,
     },
     {
-      title: 'Space',
-      href: '/workspace',
+      title: 'Weekly',
+      href: '/weekly',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: staticBlog,
     },
     {
-      title: 'Weekly',
-      href: '/weekly',
+      title: 'Collection',
+      href: '/collection',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: staticBlog,
     },
