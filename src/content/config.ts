@@ -7,6 +7,7 @@ export const blog = defineCollection({
       title: z.string(),
       description: z.string(),
       cover: image(),
+      coverAlt: z.string().optional(),
       category: z.string().array(),
       pubDate: z
         .string()
@@ -41,6 +42,7 @@ export const weekly = defineCollection({
       title: z.string(),
       description: z.string(),
       cover: image(),
+      coverAlt: z.string().optional(),
       pubDate: z
         .string()
         .or(z.date())

@@ -38,8 +38,8 @@ const { pathname } = Astro.url;
   title="Weekly"
   description="Anthony's Weekly"
   mainClass={cn(
-    'flex-1 mx-auto md:max-w-screen-2xl w-full items-start md:grid',
-    'md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10',
+    'flex-1 mx-auto md:max-w-screen-xl w-full items-start md:grid',
+    'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
   )}
   bgType={false}
   slideContent={false}
@@ -48,10 +48,10 @@ const { pathname } = Astro.url;
   <aside
     class={cn(
       'fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)]',
-      'w-full shrink-0 border-r border-border/40 dark:border-border md:sticky md:block',
+      'w-full shrink-0  dark:border-border md:sticky md:block',
     )}
   >
-    <div class="no-scrollbar h-full overflow-auto py-6 pr-6 lg:py-8">
+    <div class="no-scrollbar h-full overflow-auto py-8">
       <div class="w-full">
         <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm space-y-4 group">
         {
@@ -76,8 +76,8 @@ const { pathname } = Astro.url;
       </div>
     </div>
   </aside>
-  <article class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px] slide-enter-content">
-    <div class="mx-auto w-full min-w-0 max-w-[85%] md:max-w-[78%]">
+  <article class="relative py-6 lg:py-8 xl:grid xl:grid-cols-[1fr_300px] slide-enter-content">
+    <div class="mx-auto w-full min-w-0 md:px-6">
       <div class="space-y-4">
         <h1 class="scroll-m-20 text-3xl font-bold">
           {weekly.data.title}

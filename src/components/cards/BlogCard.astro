@@ -18,18 +18,18 @@ const { entry } = Astro.props as {
 
 <div
   class={cn(
-    'cursor-pointer border rounded-xl flex flex-col',
+    'border rounded-xl flex flex-col',
     'justify-between gap-4 hover:bg-accent/60 transition-all',
   )}
 >
   <div class="flex flex-col">
     <div
-      class="group overflow-hidden relative aspect-[16/9]  transition-all border-b"
+      class="group overflow-hidden relative aspect-auto  transition-all border-b"
     >
       <div class="flex w-full h-full">
         <Image
           loading="lazy"
-          class="object-cover size-full"
+          class="object-cover size-full rounded-t-xl"
           width={720}
           height={360}
           src={entry.data.cover}
@@ -83,10 +83,10 @@ const { entry } = Astro.props as {
           {entry.data.title}
         </h2>
         <div
-          class="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         >
-          <span class="text-sm">Details</span>
-          <ArrowRightIcon className="size-4" />
+          <span class="text-xs text-ds-gray-800">Details</span>
+          <ArrowRightIcon className="size-4 text-xs font-mono text-ds-gray-800" />
         </div>
       </div>
       <p class="text-sm line-clamp-2 leading-relaxed min-h-[1rem] text-ds-gray-800">

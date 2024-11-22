@@ -28,7 +28,7 @@ export default function Command() {
 
   return (
     <>
-      <p className="text-sm text-muted-foreground my-auto hover:cursor-pointer" onClick={() => { setOpen(open => !open) }}>
+      <p className="text-sm text-muted-foreground my-auto hover:cursor-pointer hidden md:flex" onClick={() => { setOpen(open => !open) }}>
         <kbd className={cn(
           'pointer-events-none inline-flex select-none items-center gap-1 rounded',
           'border bg-muted px-1.5 text-muted-foreground opacity-100',

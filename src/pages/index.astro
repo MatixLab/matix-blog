@@ -43,10 +43,10 @@ const years = Object.keys(posts).sort((a, b) => {
           <p class="text-ds-gray-1000 pt-4">You can find me on:</p>
           <div class="flex space-x-8 ml-4">
             <a href={siteConfig.links.github} target="_blank" aria-label="github">
-              <Icon name="simple-icons:github" class="size-5 inline-flex" />
+              <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
             </a>
             <a href={siteConfig.links.twitter} target="_blank" aria-label="x">
-              <Icon name="simple-icons:x" class="size-5 inline-flex" />
+              <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
             </a>
           </div>
         </div>
@@ -57,7 +57,7 @@ const years = Object.keys(posts).sort((a, b) => {
           </p>
           <div>
             <a
-              href="/more"
+              href="/blog"
               class={cn(
               'text-ds-gray-700 text-xs hover:text-ds-gray-1000 underline underline-offset-4 decoration-[0.1px] hover',
             )}

@@ -27,7 +27,7 @@ const { category = '' } = Astro.params
   )
   : null
 } -->
-<div class="flex items-start justify-end my-6 max-md:gap-4">
+<div class="flex items-center justify-start max-md:gap-4 mb-6">
   <FilterMobile
     categories={categories as string[]}
     category={category}
@@ -37,7 +37,7 @@ const { category = '' } = Astro.params
   {
     categories?.length
     ? (
-      <ul class="hidden md:flex snap-x snap-mandatory overflow-auto items-center space-x-2 lg:space-x-2.5 pb-2">
+      <ul class="hidden md:flex snap-x snap-mandatory overflow-auto items-center space-x-2 lg:space-x-2.5 my-auto">
         <li class="flex-shrink-0 snap-start">
           <a
             href="/blog"
@@ -75,4 +75,4 @@ const { category = '' } = Astro.params
   }
 </div>
 
-<hr class="mb-7" />
+

@@ -301,6 +301,13 @@
     background: #bbb;
   }
 
+  ::selection:not(img) {
+    @apply bg-ds-gray-1000 text-ds-gray-100;
+  }
+  ::selection img {
+    @apply bg-none;
+  }
+
   /* slide-enter */
   @keyframes slide-enter {
     0% {
