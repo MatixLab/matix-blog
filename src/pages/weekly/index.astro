@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import PageHeader from '@/components/PageHeader.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys } from '@/lib/fetchers'
 import { cn, formatSimpleDate } from '@/lib/utils'
@@ -30,17 +31,11 @@ const years = Object.keys(weeklys).sort((a, b) => {
   bgType="default"
   bgClass="dark:bg-transparent"
 >
-  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col max-w-screen-lg space-y-6 pt-8">
-    <!-- <PageHeader
+  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col max-w-screen-lg space-y-4 pt-6 md:pt-8">
+    <PageHeader
       heading="Weekly"
-    /> -->
-    <div class="flex w-full py-4 lg:py-4 px-8">
-      <div class="w-full lg:mb-0 lg:max-w-3xl">
-        <div class="mb-4 flex justify-between">
-          <p class="font-bold text-xl">
-            Weekly &nbsp; Report
-          </p>
-        </div>
+    />
+    <div class="flex w-full lg:py-4 px-4 md:px-8">
         <LazyMotion features={domAnimation}>
           <div class="text-sm">
             <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
@@ -93,11 +88,21 @@ const years = Object.keys(weeklys).sort((a, b) => {
                                     {formatSimpleDate(item.data.pubDate)}
                                   </time>
                                 </span>
+
+                                {/* size:md */}
                                 <span
-                                  class="col-span-2 line-clamp-4 md:col-span-6"
+                                  class="col-span-2 line-clamp-4 md:col-span-6 hidden md:grid"
                                   transition:name={`title-${item.slug}`}
                                 >
                                   第 {itemIndex} 期: &nbsp;&nbsp;{item.data.title}
+                                </span>
+
+                                {/* mobile */}
+                                <span
+                                  class="col-span-2 line-clamp-4 md:col-span-6 grid md:hidden"
+                                  transition:name={`title-${item.slug}`}
+                                >
+                                  {item.data.title}
                                 </span>
                               </span>
                             </a>

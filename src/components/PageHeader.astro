@@ -10,10 +10,12 @@ interface Props extends HTMLAttributes<'div'> {
 const { heading, text, className, ...attrs } = Astro.props
 ---
 
-<div class={cn('space-y-4', className)} {...attrs}>
-  <h1 class="inline-block font-heading text-4xl">
-    {heading}
+<div class={cn('space-y-2', className)} {...attrs}>
+  <h1 class="inline-block font-heading font-bold text-2xl">
+    <slot name="head-slot">
+      {heading}
+    </slot>
   </h1>
   {text && <p class="text-muted-foreground">{text}</p>}
 </div>
-<hr class="my-4 w-20 mx-auto" />
+

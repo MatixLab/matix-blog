@@ -27,14 +27,12 @@ export function SheetMobileNav({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="mr-2 h-8 px-1.5 md:hidden"
+        <div
+          className="inline-flex items-center justify-center mr-2 h-8 px-1.5 md:hidden bg-none"
         >
           <Icons.hamburger className="size-5" />
           <span className="sr-only">Toggle Menu</span>
-        </Button>
+        </div>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
         <a href="/" className="flex items-center">
