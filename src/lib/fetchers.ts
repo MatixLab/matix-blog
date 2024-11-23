@@ -5,7 +5,6 @@ export async function getCategories() {
   const categories = [
     ...new Set(posts.map(post => post.data.category).flat()),
   ]
-
   return categories
 }
 

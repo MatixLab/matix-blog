@@ -34,7 +34,7 @@ const ListItem: React.FC<MenuItem> = ({
         {...(forceReload ? { 'data-astro-reload': true } : {})}
         className={cn(
           'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors text-ds-gray-1000',
-          'hover:bg-accent  focus:bg-accent focus:text-accent-foreground',
+          'hover:bg-accent focus:bg-accent focus:text-accent-foreground',
           disabled
             ? 'text-muted-foreground hover:bg-transparent hover:text-muted-foreground hover:cursor-not-allowed'
             : '',
@@ -68,13 +68,17 @@ const ListItem: React.FC<MenuItem> = ({
               : null
           }
         </div>
-        <p className={cn(
-          'line-clamp-2 text-sm leading-snug',
-          disabled ? 'text-ds-gray-800' : 'text-ds-gray-900 hover:text-ds-gray-1000',
-        )}
-        >
-          {description}
-        </p>
+        {
+          description && (
+            <p className={cn(
+              'line-clamp-2 text-sm leading-snug',
+              disabled ? 'text-ds-gray-800' : 'text-ds-gray-900 hover:text-ds-gray-1000',
+            )}
+            >
+              {description}
+            </p>
+          )
+        }
       </a>
     </li>
   )
@@ -115,7 +119,7 @@ export function MainNavigationMenu({
         <NavigationMenuItem>
           <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">{portfolios.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[350px] gap-2 p-2 md:w-[450px] md:grid-cols-2 lg:w-[550px]">
+            <div className="grid w-[250px] gap-2 p-2 md:w-[350px] md:grid-cols-2">
               <div>
                 <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
                   Bookmarks

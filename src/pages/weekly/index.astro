@@ -31,30 +31,31 @@ const years = Object.keys(weeklys).sort((a, b) => {
   bgType="default"
   bgClass="dark:bg-transparent"
 >
-  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col max-w-screen-lg space-y-4 pt-6 md:pt-8">
+  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col max-w-screen-xl space-y-4 pt-6 md:pt-8">
     <PageHeader
       heading="Weekly"
     />
     <div class="flex w-full lg:py-4 px-4 md:px-8">
-        <LazyMotion features={domAnimation}>
-          <div class="text-sm">
-            <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
-              <span class="col-span-1 hidden text-left md:grid">Year</span>
-              <span class="col-span-6 md:col-span-5">
-                <span class="grid grid-cols-4 items-center md:grid-cols-8">
-                  <span class="col-span-1 text-left">Date</span>
-                  <span class="col-span-2 md:col-span-6">Title</span>
-                </span>
+      <LazyMotion features={domAnimation}>
+        <div class="text-sm">
+          <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
+            <span class="col-span-1 hidden text-left md:grid">Year</span>
+            <span class="col-span-6 md:col-span-5">
+              <span class="grid grid-cols-4 items-center md:grid-cols-8">
+                <span class="col-span-1 text-left">Date</span>
+                <span class="col-span-2 md:col-span-6">Title</span>
               </span>
-            </div>
+            </span>
+          </div>
 
-            <div class="group/list-wrapper">
-              {
-                years.map((year: string) => {
-                  const postsData = weeklys[year]
-                  return (
-                    <ul class="group/list list-none">
-                      {postsData.map((item, itemIndex) => {
+          <div class="group/list-wrapper">
+            {
+              years.map((year: string) => {
+                const postsData = weeklys[year]
+                return (
+                  <ul class="group/list list-none">
+                    {
+                      postsData.map((item, itemIndex) => {
                         return (
                           <li class="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300">
                             <span
@@ -108,15 +109,15 @@ const years = Object.keys(weeklys).sort((a, b) => {
                             </a>
                           </li>
                         )
-                      })}
-                    </ul>
-                  )
-                })
-              }
-            </div>
+                      })
+                    }
+                  </ul>
+                )
+              })
+            }
           </div>
-        </LazyMotion>
-      </div>
+        </div>
+      </LazyMotion>
     </div>
   </div>
 </MainLayout>

@@ -1,6 +1,8 @@
 import type { ImageMetadata } from 'astro'
 
 export interface NavItem {
+  icon?: string
+  class?: string
   title: string
   href: string
   disabled?: boolean

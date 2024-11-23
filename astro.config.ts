@@ -1,5 +1,6 @@
 import cloudflare from '@astrojs/cloudflare'
 import mdx from '@astrojs/mdx'
+import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
@@ -19,6 +20,7 @@ import {
 import icon from 'astro-icon'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
+
 import rehypeSlug from 'rehype-slug'
 
 /**
@@ -43,8 +45,13 @@ export default defineConfig({
           'settings',
           'search',
         ],
-        'mdi': ['*'],
-        'simple-icons': ['*'],
+        'simple-icons': ['github', 'x'],
+      },
+    }),
+    partytown({
+      config: {
+        debug: true,
+        forward: ['dataLayer.push'],
       },
     }),
   ],

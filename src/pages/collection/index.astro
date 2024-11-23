@@ -1,0 +1,38 @@
+---
+import { Button } from '@/components/ui/button'
+import MainLayout from '@/layouts/MainLayout.astro'
+
+---
+<MainLayout
+  title="Collection"
+  description="Anthony's collection page"
+  bgType="default"
+  bgClass="dark:bg-transparent"
+>
+  <div
+    class="container relative flex w-full flex-col max-w-screen-xl space-y-6 pt-8"
+  >
+
+    <main class="grid grid-cols-1 gap-4 md:grid-cols-8">
+      {/* 左侧布局 mobile */}
+      <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-20 h-full overflow-auto max-h-[calc(100vh-12rem)]">
+        <ul class="space-y-2  items-start justify-start">
+          <li><Button variant="ghost" className="w-full justify-start">首页</Button></li>
+          <li><Button variant="ghost" className="w-full justify-start">关于我们</Button></li>
+          <li><Button variant="ghost" className="w-full justify-start">服务</Button></li>
+          <li><Button variant="ghost" className="w-full justify-start">联系我们</Button></li>
+        </ul>
+      </aside>
+      <div class="md:col-span-1 bg-muted rounded-lg p-4 grid md:hidden">
+        <h2 class="text-xl font-bold mb-4">左侧菜单</h2>
+      </div>
+
+      {/* 右侧内容 */}
+      <div class="md:col-span-7 bg-card rounded-lg p-4 h-full overflow-auto">
+        <h2 class="text-2xl font-bold mb-4">欢迎来到我们的网站</h2>
+        <p class="mb-4">这是主要内容区域。在这里，您可以放置您的主要内容、文章、产品列表等。</p>
+        <p class="mb-4">这个布局是响应式的。在较小的屏幕上，左侧菜单将移到顶部。</p>
+      </div>
+    </main>
+  </div>
+</MainLayout>
