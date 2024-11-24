@@ -4,25 +4,29 @@ import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import { PageTableOfContents } from '@/components/markdown/toc'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getWeeklys } from '@/lib/fetchers'
+import { getWeeklys, getWeeklysByYear } from '@/lib/fetchers'
 import { getTableOfContents } from '@/lib/toc'
 import { cn } from '@/lib/utils'
 import { type CollectionEntry } from 'astro:content'
 
 
-const weeklyData = await getWeeklys()
+
 export async function getStaticPaths() {
   const weeklys = await getWeeklys()
   return weeklys.map(weekly => ({
-    params: { slug: weekly.slug },
+    params: {
+      slug: weekly.slug,
+    },
     props: weekly,
   }))
 }
 
 type Props = CollectionEntry<'weekly'>
+const { slug } = Astro.params
+const year = slug.substring(0, 4)
+const weeklyData = await getWeeklysByYear(year)
 
 const weekly = Astro.props
-const slug = Astro.params.slug
 const { Content } = await weekly.render()
 if (!slug || !weekly) {
   return new Response(null, {
@@ -31,14 +35,14 @@ if (!slug || !weekly) {
   })
 }
 const toc = await getTableOfContents(weekly.body)
-const { pathname } = Astro.url;
+const { pathname } = Astro.url
 ---
 
 <MainLayout
   title="Weekly"
   description="Anthony's Weekly"
   mainClass={cn(
-    'flex-1 mx-auto md:max-w-screen-xl w-full items-start md:grid',
+    'flex-1 mx-auto container w-full items-start md:grid',
     'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
   )}
   bgType={false}

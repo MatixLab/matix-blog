@@ -1,0 +1,21 @@
+---
+import WeeklyLayout from '@/layouts/WeeklyLayout.astro'
+import { getWeeklys } from '@/lib/fetchers'
+
+export async function getStaticPaths() {
+  const weeklys = await getWeeklys()
+  return weeklys.map(weekly => ({
+    params: {
+      slug: weekly.slug,
+      year: weekly.slug.substring(0, 4),
+    },
+    props: weekly,
+  }))
+}
+---
+
+<WeeklyLayout
+  type="year"
+>
+</WeeklyLayout>
+

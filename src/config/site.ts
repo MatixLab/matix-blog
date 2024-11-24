@@ -1,4 +1,4 @@
-import type { SidebarNavItem, SiteConfig } from '@/types'
+import type { Collection, SiteConfig } from '@/types'
 
 export const siteConfig: SiteConfig = {
   author: 'AnthonyZhu',
@@ -11,39 +11,34 @@ export const siteConfig: SiteConfig = {
     twitter: 'https://twitter.com/huakucha10',
     github: 'https://github.com/MagicalZhu',
   },
-  page: {
+  pagination: {
     pageSize: 5,
     itemMaxNum: 5,
   },
+  home: {
+    postNum: 5,
+  },
 }
 
-// footer config
-export const footerLinks: SidebarNavItem[] = [
+export const collections: Collection[] = [
   {
-    title: 'Company',
-    items: [
-      { title: 'About', href: '#' },
-      { title: 'Enterprise', href: '#' },
-      { title: 'Partners', href: '#' },
-      { title: 'Jobs', href: '#' },
-    ],
+    name: 'Apps & Tools',
+    routeName: 'tools',
+    items: [],
   },
   {
-    title: 'Product',
-    items: [
-      { title: 'Security', href: '#' },
-      { title: 'Customization', href: '#' },
-      { title: 'Customers', href: '#' },
-      { title: 'Timeline', href: '#' },
-    ],
+    name: 'Design',
+    routeName: 'design',
+    items: [],
   },
   {
-    title: 'Docs',
-    items: [
-      { title: 'Introduction', href: '#' },
-      { title: 'Installation', href: '#' },
-      { title: 'Components', href: '#' },
-      { title: 'Code Blocks', href: '#' },
-    ],
+    name: 'Reading',
+    routeName: 'reading',
+    items: [],
+  },
+  {
+    name: 'Sites',
+    routeName: 'sites',
+    items: [],
   },
 ]

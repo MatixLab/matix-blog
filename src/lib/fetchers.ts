@@ -22,6 +22,17 @@ export async function getWeeklys() {
   return posts
 }
 
+export async function getWeeklysByYear(year: string) {
+  const posts = (await getCollection('weekly'))
+    .sort(
+      (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    )
+    .filter((ele) => {
+      return ele.slug.substring(0, 4) === year.toString()
+    })
+  return posts
+}
+
 export async function getPostsByCategory(category: string) {
   const posts = (await getCollection('blog'))
     .filter(post => post.data.category.includes(category))

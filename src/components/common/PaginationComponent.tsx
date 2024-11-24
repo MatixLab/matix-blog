@@ -55,7 +55,7 @@ export function PaginationComponent({
           </PaginationItem>
         ))}
 
-        { totalPages > siteConfig.page.itemMaxNum && (
+        { totalPages > siteConfig.pagination.itemMaxNum && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>

@@ -24,7 +24,7 @@ export async function getStaticPaths({
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     return paginate(filteredPosts, {
       params: { category },
-      pageSize: siteConfig.page.pageSize,
+      pageSize: siteConfig.pagination.pageSize,
     })
   })
 }

@@ -46,10 +46,25 @@ export interface SiteConfig {
     twitter: string
     github: string
   }
-  page: {
+  pagination: {
     pageSize: number
     itemMaxNum: number
   }
+  home: {
+    postNum: number
+  }
+}
+
+export interface CollectionItem {
+  title: string
+  url?: string
+  desc?: string
+}
+
+export interface Collection {
+  name: string
+  routeName: string
+  items: CollectionItem[]
 }
 
 /**

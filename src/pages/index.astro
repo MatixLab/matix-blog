@@ -1,5 +1,4 @@
 ---
-import { SITE } from '@/config/constants'
 import { siteConfig } from '@/config/site'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getPosts } from '@/lib/fetchers'
@@ -10,8 +9,8 @@ import { domAnimation, LazyMotion } from 'framer-motion'
 
 let allPosts = await getPosts()
 
-if (allPosts.length > SITE.home.postNum) {
-  allPosts = allPosts.slice(0, SITE.home.postNum)
+if (allPosts.length > siteConfig.home.postNum) {
+  allPosts = allPosts.slice(0, siteConfig.home.postNum)
 }
 
 const posts: {
@@ -23,7 +22,6 @@ allPosts.forEach((ele) => {
 posts[year] = []
   posts[year].push(ele)
 })
-
 const years = Object.keys(posts).sort((a, b) => {
   return Number(b) - Number(a)
 });
@@ -35,9 +33,9 @@ const years = Object.keys(posts).sort((a, b) => {
   bgType="default"
   bgClass="dark:bg-transparent"
 >
-  <div id="scroll-area" class="scrollable-area relative flex w-full flex-col">
+  <div id="scroll-area" class="scrollable-area container relative flex w-full flex-col">
     <div class="flex w-full px-6 py-4 lg:px-8 lg:py-12">
-      <div class="mx-auto w-full lg:mb-0 lg:max-w-3xl">
+      <div class="mx-auto w-full lg:mb-0 lg:max-w-4xl">
         <div class="space-y-2">
           <div class="text-ds-gray-1000">
             <p>Hey 👋 I'm AnthonyZhu.</p>
@@ -54,7 +52,7 @@ const years = Object.keys(posts).sort((a, b) => {
             </a>
           </div>
         </div>
-        <hr class="my-8 w-20 mx-auto" />
+        <hr class="my-4 w-20 mx-auto" />
         <div class="mb-4 flex justify-between">
           <p class="font-bold">
             Recent posts
@@ -63,10 +61,11 @@ const years = Object.keys(posts).sort((a, b) => {
             <a
               href="/blog"
               class={cn(
-              'text-ds-gray-700 text-xs hover:text-ds-gray-1000 underline underline-offset-4 decoration-[0.1px] hover',
+              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
+              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
             )}
             >
-              All posts
+              View all
             </a>
           </div>
         </div>

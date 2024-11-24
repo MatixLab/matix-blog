@@ -16,8 +16,12 @@ export async function getStaticPaths({
 }) {
   const allPosts = await getPosts()
   return paginate(
-    allPosts.sort((a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()),
-    { pageSize: siteConfig.page.pageSize },
+    allPosts.sort((a, b) => {
+      return b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
+    }),
+    {
+      pageSize: siteConfig.pagination.pageSize,
+    },
   )
 }
 
@@ -32,7 +36,7 @@ page.data.forEach((post) => {
   title="Blog"
   description="AnthonyZhu's writing record."
 >
-  <section class="container max-w-screen-xl py-10">
+  <section class="container py-10">
     <BlogHeader
       title="Blog"
       description="AnthonyZhu's writing record."
