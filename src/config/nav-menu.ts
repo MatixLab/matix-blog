@@ -53,7 +53,7 @@ export const navMenuConfig: NavMenuConfig = {
     },
     {
       title: 'Collection',
-      href: '/collection',
+      href: '/collection/tools',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: staticBlog,
     },

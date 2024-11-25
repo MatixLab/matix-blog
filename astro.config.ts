@@ -4,6 +4,7 @@ import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
+import playformCompress from '@playform/compress'
 import {
   transformerMetaHighlight,
   transformerMetaWordHighlight,
@@ -18,7 +19,9 @@ import {
   passthroughImageService,
 } from 'astro/config'
 import icon from 'astro-icon'
+import purgecss from 'astro-purgecss'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+
 import rehypeExternalLinks from 'rehype-external-links'
 
 import rehypeSlug from 'rehype-slug'
@@ -54,6 +57,19 @@ export default defineConfig({
         forward: ['dataLayer.push'],
       },
     }),
+    playformCompress({
+      HTML: false,
+      Image: false,
+      JavaScript: false,
+      SVG: false,
+    }),
+    purgecss(
+      {
+        content: [
+          './src/**/*.{astro,js,jsx,ts,tsx}',
+        ],
+      },
+    ),
   ],
   /**
    * https://docs.astro.build/zh-cn/basics/rendering-modes/
@@ -64,6 +80,9 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  devToolbar: {
+    enabled: false,
+  },
   markdown: {
     shikiConfig: {
       theme: 'github-dark-default',
@@ -117,6 +136,9 @@ export default defineConfig({
     directRenderScript: true,
   },
   vite: {
+    optimizeDeps: {
+      include: ['lucide-react'],
+    },
     ssr: {
       external: ['node:buffer'],
     },
