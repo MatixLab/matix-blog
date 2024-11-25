@@ -1,41 +1,12 @@
 ---
-import { Button } from '@/components/ui/button'
-import { collections } from '@/config/site'
-import MainLayout from '@/layouts/MainLayout.astro'
+import CollectionLayout from '@/layouts/CollectionLayout.astro'
 ---
-<MainLayout
+<CollectionLayout
   title="Collection"
   description="Anthony's collection page"
   bgType="default"
   bgClass="dark:bg-transparent"
   slideContent={false}
 >
-  <section class="container relative flex w-full flex-col space-y-6 py-14">
-    <main class="grid grid-cols-1 gap-4 md:grid-cols-5">
-      {/* left layout mobile */}
-      <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 h-dvh overflow-auto max-h-[calc(100vh-16rem)] mx-auto">
-        <ul class="space-y-2  items-start justify-start">
-          {
-            collections.map((item) => {
-              return (
-                <li>
-                  <Button asChild variant="ghost" className="w-full justify-start">
-                    <a href={`/collection/${item.routeName}`}>{item.name}</a>
-                  </Button>
-                </li>
-              )
-            })
-          }
-        </ul>
-      </aside>
-      <div class="md:col-span-1 bg-muted rounded-lg p-4 grid md:hidden">
-        <h2 class="text-xl font-bold mb-4">左侧菜单</h2>
-      </div>
-
-      {/* right layout */}
-      <div class="md:col-span-4 bg-card rounded-lg p-4 h-full overflow-auto">
-        <h2 class="text-2xl font-bold mb-4">Readig</h2>
-      </div>
-    </main>
-  </section>
-</MainLayout>
+  <p slot="right-content">Reading Page</p>
+</CollectionLayout>
