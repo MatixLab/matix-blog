@@ -28,7 +28,7 @@ const resourceName = resources.findLast((r) => {
   slideContent={slideContent}
 >
   <section class="container relative flex w-full flex-col space-y-6">
-    <main class="grid grid-cols-1 gap-4 md:grid-cols-5 h-full">
+    <main class="grid grid-cols-1 gap-4 md:grid-cols-6 h-full">
       <div class="md:col-span-1  rounded-lg">
         <aside class="hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
           <ul class="group space-y-2 pt-12">
@@ -45,7 +45,7 @@ const resourceName = resources.findLast((r) => {
                       class={cn(
                         'w-full justify-start pl-2 text-sm',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                        (item.routeName === segment) && 'border-l-2 border-l-black text-black',
+                        (item.routeName === segment) && ' text-black dark:text-white',
                       )}
                     >
                       {item.name}

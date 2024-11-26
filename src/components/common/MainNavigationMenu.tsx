@@ -104,7 +104,7 @@ export function MainNavigationMenu({
                       navigationMenuTriggerStyle(),
                       'text-ds-gray-900 hover:text-ds-gray-1000 font-normal',
                       link.href.startsWith(`/${segment}`)
-                        ? 'text-black'
+                        ? 'text-black dark:text-white'
                         : 'text-ds-gray-900',
                     )}
                     {...(link.forceReload ? { 'data-astro-reload': true } : {})}

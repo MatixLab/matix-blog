@@ -41,4 +41,9 @@ export const resources: Resource[] = [
     routeName: 'sites',
     items: [],
   },
+  {
+    name: 'Space',
+    routeName: 'space',
+    items: [],
+  },
 ]
