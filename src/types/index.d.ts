@@ -55,16 +55,16 @@ export interface SiteConfig {
   }
 }
 
-export interface CollectionItem {
+export interface ResourceItem {
   title: string
   url?: string
   desc?: string
 }
 
-export interface Collection {
+export interface Resource {
   name: string
   routeName: string
-  items: CollectionItem[]
+  items: ResourceItem[]
 }
 
 /**

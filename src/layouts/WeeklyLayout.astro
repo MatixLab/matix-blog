@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys } from '@/lib/fetchers'
 import { cn, formatSimpleDate } from '@/lib/utils'
@@ -58,8 +57,8 @@ const years = Object.keys(weeklys).sort((a, b) => {
     class="container relative flex w-full flex-col space-y-6 py-14"
   >
     <main class="grid grid-cols-1 gap-4 md:grid-cols-5">
-      <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 h-dvh overflow-auto max-h-[calc(100vh-16rem)] mx-auto">
-        <ul>
+      <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 h-dvh overflow-auto max-h-[calc(100vh-16rem)] mx-auto w-full">
+        <ul class="group space-y-4 py-2">
           {
             Array.from(allYears)
               .sort((a, b) => {
@@ -67,13 +66,16 @@ const years = Object.keys(weeklys).sort((a, b) => {
               })
               .map((item) => {
                 return (
-                  <li>
+                  <li class={cn(
+                    'text-center group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 pl-4 text-ds-gray-800',
+                  )}
+                  >
                       <a
                         href={`/weekly/${item}`}
                         class={cn(
-                          buttonVariants({ variant: 'ghost' }),
-                          currentYear === item ? 'text-ds-gray-1000' : 'text-ds-gray-800',
-                          'text-sm font-medium',
+                          'w-full justify-start pl-2 text-sm',
+                          'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
+                          (currentYear === item) && 'border-l-2 border-l-black text-black',
                         )}
                       >
                         {item}
@@ -96,7 +98,7 @@ const years = Object.keys(weeklys).sort((a, b) => {
           <div class="flex-1">
             <LazyMotion features={domAnimation}>
               <div class="text-sm">
-                <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-900">
+                <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-800">
                   <span class="col-span-1 hidden text-center md:grid">Year</span>
                   <span class="col-span-6 md:col-span-5">
                     <span class="grid grid-cols-4 items-center md:grid-cols-8">

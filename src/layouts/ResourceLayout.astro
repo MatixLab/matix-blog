@@ -1,0 +1,75 @@
+---
+import { resources } from '@/config/site'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { cn } from '@/lib/utils'
+
+type Props = {
+  title: string
+  description?: string
+  mainClass?: string
+  bgType?: 'default' | false
+  bgClass?: string
+  slideContent?: boolean
+}
+
+const { title, description, mainClass, bgType, bgClass, slideContent = true } = Astro.props
+const segment = Astro.url.pathname.split('/')[2]
+
+const resourceName = resources.findLast((r) => {
+  return r.routeName === segment
+})?.name
+---
+<MainLayout
+  title={title}
+  description={description}
+  mainClass={mainClass}
+  bgType={bgType}
+  bgClass={bgClass}
+  slideContent={slideContent}
+>
+  <section class="container relative flex w-full flex-col space-y-6">
+    <main class="grid grid-cols-1 gap-4 md:grid-cols-5 h-full">
+      <div class="md:col-span-1  rounded-lg">
+        <aside class="hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
+          <ul class="group space-y-2 pt-12">
+            {
+              resources.map((item) => {
+                return (
+                  <li class={cn(
+                    'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
+                    'text-center',
+                  )}
+                  >
+                    <a
+                      href={`/resource/${item.routeName}`}
+                      class={cn(
+                        'w-full justify-start pl-2 text-sm',
+                        'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
+                        (item.routeName === segment) && 'border-l-2 border-l-black text-black',
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </aside>
+        <div class="p-4 grid md:hidden">
+          <p class="text-xl font-bold mb-4 ">
+            <!-- TODO mobile left-content -->
+            <slot name="mobile-left-content" />
+          </p>
+        </div>
+      </div>
+      <div class="md:col-span-4 overflow-auto pt-12">
+        <h1 class="font-bold text-xl mb-4 text-center">
+          { resourceName }
+        </h1>
+        <slot name="right-content" />
+        <p class="pt-8 text-sm mx-auto text-center">That's all for now. Come back later for more.</p>
+      </div>
+    </main>
+  </section>
+</MainLayout>

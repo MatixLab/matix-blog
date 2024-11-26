@@ -1,12 +1,12 @@
 ---
-import CollectionLayout from '@/layouts/CollectionLayout.astro'
+import ResourceLayout from '@/layouts/ResourceLayout.astro'
 
 const data = []
 for (let index = 0; index < 1000; index++) {
   data.push(index)
 }
 ---
-<CollectionLayout
+<ResourceLayout
   title="Collection"
   description="Anthony's collection page"
   bgType="default"
@@ -14,6 +14,5 @@ for (let index = 0; index < 1000; index++) {
   slideContent={false}
 >
   <div slot="right-content">
-    Degign Page
-  </div>
-</CollectionLayout>
+  </p>
+</ResourceLayout>

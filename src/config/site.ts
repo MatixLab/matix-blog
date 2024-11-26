@@ -1,4 +1,4 @@
-import type { Collection, SiteConfig } from '@/types'
+import type { Resource, SiteConfig } from '@/types'
 
 export const siteConfig: SiteConfig = {
   author: 'AnthonyZhu',
@@ -20,7 +20,7 @@ export const siteConfig: SiteConfig = {
   },
 }
 
-export const collections: Collection[] = [
+export const resources: Resource[] = [
   {
     name: 'Apps & Tools',
     routeName: 'tools',
