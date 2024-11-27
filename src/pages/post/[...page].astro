@@ -26,7 +26,7 @@ export async function getStaticPaths({
 }
 
 const { page } = Astro.props
-const posts: CollectionEntry<'blog'>[] = []
+const posts: CollectionEntry<'post'>[] = []
 page.data.forEach((post) => {
   posts.push(post)
 })
@@ -52,7 +52,7 @@ page.data.forEach((post) => {
       <PaginationComponent
         currentPage={page.currentPage}
         totalPages={page.lastPage}
-        baseUrl="/blog/"
+        baseUrl="/post/"
         client:load
       />
     </div>

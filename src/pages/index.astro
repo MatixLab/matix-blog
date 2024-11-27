@@ -14,7 +14,7 @@ if (allPosts.length > siteConfig.home.postNum) {
 }
 
 const posts: {
-  [prop: string]: CollectionEntry<'blog'>[]
+  [prop: string]: CollectionEntry<'post'>[]
 } = {}
 allPosts.forEach((ele) => {
   const year = ele.data.pubDate.getFullYear()
@@ -59,7 +59,7 @@ const years = Object.keys(posts).sort((a, b) => {
           </p>
 
             <a
-              href="/blog"
+              href="/post"
               class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
@@ -100,7 +100,7 @@ const years = Object.keys(posts).sort((a, b) => {
                               {itemIndex === 0 ? year : ''}
                             </span>
                             <a
-                              href={`/blog/${item.slug}`}
+                              href={`/post/${item.slug}`}
                               class={cn(
                                 'col-span-6 group-hover/list-item:text-gray-900 md:col-span-5',
                                 'dark:group-hover/list-item:text-ds-gray-500',

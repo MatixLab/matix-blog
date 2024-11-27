@@ -6,7 +6,7 @@ import { Image } from 'astro:assets'
 import { ChevronLeft, HashIcon } from 'lucide-react'
 import MainLayout from './MainLayout.astro'
 
-type Props = CollectionEntry<'blog'>
+type Props = CollectionEntry<'post'>
 
 const slug = Astro.props.slug
 const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data;
@@ -46,7 +46,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
   </div>
   </aside>
   <article class={cn(
-    'prose dark:prose-invert max-w-screen-md relative py-6 lg:py-8 xl:grid slide-enter-content px-6 md:px-0',
+    'prose dark:prose-invert max-w-screen-md relative py-6 lg:py-8 xl:grid px-6 md:px-0',
   )}
   >
     <div class="mx-auto w-full min-w-0 md:px-6">
@@ -68,7 +68,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
                   'flex items-center justify-center space-x-[2px] group no-underline',
                   'after:!content-none hover:!no-underline',
                 )}
-                href={`/blog/category/${cat}`}
+                href={`/post/category/${cat}`}
                 transition:name={`badge-cat-${slug}`}
               >
                 <HashIcon className={cn(

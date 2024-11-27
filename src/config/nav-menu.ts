@@ -34,7 +34,7 @@ export const navMenuConfig: NavMenuConfig = {
   links: [
     {
       title: 'Post',
-      href: '/blog',
+      href: '/post',
       description: 'A Markdown/MDX blog built using Content Collections.',
       image: staticBlog,
     },

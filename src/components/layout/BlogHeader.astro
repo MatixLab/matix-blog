@@ -32,7 +32,7 @@ const { category = '' } = Astro.params
     categories={categories as string[]}
     category={category}
     slot="mobile-nav-header"
-    client:load
+    client:idle
   />
   {
     categories?.length
@@ -40,7 +40,7 @@ const { category = '' } = Astro.params
       <ul class="hidden md:flex snap-x snap-mandatory overflow-auto items-center space-x-2 lg:space-x-2.5 my-auto">
         <li class="flex-shrink-0 snap-start">
           <a
-            href="/blog"
+            href="/post"
             class={cn(
               !category ? 'select-none' : '',
               buttonVariants({
@@ -54,7 +54,7 @@ const { category = '' } = Astro.params
         {categories.map(item => (
           <li class="flex-shrink-0 snap-start">
             <a
-              href={`/blog/category/${item}`}
+              href={`/post/category/${item}`}
               class={cn(
                 'capitalize',
                 item === category ? 'select-none' : '',

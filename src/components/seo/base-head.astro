@@ -1,4 +1,5 @@
 ---
+import LoadingIndicator from '@/components/Loading.astro'
 import { ViewTransitions } from 'astro:transitions'
 import '@/styles/index.css'
 
@@ -13,7 +14,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const {
   title,
   description,
-  image = '/blog-placeholder-1.jpg',
+  image = '/post-placeholder-1.jpg',
 } = Astro.props;
 ---
 <!-- TODO add seo -->
@@ -50,14 +51,14 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<script is:inline>
+<ViewTransitions />
+<LoadingIndicator />
+
+<script>
 function setDarkMode() {
-  const theme = (() => {
-    if (
-      typeof localStorage !== 'undefined'
-      && localStorage.getItem('theme')
-    ) {
-      return localStorage.getItem('theme')
+  const theme: string = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme') || 'light'
     }
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark'
@@ -73,7 +74,6 @@ function setDarkMode() {
   }
   window.localStorage.setItem('theme', theme)
 }
-
 setDarkMode()
 document.addEventListener('astro:after-swap', setDarkMode)
 </script>
@@ -81,4 +81,4 @@ document.addEventListener('astro:after-swap', setDarkMode)
 <!-- partytown -->
 <script type="text/partytown" src="../../scripts/ga.js" />
 
-<ViewTransitions />
+

@@ -1,4 +1,5 @@
 ---
+import { FilterResource } from '@/components/mobile/ResourceFilter'
 import { resources } from '@/config/site'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn } from '@/lib/utils'
@@ -9,10 +10,9 @@ type Props = {
   mainClass?: string
   bgType?: 'default' | false
   bgClass?: string
-  slideContent?: boolean
 }
 
-const { title, description, mainClass, bgType, bgClass, slideContent = true } = Astro.props
+const { title, description, mainClass, bgType, bgClass } = Astro.props
 const segment = Astro.url.pathname.split('/')[2]
 
 const resourceName = resources.findLast((r) => {
@@ -25,7 +25,6 @@ const resourceName = resources.findLast((r) => {
   mainClass={mainClass}
   bgType={bgType}
   bgClass={bgClass}
-  slideContent={slideContent}
 >
   <section class="container relative flex w-full flex-col space-y-6">
     <main class="grid grid-cols-1 gap-4 md:grid-cols-6 h-full">
@@ -56,19 +55,22 @@ const resourceName = resources.findLast((r) => {
             }
           </ul>
         </aside>
-        <div class="p-4 grid md:hidden">
-          <p class="text-xl font-bold mb-4 ">
-            <!-- TODO mobile left-content -->
-            <slot name="mobile-left-content" />
-          </p>
+        <div class="py-4 grid md:hidden">
+          <FilterResource
+            resourceName={resourceName || resources[0].name}
+            client:idle
+            slot="mobile-nav-header"
+          />
         </div>
       </div>
-      <div class="md:col-span-4 overflow-auto pt-12">
+      <div class="md:col-span-4 overflow-auto md:pt-8">
         <h1 class="font-bold text-xl mb-4 text-center">
           { resourceName }
         </h1>
         <slot name="right-content" />
-        <p class="pt-8 text-sm mx-auto text-center">That's all for now. Come back later for more.</p>
+        <p class="py-4 text-sm mx-auto text-center">
+          That's all for now. Come back later for more.
+        </p>
       </div>
     </main>
   </section>

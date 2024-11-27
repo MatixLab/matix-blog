@@ -13,7 +13,7 @@ export async function getStaticPaths({
 }: {
   paginate: PaginateFunction
 }) {
-  const allPosts = await getCollection('blog')
+  const allPosts = await getCollection('post')
   const uniqueCategories = [
     ...new Set(allPosts.map(post => post.data.category).flat()),
   ]
@@ -32,7 +32,7 @@ export async function getStaticPaths({
 const { category } = Astro.params
 const { page } = Astro.props
 
-const posts: CollectionEntry<'blog'>[] = []
+const posts: CollectionEntry<'post'>[] = []
 page.data.forEach((post) => {
   posts.push(post)
 })
@@ -57,7 +57,7 @@ page.data.forEach((post) => {
       <PaginationComponent
         currentPage={page.currentPage}
         totalPages={page.lastPage}
-        baseUrl="/blog/category"
+        baseUrl="/post/category"
         suffix={`/${category}`}
         client:load
       />

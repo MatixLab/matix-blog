@@ -22,3 +22,15 @@
   transform-origin: bottom left;
   transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
 }
+
+.loading {
+  @apply fixed left-0 top-0 pointer-events-none h-[2px] w-full bg-black dark:bg-white;
+  z-index: 1031;
+  transition: transform 300ms ease-out, opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0) scaleX(var(--progress, 0));
+  transform-origin: 0;
+}
+
+.link-card {
+  @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 transition-colors duration-300 hover:bg-gray-200;
+}

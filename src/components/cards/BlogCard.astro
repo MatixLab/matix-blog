@@ -5,11 +5,11 @@ import { Image } from 'astro:assets'
 import { ArrowRightIcon, HashIcon } from 'lucide-react'
 
 type Props = {
-  entry: CollectionEntry<'blog'>
+  entry: CollectionEntry<'post'>
 }
 
 const { entry } = Astro.props as {
-  entry: CollectionEntry<'blog'>
+  entry: CollectionEntry<'post'>
 };
 
 // const formattedDate = formatDate(entry.data.pubDate)
@@ -61,7 +61,7 @@ const { entry } = Astro.props as {
         class={cn(
           'absolute inset-0 flex items-center justify-center bg-black  bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300',
         )}
-        href={`/blog/${entry.slug}/`}
+        href={`/post/${entry.slug}/`}
       >
         <span
           class="text-white text-lg font-semibold opacity-0 group-hover:opacity-80 transition-opacity duration-1000"
@@ -73,7 +73,7 @@ const { entry } = Astro.props as {
     </div>
   </div>
 
-  <a class="flex flex-col gap-4 group" href={`/blog/${entry.slug}/`}>
+  <a class="flex flex-col gap-4 group" href={`/post/${entry.slug}/`}>
     <div class="px-4 flex flex-col gap-4">
       <div class="flex items-center justify-between gap-4">
         <h2
@@ -102,7 +102,7 @@ const { entry } = Astro.props as {
           return (
             <a
               class="flex items-center justify-center space-x-0.5 group"
-              href={`/blog/category/${cat}`}
+              href={`/post/category/${cat}`}
               transition:name={`badge-cat-${entry.slug}`}
             >
               <HashIcon className="size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out"></HashIcon>

@@ -4,6 +4,7 @@ import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
+import MillionLint from '@million/lint'
 import playformCompress from '@playform/compress'
 import {
   transformerMetaHighlight,
@@ -21,9 +22,7 @@ import {
 import icon from 'astro-icon'
 import purgecss from 'astro-purgecss'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-
 import rehypeExternalLinks from 'rehype-external-links'
-
 import rehypeSlug from 'rehype-slug'
 
 /**
@@ -41,6 +40,7 @@ export default defineConfig({
      */
     sitemap(),
     react(),
+    // MillionLint.astro(),
     icon({
       include: {
         'lucide': [

@@ -1,5 +1,5 @@
 import type { InfoLdg } from '@/types'
-import placeholderAbout from '@/assets/images/blog/placeholder-about.jpg'
+import placeholderAbout from '@/assets/images/post/placeholder-about.jpg'
 
 export const infos: InfoLdg[] = [
   {

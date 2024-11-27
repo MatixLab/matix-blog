@@ -51,50 +51,47 @@ const years = Object.keys(weeklys).sort((a, b) => {
   description="Anthony's weekly"
   bgType="default"
   bgClass="dark:bg-transparent"
-  slideContent={false}
 >
   <section
     class="container relative flex w-full flex-col space-y-6 py-14"
   >
     <main class="grid grid-cols-1 gap-4 md:grid-cols-5">
-      <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 h-dvh overflow-auto max-h-[calc(100vh-16rem)] mx-auto w-full">
-        <ul class="group space-y-4 py-2">
-          {
-            Array.from(allYears)
-              .sort((a, b) => {
-                return Number(b) - Number(a)
-              })
-              .map((item) => {
-                return (
-                  <li class={cn(
-                    'text-center group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 pl-4 text-ds-gray-800',
-                  )}
-                  >
-                      <a
-                        href={`/weekly/${item}`}
-                        class={cn(
-                          'w-full justify-start pl-2 text-sm',
-                          'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                          (currentYear === item) && 'border-l-2 border-l-black text-black',
-                        )}
-                      >
-                        {item}
-                      </a>
-                  </li>
-                )
-              })
-          }
-        </ul>
-      </aside>
-      <!--
-        TODO add year select
-        <aside class="md:col-span-1 bg-muted rounded-lg grid md:hidden">
-        <h2 class="text-xl font-bold mb-4">左侧菜单 Mobile</h2>
-      </aside>
-      -->
+      <div class="md:col-span-1  rounded-lg">
+        <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
+          <ul class="group space-y-4 py-2">
+            {
+              Array.from(allYears)
+                .sort((a, b) => {
+                  return Number(b) - Number(a)
+                })
+                .map((item) => {
+                  return (
+                    <li class={cn(
+                      'text-center group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 pl-4 text-ds-gray-800',
+                    )}
+                    >
+                        <a
+                          href={`/weekly/${item}`}
+                          class={cn(
+                            'w-full justify-start pl-2 text-sm',
+                            'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
+                            (currentYear === item) && 'border-l-2 border-l-black text-black',
+                          )}
+                        >
+                          {item}
+                        </a>
+                    </li>
+                  )
+                })
+            }
+          </ul>
+        </aside>
+        <div class="py-4 grid md:hidden">
+        </div>
+      </div>
 
-      <div class="md:col-span-4 bg-card rounded-lg h-full overflow-auto">
-        <div class="scrollable-area max-w-3xl relative flex w-full flex-col space-y-4">
+      <div class="md:col-span-4 overflow-auto">
+        <div class="max-w-3xl relative flex w-full flex-col space-y-4">
           <div class="flex-1">
             <LazyMotion features={domAnimation}>
               <div class="text-sm">
@@ -113,7 +110,7 @@ const years = Object.keys(weeklys).sort((a, b) => {
                     years.map((year: string) => {
                       const postsData = weeklys[year]
                       return (
-                        <ul class="group/list list-none slide-enter-content">
+                        <ul class="group/list list-none">
                           {
                             postsData.map((item, itemIndex) => {
                               return (
