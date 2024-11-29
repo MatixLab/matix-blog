@@ -10,6 +10,14 @@ export const space: ResourceItem[] = [
     desc: 'Space Gray, Intel, 16GB RAM, 256GB SSD',
   },
   {
+    title: '6.1" Apple iPhone 14',
+    desc: 'Starlight Color, 5G, 128GB RAM',
+  },
+  {
+    title: 'Apple Watch S9',
+    desc: 'GPS, Cellular Network',
+  },
+  {
     title: '27" Dell U2720QM',
     desc: '4k, HDR400, Type-C 90W',
   },
@@ -19,26 +27,21 @@ export const resources: Resource[] = [
   {
     name: 'Apps & Tools',
     routeName: 'tools',
-    items: tools,
   },
   {
     name: 'Design',
     routeName: 'design',
-    items: design,
   },
   {
     name: 'Reading',
     routeName: 'reading',
-    items: reading,
   },
   {
     name: 'Sites',
     routeName: 'sites',
-    items: sites,
   },
   {
-    name: 'Space',
+    name: 'Workspace',
     routeName: 'space',
-    items: space,
   },
 ]

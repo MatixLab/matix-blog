@@ -64,9 +64,11 @@ const resourceName = resources.findLast((r) => {
         </div>
       </div>
       <div class="md:col-span-4 overflow-auto md:pt-8">
-        <h1 class="font-bold text-xl mb-4 text-center hidden md:grid">
-          { resourceName }
-        </h1>
+        <slot name="head-name">
+          <h1 class="font-bold text-xl mb-4 text-center hidden md:grid">
+            { resourceName }
+          </h1>
+        </slot>
         <slot name="right-content" />
         <p class="py-4 text-sm mx-auto text-center">
           That's all for now. Come back later for more.

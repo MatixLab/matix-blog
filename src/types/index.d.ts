@@ -65,7 +65,6 @@ export interface ResourceItem {
 export interface Resource {
   name: string
   routeName: string
-  items: ResourceItem[]
 }
 
 /**
