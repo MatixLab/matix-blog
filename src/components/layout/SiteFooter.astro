@@ -14,7 +14,7 @@ const { className } = Astro.props;
 <footer class={cn('border-t border-[0.1px]', className)}>
   <div class="container max-w-3xl">
     <div class="py-4">
-      <div class="md:flex text-sm text-ds-gray-700 justify-between">
+      <div class="md:flex text-sm  justify-between">
         <div>
           Copyright © 2024 {siteConfig.author}.
         </div>
@@ -23,7 +23,6 @@ const { className } = Astro.props;
           <a
             href={siteConfig.links.twitter}
             target="_blank"
-            rel="noreferrer nofollow"
             class="underline underline-offset-4"
           >
             {siteConfig.author}
@@ -32,7 +31,6 @@ const { className } = Astro.props;
           <a
             href="https://cloudflare.com"
             target="_blank"
-            rel="noreferrer nofollow"
             class="underline underline-offset-4"
           >
             Cloudflare

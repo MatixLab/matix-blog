@@ -1,5 +1,4 @@
 ---
-import Command from '@/components/common/Command'
 import { MainNavigationMenu } from '@/components/common/MainNavigationMenu'
 import SiteFooter from '@/components/layout/SiteFooter.astro'
 import SiteHeader from '@/components/layout/SiteHeader.astro'
@@ -46,7 +45,6 @@ const segment = extractSegmentURL(Astro.url.pathname)
       />
 
       <div class="items-center gap-x-4 flex" slot="right-header">
-        <Command client:load />
         <a
           href={siteConfig.links.github}
           target="_blank"

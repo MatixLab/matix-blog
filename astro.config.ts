@@ -20,7 +20,6 @@ import {
   passthroughImageService,
 } from 'astro/config'
 import icon from 'astro-icon'
-import purgecss from 'astro-purgecss'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
@@ -58,10 +57,10 @@ export default defineConfig({
       },
     }),
     playformCompress({
-      HTML: false,
-      Image: false,
-      JavaScript: false,
-      SVG: false,
+      HTML: true,
+      Image: true,
+      JavaScript: true,
+      SVG: true,
     }),
   ],
   /**
