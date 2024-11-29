@@ -63,6 +63,13 @@ export default defineConfig({
       JavaScript: false,
       SVG: false,
     }),
+    purgecss(
+      {
+        content: [
+          './src/**/*.{astro,js,jsx,ts,tsx}',
+        ],
+      },
+    ),
   ],
   /**
    * https://docs.astro.build/zh-cn/basics/rendering-modes/
