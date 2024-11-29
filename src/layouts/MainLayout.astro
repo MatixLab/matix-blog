@@ -10,7 +10,6 @@ import { siteConfig } from '@/config/site'
 import { cn, extractSegmentURL } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import BaseLayout from './BaseLayout.astro'
-// import MainNav from "@/components/layout/main-nav.astro";
 
 type Props = {
   title: string
@@ -39,22 +38,21 @@ const segment = extractSegmentURL(Astro.url.pathname)
         client:load
       />
       <MobileNav
-        mainNavItems={[...navMenuConfig.links]}
-        sidebarNavItems={[
-          ...navMenuConfig.portfolio,
-        ]}
+        mainNavItems={navMenuConfig.links}
+        sidebarNavItems={navMenuConfig.portfolio}
         segment={segment}
         slot="mobile-nav-header"
         client:load
       />
 
-      <div class="flex items-center gap-x-4" slot="right-header">
+      <div class="items-center gap-x-4 flex" slot="right-header">
         <Command client:load />
         <a
           href={siteConfig.links.github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="github"
+          class="hidden md:flex"
         >
           <Icon name="github" class="size-5" />
         </a>

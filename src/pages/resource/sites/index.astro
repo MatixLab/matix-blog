@@ -1,6 +1,14 @@
 ---
-import ResourceLayout from '@/layouts/ResourceLayout.astro'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import ResourceLayout from '@/layouts/ResourceLayout.astro';
 ---
+
 <ResourceLayout
   title="Site Resource"
   description="Anthony's site resource"
@@ -8,6 +16,19 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
   bgClass="dark:bg-transparent"
 >
   <div slot="right-content">
-
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+      <Card>
+        <CardHeader>
+          123
+          <CardTitle>Team Members</CardTitle>
+          <CardDescription>
+            Invite your team members to collaborate.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          123
+        </CardContent>
+      </Card>
+    </div>
   </div>
 </ResourceLayout>

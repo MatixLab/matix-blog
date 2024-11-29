@@ -307,19 +307,6 @@
     @apply bg-none;
   }
 
-  /* slide-enter */
-  @keyframes slide-enter {
-    0% {
-      transform: translateY(10px);
-      opacity: 0
-    }
-
-    to {
-      transform: translateY(0);
-      opacity: 100
-    }
-  }
-
 }
 
 .text-gradient_indigo-purple {

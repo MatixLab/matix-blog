@@ -1,4 +1,13 @@
 ---
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+ } from '@/components/ui/table'
+import { space } from '@/config/resource'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
 ---
 
@@ -9,290 +18,37 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
   bgClass="dark:bg-transparent"
 >
   <div slot="right-content">
-    <table class="w-full caption-bottom text-sm">
-      <thead class="[&_tr]:border-b">
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <th
-            class="h-10 text-left align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] min-w-[300px] px-4"
-          >
-            Product</th>
-          <th
-            class="h-10 text-left align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] min-w-[300px] px-4"
-          >
-            Specs</th>
-          <th
-            class="h-10 align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] min-w-[70px] px-4 text-right"
-          >
-          </th>
-        </tr>
-      </thead>
-      <tbody class="[&_tr:last-child]:border-0">
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Richard Lampert Eiermann 2 Desk</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">White,
-            80x160cm</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.richard-lampert.de/en/furniture/eiermann-2-desk-en/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Herman Miller Aeron Remastered</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">
-            Graphite, Size C</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://store.hermanmiller.com/office-chairs-aeron/aeron-chair/2195348.html?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Apple Studio Display</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Tilt-
-            and height-adjustable stand</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/studio-display/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            14" MacBook Pro</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Space
-            Gray, M2, 16GB RAM, 256GB SSD</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/macbook-pro/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            TE Computer-1 Mini-IPX PC</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Orange,
-            AMD Ryzen 5 7600, 32GB RAM, 2TB SSD</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a class="link" href="/writing/mini-itx-teenage-engineering-computer-1">Read</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Apple Magic Trackpad</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">White
-          </td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/shop/product/MK2D3Z/A/magic-trackpad-wit-multi%E2%80%91touch-oppervlak?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Apple Magic Keyboard</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">White,
-            Touch ID</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/shop/product/MK293N/A/magic-keyboard-met-touch-id-voor-mac-modellen-met-apple-silicon-nederlands?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Logitech MX Master 3S</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Pale
-            Gray</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.logitech.com/nl-nl/products/mice/mx-master-3s.910-006560.html?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Dyson Solarcycle Morph</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">
-            White/Silver</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.dyson.nl/verlichting/bureaulamp/solarcycle-morph-cd06/wit-zilver?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Oakywood MagSafe iPhone Stand</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Oak
-          </td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://oakywood.shop/products/magsafe-iphone-stand?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Apple Airpods Max</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">Space
-            Gray</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/airpods-max/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Apple Airpods Pro</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">2nd
-            generation</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.apple.com/nl/airpods-pro/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            Braun Analogue Wall Clock</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">White,
-            BC17 Classic Large</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://braun-clocks.com/collections/wall-clocks/products/bc17-classic-large-analogue-wall-clock-white?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            IKEA Alex Drawer Unit</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">White,
-            36x70cm</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.ikea.com/nl/en/p/alex-drawer-unit-white-00473546/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-        <tr class="border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100">
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            IKEA Övning Footrest</td>
-          <td class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3">
-            Gray/Blue</td>
-          <td
-            class="p-2 align-middle [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] px-4 py-3 font-medium"
-          >
-            <a
-              href="https://www.ikea.com/nl/en/p/oevning-multifunctional-ergonomic-footrest-00552020/?ref=onur.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="break-words after:content-['_↗']"
-            >Buy</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="min-w-[300px] px-4">Product</TableHead>
+          <TableHead className="min-w-[300px] px-4">Specs</TableHead>
+          <TableHead className="min-w-[70px] px-4 text-right"></TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {
+          space.map((s) => {
+            return (
+              <TableRow>
+                <TableCell className="px-4 py-3 font-medium">{s.title}</TableCell>
+                <TableCell className="px-4 py-3">{s.desc}</TableCell>
+                <TableCell className="px-4 py-3 font-medium">
+                  {
+                    s.url && (
+                      <a
+                        href={s.url}
+                      >
+                        Buy
+                      </a>
+                    )
+                  }
+                </TableCell>
+              </TableRow>
+            )
+          })
+        }
+      </TableBody>
+    </Table>
   </div>
 </ResourceLayout>

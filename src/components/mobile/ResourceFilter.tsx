@@ -9,7 +9,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { resources } from '@/config/site'
+import { resources } from '@/config/resource'
 import { Check, Filter } from 'lucide-react'
 import * as React from 'react'
 

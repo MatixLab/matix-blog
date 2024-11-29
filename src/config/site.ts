@@ -19,31 +19,3 @@ export const siteConfig: SiteConfig = {
     postNum: 5,
   },
 }
-
-export const resources: Resource[] = [
-  {
-    name: 'Apps & Tools',
-    routeName: 'tools',
-    items: [],
-  },
-  {
-    name: 'Design',
-    routeName: 'design',
-    items: [],
-  },
-  {
-    name: 'Reading',
-    routeName: 'reading',
-    items: [],
-  },
-  {
-    name: 'Sites',
-    routeName: 'sites',
-    items: [],
-  },
-  {
-    name: 'Space',
-    routeName: 'space',
-    items: [],
-  },
-]
