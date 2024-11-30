@@ -27,7 +27,7 @@ const resourceName = resources.findLast((r) => {
   bgClass={bgClass}
 >
   <section class="container relative flex w-full flex-col">
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5 h-full">
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:grid">
         <aside class="hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
           <ul class="group space-y-2 pt-12 hidden md:grid">
@@ -56,16 +56,16 @@ const resourceName = resources.findLast((r) => {
           </ul>
         </aside>
       </div>
-      <div class="pt-4 md:hidden">
+      <div class="pt-4 md:hidden w-full">
         <FilterResource
           resourceName={resourceName || resources[0].name}
           client:load
           slot="mobile-nav-header"
         />
       </div>
-      <div class="md:col-span-4 overflow-auto pt-4 md:pt-8">
+      <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <slot name="head-name">
-          <h1 class="font-bold text-xl mb-4 text-center hidden md:grid">
+          <h1 class="font-bold text-xl mb-2 md:mb-4 text-center md:hidden">
             { resourceName }
           </h1>
         </slot>
