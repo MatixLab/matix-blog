@@ -28,9 +28,9 @@ const resourceName = resources.findLast((r) => {
 >
   <section class="container relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-4 md:grid-cols-5 h-full">
-      <div class="md:col-span-1  rounded-lg">
+      <div class="md:col-span-1 rounded-lg hidden md:grid">
         <aside class="hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
-          <ul class="group space-y-2 pt-12">
+          <ul class="group space-y-2 pt-12 hidden md:grid">
             {
               resources.map((item) => {
                 return (
@@ -55,10 +55,12 @@ const resourceName = resources.findLast((r) => {
             }
           </ul>
         </aside>
-        <div class="pt-8 grid md:hidden">
+      </div>
+      <div class="md:col-span-1 rounded-lg grid md:hidden">
+        <div class="pt-8">
           <FilterResource
             resourceName={resourceName || resources[0].name}
-            client:idle
+            client:load
             slot="mobile-nav-header"
           />
         </div>
