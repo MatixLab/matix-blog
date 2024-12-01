@@ -39,7 +39,7 @@ export default defineConfig({
      */
     sitemap(),
     react(),
-    // MillionLint.astro(),
+    MillionLint.astro(),
     icon({
       include: {
         'lucide': [

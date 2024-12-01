@@ -21,9 +21,9 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="min-w-[300px] px-4">Product</TableHead>
-          <TableHead className="min-w-[300px] px-4">Specs</TableHead>
-          <TableHead className="min-w-[70px] px-4 text-right"></TableHead>
+          <TableHead className="min-w-[250px] md:min-w-[300px] px-4">Product</TableHead>
+          <TableHead className="min-w-[300px] px-4 hidden md:block">Specs</TableHead>
+          <TableHead className="min-w-[60px] md:min-w-[70px] px-4 text-right"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -32,16 +32,21 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
             return (
               <TableRow>
                 <TableCell className="px-4 py-3 font-medium">{s.title}</TableCell>
-                <TableCell className="px-4 py-3">{s.desc}</TableCell>
+                <TableCell className="px-4 py-3 hidden md:block">{s.desc}</TableCell>
                 <TableCell className="px-4 py-3 font-medium">
                   {
-                    s.url && (
-                      <a
-                        href={s.url}
-                      >
-                        Buy
-                      </a>
-                    )
+                    s.url
+                    ? (
+                        <a
+                          href={`${s.url}?ref=huakucha.top`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="break-words after:content-['_↗'] hover:underline underline-offset-4"
+                        >
+                          {s.source}
+                        </a>
+                      )
+                    : '-'
                   }
                 </TableCell>
               </TableRow>

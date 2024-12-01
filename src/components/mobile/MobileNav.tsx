@@ -2,6 +2,7 @@ import type { MainNavItem, SidebarNavItem } from '@/types'
 import {
   Drawer,
   DrawerContent,
+  DrawerDescription,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
@@ -9,6 +10,7 @@ import { siteConfig } from '@/config/site'
 import { Icons } from '@/icons'
 import { cn } from '@/lib/utils'
 import { ArrowUpRightIcon, Github, Menu } from 'lucide-react'
+import * as React from 'react'
 import { Button } from '../ui/button'
 
 interface SheetMobileProps {
@@ -25,9 +27,9 @@ export function MobileNav({
   const mergedMainNavItems = mainNavItems?.filter((item, index, self) =>
     index === self.findIndex(t => t.href === item.href && t.title === item.title),
   )
-
+  const [open, setOpen] = React.useState(false)
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="ghost" size="icon" title="Toggle drawer" className="md:hidden">
           <Menu className="size-6" />
@@ -35,6 +37,7 @@ export function MobileNav({
         </Button>
       </DrawerTrigger>
       <DrawerContent className="h-fit">
+        <DrawerDescription />
         <div className="overflow-y-auto p-4">
           <div className="flex w-full flex-col text-sm  space-y-2">
             <div className="flex flex-col gap-4 pb-4">
@@ -51,6 +54,7 @@ export function MobileNav({
                         'group flex items-center justify-between rounded-lg p-2 text-ds-gray-1000',
                         (item.href.startsWith(`/${segment}`) && 'bg-black text-white'),
                       )}
+                      onClick={() => setOpen(false)}
                     >
                       <span className="flex items-center gap-2">
                         <span className="font-medium">
@@ -81,6 +85,7 @@ export function MobileNav({
                                     'group flex items-center justify-between rounded-lg px-4 pt-2 text-ds-gray-1000',
                                     (subItem.href.startsWith(`/${segment}`) && 'bg-black text-white'),
                                   )}
+                                  onClick={() => setOpen(false)}
                                 >
                                   <span className="flex items-center gap-2">
                                     <span className="font-medium">

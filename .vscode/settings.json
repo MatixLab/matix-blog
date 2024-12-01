@@ -53,5 +53,9 @@
     ".astro": true,
     ".wrangler": true,
     "dist": true
-  }
+  },
+  "cSpell.words": [
+    "huakucha",
+    "weeklys"
+  ]
 }

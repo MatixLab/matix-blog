@@ -60,6 +60,7 @@ export interface ResourceItem {
   url?: string
   desc?: string
   cover?: string
+  source?: string
 }
 
 export interface Resource {

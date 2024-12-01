@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import { WeeklyFilter } from '@/components/mobile/WeeklyFilter'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys } from '@/lib/fetchers'
 import { cn, formatSimpleDate } from '@/lib/utils'
@@ -44,6 +45,18 @@ const years = Object.keys(weeklys).sort((a, b) => {
   return Number(b) - Number(a)
 })
 
+const sortedYears = Array.from(allYears).sort((a, b) => {
+  return Number(b) - Number(a)
+})
+
+// set current year
+let currYear = new Date().getFullYear().toString()
+if (!Astro.url.pathname.endsWith('/weekly')) {
+  currYear = Astro.url.pathname.split('/')[2]
+}
+else if (!allYears.has(currYear)) {
+  currYear = years[0]
+}
 ---
 
 <MainLayout
@@ -52,45 +65,46 @@ const years = Object.keys(weeklys).sort((a, b) => {
   bgType="default"
   bgClass="dark:bg-transparent"
 >
-  <section
-    class="container relative flex w-full flex-col space-y-6 py-14"
-  >
-    <main class="grid grid-cols-1 gap-4 md:grid-cols-5">
-      <div class="md:col-span-1  rounded-lg">
-        <aside class="md:col-span-1 rounded-lg hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
-          <ul class="group space-y-4 py-2">
+  <section class="container relative flex w-full flex-col">
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="hidden md:block fixed">
+          <ul class="group pt-12">
             {
-              Array.from(allYears)
-                .sort((a, b) => {
-                  return Number(b) - Number(a)
-                })
-                .map((item) => {
-                  return (
-                    <li class={cn(
-                      'text-center group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 pl-4 text-ds-gray-800',
-                    )}
-                    >
-                        <a
-                          href={`/weekly/${item}`}
-                          class={cn(
-                            'w-full justify-start pl-2 text-sm',
-                            'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                            (currentYear === item) && 'border-l-2 border-l-black text-black',
-                          )}
-                        >
-                          {item}
-                        </a>
-                    </li>
-                  )
-                })
+              sortedYears.map((item) => {
+                return (
+                  <li class={cn(
+                    'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
+                    'text-end h-8',
+                  )}
+                  >
+                      <a
+                        href={`/weekly/${item}`}
+                        class={cn(
+                          'block w-full text-sm py-1',
+                          'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
+                          (currentYear === item) && 'border-l-2 border-l-black text-black',
+                        )}
+                      >
+                        {item}
+                      </a>
+                  </li>
+                )
+              })
             }
           </ul>
         </aside>
-        <div class="py-4 grid md:hidden">
-        </div>
+      </div>
+      <div class="pt-4 md:hidden w-full">
+        <WeeklyFilter
+          years={sortedYears}
+          currentYear={currYear}
+          client:load
+          slot="mobile-nav-header"
+        />
       </div>
 
-      <div class="md:col-span-4 overflow-auto">
+      <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <div class="max-w-3xl relative flex w-full flex-col space-y-4">
           <div class="flex-1">
             <LazyMotion features={domAnimation}>

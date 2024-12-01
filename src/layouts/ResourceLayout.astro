@@ -28,23 +28,23 @@ const resourceName = resources.findLast((r) => {
 >
   <section class="container relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
-      <div class="md:col-span-1 rounded-lg hidden md:grid">
-        <aside class="hidden md:grid md:sticky md:top-16 overflow-auto mx-auto">
-          <ul class="group space-y-2 pt-12 hidden md:grid">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="hidden md:block fixed">
+          <ul class="group pt-12">
             {
               resources.map((item) => {
                 return (
                   <li class={cn(
                     'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
-                    'text-center',
+                    'text-center h-8',
                   )}
                   >
                     <a
                       href={`/resource/${item.routeName}`}
                       class={cn(
-                        'w-full justify-start pl-2 text-sm',
+                        'block w-full text-sm py-1',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                        (item.routeName === segment) && ' text-black dark:text-white',
+                        (item.routeName === segment) && 'text-black dark:text-white',
                       )}
                     >
                       {item.name}
@@ -65,7 +65,7 @@ const resourceName = resources.findLast((r) => {
       </div>
       <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <slot name="head-name">
-          <h1 class="font-bold text-xl mb-2 md:mb-4 text-center md:hidden">
+          <h1 class="font-bold text-xl mb-2 md:mb-4 text-center hidden md:block">
             { resourceName }
           </h1>
         </slot>
