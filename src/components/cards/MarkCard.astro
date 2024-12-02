@@ -1,34 +1,50 @@
 ---
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@/components/ui/card'
+import { HashIcon } from 'lucide-react'
 
 interface Props {
   name: string
   description?: string
-  badgeText?: string
   tags?: string[]
-  className?: string
+  url: string
 }
 
-const { name, description, badgeText, tags } = Astro.props
+const { name, description, tags, url } = Astro.props
 ---
 
-<Card className="w-full max-w-md">
+<Card className="w-full max-w-md transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-300/50">
   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
     <div class="flex items-center space-x-2">
       <slot name="icon" />
-      <h2 class="text-lg font-bold">{name}</h2>
     </div>
-    <Badge variant="secondary">{badgeText}</Badge>
+    <div class="flex items-center justify-center space-x-2">
+      <slot name="barges" />
+    </div>
   </CardHeader>
-  <CardContent>
+  <CardContent className="space-y-2">
+    <h2 class="text-lg font-bold">{name}</h2>
+    <a
+      href={`${url}?ref=huakucha.top`}
+      class="flex items-center justify-start text-ds-gray-800"
+    >
+      <HashIcon className="size-3"></HashIcon>
+      {url}
+    </a>
     <p class="text-sm text-muted-foreground">{description}</p>
   </CardContent>
-  <CardFooter className="flex justify-end space-x-2 pt-2">
+  <CardFooter className="flex justify-end space-x-4 pb-4">
     {tags?.map(tag => (
-      <Badge variant="outline">
-        {tag}
-      </Badge>
+      <div class="flex items-center justify-center text-ds-gray-900">
+        <HashIcon className="size-3"></HashIcon>
+        <span class="text-sm text-ds-gray-800">
+          {tag}
+        </span>
+      </div>
     ))}
   </CardFooter>
 </Card>

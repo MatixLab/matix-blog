@@ -7,19 +7,23 @@ import { CuboidIcon as Cube } from 'lucide-react'
 <ResourceLayout
   title="Site Resource"
   description="Anthony's site resource"
-  bgType="default"
-  bgClass="dark:bg-transparent"
+  bgType={false}
 >
   <div slot="right-content">
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-      <MarkCard
-        name="项目名称"
-        badgeText="状态"
-        description="这是一个示例项目的描述。它展示了如何使用自定义Card组件来显示项目信息,包括图标、名称、状态徽章、描述和标签。"
-        tags={['标签1', '标签2', '标签3']}
-      >
-        <Cube slot="icon" />
-      </MarkCard>
+      {
+        [1, 2, 3].map(i => (
+            <MarkCard
+              name="项目名称"
+              description="这是一个示例项目的描述。它展示了如何使用自定义Card组件来显示项目信息,包括图标、名称、状态徽章、描述和标签。"
+              tags={[`tag${i}`]}
+              url="huakucha.top"
+            >
+              <Cube slot="icon" />
+            </MarkCard>
+          ),
+        )
+      }
     </div>
   </div>
 </ResourceLayout>
