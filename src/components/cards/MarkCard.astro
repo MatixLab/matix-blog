@@ -1,50 +1,76 @@
 ---
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card'
-import { HashIcon } from 'lucide-react'
+import fallback from '@/assets/images/fallback.avif'
+import { cn } from '@/lib/utils'
+import { Image } from 'astro:assets'
+import { HashIcon, Link2Icon } from 'lucide-react'
 
 interface Props {
   name: string
-  description?: string
+  description: string | null
   tags?: string[]
   url: string
+  ogUrl: string | null
 }
 
-const { name, description, tags, url } = Astro.props
+const { name, description, tags, url, ogUrl } = Astro.props
 ---
 
-<Card className="w-full max-w-md transition-shadow duration-300 hover:shadow-lg hover:shadow-gray-300/50">
-  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-    <div class="flex items-center space-x-2">
-      <slot name="icon" />
-    </div>
-    <div class="flex items-center justify-center space-x-2">
-      <slot name="barges" />
-    </div>
-  </CardHeader>
-  <CardContent className="space-y-2">
-    <h2 class="text-lg font-bold">{name}</h2>
-    <a
-      href={`${url}?ref=huakucha.top`}
-      class="flex items-center justify-start text-ds-gray-800"
-    >
-      <HashIcon className="size-3"></HashIcon>
-      {url}
-    </a>
-    <p class="text-sm text-muted-foreground">{description}</p>
-  </CardContent>
-  <CardFooter className="flex justify-end space-x-4 pb-4">
+<a
+  class={cn(
+    'thumbnail-shadow  dark:shadow-md  flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl',
+    'bg-inherit p-4 transition-colors duration-300 hover:bg-ds-gray-100',
+  )}
+  href={`${url}?ref=huakucha.top`}
+  target="_blank"
+  aria-label={name}
+  rel="noopener noreferrer"
+>
+ <div class="flex flex-row items-center justify-between">
+   <div class="flex items-center space-x-2">
+     <slot name="icon" />
+   </div>
+   <div class="flex items-center justify-center space-x-2">
+     <slot name="barges" />
+   </div>
+ </div>
+ {
+  ogUrl && (
+    <span class="aspect-[1200/630] overflow-hidden rounded-lg">
+    <Image
+      src={ogUrl || fallback.src}
+      alt={name}
+      width={1200}
+      height={630}
+      loading="lazy"
+      class="aspect-[1200/630] animate-reveal rounded-lg border bg-cover bg-center bg-no-repeat object-cover"
+    />
+  </span>
+  )
+ }
+  <div class="flex flex-col gap-1 space-y-2">
+    <h2 class="leading-snug font-bold">{name}</h2>
+    <span class="line-clamp-1 inline-flex items-center gap-1 text-sm text-ds-gray-800">
+      <Link2Icon size={16} />
+      {new URL(url).hostname}
+    </span>
+    <span class="line-clamp-1 text-sm">{description}</span>
     {tags?.map(tag => (
-      <div class="flex items-center justify-center text-ds-gray-900">
+      <div class="flex items-center justify-end text-ds-gray-800 text-xs">
         <HashIcon className="size-3"></HashIcon>
-        <span class="text-sm text-ds-gray-800">
-          {tag}
-        </span>
+        {tag}
       </div>
     ))}
-  </CardFooter>
-</Card>
+  </div>
+</a>
+
+<style>
+  .thumbnail-shadow {
+    box-shadow:
+      0 0 0 0.5px #eff3f7,
+      0 0 0 1px rgba(226, 232, 240, 0.5),
+      0 0 0 3px #f8fafc,
+      0 0 0 3.5px #f1f5f9,
+      0 10px 15px -3px rgb(59 130 246/5%),
+      0 4px 6px -4px rgb(59 130 246/5%);
+  }
+</style>

@@ -50,7 +50,7 @@
   "css.customData": [".vscode/tailwindcss.json"],
   "mdx.server.enable": true,
   "files.exclude": {
-    ".astro": true,
+    ".astro": false,
     ".wrangler": true,
     "dist": true
   },

@@ -60,7 +60,7 @@ export interface ResourceItem {
   url?: string
   desc?: string
   cover?: string
-  source?: string
+  source?: 'Official' | 'JD'
 }
 
 export interface Resource {

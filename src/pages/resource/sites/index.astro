@@ -1,7 +1,9 @@
 ---
 import MarkCard from '@/components/cards/MarkCard.astro'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
-import { CuboidIcon as Cube } from 'lucide-react'
+import { db, Sites } from 'astro:db'
+
+const sites = await db.select().from(Sites)
 ---
 
 <ResourceLayout
@@ -10,16 +12,22 @@ import { CuboidIcon as Cube } from 'lucide-react'
   bgType={false}
 >
   <div slot="right-content">
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 place-content-start px-2">
       {
-        [1, 2, 3].map(i => (
+        sites.map(site => (
             <MarkCard
-              name="项目名称"
-              description="这是一个示例项目的描述。它展示了如何使用自定义Card组件来显示项目信息,包括图标、名称、状态徽章、描述和标签。"
-              tags={[`tag${i}`]}
-              url="huakucha.top"
+              name={site.name}
+              description={site.description}
+              url={site.url}
+              ogUrl={site.ogUrl}
             >
-              <Cube slot="icon" />
+              <!--
+                <div slot="barges" class="flex space-x-2">
+                  <Cube className="size-4" />
+                  <Cube className="size-4" />
+                  <Cube className="size-4" />
+                </div>
+               -->
             </MarkCard>
           ),
         )

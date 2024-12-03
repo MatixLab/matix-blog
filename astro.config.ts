@@ -1,4 +1,5 @@
 import cloudflare from '@astrojs/cloudflare'
+import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
@@ -62,6 +63,7 @@ export default defineConfig({
       JavaScript: true,
       SVG: true,
     }),
+    db(),
   ],
   /**
    * https://docs.astro.build/zh-cn/basics/rendering-modes/
