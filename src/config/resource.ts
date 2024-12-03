@@ -2,8 +2,6 @@ import type { Resource, ResourceItem } from '@/types'
 
 export const tools: ResourceItem[] = []
 export const design: ResourceItem[] = []
-export const reading: ResourceItem[] = []
-export const sites: ResourceItem[] = []
 export const space: ResourceItem[] = [
   {
     title: '13" MacBook Pro',
@@ -33,16 +31,16 @@ export const resources: Resource[] = [
     routeName: 'tools',
   },
   {
-    name: 'Design',
-    routeName: 'design',
-  },
-  {
-    name: 'Reading',
-    routeName: 'reading',
+    name: 'Portfolios',
+    routeName: 'portfolios',
   },
   {
     name: 'Sites',
     routeName: 'sites',
+  },
+  {
+    name: 'Design',
+    routeName: 'design',
   },
   {
     name: 'Workspace',

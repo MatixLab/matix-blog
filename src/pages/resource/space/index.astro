@@ -14,15 +14,14 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
 <ResourceLayout
   title="Workspace Resource"
   description="Anthony's workspace resource"
-  bgType="default"
-  bgClass="dark:bg-transparent"
+  bgType={false}
 >
   <div slot="right-content">
     <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="min-w-[250px] md:min-w-[300px] px-4">Product</TableHead>
-          <TableHead className="min-w-[300px] px-4 hidden md:block">Specs</TableHead>
+          <TableHead className="min-w-[300px] px-4 hidden md:table-cell">Specs</TableHead>
           <TableHead className="min-w-[60px] md:min-w-[70px] px-4 text-right"></TableHead>
         </TableRow>
       </TableHeader>

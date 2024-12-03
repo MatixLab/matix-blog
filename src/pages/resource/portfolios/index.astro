@@ -1,0 +1,31 @@
+---
+import MarkCard from '@/components/cards/MarkCard.astro'
+import ResourceLayout from '@/layouts/ResourceLayout.astro'
+import { db, Portfolios } from 'astro:db'
+
+const portfolios = await db.select().from(Portfolios)
+---
+
+<ResourceLayout
+  title="Portfolio Resource"
+  description="Anthony's portfolio resource"
+  bgType={false}
+>
+  <div slot="right-content">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 place-content-start px-2">
+      {
+        portfolios.map(portfolio => (
+            <MarkCard
+              name={portfolio.name}
+              tags={portfolio.tags?.split(',')}
+              description={portfolio.description}
+              url={portfolio.url}
+              ogUrl={portfolio.ogUrl}
+            >
+            </MarkCard>
+          ),
+        )
+      }
+    </div>
+  </div>
+</ResourceLayout>

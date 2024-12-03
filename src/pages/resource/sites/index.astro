@@ -1,37 +1,14 @@
 ---
-import MarkCard from '@/components/cards/MarkCard.astro'
-import ResourceLayout from '@/layouts/ResourceLayout.astro'
-import { db, Sites } from 'astro:db'
-
-const sites = await db.select().from(Sites)
+import ResourceLayout from '@/layouts/ResourceLayout.astro';
 ---
 
 <ResourceLayout
-  title="Site Resource"
-  description="Anthony's site resource"
-  bgType={false}
+  title="Sites Resource"
+  description="Anthony's sites resource"
+  bgType="default"
+  bgClass="dark:bg-transparent"
 >
   <div slot="right-content">
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 place-content-start px-2">
-      {
-        sites.map(site => (
-            <MarkCard
-              name={site.name}
-              description={site.description}
-              url={site.url}
-              ogUrl={site.ogUrl}
-            >
-              <!--
-                <div slot="barges" class="flex space-x-2">
-                  <Cube className="size-4" />
-                  <Cube className="size-4" />
-                  <Cube className="size-4" />
-                </div>
-               -->
-            </MarkCard>
-          ),
-        )
-      }
-    </div>
+
   </div>
 </ResourceLayout>

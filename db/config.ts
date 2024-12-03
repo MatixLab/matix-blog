@@ -1,6 +1,6 @@
 import { column, defineDb, defineTable } from 'astro:db'
 
-const Sites = defineTable({
+const Portfolios = defineTable({
   columns: {
     id: column.number({
       primaryKey: true,
@@ -23,6 +23,6 @@ const Sites = defineTable({
 
 export default defineDb({
   tables: {
-    Sites,
+    Portfolios,
   },
 })
