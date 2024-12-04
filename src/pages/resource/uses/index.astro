@@ -7,14 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { space } from '@/config/resource'
+import { use } from '@/config/resource'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
 ---
 
 <ResourceLayout
-  title="Workspace Resource"
-  description="Anthony's workspace resource"
-  bgType={false}
+  title="Uses Resource"
+  description="Anthony's uses resource"
 >
   <div slot="right-content">
     <Table>
@@ -27,22 +26,22 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro'
       </TableHeader>
       <TableBody>
         {
-          space.map((s) => {
+          use.map((item) => {
             return (
               <TableRow>
-                <TableCell className="px-4 py-3 font-medium">{s.title}</TableCell>
-                <TableCell className="px-4 py-3 hidden md:block">{s.desc}</TableCell>
+                <TableCell className="px-4 py-3 font-medium">{item.title}</TableCell>
+                <TableCell className="px-4 py-3 hidden md:block">{item.desc}</TableCell>
                 <TableCell className="px-4 py-3 font-medium">
                   {
-                    s.url
+                    item.url
                     ? (
                         <a
-                          href={`${s.url}?ref=huakucha.top`}
+                          href={`${item.url}?ref=huakucha.top`}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="break-words after:content-['_↗'] hover:underline underline-offset-4"
                         >
-                          {s.source}
+                          {item.source}
                         </a>
                       )
                     : '-'

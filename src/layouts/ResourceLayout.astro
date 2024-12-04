@@ -8,11 +8,9 @@ type Props = {
   title: string
   description?: string
   mainClass?: string
-  bgType?: 'default' | false
-  bgClass?: string
 }
 
-const { title, description, mainClass, bgType, bgClass } = Astro.props
+const { title, description, mainClass } = Astro.props
 const segment = Astro.url.pathname.split('/')[2]
 
 const resourceName = resources.findLast((r) => {
@@ -23,8 +21,7 @@ const resourceName = resources.findLast((r) => {
   title={title}
   description={description}
   mainClass={mainClass}
-  bgType={bgType}
-  bgClass={bgClass}
+  bgType={false}
 >
   <section class="container relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">

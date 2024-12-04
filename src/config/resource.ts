@@ -6,12 +6,10 @@ export enum ResourceType {
   SUBSCRIBE = 2,
   DESIGN = 3,
   SITES = 4,
-  WORKSPACE = 5,
+  USES = 5,
 }
 
-export const tools: ResourceItem[] = []
-export const design: ResourceItem[] = []
-export const space: ResourceItem[] = [
+export const use: ResourceItem[] = [
   {
     title: '13" MacBook Pro',
     desc: 'Space Gray, Intel, 16GB RAM, 256GB SSD',
@@ -40,6 +38,14 @@ export const resources: Resource[] = [
     routeName: 'tools',
   },
   {
+    name: 'Uses',
+    routeName: 'uses',
+  },
+  {
+    name: 'Subscribe',
+    routeName: 'subscribe',
+  },
+  {
     name: 'Portfolios',
     routeName: 'portfolios',
   },
@@ -48,15 +54,7 @@ export const resources: Resource[] = [
     routeName: 'design',
   },
   {
-    name: 'Subscribe',
-    routeName: 'subscribe',
-  },
-  {
     name: 'Sites',
     routeName: 'sites',
-  },
-  {
-    name: 'Workspace',
-    routeName: 'space',
   },
 ]

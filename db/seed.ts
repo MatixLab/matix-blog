@@ -6,7 +6,7 @@ enum ResourceType {
   SUBSCRIBE = 2,
   DESIGN = 3,
   SITES = 4,
-  WORKSPACE = 5,
+  USES = 5,
 }
 
 export default async function () {
