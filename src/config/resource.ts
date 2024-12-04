@@ -1,5 +1,14 @@
 import type { Resource, ResourceItem } from '@/types'
 
+export enum ResourceType {
+  APP_TOOLS = 0,
+  PORTFOLIO = 1,
+  SUBSCRIBE = 2,
+  DESIGN = 3,
+  SITES = 4,
+  WORKSPACE = 5,
+}
+
 export const tools: ResourceItem[] = []
 export const design: ResourceItem[] = []
 export const space: ResourceItem[] = [
@@ -35,12 +44,16 @@ export const resources: Resource[] = [
     routeName: 'portfolios',
   },
   {
-    name: 'Sites',
-    routeName: 'sites',
-  },
-  {
     name: 'Design',
     routeName: 'design',
+  },
+  {
+    name: 'Subscribe',
+    routeName: 'subscribe',
+  },
+  {
+    name: 'Sites',
+    routeName: 'sites',
   },
   {
     name: 'Workspace',

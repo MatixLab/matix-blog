@@ -1,6 +1,6 @@
 import { column, defineDb, defineTable } from 'astro:db'
 
-const Portfolios = defineTable({
+const ResourceSites = defineTable({
   columns: {
     id: column.number({
       primaryKey: true,
@@ -18,11 +18,12 @@ const Portfolios = defineTable({
     ogUrl: column.text({
       optional: true,
     }),
+    type: column.number(),
   },
 })
 
 export default defineDb({
   tables: {
-    Portfolios,
+    ResourceSites,
   },
 })

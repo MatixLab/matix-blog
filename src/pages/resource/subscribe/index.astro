@@ -4,12 +4,12 @@ import { ResourceType } from '@/config/resource'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
 import { actions } from 'astro:actions'
 
-const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.PORTFOLIO)
+const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.SUBSCRIBE)
 ---
 
 <ResourceLayout
-  title="Portfolio Resource"
-  description="Anthony's portfolio resource"
+  title="Subscribe Resource"
+  description="Anthony's subscribe resource"
   bgType={false}
 >
   <div slot="right-content">

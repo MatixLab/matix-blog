@@ -1,13 +1,13 @@
 import { defineAction } from 'astro:actions'
-import { db, Sites } from 'astro:db'
+import { db, eq, ResourceSites } from 'astro:db'
 
 export const SITE = {
-  addSite: defineAction({
-    handler: async (input) => {
-      await db
-        .insert(Sites)
-        .values(input)
-        .returning()
+  GET: defineAction({
+    handler: async (input: number) => {
+      return await db
+        .select()
+        .from(ResourceSites)
+        .where(eq(ResourceSites.type, input))
     },
   }),
 }
