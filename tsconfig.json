@@ -11,6 +11,8 @@
     "types": [
       "@cloudflare/workers-types/2023-07-01"
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "include": [".astro/types.d.ts", "**/*"],
+    "exclude": ["dist"]
   }
 }

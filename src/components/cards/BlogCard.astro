@@ -34,7 +34,7 @@ const { entry } = Astro.props as {
           height={360}
           src={entry.data.cover}
           alt="descriptive text"
-          transition:name={`img-${entry.slug}`}
+          transition:name={`img-${entry.id}`}
         />
         <div
           class="absolute left-2 bottom-2 opacity-100 transition-opacity duration-300"
@@ -61,7 +61,7 @@ const { entry } = Astro.props as {
         class={cn(
           'absolute inset-0 flex items-center justify-center bg-black  bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-300',
         )}
-        href={`/post/${entry.slug}/`}
+        href={`/post/${entry.id}/`}
       >
         <span
           class="text-white text-lg font-semibold opacity-0 group-hover:opacity-80 transition-opacity duration-1000"
@@ -72,13 +72,12 @@ const { entry } = Astro.props as {
       -->
     </div>
   </div>
-
-  <a class="flex flex-col gap-4 group" href={`/post/${entry.slug}/`}>
+  <a class="flex flex-col gap-4 group" href={`/post/${entry.id}/`}>
     <div class="px-4 flex flex-col gap-4">
       <div class="flex items-center justify-between gap-4">
         <h2
           class="flex-1 text-xl line-clamp-1 flex items-center gap-2 text-ds-gray-1000"
-          transition:name={`title-${entry.slug}`}
+          transition:name={`title-${entry.id}`}
         >
           {entry.data.title}
         </h2>
@@ -103,7 +102,7 @@ const { entry } = Astro.props as {
             <a
               class="flex items-center justify-center space-x-0.5 group"
               href={`/post/category/${cat}`}
-              transition:name={`badge-cat-${entry.slug}`}
+              transition:name={`badge-cat-${entry.id}`}
             >
               <HashIcon className="size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out"></HashIcon>
               <span class={cn(
@@ -119,7 +118,7 @@ const { entry } = Astro.props as {
   <!-- <div class="px-4 flex">
     <span
       class="text-muted-foreground"
-      transition:name={`date-${entry.slug}`}
+      transition:name={`date-${entry.id}`}
     >
       {formatDate(entry.data.pubDate)}
     </span>

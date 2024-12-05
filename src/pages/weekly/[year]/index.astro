@@ -6,8 +6,8 @@ export async function getStaticPaths() {
   const weeklys = await getWeeklys()
   return weeklys.map(weekly => ({
     params: {
-      slug: weekly.slug,
-      year: weekly.slug.substring(0, 4),
+      id: weekly.id,
+      year: weekly.id.substring(0, 4),
     },
     props: weekly,
   }))

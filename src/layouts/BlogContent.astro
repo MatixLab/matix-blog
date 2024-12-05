@@ -8,7 +8,7 @@ import MainLayout from './MainLayout.astro'
 
 type Props = CollectionEntry<'post'>
 
-const slug = Astro.props.slug
+const id = Astro.props.id
 const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data;
 ---
 
@@ -50,13 +50,13 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
   )}
   >
     <div class="mx-auto w-full min-w-0 md:px-6">
-      <h1 class="text-4xl mt-4 " transition:name={`title-${slug}`}>
+      <h1 class="text-4xl mt-4 " transition:name={`title-${id}`}>
         {title}
       </h1>
       <div class="flex items-center font-normal space-x-4">
         <span
           class="text-ds-gray-600 text-sm mr-2"
-          transition:name={`date-${slug}`}
+          transition:name={`date-${id}`}
         >
           { formatDate(updatedDate) }
         </span>
@@ -69,7 +69,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
                   'after:!content-none hover:!no-underline',
                 )}
                 href={`/post/category/${cat}`}
-                transition:name={`badge-cat-${slug}`}
+                transition:name={`badge-cat-${id}`}
               >
                 <HashIcon className={cn(
                   'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
@@ -91,7 +91,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
           src={cover}
           alt={title}
           loading="lazy"
-          transition:name={`img-${slug}`}
+          transition:name={`img-${id}`}
         />
 
         {

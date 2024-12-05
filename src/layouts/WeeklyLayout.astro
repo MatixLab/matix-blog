@@ -16,7 +16,7 @@ let weeklyData: CollectionEntry<'weekly'>[] = await getWeeklys()
 const allYears = new Set<string>()
 
 weeklyData.forEach((ele) => {
-  const year = ele.slug.substring(0, 4)
+  const year = ele.id.substring(0, 4)
   allYears.add(year)
 })
 
@@ -24,7 +24,7 @@ const { year: currentYear } = Astro.params
 if (type === 'year') {
   if (currentYear) {
     weeklyData = weeklyData.filter((ele) => {
-      return ele.slug.substring(0, 4) === currentYear
+      return ele.id.substring(0, 4) === currentYear
     })
   }
 }
@@ -34,7 +34,7 @@ const weeklys: {
 } = {}
 
 weeklyData.forEach((ele) => {
-  const year = ele.slug.substring(0, 4)
+  const year = ele.id.substring(0, 4)
   if (!weeklys[year])
     weeklys[year] = []
   weeklys[year].push(ele)
@@ -139,7 +139,7 @@ else if (!allYears.has(currYear)) {
                                     {itemIndex === 0 ? year : ''}
                                   </span>
                                   <a
-                                    href={`/weekly/${item.slug}`}
+                                    href={`/weekly/${item.id}`}
                                     class={cn(
                                       'col-span-6 md:col-span-5',
                                       'dark:group-hover/list-item:text-ds-gray-500 group-hover/list-item:text-gray-900',
@@ -164,7 +164,7 @@ else if (!allYears.has(currYear)) {
                                       {/* size:md */}
                                       <span
                                         class="col-span-2 line-clamp-4 md:col-span-6 hidden md:grid  text-center"
-                                        transition:name={`title-${item.slug}`}
+                                        transition:name={`title-${item.id}`}
                                       >
                                         第 {itemIndex} 期: &nbsp;&nbsp;{item.data.title}
                                       </span>
@@ -172,7 +172,7 @@ else if (!allYears.has(currYear)) {
                                       {/* mobile */}
                                       <span
                                         class="col-span-2 line-clamp-4 md:col-span-6 grid md:hidden  text-center"
-                                        transition:name={`title-${item.slug}`}
+                                        transition:name={`title-${item.id}`}
                                       >
                                         {item.data.title}
                                       </span>

@@ -7,7 +7,7 @@ import MainLayout from '@/layouts/MainLayout.astro'
 import { getWeeklys, getWeeklysByYear } from '@/lib/fetchers'
 import { getTableOfContents } from '@/lib/toc'
 import { cn } from '@/lib/utils'
-import { type CollectionEntry } from 'astro:content'
+import { type CollectionEntry, render } from 'astro:content'
 
 
 
@@ -15,20 +15,20 @@ export async function getStaticPaths() {
   const weeklys = await getWeeklys()
   return weeklys.map(weekly => ({
     params: {
-      slug: weekly.slug,
+      id: weekly.id,
     },
     props: weekly,
   }))
 }
 
 type Props = CollectionEntry<'weekly'>
-const { slug } = Astro.params
-const year = slug.substring(0, 4)
+const { id } = Astro.params
+const year = id.substring(0, 4)
 const weeklyData = await getWeeklysByYear(year)
 
 const weekly = Astro.props
-const { Content } = await weekly.render()
-if (!slug || !weekly) {
+const { Content } = await render(weekly)
+if (!id || !weekly) {
   return new Response(null, {
     status: 404,
     statusText: 'Not found',
@@ -62,11 +62,11 @@ const { pathname } = Astro.url
             return (
               <div class="group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700">
                 <a
-                  href={`/weekly/${item.slug}`}
+                  href={`/weekly/${item.id}`}
                   class={cn(
                     'flex w-full items-center pl-2',
                     'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                    pathname.endsWith(item.slug) && 'border-black border-l-2 dark:border-ds-gray-900',
+                    pathname.endsWith(item.id) && 'border-black border-l-2 dark:border-ds-gray-900',
                   )}
                 >
                   第 {itemIndex} 期: &nbsp;&nbsp;{item.data.title}

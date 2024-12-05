@@ -28,7 +28,7 @@ export async function getWeeklysByYear(year: string) {
       (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
     )
     .filter((ele) => {
-      return ele.slug.substring(0, 4) === year.toString()
+      return ele.id.substring(0, 4) === year.toString()
     })
   return posts
 }

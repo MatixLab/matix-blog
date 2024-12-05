@@ -4,19 +4,19 @@ import { buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
 import { getCollection } from 'astro:content'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, render } from 'lucide-react'
 
 export async function getStaticPaths() {
   const timelineData = await getCollection('timeline')
 
   return timelineData.map(timeline => ({
-    params: { slug: timeline.slug },
+    params: { id: timeline.id },
     props: { timeline },
   }))
 }
 
 const { timeline } = Astro.props
-const { Content } = await timeline.render();
+const { Content } = await render(timeline)
 ---
 
 <MainLayout

@@ -18,7 +18,7 @@ export async function GET(context: APIContext) {
         pubDate: item.data.date,
         categories: item.data.category,
         author: siteConfig.author,
-        link: `/${item.collection}/${item.slug}/`,
+        link: `/${item.collection}/${item.id}/`,
       })),
     })
   }

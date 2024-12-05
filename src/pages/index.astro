@@ -100,7 +100,7 @@ const years = Object.keys(posts).sort((a, b) => {
                               {itemIndex === 0 ? year : ''}
                             </span>
                             <a
-                              href={`/post/${item.slug}`}
+                              href={`/post/${item.id}`}
                               class={cn(
                                 'col-span-6 group-hover/list-item:text-gray-900 md:col-span-5',
                                 'dark:group-hover/list-item:text-ds-gray-500',
@@ -123,7 +123,7 @@ const years = Object.keys(posts).sort((a, b) => {
                                 </span>
                                 <span
                                   class="col-span-2 line-clamp-4 md:col-span-6"
-                                  transition:name={`title-${item.slug}`}
+                                  transition:name={`title-${item.id}`}
                                 >
                                   {item.data.title}
                                 </span>

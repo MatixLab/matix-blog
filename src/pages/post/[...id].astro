@@ -3,12 +3,12 @@ import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import BlogPostLayout from '@/layouts/BlogContent.astro'
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
   const posts = await getCollection('post')
   return posts.map(post => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: post,
   }))
 }
@@ -16,10 +16,10 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'post'>
 
 const post = Astro.props
-const slug = Astro.params.slug
-const { Content } = await post.render()
+const id = Astro.params.id
+const { Content } = await render(post)
 
-if (!slug || !post) {
+if (!id || !post) {
   return new Response(null, {
     status: 404,
     statusText: 'Not found',

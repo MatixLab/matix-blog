@@ -68,7 +68,6 @@ export default defineConfig({
   /**
    * https://docs.astro.build/zh-cn/basics/rendering-modes/
    */
-  output: 'hybrid',
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
@@ -79,7 +78,10 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      theme: 'github-dark-default',
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-default',
+      },
       transformers: [
         transformerNotationDiff(),
         transformerNotationHighlight(),
@@ -127,7 +129,6 @@ export default defineConfig({
   },
   experimental: {
     contentIntellisense: true,
-    directRenderScript: true,
   },
   vite: {
     optimizeDeps: {

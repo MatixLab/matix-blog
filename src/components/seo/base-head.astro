@@ -1,6 +1,6 @@
 ---
 import LoadingIndicator from '@/components/Loading.astro'
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import '@/styles/index.css'
 
 interface Props {
@@ -51,7 +51,7 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<ViewTransitions />
+<ClientRouter  />
 <LoadingIndicator />
 
 <script>
