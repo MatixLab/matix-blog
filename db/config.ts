@@ -20,6 +20,9 @@ const ResourceSites = defineTable({
     }),
     type: column.number(),
   },
+  indexes: [
+    { on: ['type'] },
+  ],
 })
 
 export default defineDb({

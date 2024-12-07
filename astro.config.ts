@@ -1,6 +1,6 @@
-import cloudflare from '@astrojs/cloudflare'
 import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
+import netlify from '@astrojs/netlify'
 import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
@@ -23,14 +23,17 @@ import {
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
-import { DB } from './env.schema'
+
+import { schema } from './env.schema'
 
 /**
  * https://astro.build/config
  */
 export default defineConfig({
   site: 'http://localhost:4321/',
+
   integrations: [
+    db(),
     tailwind({
       applyBaseStyles: false,
     }),
@@ -62,20 +65,12 @@ export default defineConfig({
       JavaScript: true,
       SVG: true,
     }),
-    db(),
   ],
-  /**
-   * https://docs.astro.build/zh-cn/basics/rendering-modes/
-   */
-  adapter: cloudflare({
-    platformProxy: {
-      persist: true,
-      enabled: true,
-    },
-  }),
+
   devToolbar: {
     enabled: false,
   },
+
   markdown: {
     shikiConfig: {
       themes: {
@@ -124,12 +119,17 @@ export default defineConfig({
       ],
     ],
   },
+
   image: {
     service: passthroughImageService(),
   },
+
   experimental: {
     contentIntellisense: true,
+    responsiveImages: true,
+    svg: true,
   },
+
   vite: {
     optimizeDeps: {
       include: ['lucide-react'],
@@ -138,10 +138,10 @@ export default defineConfig({
       external: ['node:buffer'],
     },
   },
+
   env: {
-    schema: {
-      ...DB,
-    },
+    schema,
     validateSecrets: true,
   },
+  adapter: netlify(),
 })
