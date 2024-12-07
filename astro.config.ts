@@ -23,6 +23,7 @@ import {
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
+import { DB } from './env.schema'
 
 /**
  * https://astro.build/config
@@ -68,6 +69,7 @@ export default defineConfig({
    */
   adapter: cloudflare({
     platformProxy: {
+      persist: true,
       enabled: true,
     },
   }),
@@ -135,5 +137,11 @@ export default defineConfig({
     ssr: {
       external: ['node:buffer'],
     },
+  },
+  env: {
+    schema: {
+      ...DB,
+    },
+    validateSecrets: true,
   },
 })
