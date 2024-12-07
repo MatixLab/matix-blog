@@ -3,8 +3,8 @@ import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
-import { getCollection } from 'astro:content'
-import { ChevronLeft, render } from 'lucide-react'
+import { getCollection, render } from 'astro:content'
+import { ChevronLeft } from 'lucide-react'
 
 export async function getStaticPaths() {
   const timelineData = await getCollection('timeline')
