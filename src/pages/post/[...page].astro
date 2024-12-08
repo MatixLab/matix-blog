@@ -8,7 +8,6 @@ import MainLayout from '@/layouts/MainLayout.astro'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
 
-// see https://docs.astro.build/zh-cn/guides/routing/
 export async function getStaticPaths({
   paginate,
 }: {
@@ -33,13 +32,13 @@ page.data.forEach((post) => {
 ---
 
 <MainLayout
-  title="Blog"
+  title="Posts"
   description="AnthonyZhu's writing record."
 >
-  <section class="container py-10">
+  <section class="container pt-6">
     <BlogHeader
-      title="Blog"
-      description="AnthonyZhu's writing record."
+      title="Posts"
+      description=""
     />
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
       {

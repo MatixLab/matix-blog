@@ -1,25 +1,35 @@
 import type { APIContext } from 'astro'
 import { siteConfig } from '@/config/site'
-import { getPosts } from '@/lib/fetchers'
+import { getPosts, getWeeklys } from '@/lib/fetchers'
 import rss from '@astrojs/rss'
 
 export async function GET(context: APIContext) {
   try {
-    const items = await getPosts()
-
+    const postsData = (await getPosts()).map((post) => {
+      return {
+        title: post.data.title,
+        description: post.data.description,
+        pubDate: post.data.pubDate,
+        categories: post.data.category.join(', '),
+        author: siteConfig.author,
+        link: `/${post.collection}/${post.id}/`,
+      }
+    })
+    const weeklyData = (await getWeeklys()).map((weekly) => {
+      return {
+        title: weekly.data.title,
+        description: weekly.data.description,
+        pubDate: weekly.data.pubDate,
+        author: siteConfig.author,
+        link: `/${weekly.collection}/${weekly.id}/`,
+      }
+    })
     // Return RSS feed
     return rss({
       title: siteConfig.title,
       description: siteConfig.description,
       site: context.site ?? siteConfig.url,
-      items: items.map(item => ({
-        title: item.data.title,
-        description: item.data.description,
-        pubDate: item.data.date,
-        categories: item.data.category,
-        author: siteConfig.author,
-        link: `/${item.collection}/${item.id}/`,
-      })),
+      items: [...postsData, ...weeklyData],
     })
   }
   catch (error) {

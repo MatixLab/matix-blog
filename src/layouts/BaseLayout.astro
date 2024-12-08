@@ -1,5 +1,4 @@
 ---
-import Bg from '@/components/Bg.astro'
 import BaseHead from '@/components/seo/base-head.astro'
 import TailwindIndicator from '@/components/util/tailwind-indicator.astro'
 import { cn } from '@/lib/utils'
@@ -8,11 +7,9 @@ type Props = {
   title: string
   description?: string
   bodyClass?: string
-  bgType?: 'default' | false
-  bgClass?: string
 }
 
-const { title, description, bodyClass, bgType, bgClass } = Astro.props;
+const { title, description, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,9 +22,6 @@ const { title, description, bodyClass, bgType, bgClass } = Astro.props;
     bodyClass,
     )}
   >
-    {
-      bgType && <Bg type={bgType} bgClass={bgClass} />
-    }
     <!-- Background -->
     <slot />
     <TailwindIndicator />

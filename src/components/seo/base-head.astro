@@ -8,9 +8,7 @@ interface Props {
   description?: string
   image?: string
 }
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-
 const {
   title,
   description,
@@ -51,7 +49,7 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<ClientRouter  />
+<ClientRouter />
 <LoadingIndicator />
 
 <script>
@@ -79,4 +77,12 @@ document.addEventListener('astro:after-swap', setDarkMode)
 </script>
 
 <!-- partytown -->
-<script type="text/partytown" src="../../scripts/ga.js" />
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || []
+  window.gtag = function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-GSZGX09RBK')
+</script>

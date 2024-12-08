@@ -10,12 +10,13 @@ export const siteConfig: SiteConfig = {
   links: {
     twitter: 'https://twitter.com/huakucha10',
     github: 'https://github.com/MagicalZhu',
+    blueSky: 'https://bsky.app/profile/anthonyzhu.bsky.social',
   },
   pagination: {
     pageSize: 5,
     itemMaxNum: 5,
   },
   home: {
-    postNum: 5,
+    displayNumber: 3,
   },
 }

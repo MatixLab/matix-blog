@@ -50,7 +50,7 @@ export default defineConfig({
           'settings',
           'search',
         ],
-        'simple-icons': ['github', 'x'],
+        'simple-icons': ['github', 'x', 'bluesky'],
       },
     }),
     partytown({

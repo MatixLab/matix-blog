@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
-import defaultTheme from 'tailwindcss/defaultTheme'
 import animate from 'tailwindcss-animate'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   darkMode: ['class'],
@@ -11,7 +11,7 @@ const config: Config = {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1446px',
+        '2xl': '1226px',
       },
     },
     extend: {

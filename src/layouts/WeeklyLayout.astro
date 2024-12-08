@@ -62,11 +62,9 @@ else if (!allYears.has(currYear)) {
 <MainLayout
   title="Weekly"
   description="Anthony's weekly"
-  bgType="default"
-  bgClass="dark:bg-transparent"
 >
-  <section class="container relative flex w-full flex-col">
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+  <section class="container max-w-[980px] relative flex w-full flex-col">
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-4">
       <div class="md:col-span-1 rounded-lg hidden md:block">
         <aside class="hidden md:block fixed">
           <ul class="group pt-12">
@@ -83,7 +81,7 @@ else if (!allYears.has(currYear)) {
                         class={cn(
                           'block w-full text-sm py-1',
                           'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                          (currentYear === item) && 'border-l-2 border-l-black text-black',
+                          (currentYear === item) && ' text-black',
                         )}
                       >
                         {item}
@@ -104,7 +102,7 @@ else if (!allYears.has(currYear)) {
         />
       </div>
 
-      <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
+      <div class="md:col-span-3 overflow-auto pt-2 md:pt-8">
         <div class="max-w-3xl relative flex w-full flex-col space-y-4">
           <div class="flex-1">
             <LazyMotion features={domAnimation}>
@@ -166,7 +164,7 @@ else if (!allYears.has(currYear)) {
                                         class="col-span-2 line-clamp-4 md:col-span-6 hidden md:grid  text-center"
                                         transition:name={`title-${item.id}`}
                                       >
-                                        第 {itemIndex} 期: &nbsp;&nbsp;{item.data.title}
+                                        {item.data.title}
                                       </span>
 
                                       {/* mobile */}

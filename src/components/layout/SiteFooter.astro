@@ -2,7 +2,6 @@
 import {
   siteConfig,
 } from '@/config/site'
-import { cn } from '@/lib/utils'
 
 type Props = {
   className?: string
@@ -11,31 +10,11 @@ type Props = {
 const { className } = Astro.props;
 ---
 
-<footer class={cn('border-t border-[0.1px]', className)}>
-  <div class="container max-w-3xl">
-    <div class="py-4">
-      <div class="md:flex text-sm  justify-between">
-        <div>
-          Copyright © 2024 {siteConfig.author}.
-        </div>
-        <div>
-          Built by{' '}
-          <a
-            href={siteConfig.links.twitter}
-            target="_blank"
-            class="underline underline-offset-4"
-          >
-            {siteConfig.author}
-          </a>
-          . Hosted on{' '}
-          <a
-            href="https://cloudflare.com"
-            target="_blank"
-            class="underline underline-offset-4"
-          >
-            Cloudflare
-          </a>.
-        </div>
+<footer class:list={['pt-8 pb-6', className]}>
+  <div class="container">
+    <div class="md:flex text-sm">
+      <div>
+        Copyright © 2024 - PRESENT {siteConfig.author}.
       </div>
     </div>
   </div>

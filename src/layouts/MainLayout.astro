@@ -5,34 +5,27 @@ import SiteHeader from '@/components/layout/SiteHeader.astro'
 import { MobileNav } from '@/components/mobile/MobileNav'
 import { ThemeToggle } from '@/components/util/theme-toggle'
 import { navMenuConfig } from '@/config/nav-menu'
-import { siteConfig } from '@/config/site'
-import { cn, extractSegmentURL } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
+import { extractSegmentURL } from '@/lib/utils'
 import BaseLayout from './BaseLayout.astro'
 
 type Props = {
   title: string
   description?: string
   mainClass?: string
-  bgType?: 'default' | false
-  bgClass?: string
 }
 
-const { title, description, mainClass, bgType, bgClass } = Astro.props
+const { title, description, mainClass } = Astro.props
 const segment = extractSegmentURL(Astro.url.pathname)
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  bgType={bgType}
-  bgClass={bgClass}
 >
   <div class="relative flex min-h-screen flex-col bg-background">
-    <SiteHeader className="border-b">
-      <!-- slot: left-header /  mobile-nav-header-->
+    <SiteHeader>
       <MainNavigationMenu
-        slot="left-header"
+        slot="nav-header"
         segment={segment}
         client:load
       />
@@ -45,24 +38,10 @@ const segment = extractSegmentURL(Astro.url.pathname)
       />
 
       <div class="items-center gap-x-4 flex" slot="right-header">
-        <a
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="github"
-          class="hidden md:flex"
-        >
-          <Icon name="github" class="size-5" />
-        </a>
-        <ThemeToggle client:load />
+        <ThemeToggle client:idle />
       </div>
     </SiteHeader>
-
-    <main class={cn(
-        'flex-1',
-        mainClass,
-      )}
-    >
+    <main class:list={['flex-1', mainClass]}>
       <slot />
     </main>
     <SiteFooter />

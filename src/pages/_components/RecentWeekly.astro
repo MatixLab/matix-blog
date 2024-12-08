@@ -1,0 +1,129 @@
+---
+import { siteConfig } from '@/config/site'
+import { getPosts } from '@/lib/fetchers'
+import { cn, formatSimpleDate } from '@/lib/utils'
+import { type CollectionEntry } from 'astro:content'
+import { domAnimation, LazyMotion } from 'framer-motion'
+import { HashIcon } from 'lucide-react'
+
+const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
+
+const posts: {
+  [prop: string]: CollectionEntry<'post'>[]
+} = {}
+
+allPosts.forEach((ele) => {
+  const year = ele.data.pubDate.getFullYear()
+  if (!posts[year]) {
+    posts[year] = []
+  }
+  posts[year].push(ele)
+})
+
+const years = Object.keys(posts).sort((a, b) => {
+  return Number(b) - Number(a)
+})
+---
+<main class="mb-12 grid grid-cols-12 gap-4 gap-y-2 md:gap-y-4">
+  <section class:list={[
+    'md:space-y-4 col-span-12 md:col-span-3 my-auto',
+    'grid grid-cols-4 align-middle',
+  ]}
+  >
+    <h3 class="font-bold col-span-2 md:col-span-4">Recent&nbsp; weekly</h3>
+    <a
+      href="/weekly"
+      class={cn(
+        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
+        'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+        'col-span-2 md:col-span-4 text-end md:text-start w-fit',
+      )}
+    >
+      View all
+    </a>
+  </section>
+  <section class="col-span-12 md:col-span-9">
+    <LazyMotion features={domAnimation}>
+        <div class="text-sm">
+          <div class="grid grid-cols-6 py-2 font-medium text-ds-gray-1000">
+            <span class="col-span-1 hidden text-left md:grid">Year</span>
+            <span class="col-span-6 md:col-span-5">
+              <span class="grid items-center grid-cols-4 md:grid-cols-8">
+                <span class="col-span-1 text-left">Date</span>
+                <span class="col-span-3 md:col-span-4">Title</span>
+                <span class="md:col-span-3 hidden md:grid">Category</span>
+              </span>
+            </span>
+          </div>
+
+          <div class="group/list-wrapper">
+            {
+              years.map((year: string) => {
+                const postsData = posts[year]
+                return (
+                  <ul class="group/list list-none">
+                    {postsData.map((item, itemIndex) => {
+                      return (
+                        <li class="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300">
+                          <span
+                            class={cn(
+                              'pointer-events-none col-span-1 hidden items-center tabular-nums transition-colors duration-300',
+                              ' group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-ds-gray-500',
+                              itemIndex === 0 && 'border-t border-gray-200',
+                            )}
+                          >
+                            {itemIndex === 0 ? year : ''}
+                          </span>
+                          <a
+                            href={`/post/${item.id}`}
+                            class={cn(
+                              'col-span-6 group-hover/list-item:text-gray-900 md:col-span-5',
+                              'dark:group-hover/list-item:text-ds-gray-500',
+                            )}
+                          >
+                            <span class="grid grid-cols-4 items-center  gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
+                              <span class="col-span-1 text-left tabular-nums">
+                                <time
+                                  datetime={item.data.pubDate.toDateString()}
+                                >
+                                  {formatSimpleDate(item.data.updatedDate)}
+                                </time>
+                              </span>
+                              <span
+                                class="col-span-3 md:col-span-4 line-clamp-1"
+                                transition:name={`title-${item.id}`}
+                              >
+                                {item.data.title}
+                              </span>
+                              <span
+                                class="line-clamp-1 md:col-span-3 items-center hidden md:flex md:space-x-2"
+                                transition:name={`title-${item.id}`}
+                              >
+                                {
+                                  item.data.category.map((item) => {
+                                    return (
+                                      <span
+                                        class="flex items-center border p-1 rounded-md"
+                                      >
+                                        <HashIcon className="size-3" />
+                                        {item}
+                                      </span>
+                                    )
+                                  })
+                                }
+                              </span>
+                            </span>
+                          </a>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )
+              })
+            }
+          </div>
+        </div>
+    </LazyMotion>
+  </section>
+</main>
+

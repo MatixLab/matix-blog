@@ -13,21 +13,21 @@ type Props = {
   description?: string
 }
 
-// const { title, description } = Astro.props
+const { title, description } = Astro.props
 const { category = '' } = Astro.params
 ---
 
-<!-- <h1 class="inline-block font-heading text-4xl font-semibold">{title}</h1>
+<h1 class="inline-block font-heading text-3xl font-bold">
+  {title}
+</h1>
 {
-  description
-  ? (
+  description && (
     <p class="text-ds-gray-600 pt-2">
       {description}
     </p>
   )
-  : null
-} -->
-<div class="flex items-center justify-start max-md:gap-4 mb-6">
+}
+<div class="flex items-center justify-start max-md:gap-4 mb-6 mt-4">
   <FilterMobile
     categories={categories as string[]}
     category={category}

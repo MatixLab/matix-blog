@@ -45,13 +45,14 @@ export interface SiteConfig {
   links: {
     twitter: string
     github: string
+    blueSky: string
   }
   pagination: {
     pageSize: number
     itemMaxNum: number
   }
   home: {
-    postNum: number
+    displayNumber: number
   }
 }
 

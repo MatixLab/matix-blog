@@ -1,5 +1,6 @@
 ---
-import ResourceLayout from '@/layouts/ResourceLayout.astro';
+import { ResourceHoverCard } from '@/components/cards/HoverCard'
+import ResourceLayout from '@/layouts/ResourceLayout.astro'
 ---
 
 <ResourceLayout
@@ -7,6 +8,6 @@ import ResourceLayout from '@/layouts/ResourceLayout.astro';
   description="Anthony's sites resource"
 >
   <div slot="right-content">
-
+    <ResourceHoverCard client:load />
   </div>
 </ResourceLayout>
