@@ -31,7 +31,7 @@ export function MobileNav({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="ghost" size="icon" title="Toggle drawer" className="md:hidden">
+        <Button variant="ghost" size="icon" title="Toggle drawer" className="my-auto md:hidden">
           <Menu className="size-6" />
           <span className="sr-only">Toggle Menu</span>
         </Button>

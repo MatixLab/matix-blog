@@ -15,19 +15,20 @@ const { className } = Astro.props;
     className,
   ]}
 >
-  <div class="relative container flex items-center justify-between w-full ">
-    <div class="flex items-center gap-6 md:gap-8 lg:gap-10">
-      <a href="/" class="hidden items-center space-x-2 md:flex">
+  <div class="relative md:container flex items-center justify-between w-full md:max-w-[1024px]">
+    <div class="items-center gap-6 md:gap-8 lg:gap-10 hidden md:flex">
+      <a href="/" class="items-center space-x-2">
         <Image src={logo} alt="Logo" class="size-8 rounded-full border shadow-sm" loading="lazy" />
       </a>
-
     </div>
-    <div class="mx-auto">
-      <!-- mobile-nav-header -->
-      <div class="hidden md:flex">
-        <!-- normal nav menu -->
-        <slot name="nav-header" />
-      </div>
+
+    <!-- mobile-nav-header -->
+    <div class="hidden md:flex">
+      <!-- normal nav menu -->
+      <slot name="nav-header" />
+    </div>
+    <div class="flex md:hidden">
+      <!-- normal nav menu -->
       <slot name="mobile-nav-header" />
     </div>
 
