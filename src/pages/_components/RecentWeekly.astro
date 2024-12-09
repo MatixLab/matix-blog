@@ -1,71 +1,69 @@
 ---
 import { siteConfig } from '@/config/site'
 import { getWeeklys } from '@/lib/fetchers'
-import { cn, formatSimpleDate } from '@/lib/utils'
-import { type CollectionEntry } from 'astro:content'
+import { cn, formatDateWithYear } from '@/lib/utils'
 import { domAnimation, LazyMotion } from 'framer-motion'
 
 const allWeeklys = (await getWeeklys()).slice(0, siteConfig.home.displayNumber)
 
 ---
-<main class="mb-12 grid grid-cols-12 gap-8 gap-y-2 md:gap-y-4">
-  <section class:list={[
-    'md:space-y-4 col-span-12 md:col-span-4 my-auto',
-    'grid grid-cols-2 align-middle',
-  ]}
-  >
-    <h3 class="font-bold col-span-1 md:col-span-2">Recent&nbsp; weekly</h3>
+
+<dl class="list-container">
+  <dt class="list-title grid grid-cols-2 align-middle md:block px-2">
+    <h2 class="font-bold col-span-1 md:col-span-2">
+      Recent&nbsp; Weekly
+    </h2>
     <a
       href="/weekly"
       class={cn(
         'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
         'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
-        'col-span-1 md:col-span-2 text-end md:text-start md:w-fit my-auto',
+        'col-span-1 md:col-span-2 text-end md:text-start',
       )}
     >
       View all
     </a>
-  </section>
-  <section class="col-span-12 md:col-span-8">
+  </dt>
+  <dd class="list-content border-none pt-0 space-y-1">
     <LazyMotion features={domAnimation}>
-        <div class="text-sm">
-          <div class="group/list-wrapper">
-            <ul class="list-none">
-              {
-                allWeeklys.map((item) => {
-                  return (
-                    <li class="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300">
-                      <a
-                        href={`/post/${item.id}`}
-                        class={cn(
-                          'col-span-6 group-hover/list-item:text-gray-900 md:col-span-5',
-                          'dark:group-hover/list-item:text-ds-gray-500',
-                        )}
-                      >
-                        <div class="grid grid-cols-4 md:grid-cols-5 items-center py-4">
-                          <span class="col-span-1 text-left tabular-nums">
-                            <time
-                              datetime={item.data.pubDate.toDateString()}
-                            >
-                              { formatSimpleDate(item.data.pubDate) }
-                            </time>
-                          </span>
-                          <span
-                            class="col-span-3 md:col-span-4 line-clamp-1"
-                            transition:name={`title-${item.id}`}
+      <div class="text-sm">
+        <div class="group/list-wrapper">
+          <ul class="list-none space-y-4">
+            {
+              allWeeklys.map((item) => {
+                return (
+                  <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
+                    <a
+                      href={`/weekly/${item.id}`}
+                      class={cn(
+                        ' group-hover/list-item:text-gray-900',
+                        'dark:group-hover/list-item:text-ds-gray-500',
+                      )}
+                    >
+                      <div class="grid grid-cols-4 md:grid-cols-5 items-center">
+                        <span
+                          class="col-span-3 md:col-span-4 line-clamp-1"
+                          transition:name={`title-${item.id}`}
+                        >
+                          {item.data.title}
+                        </span>
+                        <span class="col-span-1 text-end">
+                          <time
+                            datetime={item.data.pubDate.toDateString()}
                           >
-                            {item.data.title}
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
+                            { formatDateWithYear(item.data.pubDate) }
+                          </time>
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </div>
+      </div>
     </LazyMotion>
-  </section>
-</main>
+  </dd>
+</dl>
 

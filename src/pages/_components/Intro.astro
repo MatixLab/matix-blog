@@ -2,22 +2,35 @@
 import { siteConfig } from '@/config/site'
 import { Icon } from 'astro-icon/components'
 ---
-<div class="space-y-2">
-  <div class="text-ds-gray-1000">
-    <p>Hey 👋 I'm AnthonyZhu.</p>
-    <p class="pt-4">
-      You can find me on:
+<dl class="list-container">
+  <dt class="list-title !border-none pb-4 pt-0 leading-relaxed sm:pb-0 px-2">
+    <h1 class="flex items-center gap-1">
+      <a
+        href="/"
+        class="font-bold"
+      >
+        { siteConfig.author}
+      </a>
+    </h1>
+    <span class="text-ds-gray-800 dark:text-silver-dark text-sm">
+      Full Stack Developer
+    </span>
+  </dt>
+  <dd class="list-content !border-none px-2 space-y-4">
+    <p>Hey 👋 I'm { siteConfig.author}.</p>
+    <p>
+      You can find me on :
     </p>
-  </div>
-  <div class="flex space-x-8 ml-4">
-    <a href={siteConfig.links.github} target="_blank" aria-label="github">
-      <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-    </a>
-    <a href={siteConfig.links.twitter} target="_blank" aria-label="x">
-      <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-    </a>
-    <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky">
-      <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-    </a>
-  </div>
-</div>
+    <div class="flex space-x-8 ml-4">
+      <a href={siteConfig.links.github} target="_blank" aria-label="github">
+        <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+      <a href={siteConfig.links.twitter} target="_blank" aria-label="x">
+        <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+      <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky">
+        <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+    </div>
+  </dd>
+</dl>

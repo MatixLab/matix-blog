@@ -42,7 +42,7 @@ export function MobileNav({
           <div className="flex w-full flex-col text-sm  space-y-2">
             <div className="flex flex-col gap-4 pb-4">
               <DrawerTitle>
-                <span className="font-bold">{siteConfig.name}</span>
+                <span className="font-bold">{siteConfig.author}</span>
               </DrawerTitle>
               <div className="flex flex-col gap-1">
                 {
@@ -127,6 +127,18 @@ export function MobileNav({
                     <Icons.x className="size-4" />
                     {' '}
                     X (Twitter)
+                  </span>
+                  <ArrowUpRightIcon size={16} />
+                </a>
+                <a
+                  key="blueSky"
+                  href={siteConfig.links.blueSky}
+                  className="flex items-center justify-between gap-2 rounded-lg p-2  text-ds-gray-1000"
+                >
+                  <span className="inline-flex items-center gap-2 font-medium">
+                    <Icons.bluesky className="size-4" />
+                    {' '}
+                    BlueSky
                   </span>
                   <ArrowUpRightIcon size={16} />
                 </a>

@@ -2,20 +2,17 @@
 import MainLayout from '@/layouts/MainLayout.astro'
 import Intro from './_components/Intro.astro'
 import RecentPosts from './_components/RecentPosts.astro'
-import RecentWeekly from './_components/RecentWeekly.astro'
+import RecentWeekly from './_components/RecentWeekly.astro';
 ---
 
-<MainLayout
-  title="About"
-  description="Anthony's homepage"
->
-  <div class="scrollable-area container max-w-[1024px] relative flex w-full flex-col">
+<MainLayout title="About" description="Anthony's homepage">
+  <div
+    class="scrollable-area container max-w-[900px] relative flex w-full flex-col"
+  >
     <div class="flex w-full lg:py-12">
-      <div class="mx-auto w-full lg:mb-0">
+      <div class="mx-auto w-full lg:mb-0 space-y-4">
         <Intro />
-        <hr class="my-8 w-20 mx-auto" />
         <RecentPosts />
-        <hr class="my-8 w-20 mx-auto" />
         <RecentWeekly />
       </div>
     </div>
@@ -25,5 +22,21 @@ import RecentWeekly from './_components/RecentWeekly.astro'
 <style>
   .scrollable-area {
     @apply h-full overflow-y-auto overflow-x-hidden;
+  }
+
+  .list-container {
+    @apply mb-12 grid grid-cols-12 gap-8 gap-y-2 sm:mb-16 sm:gap-y-4;
+  }
+
+  .list-container:last-of-type {
+    @apply mb-0;
+  }
+
+  .list-title {
+    @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
+  }
+
+  .list-content {
+    @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
   }
 </style>
