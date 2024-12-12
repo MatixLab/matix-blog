@@ -1,114 +1,110 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { buttonVariants } from '@/components/ui/button'
 import { cn, formatDate } from '@/lib/utils'
 import { Image } from 'astro:assets'
-import { ChevronLeft, HashIcon } from 'lucide-react'
+import { ArrowUpLeft, HashIcon } from 'lucide-react'
 import MainLayout from './MainLayout.astro'
 
 type Props = CollectionEntry<'post'>
 
-const id = Astro.props.id
-const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data;
+const {
+  title,
+  description,
+  updatedDate,
+  cover,
+  category,
+  coverAlt,
+} = Astro.props.data;
 ---
 
 <MainLayout
   title={title}
   description={description}
-  mainClass={cn(
-    'flex-1 mx-auto md:max-w-screen-xl w-full items-start md:grid',
-    'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
-  )}
 >
-<aside
-  class={cn(
-    'fixed top-14 z-30 hidden h-[calc(100vh-3.5rem)]',
-    'w-full shrink-0  dark:border-border md:sticky md:block',
-  )}
->
-  <div class="no-scrollbar h-full overflow-auto py-8">
-    <div class="w-full">
-      <div class="grid grid-flow-row auto-rows-max gap-0.5 text-sm space-y-4 group">
-        <button
-          onclick="history.back()"
-          class={cn(
-          buttonVariants({ variant: 'ghost' }),
-          'absolute top-16 hidden xl:inline-flex text-muted-foreground',
-        )}
-          transition:animate="slide"
-        >
-        <ChevronLeft className="mr-2 size-4" />
-        {' '}Back
-      </button>
-      </div>
-    </div>
-  </div>
-  </aside>
-  <article class={cn(
-    'prose dark:prose-invert  max-w-[900px] relative py-6 lg:py-8 xl:grid px-6 md:px-0',
+  <section class={cn(
+    'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
   )}
   >
-    <div class="mx-auto w-full min-w-0 md:px-6">
-      <h1 class="text-4xl mt-4 " transition:name={`title-${id}`}>
-        {title}
-      </h1>
-      <div class="flex items-center font-normal space-x-4">
-        <span
-          class="text-ds-gray-600 text-sm mr-2"
-          transition:name={`date-${id}`}
-        >
-          { formatDate(updatedDate) }
-        </span>
-          {
-            category.map((cat: string) => {
-              return (
-                <a
-                  class={cn(
-                    'flex items-center justify-center space-x-[2px] group no-underline',
-                    'after:!content-none hover:!no-underline',
-                  )}
-                  href={`/post/category/${cat}`}
-                  transition:name={`badge-cat-${id}`}
-                >
-                  <HashIcon className={cn(
-                    'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
-                  )}
-                  ></HashIcon>
-                  <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
-                    {cat}
-                  </span>
-                </a>
-              )
-            })
-          }
-
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="hidden md:block fixed pt-12">
+          <a
+            onclick="history.back()"
+            class={cn(
+              'absolute top-16 hidden xl:inline-flex hover:cursor-pointer ',
+            )}
+          >
+            <ArrowUpLeft className="mr-2 size-4 my-auto text-ds-gray-800" />
+            <span
+              class:list={[
+                'text-sm text-ds-gray-800 underline underline-offset-4',
+                'decoration-ds-gray-600 hover:decoration-ds-gray-900',
+              ]}
+            >Back</span>
+          </a>
+        </aside>
       </div>
-      <figure>
-        <Image
-          class="rounded-xl overflow-hidden"
-          width={720}
-          height={360}
-          src={cover}
-          alt={title}
-          loading="lazy"
-          transition:name={`img-${id}`}
-        />
+      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
+        <h1
+          class="text-4xl mt-4"
+        >
+          {title}
+        </h1>
+        <div class="flex items-center font-normal space-x-4">
+          <span
+            class="text-ds-gray-600 text-sm mr-2"
+          >
+            { formatDate(updatedDate) }
+          </span>
+            {
+              category.map((cat: string) => {
+                return (
+                  <a
+                    class={cn(
+                      'flex items-center justify-center space-x-[2px] group no-underline',
+                      'after:!content-none hover:!no-underline',
+                    )}
+                    href={`/post/category/${cat}`}
+                  >
+                    <HashIcon className={cn(
+                      'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
+                    )}
+                    ></HashIcon>
+                    <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
+                      {cat}
+                    </span>
+                  </a>
+                )
+              })
+            }
 
-        {
-          coverAlt && (
-            <figcaption
-              class="mt-2 break-all text-center text-xs text-ds-gray-600"
-            >
-              { coverAlt }
-            </figcaption>
-          )
-        }
-      </figure>
-      <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
-        {description}
-      </blockquote>
-      <hr class="my-6 max-w-24 mx-auto" />
-      <slot />
-    </div>
-  </article>
+        </div>
+        <figure>
+          <Image
+            class="rounded-xl overflow-hidden"
+            width={720}
+            height={360}
+            src={cover}
+            alt={title}
+            loading="lazy"
+          />
+
+          {
+            coverAlt && (
+              <figcaption
+                class="mt-2 break-all text-center text-xs text-ds-gray-600"
+              >
+                { coverAlt }
+              </figcaption>
+            )
+          }
+        </figure>
+        <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
+          {description}
+        </blockquote>
+        <hr class="my-6 max-w-24 mx-auto" />
+        <slot />
+      </article>
+    </main>
+  </section>
 </MainLayout>

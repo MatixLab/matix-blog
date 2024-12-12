@@ -6,6 +6,7 @@ export const siteConfig: SiteConfig = {
   title: 'Anthony\'s Blog',
   description: 'An modern example app built using Astro & shadcn-ui. Inspired by taxonomy.',
   url: 'https://www.huakucha.top',
+  repoUrl: 'https://github.com/MatixLab/matix-blog',
   ogImage: 'https://www.huakucha.top/og.jpg',
   links: {
     twitter: 'https://twitter.com/huakucha10',

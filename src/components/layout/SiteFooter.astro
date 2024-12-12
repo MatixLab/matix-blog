@@ -2,6 +2,7 @@
 import {
   siteConfig,
 } from '@/config/site'
+import { Github } from 'lucide-react'
 
 type Props = {
   className?: string
@@ -10,12 +11,66 @@ type Props = {
 const { className } = Astro.props;
 ---
 
-<footer class:list={['pt-8 pb-6', className]}>
-  <div class="container">
-    <div class="md:flex text-sm items-center justify-center mx-auto">
-      <span>
-        Copyright © 2024 - PRESENT {siteConfig.author}.
-      </span>
+<footer class:list={[
+    'flex w-full justify-center pt-8 pb-6',
+    className,
+  ]}
+>
+  <div class="container max-w-[948px] flex-1">
+    <div class="flex h-full w-full items-end justify-between border-t border-solid pt-8 border-neutral-500/10  dark:border-neutral-900">
+      <div class="flex-1">
+        <ul class="flex gap-4 pb-6 text-ds-gray-800 text-xs">
+          <li>
+            <a
+              href="/"
+              class="text-xs text-ds-gray-800"
+            >
+              Home
+            </a>
+          </li>
+        </ul>
+        <div class="flex gap-1.5 text-xs text-ds-gray-800">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="7"
+            height="16"
+            fill="none"
+            viewBox="0 0 7 16"
+            class="fill-neutral-500 dark:fill-silver-dark"
+          >
+            <path d="M3 6.5h1v6l-.5 1-.5-1v-6z"></path>
+            <path
+              d="M3.5 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-1-3a.5.5 0 100-1 .5.5 0 000 1z"
+            ></path>
+          </svg>
+          Made in ChangZhou, CN
+        </div>
+      </div>
+      <div class="flex h-full flex-col items-end justify-end sm:justify-between">
+        <div
+          class="hidden flex-1 select-none text-xs text-ds-gray-800 sm:block"
+          aria-hidden="true"
+          role="img"
+        >
+          Becoming is better than being.
+        </div>
+        <div class="flex gap-4">
+          <a
+            class:list={[
+              'text-xs text-ds-gray-800 flex items-center gap-1.5',
+              'underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+            ]}
+            href={siteConfig.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github size={12} />
+            <span>
+              matix-blog
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

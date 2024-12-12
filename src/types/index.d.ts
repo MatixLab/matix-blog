@@ -41,6 +41,7 @@ export interface SiteConfig {
   title: string
   description: string
   url: string
+  repoUrl: string
   ogImage: string
   links: {
     twitter: string

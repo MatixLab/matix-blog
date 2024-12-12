@@ -1,5 +1,5 @@
 ---
-import BaseHead from '@/components/seo/base-head.astro'
+import BaseHead from '@/components/seo/BaseHead.astro'
 import TailwindIndicator from '@/components/util/tailwind-indicator.astro'
 import { cn } from '@/lib/utils'
 
@@ -22,7 +22,6 @@ const { title, description, bodyClass } = Astro.props;
     bodyClass,
     )}
   >
-    <!-- Background -->
     <slot />
     <TailwindIndicator />
   </body>
