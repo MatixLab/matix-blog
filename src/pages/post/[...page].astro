@@ -1,12 +1,12 @@
 ---
 import type { PaginateFunction } from 'astro'
-import BlogCard from '@/components/cards/BlogCard.astro'
 import { PaginationComponent } from '@/components/common/PaginationComponent'
 import BlogHeader from '@/components/layout/BlogHeader.astro'
 import { siteConfig } from '@/config/site'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
+import BlogCard from './_components/BlogCard.astro'
 
 export async function getStaticPaths({
   paginate,
@@ -35,12 +35,12 @@ page.data.forEach((post) => {
   title="Posts"
   description="AnthonyZhu's writing record."
 >
-  <section class="container pt-6">
+  <section class="container max-w-[900px] pt-6">
     <BlogHeader
       title="Posts"
       description=""
     />
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
       {
         posts.map((post) => {
           return <BlogCard entry={post} />

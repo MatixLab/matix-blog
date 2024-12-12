@@ -2,7 +2,7 @@
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import BlogPostLayout from '@/layouts/BlogContent.astro'
+import BlogContentLayout from '@/layouts/BlogContentLayout.astro'
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -26,7 +26,7 @@ if (!id || !post) {
   })
 }
 ---
-<BlogPostLayout {...post}>
+<BlogContentLayout {...post}>
   <Content
     components={{
     ...MdxComponents,
@@ -35,4 +35,4 @@ if (!id || !post) {
     pre: Pre,
 }}
   />
-</BlogPostLayout>
+</BlogContentLayout>

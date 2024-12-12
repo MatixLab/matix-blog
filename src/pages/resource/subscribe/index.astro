@@ -1,8 +1,8 @@
 ---
-import MarkCard from '@/components/cards/MarkCard.astro'
 import { ResourceType } from '@/config/resource'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
 import { actions } from 'astro:actions'
+import MarkCard from '../_components/MarkCard.astro'
 
 const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.SUBSCRIBE)
 ---
@@ -12,7 +12,7 @@ const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceTy
   description="Anthony's subscribe resource"
 >
   <div slot="right-content">
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 place-content-start px-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4 place-content-start px-2">
       {
         portfolios?.map(portfolio => (
             <MarkCard

@@ -150,7 +150,7 @@
 }
 
 .list-container {
-  @apply mb-12 grid grid-cols-12 gap-8 gap-y-2 sm:mb-16 sm:gap-y-4;
+  @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
 }
 
 .list-container:last-of-type {

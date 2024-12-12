@@ -1,4 +1,7 @@
 ---
+import IMG from '@/components/markdown/IMG.astro'
+import { MdxComponents } from '@/components/markdown/mdx-components'
+import Pre from '@/components/markdown/Pre.astro'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
@@ -22,7 +25,7 @@ const { Content } = await render(timeline)
 <MainLayout
   title={timeline.data.title}
 >
-  <section class="container max-w-screen-lg pt-12">
+  <section class="container max-w-[900px] pt-12">
     <div
       class="flex flex-col max-md:gap-y-4 md:flex-row w-full"
     >
@@ -56,7 +59,14 @@ const { Content } = await render(timeline)
       <div
         class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-24"
       >
-        <Content />
+      <Content
+        components={{
+          ...MdxComponents,
+          img: IMG,
+          Image: IMG,
+          pre: Pre,
+        }}
+      />
       </div>
     </div>
   </section>

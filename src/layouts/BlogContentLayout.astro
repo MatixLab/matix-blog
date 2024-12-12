@@ -45,7 +45,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
   </div>
   </aside>
   <article class={cn(
-    'prose dark:prose-invert max-w-screen-md relative py-6 lg:py-8 xl:grid px-6 md:px-0',
+    'prose dark:prose-invert  max-w-[900px] relative py-6 lg:py-8 xl:grid px-6 md:px-0',
   )}
   >
     <div class="mx-auto w-full min-w-0 md:px-6">
@@ -59,28 +59,29 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
         >
           { formatDate(updatedDate) }
         </span>
-        {
-          category.map((cat: string) => {
-            return (
-              <a
-                class={cn(
-                  'flex items-center justify-center space-x-[2px] group no-underline',
-                  'after:!content-none hover:!no-underline',
-                )}
-                href={`/post/category/${cat}`}
-                transition:name={`badge-cat-${id}`}
-              >
-                <HashIcon className={cn(
-                  'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
-                )}
-                ></HashIcon>
-                <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
-                  {cat}
-                </span>
-              </a>
-            )
-          })
-        }
+          {
+            category.map((cat: string) => {
+              return (
+                <a
+                  class={cn(
+                    'flex items-center justify-center space-x-[2px] group no-underline',
+                    'after:!content-none hover:!no-underline',
+                  )}
+                  href={`/post/category/${cat}`}
+                  transition:name={`badge-cat-${id}`}
+                >
+                  <HashIcon className={cn(
+                    'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
+                  )}
+                  ></HashIcon>
+                  <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
+                    {cat}
+                  </span>
+                </a>
+              )
+            })
+          }
+
       </div>
       <figure>
         <Image

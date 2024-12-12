@@ -40,9 +40,9 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
                         'dark:group-hover/list-item:text-ds-gray-500',
                       )}
                     >
-                      <div class="grid grid-cols-4 md:grid-cols-5 items-center">
+                      <div class="grid grid-cols-3 md:grid-cols-5 items-center">
                         <span
-                          class="col-span-3 md:col-span-4 line-clamp-1"
+                          class="col-span-2 md:col-span-4 line-clamp-1"
                           transition:name={`title-${item.id}`}
                         >
                           {item.data.title}

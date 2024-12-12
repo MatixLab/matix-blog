@@ -17,6 +17,6 @@ export const siteConfig: SiteConfig = {
     itemMaxNum: 5,
   },
   home: {
-    displayNumber: 3,
+    displayNumber: 5,
   },
 }
