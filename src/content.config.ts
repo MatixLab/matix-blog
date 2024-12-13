@@ -36,8 +36,8 @@ export const timeline = defineCollection({
     }),
 })
 
-export const weekly = defineCollection({
-  loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/weekly' }),
+export const short = defineCollection({
+  loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/short' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -51,4 +51,4 @@ export const weekly = defineCollection({
     }),
 })
 
-export const collections = { post, timeline, weekly }
+export const collections = { post, timeline, short }

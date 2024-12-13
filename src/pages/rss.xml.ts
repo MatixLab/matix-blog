@@ -1,6 +1,6 @@
 import type { APIContext } from 'astro'
 import { siteConfig } from '@/config/site'
-import { getPosts, getWeeklys } from '@/lib/fetchers'
+import { getPosts, getShorts } from '@/lib/fetchers'
 import rss from '@astrojs/rss'
 
 export async function GET(context: APIContext) {
@@ -15,13 +15,13 @@ export async function GET(context: APIContext) {
         link: `/${post.collection}/${post.id}/`,
       }
     })
-    const weeklyData = (await getWeeklys()).map((weekly) => {
+    const shortData = (await getShorts()).map((short) => {
       return {
-        title: weekly.data.title,
-        description: weekly.data.description,
-        pubDate: weekly.data.pubDate,
+        title: short.data.title,
+        description: short.data.description,
+        pubDate: short.data.pubDate,
         author: siteConfig.author,
-        link: `/${weekly.collection}/${weekly.id}/`,
+        link: `/${short.collection}/${short.id}/`,
       }
     })
     // Return RSS feed
@@ -29,7 +29,7 @@ export async function GET(context: APIContext) {
       title: siteConfig.title,
       description: siteConfig.description,
       site: context.site ?? siteConfig.url,
-      items: [...postsData, ...weeklyData],
+      items: [...postsData, ...shortData],
     })
   }
   catch (error) {

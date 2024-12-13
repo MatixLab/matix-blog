@@ -1,2 +1,2 @@
 tasks:
-  - init: git pull && pnpm install && pnpm run build
+  - init: git pull && pnpm install

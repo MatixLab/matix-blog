@@ -2,33 +2,32 @@
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import { Button, buttonVariants } from '@/components/ui/button'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getWeeklys, getWeeklysByYear } from '@/lib/fetchers'
+import { getShorts, getShortsByYear } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
 import { type CollectionEntry, render } from 'astro:content'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 
 
 export async function getStaticPaths() {
-  const weeklys = await getWeeklys()
-  return weeklys.map(weekly => ({
+  const shorts = await getShorts()
+  return shorts.map(short => ({
     params: {
-      id: weekly.id,
+      id: short.id,
     },
-    props: weekly,
+    props: short,
   }))
 }
 
-type Props = CollectionEntry<'weekly'>
+type Props = CollectionEntry<'short'>
+
 const { id } = Astro.params
 const year = id.substring(0, 4)
-const weeklyData = await getWeeklysByYear(year)
+const shortData = await getShortsByYear(year)
 
-const weekly = Astro.props
-const { Content } = await render(weekly)
-if (!id || !weekly) {
+const short = Astro.props
+const { Content } = await render(short)
+if (!id || !short) {
   return new Response(null, {
     status: 404,
     statusText: 'Not found',
@@ -38,8 +37,8 @@ const { pathname } = Astro.url
 ---
 
 <MainLayout
-  title="Weekly"
-  description="Anthony's Weekly"
+  title="Short"
+  description="Anthony's Short"
 >
   <section class="container max-w-[950px] relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-12">
@@ -47,7 +46,7 @@ const { pathname } = Astro.url
         <aside class="hidden md:block fixed">
           <ul class="group pt-12">
               {
-                weeklyData.map((item) => {
+                shortData.map((item) => {
                   return (
                     <li class={cn(
                       'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
@@ -55,7 +54,7 @@ const { pathname } = Astro.url
                     )}
                     >
                         <a
-                          href={`/weekly/${item}`}
+                          href={`/short/${item}`}
                           class={cn(
                             'block w-full text-sm py-1',
                             'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
@@ -78,10 +77,10 @@ const { pathname } = Astro.url
             <div class="mx-auto w-full min-w-0 md:px-6">
               <div class="space-y-4">
                 <h1 class="scroll-m-20 text-3xl font-bold">
-                  {weekly.data.title}
+                  {short.data.title}
                 </h1>
                 <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
-                  {weekly.data.description}
+                  {short.data.description}
                 </blockquote>
               </div>
               <div class="pb-12 pt-8">
@@ -93,31 +92,6 @@ const { pathname } = Astro.url
                     pre: Pre,
                   }}
                 />
-              </div>
-              <!-- footer link -->
-              <div class="flex flex-row items-center justify-between">
-                <Button variant="ghost" asChild>
-                  <a
-                    href="/post"
-                    class={cn(buttonVariants({ variant: 'outline' }))}
-                  >
-                    <ChevronLeft />
-                    <span>
-                      上一期
-                    </span>
-                  </a>
-                </Button>
-                <Button variant="ghost" className="ml-auto" asChild>
-                  <a
-                    href="/post"
-                    class={cn(buttonVariants({ variant: 'outline' }))}
-                  >
-                    <span>
-                      下一期
-                    </span>
-                    <ChevronRight />
-                  </a>
-                </Button>
               </div>
             </div>
           </div>

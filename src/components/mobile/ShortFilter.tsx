@@ -11,7 +11,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Check, Filter } from 'lucide-react'
 import * as React from 'react'
 
-export function WeeklyFilter({
+export function ShortFilter({
   years,
   currentYear,
 }: {
@@ -50,7 +50,7 @@ export function WeeklyFilter({
                 years.map((year: string) => {
                   return (
                     <a
-                      href={`/weekly/${year}`}
+                      href={`/short/${year}`}
                       key={year}
                       onClick={() => {
                         setCurrentYear(year)

@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { WeeklyFilter } from '@/components/mobile/WeeklyFilter'
+import { ShortFilter } from '@/components/mobile/ShortFilter'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getWeeklys } from '@/lib/fetchers'
+import { getShorts } from '@/lib/fetchers'
 import { cn, formatSimpleDate } from '@/lib/utils'
 import { domAnimation, LazyMotion } from 'framer-motion'
 
@@ -11,11 +11,11 @@ type Props = {
 }
 const { type } = Astro.props
 
-let weeklyData: CollectionEntry<'weekly'>[] = await getWeeklys()
+let shortData: CollectionEntry<'short'>[] = await getShorts()
 
 const allYears = new Set<string>()
 
-weeklyData.forEach((ele) => {
+shortData.forEach((ele) => {
   const year = ele.id.substring(0, 4)
   allYears.add(year)
 })
@@ -23,25 +23,25 @@ weeklyData.forEach((ele) => {
 const { year: currentYear } = Astro.params
 if (type === 'year') {
   if (currentYear) {
-    weeklyData = weeklyData.filter((ele) => {
+    shortData = shortData.filter((ele) => {
       return ele.id.substring(0, 4) === currentYear
     })
   }
 }
 
-const weeklys: {
-  [prop: string]: CollectionEntry<'weekly'>[]
+const shorts: {
+  [prop: string]: CollectionEntry<'short'>[]
 } = {}
 
-weeklyData.forEach((ele) => {
+shortData.forEach((ele) => {
   const year = ele.id.substring(0, 4)
-  if (!weeklys[year])
-    weeklys[year] = []
-  weeklys[year].push(ele)
+  if (!shorts[year])
+    shorts[year] = []
+  shorts[year].push(ele)
 })
 
 
-const years = Object.keys(weeklys).sort((a, b) => {
+const years = Object.keys(shorts).sort((a, b) => {
   return Number(b) - Number(a)
 })
 
@@ -51,7 +51,7 @@ const sortedYears = Array.from(allYears).sort((a, b) => {
 
 // set current year
 let currYear = new Date().getFullYear().toString()
-if (!Astro.url.pathname.endsWith('/weekly')) {
+if (!Astro.url.pathname.endsWith('/short')) {
   currYear = Astro.url.pathname.split('/')[2]
 }
 else if (!allYears.has(currYear)) {
@@ -60,8 +60,8 @@ else if (!allYears.has(currYear)) {
 ---
 
 <MainLayout
-  title="Weekly"
-  description="Anthony's weekly"
+  title="Short"
+  description="Anthony's short"
 >
   <section class="container max-w-[948px] relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-4">
@@ -77,7 +77,7 @@ else if (!allYears.has(currYear)) {
                   )}
                   >
                       <a
-                        href={`/weekly/${item}`}
+                        href={`/short/${item}`}
                         class={cn(
                           'block w-full text-sm py-1',
                           'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
@@ -94,7 +94,7 @@ else if (!allYears.has(currYear)) {
         </aside>
       </div>
       <div class="pt-4 md:hidden w-full">
-        <WeeklyFilter
+        <ShortFilter
           years={sortedYears}
           currentYear={currYear}
           client:load
@@ -120,7 +120,7 @@ else if (!allYears.has(currYear)) {
                 <div class="group/list-wrapper">
                   {
                     years.map((year: string) => {
-                      const postsData = weeklys[year]
+                      const postsData = shorts[year]
                       return (
                         <ul class="group/list list-none">
                           {
@@ -137,7 +137,7 @@ else if (!allYears.has(currYear)) {
                                     {itemIndex === 0 ? year : ''}
                                   </span>
                                   <a
-                                    href={`/weekly/${item.id}`}
+                                    href={`/short/${item.id}`}
                                     class={cn(
                                       'col-span-6 md:col-span-5',
                                       'dark:group-hover/list-item:text-ds-gray-500 group-hover/list-item:text-gray-900',

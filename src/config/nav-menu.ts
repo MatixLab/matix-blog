@@ -29,14 +29,12 @@ export const navMenuConfig: NavMenuConfig = {
       description: 'A Markdown/MDX blog built using Content Collections.',
       image: staticBlog,
     },
-    /*
     {
-      title: 'Weekly',
-      href: '/weekly',
+      title: 'Short',
+      href: '/short',
       description: 'A reproduction of Starlog template with Tailwind CSS.',
       image: staticBlog,
     },
-    */
     {
       title: 'Resource',
       href: '/resource/tools',

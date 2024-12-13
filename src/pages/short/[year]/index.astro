@@ -1,0 +1,21 @@
+---
+import ShortLayout from '@/layouts/ShortLayout.astro'
+import { getShorts } from '@/lib/fetchers'
+
+export async function getStaticPaths() {
+  const shorts = await getShorts()
+  return shorts.map(short => ({
+    params: {
+      id: short.id,
+      year: short.id.substring(0, 4),
+    },
+    props: short,
+  }))
+}
+---
+
+<ShortLayout
+  type="year"
+>
+</ShortLayout>
+

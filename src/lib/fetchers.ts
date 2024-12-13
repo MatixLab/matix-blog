@@ -15,15 +15,15 @@ export async function getPosts() {
   return posts
 }
 
-export async function getWeeklys() {
-  const posts = (await getCollection('weekly')).sort(
+export async function getShorts() {
+  const posts = (await getCollection('short')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   )
   return posts
 }
 
-export async function getWeeklysByYear(year: string) {
-  const posts = (await getCollection('weekly'))
+export async function getShortsByYear(year: string) {
+  const posts = (await getCollection('short'))
     .sort(
       (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
     )
