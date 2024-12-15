@@ -121,7 +121,9 @@ export default defineConfig({
   },
 
   image: {
-    service: passthroughImageService(),
+    remotePatterns: [{
+      protocol: 'https',
+    }],
   },
 
   experimental: {
@@ -141,7 +143,7 @@ export default defineConfig({
 
   env: {
     schema,
-    validateSecrets: true,
+    validateSecrets: false,
   },
   output: 'server',
   adapter: netlify(),
