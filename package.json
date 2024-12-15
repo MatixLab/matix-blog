@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --remote",
     "push": "astro db push --remote",
     "add": "astro db execute db/seed.ts --remote",
     "preview": "astro preview",
