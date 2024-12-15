@@ -55,7 +55,7 @@ const { entry } = Astro.props as {
       </div>
     </div>
   </div>
-  <a class="flex flex-col gap-4 group" href={`/post/${entry.id}/`}>
+  <a class="flex flex-col gap-4 group" href={`/post/${entry.id}/`} title={entry.data.title}>
     <div class="px-4 flex flex-col gap-4">
       <div class="flex items-center justify-between gap-4">
         <h2
@@ -82,6 +82,7 @@ const { entry } = Astro.props as {
         entry.data.category.map((cat) => {
           return (
             <a
+              title={cat}
               class="flex items-center justify-center space-x-0.5 group"
               href={`/post/category/${cat}`}
             >

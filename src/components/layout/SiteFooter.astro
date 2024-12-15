@@ -8,7 +8,16 @@ type Props = {
   className?: string
 }
 
-const { className } = Astro.props;
+const { className } = Astro.props
+
+const footerLinks: {
+  url: string
+  title: string
+}[] = [
+  { title: 'Home', url: '/' },
+  { title: 'Uses', url: '/uses' },
+]
+
 ---
 
 <footer class:list={[
@@ -20,14 +29,23 @@ const { className } = Astro.props;
     <div class="flex h-full w-full items-end justify-between border-t border-solid pt-8 border-neutral-500/10  dark:border-neutral-900">
       <div class="flex-1">
         <ul class="flex gap-4 pb-6 text-ds-gray-800 text-xs">
-          <li>
-            <a
-              href="/"
-              class="text-xs text-ds-gray-800"
-            >
-              Home
-            </a>
-          </li>
+          {
+            footerLinks.map((foot) => {
+              return (
+                <li>
+                  <a
+                    href={foot.url}
+                    rel="noopener noreferrer"
+                    class="text-xs text-ds-gray-900 link"
+                    title={foot.title}
+                  >
+                    {foot.title}
+                  </a>
+                </li>
+              )
+            })
+
+          }
         </ul>
         <div class="flex gap-1.5 text-xs text-ds-gray-800">
           <svg
@@ -62,6 +80,7 @@ const { className } = Astro.props;
             ]}
             href={siteConfig.repoUrl}
             target="_blank"
+            title="matix-blog"
             rel="noopener noreferrer"
           >
             <Github size={12} />

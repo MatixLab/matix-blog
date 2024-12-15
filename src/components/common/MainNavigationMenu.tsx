@@ -30,6 +30,7 @@ const ListItem: React.FC<MenuItem> = ({
     <li>
       <a
         target={target}
+        title={title}
         href={disabled ? undefined : href}
         {...(forceReload ? { 'data-astro-reload': true } : {})}
         className={cn(
@@ -100,6 +101,7 @@ export function MainNavigationMenu({
                   <a
                     key={link.href}
                     href={link.href}
+                    title={link.title}
                     className={cn(
                       navigationMenuTriggerStyle(),
                       'text-ds-gray-900 hover:text-ds-gray-1000 font-normal',

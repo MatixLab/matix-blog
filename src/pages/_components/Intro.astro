@@ -7,6 +7,7 @@ import { Icon } from 'astro-icon/components'
     <h1 class="flex items-center gap-1">
       <a
         href="/"
+        title={siteConfig.author}
         class="font-bold"
       >
         { siteConfig.author}
@@ -22,13 +23,13 @@ import { Icon } from 'astro-icon/components'
       You can find me on :
     </p>
     <div class="flex space-x-8 ml-4">
-      <a href={siteConfig.links.github} target="_blank" aria-label="github">
+      <a href={siteConfig.links.github} target="_blank" aria-label="github" title="Github">
         <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
       </a>
-      <a href={siteConfig.links.twitter} target="_blank" aria-label="x">
+      <a href={siteConfig.links.twitter} target="_blank" aria-label="x" title="x">
         <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
       </a>
-      <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky">
+      <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky" title="blueSky">
         <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100" />
       </a>
     </div>

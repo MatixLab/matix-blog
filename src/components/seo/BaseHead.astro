@@ -52,30 +52,6 @@ const {
 <ClientRouter />
 <LoadingIndicator />
 
-<script>
-function setDarkMode() {
-  const theme: string = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme') || 'light'
-    }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark'
-    }
-    return 'light'
-  })()
-
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark')
-  }
-  else {
-    document.documentElement.classList.add('dark')
-  }
-  window.localStorage.setItem('theme', theme)
-}
-setDarkMode()
-document.addEventListener('astro:after-swap', setDarkMode)
-</script>
-
 <!-- partytown -->
 <script type="text/partytown">
   window.dataLayer = window.dataLayer || []

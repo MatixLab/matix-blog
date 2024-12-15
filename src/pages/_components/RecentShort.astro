@@ -1,8 +1,7 @@
 ---
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
-import { cn, formatDateWithYear } from '@/lib/utils'
-import { domAnimation, LazyMotion } from 'framer-motion'
+import { formatDateWithYear } from '@/lib/utils'
 
 const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
 
@@ -15,55 +14,51 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
     </h2>
     <a
       href="/short"
-      class={cn(
-        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
+      title="View all"
+      class:list={[
+        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
         'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
         'col-span-1 md:col-span-2 text-end md:text-start',
-      )}
+      ]}
     >
       View all
     </a>
   </dt>
   <dd class="list-content border-none pt-0 space-y-1">
-    <LazyMotion features={domAnimation}>
-      <div class="text-sm">
-        <div class="group/list-wrapper">
-          <ul class="list-none space-y-4">
-            {
-              allShorts.map((item) => {
-                return (
-                  <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
-                    <a
-                      href={`/short/${item.id}`}
-                      class={cn(
-                        ' group-hover/list-item:text-gray-900',
-                        'dark:group-hover/list-item:text-ds-gray-500',
-                      )}
-                    >
-                      <div class="grid grid-cols-4 md:grid-cols-5 items-center">
-                        <span
-                          class="col-span-3 md:col-span-4 line-clamp-1"
-                          transition:name={`title-${item.id}`}
+    <div class="text-sm">
+      <div class="group/list-wrapper">
+        <ul class="list-none space-y-4">
+          {
+            allShorts.map((item) => {
+              return (
+                <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
+                  <a
+                    href={`/short/${item.id}`}
+                    title={item.data.title}
+                    class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
+                  >
+                    <div class="grid grid-cols-4 md:grid-cols-5 items-center">
+                      <span
+                        class="col-span-3 md:col-span-4 line-clamp-1"
+                      >
+                        {item.data.title}
+                      </span>
+                      <span class="col-span-1 text-end">
+                        <time
+                          datetime={item.data.pubDate.toDateString()}
                         >
-                          {item.data.title}
-                        </span>
-                        <span class="col-span-1 text-end">
-                          <time
-                            datetime={item.data.pubDate.toDateString()}
-                          >
-                            { formatDateWithYear(item.data.pubDate) }
-                          </time>
-                        </span>
-                      </div>
-                    </a>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        </div>
+                          { formatDateWithYear(item.data.pubDate) }
+                        </time>
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              )
+            })
+          }
+        </ul>
       </div>
-    </LazyMotion>
+    </div>
   </dd>
 </dl>
 

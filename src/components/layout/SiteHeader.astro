@@ -17,7 +17,7 @@ const { className } = Astro.props;
 >
   <div class="relative md:container flex items-center justify-between w-full md:max-w-[948px]">
     <div class="items-center gap-6 md:gap-8 lg:gap-10 hidden md:flex">
-      <a href="/" class="items-center space-x-2">
+      <a href="/" class="items-center space-x-2" title="Home">
         <Image src={logo} alt="Logo" class="size-8 rounded-full border shadow-sm" loading="lazy" />
       </a>
     </div>
@@ -34,7 +34,7 @@ const { className } = Astro.props;
 
     <!-- logo mobile center -->
     <div class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden">
-      <a href="/" aria-label="Astronomy homepage">
+      <a href="/" aria-label="Astronomy homepage" title="Home">
         <Image src={logo} alt="Logo" class="size-8" loading="lazy" />
       </a>
     </div>

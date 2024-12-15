@@ -46,6 +46,7 @@ export function FilterMobile({
             <div className="mt-2">
               <a
                 href="/post"
+                title="All"
                 onClick={() => {
                   setCurrentCat('')
                   setOpen(false)
@@ -68,6 +69,7 @@ export function FilterMobile({
                     <a
                       href={`/post/category/${cat}`}
                       key={cat}
+                      title={cat}
                       onClick={() => {
                         setCurrentCat(cat)
                         setOpen(false)

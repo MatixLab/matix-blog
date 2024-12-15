@@ -30,6 +30,7 @@ const {
         <aside class="hidden md:block fixed pt-12">
           <a
             onclick="history.back()"
+            title="back"
             class={cn(
               'absolute top-16 hidden xl:inline-flex hover:cursor-pointer ',
             )}
@@ -60,6 +61,7 @@ const {
               category.map((cat: string) => {
                 return (
                   <a
+                    title={cat}
                     class={cn(
                       'flex items-center justify-center space-x-[2px] group no-underline',
                       'after:!content-none hover:!no-underline',

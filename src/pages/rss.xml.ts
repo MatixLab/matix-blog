@@ -5,25 +5,21 @@ import rss from '@astrojs/rss'
 
 export async function GET(context: APIContext) {
   try {
-    const postsData = (await getPosts()).map((post) => {
-      return {
-        title: post.data.title,
-        description: post.data.description,
-        pubDate: post.data.pubDate,
-        categories: post.data.category.join(', '),
-        author: siteConfig.author,
-        link: `/${post.collection}/${post.id}/`,
-      }
-    })
-    const shortData = (await getShorts()).map((short) => {
-      return {
-        title: short.data.title,
-        description: short.data.description,
-        pubDate: short.data.pubDate,
-        author: siteConfig.author,
-        link: `/${short.collection}/${short.id}/`,
-      }
-    })
+    const postsData = (await getPosts()).map(post => ({
+      title: post.data.title,
+      description: post.data.description,
+      pubDate: post.data.pubDate,
+      author: siteConfig.author,
+      link: `/${post.collection}/${post.id}/`,
+    }))
+
+    const shortData = (await getShorts()).map(short => ({
+      title: short.data.title,
+      description: short.data.description,
+      pubDate: short.data.pubDate,
+      author: siteConfig.author,
+      link: `/${short.collection}/${short.id}/`,
+    }))
     // Return RSS feed
     return rss({
       title: siteConfig.title,

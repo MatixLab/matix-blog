@@ -59,6 +59,7 @@ export interface SiteConfig {
 
 export interface ResourceItem {
   title: string
+  icon?: ''
   url?: string
   desc?: string
   cover?: string

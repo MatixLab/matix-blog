@@ -2,30 +2,48 @@
 import { ResourceType } from '@/config/resource'
 import ResourceLayout from '@/layouts/ResourceLayout.astro'
 import { actions } from 'astro:actions'
-import MarkCard from '../_components/MarkCard.astro'
+import { Image } from 'astro:assets'
+import { MarkCard } from '../_components/HoverCard'
 
 const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.PORTFOLIO)
 ---
 
 <ResourceLayout
   title="Portfolio Resource"
-  description="Anthony's portfolio resource"
+  description="Awesome portfolio."
 >
-  <div slot="right-content">
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4 place-content-start px-2">
+  <div slot="right-content" class="prose">
+    <ul class="pt-4 ml-1 list-disc">
       {
-        portfolios?.map(portfolio => (
-            <MarkCard
-              name={portfolio.name}
-              tags={portfolio.tags?.split(',')}
-              description={portfolio.description}
-              url={portfolio.url}
-              ogUrl={portfolio.ogUrl}
-            >
-            </MarkCard>
-          ),
-        )
+        portfolios?.map((portfolio) => {
+          return (
+            <li>
+              <MarkCard
+                url={portfolio.url}
+                name={portfolio.name}
+                tags={portfolio.tags}
+                description={portfolio.description}
+                client:load
+              >
+                {
+                  portfolio.ogUrl && (
+                    <span class="aspect-[1200/630] overflow-hidden rounded-lg">
+                      <Image
+                        src={portfolio.ogUrl}
+                        alt="name"
+                        width={360}
+                        height={180}
+                        loading="lazy"
+                        class="aspect-[1200/630] animate-reveal rounded-lg border bg-cover bg-center bg-no-repeat object-cover"
+                      />
+                    </span>
+                  )
+                }
+              </MarkCard>
+            </li>
+          )
+        })
       }
-    </div>
+    </ul>
   </div>
 </ResourceLayout>

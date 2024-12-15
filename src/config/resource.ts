@@ -38,10 +38,6 @@ export const resources: Resource[] = [
     routeName: 'tools',
   },
   {
-    name: 'Uses',
-    routeName: 'uses',
-  },
-  {
     name: 'Subscribe',
     routeName: 'subscribe',
   },
@@ -52,9 +48,5 @@ export const resources: Resource[] = [
   {
     name: 'Design',
     routeName: 'design',
-  },
-  {
-    name: 'Sites',
-    routeName: 'sites',
   },
 ]

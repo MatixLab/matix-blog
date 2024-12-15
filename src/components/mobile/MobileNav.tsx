@@ -50,6 +50,7 @@ export function MobileNav({
                     <a
                       key={item.href}
                       href={item.href}
+                      title={item.title}
                       className={cn(
                         'group flex items-center justify-between rounded-lg p-2 text-ds-gray-1000',
                         (item.href.startsWith(`/${segment}`) && 'bg-black text-white'),
@@ -81,6 +82,7 @@ export function MobileNav({
                                 <a
                                   href={subItem.href}
                                   target={subItem?.external ? '_blank' : undefined}
+                                  title={subItem.title}
                                   className={cn(
                                     'group flex items-center justify-between rounded-lg px-4 pt-2 text-ds-gray-1000',
                                     (subItem.href.startsWith(`/${segment}`) && 'bg-black text-white'),
@@ -109,6 +111,7 @@ export function MobileNav({
                 <a
                   key="github"
                   href={siteConfig.links.github}
+                  title="Github"
                   className="flex items-center justify-between gap-2 rounded-lg p-2  text-ds-gray-1000"
                 >
                   <span className="inline-flex items-center gap-2 font-medium">
@@ -120,6 +123,7 @@ export function MobileNav({
                 </a>
                 <a
                   key="twitter"
+                  title="X"
                   href={siteConfig.links.twitter}
                   className="flex items-center justify-between gap-2 rounded-lg p-2  text-ds-gray-1000"
                 >
@@ -132,6 +136,7 @@ export function MobileNav({
                 </a>
                 <a
                   key="blueSky"
+                  title="BlueSky"
                   href={siteConfig.links.blueSky}
                   className="flex items-center justify-between gap-2 rounded-lg p-2  text-ds-gray-1000"
                 >

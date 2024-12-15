@@ -32,7 +32,7 @@ const years = Object.keys(posts).sort((a, b) => {
     <a
       href="/post"
       class={cn(
-      'text-ds-gray-700 text-xs underline underline-offset-4 decoration-[0.1px] decoration-ds-gray-700',
+      'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
       'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
     )}
     >

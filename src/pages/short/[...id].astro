@@ -55,6 +55,7 @@ const { pathname } = Astro.url
                     >
                         <a
                           href={`/short/${item}`}
+                          title={item.data.title}
                           class={cn(
                             'block w-full text-sm py-1',
                             'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',

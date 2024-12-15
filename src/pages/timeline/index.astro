@@ -31,6 +31,7 @@ timeline.sort((a, b) => +b.data.date - +a.data.date);
                 <a
                   href={`/timeline/${timeline.id}`}
                   class="flex flex-col gap-y-2 pb-4"
+                  title={timeline.data.title}
                 >
                   <Badge
                     variant="default"

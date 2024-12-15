@@ -52,6 +52,7 @@ export function ShortFilter({
                     <a
                       href={`/short/${year}`}
                       key={year}
+                      title={year}
                       onClick={() => {
                         setCurrentYear(year)
                         setOpen(false)

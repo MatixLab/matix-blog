@@ -1,12 +1,12 @@
 ---
 import type { PaginateFunction } from 'astro'
 import { PaginationComponent } from '@/components/common/PaginationComponent'
-import BlogHeader from '@/components/layout/BlogHeader.astro'
 import { siteConfig } from '@/config/site'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
 import BlogCard from './_components/BlogCard.astro'
+import BlogHeader from './_layout/BlogHeader.astro'
 
 export async function getStaticPaths({
   paginate,

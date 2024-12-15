@@ -13,7 +13,7 @@ export default async function () {
   await db.insert(ResourceSites).values([
     {
       id: 1,
-      name: 'Josh W. Comeau',
+      name: 'Josh Comeau',
       url: 'https://www.joshwcomeau.com',
       description: 'Friendly tutorials for developers. Focus on React, CSS, Animation, and more!',
       ogUrl: 'https://www.joshwcomeau.com/opengraph-image.png',

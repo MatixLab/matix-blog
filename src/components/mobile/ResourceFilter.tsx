@@ -50,6 +50,7 @@ export function FilterResource({
                     <a
                       href={`/resource/${res.routeName}`}
                       key={res.name}
+                      title={res.name}
                       onClick={() => {
                         setCurrentResource(res.name)
                         setOpen(false)
