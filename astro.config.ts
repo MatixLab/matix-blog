@@ -143,5 +143,6 @@ export default defineConfig({
     schema,
     validateSecrets: true,
   },
+  output: 'server',
   adapter: netlify(),
 })
