@@ -7,7 +7,7 @@ export const post = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      cover: image(),
+      cover: image().optional(),
       coverAlt: z.string().optional(),
       category: z.string().array(),
       pubDate: z
@@ -31,7 +31,7 @@ export const timeline = defineCollection({
       image: z.object({
         src: image(),
         alt: z.string(),
-      }),
+      }).optional(),
       date: z.date({ coerce: true }),
     }),
 })
@@ -42,7 +42,7 @@ export const short = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      cover: image(),
+      cover: image().optional(),
       coverAlt: z.string().optional(),
       pubDate: z
         .string()
