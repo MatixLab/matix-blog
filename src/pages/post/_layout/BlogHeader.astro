@@ -1,10 +1,10 @@
 ---
-import { FilterMobile } from '@/components/mobile/BlogFilter'
 import { buttonVariants } from '@/components/ui/button'
 import {
   getCategories,
 } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
+import { FilterMobile } from '@/pages/post/_components/BlogFilter'
 
 const categories = await getCategories()
 

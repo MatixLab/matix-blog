@@ -1,4 +1,4 @@
-import type { MainNavItem, SidebarNavItem } from '@/types'
+import type { MenuItem, NavMenuConfig, SidebarNavItem } from '@/types'
 import {
   Drawer,
   DrawerContent,
@@ -13,20 +13,24 @@ import { ArrowUpRightIcon, Github, Menu } from 'lucide-react'
 import * as React from 'react'
 import { Button } from '../ui/button'
 
-interface SheetMobileProps {
-  mainNavItems: MainNavItem[]
-  sidebarNavItems: SidebarNavItem[]
+interface MobileNavProps {
+  navMenu: NavMenuConfig
   segment: string | null
 }
 
 export function MobileNav({
-  mainNavItems,
-  sidebarNavItems,
+  navMenu,
   segment,
-}: SheetMobileProps) {
-  const mergedMainNavItems = mainNavItems?.filter((item, index, self) =>
+}: MobileNavProps) {
+  const mergedLinks = navMenu.links?.filter((item, index, self) =>
     index === self.findIndex(t => t.href === item.href && t.title === item.title),
   )
+
+  const collectiveData: MenuItem[] = []
+  navMenu.collective.forEach((item) => {
+    collectiveData.push(...item.items)
+  })
+
   const [open, setOpen] = React.useState(false)
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -46,9 +50,9 @@ export function MobileNav({
               </DrawerTitle>
               <div className="flex flex-col gap-1">
                 {
-                  mergedMainNavItems?.map(item => (
+                  mergedLinks?.map(item => (
                     <a
-                      key={item.href}
+                      key={item.title}
                       href={item.href}
                       title={item.title}
                       className={cn(
@@ -66,42 +70,38 @@ export function MobileNav({
                   ))
                 }
                 {
-                  sidebarNavItems.map((item) => {
-                    const activeItems = item?.items?.filter((subItem) => {
-                      return !subItem.disabled && subItem.href
-                    })
-                    if (!activeItems || activeItems.length === 0)
-                      return null
-                    return (
-                      <div key={item.title} className="flex flex-col">
-                        <span className="font-bold text-ds-gray-1000 p-2">{item.title}</span>
-                        <ul>
-                          {
-                            activeItems.map(subItem => (
-                              <li key={subItem.href} className="ml-2 border-l-ds-gray-300 border-l-[1px]">
-                                <a
-                                  href={subItem.href}
-                                  target={subItem?.external ? '_blank' : undefined}
-                                  title={subItem.title}
-                                  className={cn(
-                                    'group flex items-center justify-between rounded-lg px-4 pt-2 text-ds-gray-1000',
-                                    (subItem.href.startsWith(`/${segment}`) && 'bg-black text-white'),
-                                  )}
-                                  onClick={() => setOpen(false)}
-                                >
-                                  <span className="flex items-center gap-2">
-                                    <span className="font-medium">
-                                      {subItem.title}
-                                    </span>
+                  collectiveData.length && (
+                    <div className="flex flex-col">
+                      <span className="font-bold text-ds-gray-1000 p-2">Collective</span>
+                      <ul>
+                        {
+                          collectiveData.map(subItem => (
+                            <li
+                              key={subItem.href}
+                              className="pl-2 border-l-ds-gray-300 border-l-[1px] items-center"
+                            >
+                              <a
+                                href={subItem.href}
+                                target={subItem?.external ? '_blank' : undefined}
+                                title={subItem.title}
+                                className={cn(
+                                  'group flex items-center justify-between rounded-lg px-4 py-2 text-ds-gray-1000',
+                                  (subItem.href.startsWith(`/${segment}`) && 'bg-black text-white'),
+                                )}
+                                onClick={() => setOpen(false)}
+                              >
+                                <span className="flex items-center gap-2">
+                                  <span className="font-medium">
+                                    {subItem.title}
                                   </span>
-                                </a>
-                              </li>
-                            ))
-                          }
-                        </ul>
-                      </div>
-                    )
-                  })
+                                </span>
+                              </a>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
                 }
               </div>
             </div>

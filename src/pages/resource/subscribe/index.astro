@@ -1,35 +1,35 @@
 ---
 import { ResourceType } from '@/config/resource'
-import ResourceLayout from '@/layouts/ResourceLayout.astro'
 import { actions } from 'astro:actions'
 import { Image } from 'astro:assets'
 import { MarkCard } from '../_components/HoverCard'
+import ResourceLayout from '../_layout/ResourceLayout.astro'
 
-const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.SUBSCRIBE)
+const { data: subscribes } = await Astro.callAction(actions.SITE.GET, ResourceType.SUBSCRIBE)
 ---
 
 <ResourceLayout
-  title="Portfolio Resource"
-  description="Awesome portfolio."
+  title="Subscribe Resource"
+  description="Awesome subscribe."
 >
   <div slot="right-content" class="prose">
     <ul class="pt-4 ml-1 list-disc">
       {
-        portfolios?.map((portfolio) => {
+        subscribes?.map((subscribe) => {
           return (
             <li>
               <MarkCard
-                url={portfolio.url}
-                name={portfolio.name}
-                tags={portfolio.tags}
-                description={portfolio.description}
+                url={subscribe.url}
+                name={subscribe.name}
+                tags={subscribe.tags}
+                description={subscribe.description}
                 client:load
               >
                 {
-                  portfolio.ogUrl && (
+                  subscribe.ogUrl && (
                     <span class="aspect-[1200/630] overflow-hidden rounded-lg">
                       <Image
-                        src={portfolio.ogUrl}
+                        src={subscribe.ogUrl}
                         alt="name"
                         width={360}
                         height={180}

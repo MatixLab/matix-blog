@@ -18,7 +18,6 @@ import {
 import icon from 'astro-icon'
 import {
   defineConfig,
-  passthroughImageService,
 } from 'astro/config'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
@@ -135,9 +134,6 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       include: ['lucide-react'],
-    },
-    ssr: {
-      external: ['node:buffer'],
     },
   },
 

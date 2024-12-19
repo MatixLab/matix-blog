@@ -12,8 +12,10 @@ import { navMenuConfig } from '@/config/nav-menu'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
 
-const links = navMenuConfig.links
-const portfolios = navMenuConfig.portfolio[0]
+const {
+  links,
+  collective,
+} = navMenuConfig
 
 const ListItem: React.FC<MenuItem> = ({
   title,
@@ -92,60 +94,63 @@ export function MainNavigationMenu({
   segment: string | null
 }) {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {links
-          ? (
-              <NavigationMenuItem>
-                {links.map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    title={link.title}
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      'text-ds-gray-900 hover:text-ds-gray-1000 font-normal',
-                      link.href.startsWith(`/${segment}`)
-                        ? 'text-black dark:text-white'
-                        : 'text-ds-gray-900',
-                    )}
-                    {...(link.forceReload ? { 'data-astro-reload': true } : {})}
-                  >
-                    {link.title}
-                  </a>
-                ))}
-              </NavigationMenuItem>
-            )
-          : null}
+    <nav>
+      <NavigationMenu>
+        <NavigationMenuList>
+          {
+            links
+              ? (
+                  <NavigationMenuItem>
+                    {links.map(link => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        title={link.title}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          'text-ds-gray-900 hover:text-ds-gray-1000 font-normal',
+                          link.href.startsWith(`/${segment}`)
+                            ? 'text-black dark:text-white'
+                            : 'text-ds-gray-900',
+                        )}
+                        {...(link.forceReload ? { 'data-astro-reload': true } : {})}
+                      >
+                        {link.title}
+                      </a>
+                    ))}
+                  </NavigationMenuItem>
+                )
+              : null
+          }
 
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">{portfolios.title}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <div className="grid w-[250px] gap-2 p-2 md:w-[350px] md:grid-cols-2">
-              <div>
-                <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
-                  Bookmarks
-                </div>
-                <ul>
-                  {portfolios.items?.map(page => (
-                    <ListItem key={page.title} {...page} />
-                  ))}
-                </ul>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="text-ds-gray-900 hover:text-ds-gray-1000 font-normal">
+              Collective
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className={`grid w-[250px] gap-2 p-2 md:w-[350px] md:grid-cols-${collective.length}`}>
+                {
+                  collective.map((p) => {
+                    return (
+                      <div key={p.title}>
+                        <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
+                          {p.title}
+                        </div>
+                        <ul>
+                          {p.items?.map(page => (
+                            <ListItem key={page.title} {...page} />
+                          ))}
+                        </ul>
+                      </div>
+                    )
+                  })
+                }
               </div>
-              <div>
-                <div className="px-2.5 pt-2 pb-1 text-ds-gray-700 text-sm">
-                  Tools
-                </div>
-                <ul>
-                  {portfolios.items?.map(page => (
-                    <ListItem key={page.title} {...page} />
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+        </NavigationMenuList>
+      </NavigationMenu>
+    </nav>
   )
 }

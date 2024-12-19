@@ -2,108 +2,37 @@
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import MainLayout from '@/layouts/MainLayout.astro'
-import { getShorts, getShortsByYear } from '@/lib/fetchers'
-import { cn } from '@/lib/utils'
-import { type CollectionEntry, render } from 'astro:content'
-
-
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import ShortContentLayout from './_layout/ShortContentLayout.astro'
 
 export async function getStaticPaths() {
-  const shorts = await getShorts()
+  const shorts = await getCollection('short')
   return shorts.map(short => ({
-    params: {
-      id: short.id,
-    },
+    params: { id: short.id },
     props: short,
   }))
 }
 
 type Props = CollectionEntry<'short'>
 
-const { id } = Astro.params
-const year = id.substring(0, 4)
-const shortData = await getShortsByYear(year)
-
 const short = Astro.props
+const id = Astro.params.id
 const { Content } = await render(short)
+
 if (!id || !short) {
   return new Response(null, {
     status: 404,
     statusText: 'Not found',
   })
 }
-const { pathname } = Astro.url
 ---
-
-<MainLayout
-  title="Short"
-  description="Anthony's Short"
->
-  <section class="container max-w-[950px] relative flex w-full flex-col">
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-12">
-      <div class="md:col-span-2 rounded-lg hidden md:block">
-        <aside class="hidden md:block fixed">
-          <ul class="group pt-12">
-              {
-                shortData.map((item) => {
-                  return (
-                    <li class={cn(
-                      'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
-                      'text-center h-8',
-                    )}
-                    >
-                        <a
-                          href={`/short/${item}`}
-                          title={item.data.title}
-                          class={cn(
-                            'block w-full text-sm py-1',
-                            'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                            (pathname.endsWith(item.id)) && ' text-black',
-                          )}
-                        >
-                          {item.data.title}
-                        </a>
-                    </li>
-                  )
-                })
-              }
-          </ul>
-        </aside>
-      </div>
-
-      <div class="md:col-span-10 overflow-auto pt-2 md:pt-8">
-        <div class="relative flex w-full flex-col space-y-4">
-          <div class="flex-1">
-            <div class="mx-auto w-full min-w-0 md:px-6">
-              <div class="space-y-4">
-                <h1 class="scroll-m-20 text-3xl font-bold">
-                  {short.data.title}
-                </h1>
-                <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
-                  {short.data.description}
-                </blockquote>
-              </div>
-              <div class="pb-12 pt-8">
-                <Content
-                  components={{
-                    ...MdxComponents,
-                    img: IMG,
-                    Image: IMG,
-                    pre: Pre,
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </section>
-</MainLayout>
-
-<style>
-  .no-scrollbar {
-    scrollbar-width: none;
-  }
-</style>
+<ShortContentLayout {...short}>
+  <Content
+    components={{
+    ...MdxComponents,
+    img: IMG,
+    Image: IMG,
+    pre: Pre,
+}}
+  />
+</ShortContentLayout>

@@ -1,32 +1,24 @@
 import type { NavMenuConfig } from '@/types'
 
 export const navMenuConfig: NavMenuConfig = {
-  portfolio: [
+  collective: [
     {
-      title: 'Portfolio',
+      title: 'Share',
       items: [
-        {
-          title: 'Timeline',
-          href: '/timeline',
-        },
+        { title: 'Resource', href: '/resource/tools' },
+      ],
+    },
+    {
+      title: 'Tools',
+      items: [
+        { title: 'Timeline', href: '/timeline' },
       ],
     },
   ],
   links: [
-    {
-      title: 'Post',
-      href: '/post',
-      description: 'A Markdown/MDX blog built using Content Collections.',
-    },
-    {
-      title: 'Short',
-      href: '/short',
-      description: 'A reproduction of Starlog template with Tailwind CSS.',
-    },
-    {
-      title: 'Resource',
-      href: '/resource/tools',
-      description: 'A reproduction of Starlog template with Tailwind CSS.',
-    },
+    { title: 'Post', href: '/post' },
+    { title: 'Short', href: '/short' },
+    { title: 'Uses', href: '/uses' },
+    { title: 'Project', href: '/project' },
   ],
 }

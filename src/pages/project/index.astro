@@ -2,19 +2,16 @@
 import type { ResourceItem } from '@/types'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { ArrowUpLeft } from 'lucide-react'
-import { uses } from './_data'
+import { projects } from './_data'
 
-const useTypes = Object.keys(uses)
+const projectTypes = Object.keys(projects)
 ---
 
 <MainLayout
-  title="Uses"
-  description="Things of Choice."
+  title="Projects"
+  description="Projects that I created."
 >
-  <section class:list={[
-    'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
-  ]}
-  >
+  <section class="prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col">
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:block">
         <aside class="hidden md:block fixed pt-12">
@@ -36,15 +33,17 @@ const useTypes = Object.keys(uses)
       </div>
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <h1 class="mt-2 scroll-m-20 text-2xl font-bold tracking-tight">
-          Things of Choice.
+          Projects that I created.
         </h1>
         {
-          useTypes.map((type) => {
+          projectTypes.map((type) => {
             return (
-              <h2 class="mt-10 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0">{type}</h2>
+              <h2 class="mt-10 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0">
+                {type}
+              </h2>
               <ul class="my-2 ml-1 list-disc">
                 {
-                  uses[type].map((item: ResourceItem) => {
+                  projects[type].map((item: ResourceItem) => {
                     return (
                       item.url
                         ? (

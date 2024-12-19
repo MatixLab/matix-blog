@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { ShortFilter } from '@/components/mobile/ShortFilter'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getShorts } from '@/lib/fetchers'
 import { cn, formatSimpleDate } from '@/lib/utils'
+import { ShortFilter } from '../_components/ShortFilter'
 
 type Props = {
   type: 'all' | 'year'

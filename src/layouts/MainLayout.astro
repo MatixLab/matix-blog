@@ -1,8 +1,8 @@
 ---
 import { MainNavigationMenu } from '@/components/common/MainNavigationMenu'
+import { MobileNav } from '@/components/common/MobileNav'
 import SiteFooter from '@/components/layout/SiteFooter.astro'
 import SiteHeader from '@/components/layout/SiteHeader.astro'
-import { MobileNav } from '@/components/mobile/MobileNav'
 import { ThemeToggle } from '@/components/util/theme-toggle'
 import { navMenuConfig } from '@/config/nav-menu'
 import { extractSegmentURL } from '@/lib/utils'
@@ -30,8 +30,7 @@ const segment = extractSegmentURL(Astro.url.pathname)
         client:load
       />
       <MobileNav
-        mainNavItems={navMenuConfig.links}
-        sidebarNavItems={navMenuConfig.portfolio}
+        navMenu={navMenuConfig}
         segment={segment}
         slot="mobile-nav-header"
         client:load

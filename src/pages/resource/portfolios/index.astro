@@ -1,9 +1,9 @@
 ---
 import { ResourceType } from '@/config/resource'
-import ResourceLayout from '@/layouts/ResourceLayout.astro'
 import { actions } from 'astro:actions'
 import { Image } from 'astro:assets'
 import { MarkCard } from '../_components/HoverCard'
+import ResourceLayout from '../_layout/ResourceLayout.astro'
 
 const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceType.PORTFOLIO)
 ---
