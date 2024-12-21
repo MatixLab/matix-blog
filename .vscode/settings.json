@@ -52,10 +52,11 @@
   "files.exclude": {
     ".astro": false,
     ".wrangler": true,
-    "dist": true
+    "dist": false
   },
   "cSpell.words": [
     "huakucha",
+    "nums",
     "weeklys"
   ]
 }

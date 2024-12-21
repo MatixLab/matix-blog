@@ -149,6 +149,23 @@
   }
 }
 
+.list-container {
+  @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
+}
+
+.list-container:last-of-type {
+  @apply mb-0;
+}
+
+.list-title {
+  @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
+}
+
+
+.list-content {
+  @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
+}
+
 .text-gradient_indigo-purple {
   background: linear-gradient(90deg, #6366f1 0%, rgba(168 85 247 / 0.9) 100%);
   /* background: linear-gradient(83.21deg,#3245ff 0%,#bc52ee 100%); */

@@ -1,14 +1,12 @@
 ---
 import type { PaginateFunction } from 'astro'
-import BlogCard from '@/components/cards/BlogCard.astro'
 import { PaginationComponent } from '@/components/common/PaginationComponent'
-import BlogHeader from '@/components/layout/BlogHeader.astro'
 import { siteConfig } from '@/config/site'
-import MainLayout from '@/layouts/MainLayout.astro'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
+import BlogCard from './_components/BlogCard.astro'
+import BlogLayout from './_layout/BlogLayout.astro'
 
-// see https://docs.astro.build/zh-cn/guides/routing/
 export async function getStaticPaths({
   paginate,
 }: {
@@ -31,30 +29,27 @@ page.data.forEach((post) => {
   posts.push(post)
 })
 ---
-
-<MainLayout
-  title="Blog"
-  description="AnthonyZhu's writing record."
+<BlogLayout
+  title="Posts"
+  description="Writing record."
 >
-  <section class="container py-10">
-    <BlogHeader
-      title="Blog"
-      description="AnthonyZhu's writing record."
-    />
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
-      {
-        posts.map((post) => {
-          return <BlogCard entry={post} />
-        })
-      }
-    </div>
-    <div class="mt-6">
-      <PaginationComponent
-        currentPage={page.currentPage}
-        totalPages={page.lastPage}
-        baseUrl="/post/"
-        client:load
-      />
-    </div>
-  </section>
-</MainLayout>
+  <div slot="right-content">
+    <section class="ml-1 pt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
+        {
+          posts.map((post) => {
+            return <BlogCard entry={post} />
+          })
+        }
+      </div>
+      <div class="mt-6">
+        <PaginationComponent
+          currentPage={page.currentPage}
+          totalPages={page.lastPage}
+          baseUrl="/post/"
+          client:load
+        />
+      </div>
+    </section>
+  </div>
+</BlogLayout>

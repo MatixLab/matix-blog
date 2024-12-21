@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
@@ -8,9 +8,8 @@
       "@/*": ["./src/*"],
       "~/*": ["./src/assets/*"]
     },
-    "types": [
-      "@cloudflare/workers-types/2023-07-01"
-    ],
     "strictNullChecks": true
-  }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }

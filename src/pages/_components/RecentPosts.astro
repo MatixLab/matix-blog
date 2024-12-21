@@ -1,0 +1,61 @@
+---
+import { siteConfig } from '@/config/site'
+import { getPosts } from '@/lib/fetchers'
+import { formatDateWithYear } from '@/lib/utils'
+
+const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
+
+
+---
+<dl class="list-container">
+  <dt class="list-title grid grid-cols-2 align-middle md:block px-2">
+    <h2 class="font-bold col-span-1 md:col-span-2">
+      Recent&nbsp; Post
+    </h2>
+    <a
+      href="/post"
+      title="View all"
+      class:list={[
+        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
+        'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+        'col-span-1 md:col-span-2 text-end md:text-start',
+      ]}
+    >
+      View all
+    </a>
+  </dt>
+  <dd class="list-content border-none pt-0 space-y-1">
+    <div class="text-sm">
+      <div class="group/list-wrapper">
+        <ul class="list-none space-y-4">
+          {
+            allPosts.map((item) => {
+              return (
+                <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
+                  <a
+                    title={item.data.title}
+                    href={`/post/${item.id}`}
+                    class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
+                  >
+                    <div class="grid grid-cols-3 md:grid-cols-5 items-center">
+                      <span
+                        class="col-span-2 md:col-span-4 line-clamp-1"
+                      >
+                        {item.data.title}
+                      </span>
+                      <span class="col-span-1 text-end">
+                        <time datetime={item.data.pubDate.toDateString()}>
+                          { formatDateWithYear(item.data.pubDate) }
+                        </time>
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+    </div>
+  </dd>
+</dl>

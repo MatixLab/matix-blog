@@ -1,11 +1,10 @@
-import cloudflare from '@astrojs/cloudflare'
 import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
+import netlify from '@astrojs/netlify'
 import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import MillionLint from '@million/lint'
 import playformCompress from '@playform/compress'
 import {
   transformerMetaHighlight,
@@ -16,21 +15,24 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from '@shikijs/transformers'
+import icon from 'astro-icon'
 import {
   defineConfig,
-  passthroughImageService,
 } from 'astro/config'
-import icon from 'astro-icon'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
+
+import { schema } from './env.schema'
 
 /**
  * https://astro.build/config
  */
 export default defineConfig({
   site: 'http://localhost:4321/',
+
   integrations: [
+    db(),
     tailwind({
       applyBaseStyles: false,
     }),
@@ -40,7 +42,6 @@ export default defineConfig({
      */
     sitemap(),
     react(),
-    MillionLint.astro(),
     icon({
       include: {
         'lucide': [
@@ -48,7 +49,7 @@ export default defineConfig({
           'settings',
           'search',
         ],
-        'simple-icons': ['github', 'x'],
+        'simple-icons': ['github', 'x', 'bluesky'],
       },
     }),
     partytown({
@@ -63,23 +64,18 @@ export default defineConfig({
       JavaScript: true,
       SVG: true,
     }),
-    db(),
   ],
-  /**
-   * https://docs.astro.build/zh-cn/basics/rendering-modes/
-   */
-  output: 'hybrid',
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+
   devToolbar: {
     enabled: false,
   },
+
   markdown: {
     shikiConfig: {
-      theme: 'github-dark-default',
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-default',
+      },
       transformers: [
         transformerNotationDiff(),
         transformerNotationHighlight(),
@@ -122,19 +118,28 @@ export default defineConfig({
       ],
     ],
   },
+
   image: {
-    service: passthroughImageService(),
+    remotePatterns: [{
+      protocol: 'https',
+    }],
   },
+
   experimental: {
     contentIntellisense: true,
-    directRenderScript: true,
+    responsiveImages: true,
+    svg: true,
   },
+
   vite: {
     optimizeDeps: {
       include: ['lucide-react'],
     },
-    ssr: {
-      external: ['node:buffer'],
-    },
   },
+
+  env: {
+    schema,
+    validateSecrets: false,
+  },
+  adapter: netlify(),
 })

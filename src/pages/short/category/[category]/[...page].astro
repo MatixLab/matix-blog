@@ -1,0 +1,66 @@
+---
+import type { PaginateFunction } from 'astro'
+import { PaginationComponent } from '@/components/common/PaginationComponent'
+import { siteConfig } from '@/config/site'
+import { getShorts } from '@/lib/fetchers'
+import { type CollectionEntry } from 'astro:content'
+import BlogCard from '../../_components/BlogCard.astro'
+import ShortLayout from '../../_layout/ShortLayout.astro'
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  const allShorts = await getShorts()
+  const uniqueCategories = [
+    ...new Set(allShorts.map(short => short.data.category).flat()),
+  ]
+
+  return uniqueCategories.flatMap((category) => {
+    const filteredShorts = allShorts
+      .filter(short => short.data.category.includes(category))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    return paginate(filteredShorts, {
+      params: { category },
+      pageSize: siteConfig.pagination.pageSize,
+    })
+  })
+}
+
+const { category } = Astro.params
+const { page } = Astro.props
+
+const shorts: CollectionEntry<'short'>[] = []
+page.data.forEach((short) => {
+  shorts.push(short)
+})
+---
+
+<ShortLayout
+  title={`${category}`}
+  description={`All posts for ${category}`}
+>
+  <div slot="right-content">
+    <section class="ml-1 pt-4">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
+      >
+        {
+          shorts.map((short) => {
+            return <BlogCard entry={short} />
+          })
+        }
+      </div>
+      <div class="mt-6">
+        <PaginationComponent
+          currentPage={page.currentPage}
+          totalPages={page.lastPage}
+          baseUrl="/short/category"
+          suffix={`/${category}`}
+          client:load
+        />
+      </div>
+    </section>
+  </div>
+</ShortLayout>

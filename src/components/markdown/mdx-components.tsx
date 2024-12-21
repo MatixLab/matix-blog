@@ -2,7 +2,6 @@ import Callout from '@/components/markdown/callout.astro'
 import MdxCard from '@/components/markdown/mdx-card.astro'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
-import { CopyButton } from './copy-button'
 
 interface Props {
   className?: string

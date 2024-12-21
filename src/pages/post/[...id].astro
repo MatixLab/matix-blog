@@ -1,0 +1,38 @@
+---
+import IMG from '@/components/markdown/IMG.astro'
+import { MdxComponents } from '@/components/markdown/mdx-components'
+import Pre from '@/components/markdown/Pre.astro'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import BlogContentLayout from './_layout/BlogContentLayout.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('post')
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: post,
+  }))
+}
+
+type Props = CollectionEntry<'post'>
+
+const post = Astro.props
+const id = Astro.params.id
+const { Content } = await render(post)
+
+if (!id || !post) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  })
+}
+---
+<BlogContentLayout {...post}>
+  <Content
+    components={{
+    ...MdxComponents,
+    img: IMG,
+    Image: IMG,
+    pre: Pre,
+}}
+  />
+</BlogContentLayout>

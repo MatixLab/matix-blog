@@ -1,0 +1,76 @@
+---
+import { resources } from '@/config/resource'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { cn } from '@/lib/utils'
+import { FilterResource } from '../_components/ResourceFilter'
+
+type Props = {
+  title: string
+  description?: string
+  mainClass?: string
+}
+
+const { title, description, mainClass } = Astro.props
+const segment = Astro.url.pathname.split('/')[2]
+
+const resourceName = resources.findLast((r) => {
+  return r.routeName === segment
+})?.name
+---
+<MainLayout
+  title={title}
+  description={description}
+  mainClass={mainClass}
+>
+  <section class="container max-w-[948px] relative flex w-full flex-col">
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="hidden md:block fixed">
+          <ul class="group pt-12">
+            {
+              resources.map((item) => {
+                return (
+                  <li class={cn(
+                    'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
+                    'text-right h-8',
+                  )}
+                  >
+                    <a
+                      title={item.name}
+                      href={`/resource/${item.routeName}`}
+                      class={cn(
+                        'block w-full text-sm py-1',
+                        'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
+                        (item.routeName === segment) && 'font-medium text-black dark:text-white',
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </aside>
+      </div>
+      <div class="pt-4 md:hidden w-full">
+        <FilterResource
+          resourceName={resourceName || resources[0].name}
+          client:load
+          slot="mobile-nav-header"
+        />
+      </div>
+      <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
+        <slot name="head-name">
+          <h1 class="mt-2 scroll-m-20 text-2xl font-bold tracking-tight hidden md:block">
+            { description }
+          </h1>
+        </slot>
+        <slot name="right-content" />
+        <p class="pt-8 pb-4 text-sm mx-auto text-center text-ds-gray-800">
+          That's all for now. Come back later for more.
+        </p>
+      </div>
+    </main>
+  </section>
+</MainLayout>

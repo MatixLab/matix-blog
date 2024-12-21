@@ -20,20 +20,12 @@ export type MenuItem = NavItem & {
 
 export type MainNavItem = NavItem
 
-export type SidebarNavItem = {
+export interface SidebarNavItem {
   title: string
   disabled?: boolean
   external?: boolean
-} & (
-  | {
-    href: string
-    items?: never
-  }
-  | {
-    href?: string
-    items: MenuItem[]
-  }
-)
+  items: MenuItem[]
+}
 
 export interface SiteConfig {
   author: string
@@ -41,22 +33,25 @@ export interface SiteConfig {
   title: string
   description: string
   url: string
+  repoUrl: string
   ogImage: string
   links: {
     twitter: string
     github: string
+    blueSky: string
   }
   pagination: {
     pageSize: number
     itemMaxNum: number
   }
   home: {
-    postNum: number
+    displayNumber: number
   }
 }
 
 export interface ResourceItem {
   title: string
+  icon?: ''
   url?: string
   desc?: string
   cover?: string
@@ -73,19 +68,5 @@ export interface Resource {
  */
 export interface NavMenuConfig {
   links: MenuItem[]
-  portfolio: SidebarNavItem[]
-}
-
-/* landing page */
-export interface InfoList {
-  icon: string
-  title: string
-  description: string
-}
-
-export interface InfoLdg {
-  title: string
-  image: ImageMetadata
-  description: string
-  list: InfoList[]
+  collective: SidebarNavItem[]
 }

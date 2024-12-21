@@ -1,0 +1,55 @@
+---
+import type { PaginateFunction } from 'astro'
+import { PaginationComponent } from '@/components/common/PaginationComponent'
+import { siteConfig } from '@/config/site'
+import { getShorts } from '@/lib/fetchers'
+import { type CollectionEntry } from 'astro:content'
+import BlogCard from './_components/BlogCard.astro'
+import ShortLayout from './_layout/ShortLayout.astro'
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  const allShorts = await getShorts()
+  return paginate(
+  allShorts.sort((a, b) => {
+      return b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
+    }),
+    {
+      pageSize: siteConfig.pagination.pageSize,
+    },
+  )
+}
+
+const { page } = Astro.props
+const shorts: CollectionEntry<'short'>[] = []
+page.data.forEach((short) => {
+  shorts.push(short)
+})
+---
+<ShortLayout
+  title="Shorts"
+  description="Writing record."
+>
+  <div slot="right-content">
+    <section class="ml-1 pt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
+        {
+          shorts.map((short) => {
+            return <BlogCard entry={short} />
+          })
+        }
+      </div>
+      <div class="mt-6">
+        <PaginationComponent
+          currentPage={page.currentPage}
+          totalPages={page.lastPage}
+          baseUrl="/short/"
+          client:load
+        />
+      </div>
+    </section>
+  </div>
+</ShortLayout>

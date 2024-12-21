@@ -1,0 +1,73 @@
+---
+import IMG from '@/components/markdown/IMG.astro'
+import { MdxComponents } from '@/components/markdown/mdx-components'
+import Pre from '@/components/markdown/Pre.astro'
+import { Badge } from '@/components/ui/badge'
+import { buttonVariants } from '@/components/ui/button'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { cn, formatDate } from '@/lib/utils'
+import { getCollection, render } from 'astro:content'
+import { ChevronLeft } from 'lucide-react'
+
+export async function getStaticPaths() {
+  const timelineData = await getCollection('timeline')
+
+  return timelineData.map(timeline => ({
+    params: { id: timeline.id },
+    props: { timeline },
+  }))
+}
+
+const { timeline } = Astro.props
+const { Content } = await render(timeline)
+---
+
+<MainLayout
+  title={timeline.data.title}
+>
+  <section class="container max-w-[948px] pt-12">
+    <div
+      class="flex flex-col max-md:gap-y-4 md:flex-row w-full"
+    >
+      <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
+        <div class="flex md:sticky md:top-24 w-auto mr-6">
+          <div class="flex flex-col gap-y-2 pb-4">
+            <button
+              onclick="history.back()"
+              class={cn(
+                buttonVariants({ variant: 'ghost' }),
+                'text-muted-foreground mb-5',
+              )}
+              transition:animate="fade"
+            >
+              <ChevronLeft className="mr-2 size-4" />
+              {' '}Back
+            </button>
+            <Badge
+              variant="default"
+              className="w-14 h-7 justify-center text-md bg_release_version text-white"
+            >
+              {timeline.data.versionNumber}
+            </Badge>
+            <span class="text-sm text-muted-foreground">
+              {formatDate(timeline.data.date)}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-24"
+      >
+      <Content
+        components={{
+          ...MdxComponents,
+          img: IMG,
+          Image: IMG,
+          pre: Pre,
+        }}
+      />
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,12 +1,11 @@
 ---
 import type { PaginateFunction } from 'astro'
-import BlogCard from '@/components/cards/BlogCard.astro'
 import { PaginationComponent } from '@/components/common/PaginationComponent'
-import BlogHeader from '@/components/layout/BlogHeader.astro'
 import { siteConfig } from '@/config/site'
-import MainLayout from '@/layouts/MainLayout.astro'
 import { getCollection } from 'astro:content'
 import { type CollectionEntry } from 'astro:content'
+import BlogCard from '../../_components/BlogCard.astro'
+import BlogLayout from '../../_layout/BlogLayout.astro'
 
 export async function getStaticPaths({
   paginate,
@@ -38,29 +37,30 @@ page.data.forEach((post) => {
 })
 ---
 
-<MainLayout
-  title={`${category} | Blog`}
+<BlogLayout
+  title={`${category}`}
   description={`All posts for ${category}`}
 >
-  <section class="container py-10">
-    <BlogHeader title={`Posts by ${category}`} description={`Posts by ${category}`} />
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
-    >
-      {
-        posts.map((post) => {
-          return <BlogCard entry={post} />
-        })
-      }
-    </div>
-    <div class="mt-6">
-      <PaginationComponent
-        currentPage={page.currentPage}
-        totalPages={page.lastPage}
-        baseUrl="/post/category"
-        suffix={`/${category}`}
-        client:load
-      />
-    </div>
-  </section>
-</MainLayout>
+  <div slot="right-content">
+    <section class="ml-1 pt-4">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
+      >
+        {
+          posts.map((post) => {
+            return <BlogCard entry={post} />
+          })
+        }
+      </div>
+      <div class="mt-6">
+        <PaginationComponent
+          currentPage={page.currentPage}
+          totalPages={page.lastPage}
+          baseUrl="/post/category"
+          suffix={`/${category}`}
+          client:load
+        />
+      </div>
+    </section>
+  </div>
+</BlogLayout>

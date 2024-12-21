@@ -25,3 +25,18 @@
 a[aria-hidden='true'] {
   @apply after:content-none;
 }
+
+html .astro-code,
+html .astro-code span {
+  background-color: hsl(0deg 0% 96.38%) !important;
+}
+
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}

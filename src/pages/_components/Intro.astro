@@ -1,0 +1,37 @@
+---
+import { siteConfig } from '@/config/site'
+import { Icon } from 'astro-icon/components'
+---
+<dl class="list-container">
+  <dt class="list-title !border-none pb-4 pt-0 leading-relaxed sm:pb-0 px-2">
+    <h1 class="flex items-center gap-1">
+      <a
+        href="/"
+        title={siteConfig.author}
+        class="font-bold"
+      >
+        { siteConfig.author}
+      </a>
+    </h1>
+    <span class="text-ds-gray-800 dark:text-silver-dark text-sm">
+      Full Stack Developer
+    </span>
+  </dt>
+  <dd class="list-content !border-none px-2 space-y-4">
+    <p>Hey 👋 I'm { siteConfig.author}.</p>
+    <p>
+      You can find me on :
+    </p>
+    <div class="flex space-x-8 ml-4">
+      <a href={siteConfig.links.github} target="_blank" aria-label="github" title="Github">
+        <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+      <a href={siteConfig.links.twitter} target="_blank" aria-label="x" title="x">
+        <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+      <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky" title="blueSky">
+        <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </a>
+    </div>
+  </dd>
+</dl>

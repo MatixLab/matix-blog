@@ -8,15 +8,15 @@ const props = Astro.props
 <figure class="relative">
   <pre
     class={cn(
-    'flex  max-h-[500px] overflow-x-auto bg-black',
+    'flex  max-h-[500px] overflow-x-auto',
     props.class,
   )}
     style={{ ...props?.style }}
   >
     <slot />
-    {props.__rawstring__ && (
+    {props.__rawString__ && (
       <CopyButton
-        value={props.__rawstring__}
+        value={props.__rawString__}
         className={cn('absolute right-2 top-2', props.__withMeta__ && 'top-16')}
         client:load
       />
