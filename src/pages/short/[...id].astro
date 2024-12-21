@@ -2,11 +2,12 @@
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import { type CollectionEntry, getCollection, render } from 'astro:content'
+import { getShorts } from '@/lib/fetchers'
+import { type CollectionEntry, render } from 'astro:content'
 import ShortContentLayout from './_layout/ShortContentLayout.astro'
 
 export async function getStaticPaths() {
-  const shorts = await getCollection('short')
+  const shorts = await getShorts()
   return shorts.map(short => ({
     params: { id: short.id },
     props: short,

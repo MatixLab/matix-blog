@@ -11,11 +11,11 @@ const { className } = Astro.props;
 
 <header
   class:list={[
-    'h-14 flex items-center justify-between bg-background z-50 sticky top-0 container',
+    'h-14 flex items-center justify-center bg-background z-50 sticky top-0 container',
     className,
   ]}
 >
-  <div class="relative flex items-center justify-between size-full md:max-w-[948px]">
+  <div class="relative flex items-center size-full md:max-w-[948px]">
     <div class="items-center gap-6 md:gap-8 lg:gap-10 hidden md:flex">
       <a href="/" class="items-center space-x-2" title="Home">
         <Image src={logo} alt="Logo" class="size-8 rounded-full border shadow-sm" loading="lazy" />
@@ -23,7 +23,7 @@ const { className } = Astro.props;
     </div>
 
     <!-- mobile-nav-header -->
-    <div class="hidden md:flex">
+    <div class="hidden md:flex mx-auto">
       <!-- normal nav menu -->
       <slot name="nav-header" />
     </div>

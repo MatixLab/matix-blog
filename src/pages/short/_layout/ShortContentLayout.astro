@@ -3,15 +3,16 @@ import type { CollectionEntry } from 'astro:content'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
 import { Image } from 'astro:assets'
-import { ArrowUpLeft } from 'lucide-react'
+import { ArrowUpLeft, HashIcon } from 'lucide-react'
 
 type Props = CollectionEntry<'short'>
 
 const {
   title,
   description,
-  pubDate,
+  updatedDate,
   cover,
+  category,
   coverAlt,
 } = Astro.props.data;
 ---
@@ -54,8 +55,31 @@ const {
           <span
             class="text-ds-gray-600 text-sm mr-2"
           >
-            { formatDate(pubDate) }
+            { formatDate(updatedDate) }
           </span>
+            {
+              category.map((cat: string) => {
+                return (
+                  <a
+                    title={cat}
+                    class={cn(
+                      'flex items-center justify-center space-x-[2px] group no-underline',
+                      'after:!content-none hover:!no-underline',
+                    )}
+                    href={`/short/category/${cat}`}
+                  >
+                    <HashIcon className={cn(
+                      'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
+                    )}
+                    ></HashIcon>
+                    <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
+                      {cat}
+                    </span>
+                  </a>
+                )
+              })
+            }
+
         </div>
         <figure>
           <Image

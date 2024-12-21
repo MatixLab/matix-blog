@@ -1,11 +1,11 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getShortCategories } from '@/lib/fetchers'
+import { getCategories } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
 import { HashIcon } from 'lucide-react'
-import { ShortFilter } from '../_components/ShortFilter'
+import { FilterMobile } from '../_components/BlogFilter'
 
-const shortCategories = await getShortCategories()
+const categories = await getCategories()
 
 type Props = {
   title: string
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const { title, description, mainClass } = Astro.props
-const shortCategory = Astro.url.pathname.split('/')[3] || ''
+const category = Astro.url.pathname.split('/')[3] || ''
 ---
 <MainLayout
   title={title}
@@ -27,7 +27,7 @@ const shortCategory = Astro.url.pathname.split('/')[3] || ''
         <aside class="hidden md:block fixed">
           <ul class="group pt-12">
             {
-              shortCategories.map((item) => {
+              categories.map((item) => {
                 return (
                   <li class={cn(
                     'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
@@ -36,11 +36,11 @@ const shortCategory = Astro.url.pathname.split('/')[3] || ''
                   >
                     <a
                       title={item}
-                      href={`/short/category/${item}`}
+                      href={`/post/category/${item}`}
                       class={cn(
                         'flex items-center w-full text-base py-1',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                        (item === shortCategory) && 'font-medium text-black dark:text-white',
+                        (item === category) && 'font-medium text-black dark:text-white',
                       )}
                     >
                       <HashIcon className="size-3 mr-1"></HashIcon>
@@ -56,9 +56,9 @@ const shortCategory = Astro.url.pathname.split('/')[3] || ''
         </aside>
       </div>
       <div class="pt-4 md:hidden w-full">
-        <ShortFilter
-          categories={shortCategories as string[]}
-          category={shortCategory}
+        <FilterMobile
+          categories={categories as string[]}
+          category={category}
           client:load
           slot="mobile-nav-header"
         />

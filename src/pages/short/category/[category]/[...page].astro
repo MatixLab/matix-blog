@@ -2,26 +2,26 @@
 import type { PaginateFunction } from 'astro'
 import { PaginationComponent } from '@/components/common/PaginationComponent'
 import { siteConfig } from '@/config/site'
-import { getCollection } from 'astro:content'
+import { getShorts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
 import BlogCard from '../../_components/BlogCard.astro'
-import BlogLayout from '../../_layout/BlogLayout.astro'
+import ShortLayout from '../../_layout/ShortLayout.astro'
 
 export async function getStaticPaths({
   paginate,
 }: {
   paginate: PaginateFunction
 }) {
-  const allPosts = await getCollection('post')
+  const allShorts = await getShorts()
   const uniqueCategories = [
-    ...new Set(allPosts.map(post => post.data.category).flat()),
+    ...new Set(allShorts.map(short => short.data.category).flat()),
   ]
 
   return uniqueCategories.flatMap((category) => {
-    const filteredPosts = allPosts
-      .filter(post => post.data.category.includes(category))
+    const filteredShorts = allShorts
+      .filter(short => short.data.category.includes(category))
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    return paginate(filteredPosts, {
+    return paginate(filteredShorts, {
       params: { category },
       pageSize: siteConfig.pagination.pageSize,
     })
@@ -31,13 +31,13 @@ export async function getStaticPaths({
 const { category } = Astro.params
 const { page } = Astro.props
 
-const posts: CollectionEntry<'post'>[] = []
-page.data.forEach((post) => {
-  posts.push(post)
+const shorts: CollectionEntry<'short'>[] = []
+page.data.forEach((short) => {
+  shorts.push(short)
 })
 ---
 
-<BlogLayout
+<ShortLayout
   title={`${category}`}
   description={`All posts for ${category}`}
 >
@@ -47,8 +47,8 @@ page.data.forEach((post) => {
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
       >
         {
-          posts.map((post) => {
-            return <BlogCard entry={post} />
+          shorts.map((short) => {
+            return <BlogCard entry={short} />
           })
         }
       </div>
@@ -56,11 +56,11 @@ page.data.forEach((post) => {
         <PaginationComponent
           currentPage={page.currentPage}
           totalPages={page.lastPage}
-          baseUrl="/post/category"
+          baseUrl="/short/category"
           suffix={`/${category}`}
           client:load
         />
       </div>
     </section>
   </div>
-</BlogLayout>
+</ShortLayout>

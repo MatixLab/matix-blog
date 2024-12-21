@@ -16,10 +16,16 @@ export async function getPosts() {
 }
 
 export async function getShorts() {
-  const posts = (await getCollection('short')).sort(
+  return (await getCollection('short')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   )
-  return posts
+}
+
+export async function getShortCategories() {
+  const shorts = await getCollection('short')
+  return [
+    ...new Set(shorts.map(short => short.data.category).flat()),
+  ]
 }
 
 export async function getShortsByYear(year: string) {

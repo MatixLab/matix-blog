@@ -44,7 +44,12 @@ export const short = defineCollection({
       description: z.string(),
       cover: image().optional(),
       coverAlt: z.string().optional(),
+      category: z.string().array(),
       pubDate: z
+        .string()
+        .or(z.date())
+        .transform(val => new Date(val)),
+      updatedDate: z
         .string()
         .or(z.date())
         .transform(val => new Date(val)),

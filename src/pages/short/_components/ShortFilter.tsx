@@ -9,17 +9,15 @@ import {
 } from '@/components/ui/drawer'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Check, Filter } from 'lucide-react'
+
 import * as React from 'react'
 
 export function ShortFilter({
-  years,
-  currentYear,
-}: {
-  years: string[]
-  currentYear: string
-}) {
+  categories,
+  category,
+}: { categories: string[], category: string }) {
   const [open, setOpen] = React.useState(false)
-  const [currYear, setCurrentYear] = React.useState(currentYear)
+  const [currentCat, setCurrentCat] = React.useState(category)
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -32,10 +30,10 @@ export function ShortFilter({
           <div className="flex items-center justify-between w-full gap-4">
             <div className="flex items-center gap-2">
               <Filter className="size-4" />
-              Year
+              Category
             </div>
             <span className="mr-2">
-              {currYear || years[0]}
+              {category || 'all'}
             </span>
           </div>
         </Button>
@@ -44,26 +42,45 @@ export function ShortFilter({
         <ScrollArea className="my-4 h-fit">
           <DrawerDescription />
           <DrawerHeader>
-            <DrawerTitle>Select the year of inquiry?</DrawerTitle>
+            <DrawerTitle>Select the category of inquiry?</DrawerTitle>
             <div className="mt-2">
+              <a
+                href="/short"
+                title="All"
+                onClick={() => {
+                  setCurrentCat('')
+                  setOpen(false)
+                }}
+              >
+                <div className="rounded-lg text-foreground hover:bg-muted">
+                  <div className="flex items-center justify-between p-3 text-sm">
+                    <h2>All</h2>
+                    {
+                      currentCat === ''
+                        ? <Check className="size-5 items-end justify-between stroke-black dark:stroke-white" strokeWidth={1.5} />
+                        : null
+                    }
+                  </div>
+                </div>
+              </a>
               {
-                years.map((year: string) => {
+                categories.map((cat: string) => {
                   return (
                     <a
-                      href={`/short/${year}`}
-                      key={year}
-                      title={year}
+                      href={`/short/category/${cat}`}
+                      key={cat}
+                      title={cat}
                       onClick={() => {
-                        setCurrentYear(year)
+                        setCurrentCat(cat)
                         setOpen(false)
                       }}
                     >
                       <div className="rounded-lg text-foreground hover:bg-muted">
                         <div className="flex items-center justify-between p-3 text-sm ">
-                          <h2>{year}</h2>
+                          <h2>{cat}</h2>
                           {
-                            year === currYear
-                              ? <Check className="size-5 items-end justify-between stroke-black dark:stroke-white" strokeWidth={1.5} />
+                            cat === currentCat
+                              ? <Check className="size-5 items-end justify-between" color="#000" strokeWidth={1.5} />
                               : null
                           }
                         </div>

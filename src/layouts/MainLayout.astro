@@ -3,7 +3,6 @@ import { MainNavigationMenu } from '@/components/common/MainNavigationMenu'
 import { MobileNav } from '@/components/common/MobileNav'
 import SiteFooter from '@/components/layout/SiteFooter.astro'
 import SiteHeader from '@/components/layout/SiteHeader.astro'
-import { ThemeToggle } from '@/components/util/theme-toggle'
 import { navMenuConfig } from '@/config/nav-menu'
 import { extractSegmentURL } from '@/lib/utils'
 import BaseLayout from './BaseLayout.astro'
@@ -35,10 +34,6 @@ const segment = extractSegmentURL(Astro.url.pathname)
         slot="mobile-nav-header"
         client:load
       />
-
-      <div class="items-center gap-x-4 flex" slot="right-header">
-        <ThemeToggle client:idle />
-      </div>
     </SiteHeader>
     <main class:list={['flex-1', mainClass]}>
       <slot />
