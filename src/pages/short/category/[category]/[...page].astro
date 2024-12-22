@@ -1,10 +1,10 @@
 ---
 import type { PaginateFunction } from 'astro'
-import { PaginationComponent } from '@/components/common/PaginationComponent'
+import { PaginationBar } from '@/components/common/PaginationBar'
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
-import BlogCard from '../../_components/BlogCard.astro'
+import ShortList from '../../_components/ShortList.astro'
 import ShortLayout from '../../_layout/ShortLayout.astro'
 
 export async function getStaticPaths({
@@ -20,7 +20,6 @@ export async function getStaticPaths({
   return uniqueCategories.flatMap((category) => {
     const filteredShorts = allShorts
       .filter(short => short.data.category.includes(category))
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     return paginate(filteredShorts, {
       params: { category },
       pageSize: siteConfig.pagination.pageSize,
@@ -31,36 +30,45 @@ export async function getStaticPaths({
 const { category } = Astro.params
 const { page } = Astro.props
 
-const shorts: CollectionEntry<'short'>[] = []
+const shorts: {
+  [prop: string]: CollectionEntry<'short'>[]
+} = {}
+
+
 page.data.forEach((short) => {
-  shorts.push(short)
+  const year = short.data.pubDate.getFullYear()
+  if (!shorts[year]) {
+    shorts[year] = []
+  }
+  shorts[year].push(short)
+})
+const years = Object.keys(shorts).sort((a, b) => {
+  return Number(b) - Number(a)
 })
 ---
 
 <ShortLayout
   title={`${category}`}
-  description={`All posts for ${category}`}
+  description={`All shorts for ${category}`}
 >
   <div slot="right-content">
-    <section class="ml-1 pt-4">
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
-      >
-        {
-          shorts.map((short) => {
-            return <BlogCard entry={short} />
-          })
-        }
-      </div>
-      <div class="mt-6">
-        <PaginationComponent
-          currentPage={page.currentPage}
-          totalPages={page.lastPage}
-          baseUrl="/short/category"
-          suffix={`/${category}`}
-          client:load
-        />
-      </div>
+    <section class="ml-1 pt-8">
+      <ShortList years={years} shorts={shorts} />
+      {
+        page.data.length && page.data.length > siteConfig.pagination.pageSize
+        ? (
+          <div class="mt-6">
+            <PaginationBar
+              currentPage={page.currentPage}
+              totalPages={page.lastPage}
+              baseUrl="/short/category"
+              suffix={`/${category}`}
+              client:load
+            />
+          </div>
+        )
+        : null
+      }
     </section>
   </div>
 </ShortLayout>

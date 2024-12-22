@@ -31,10 +31,18 @@ const portfolio = [
   {
     id: 0,
     name: 'Onur Şuyalçınkaya',
-    url: 'https://onur.dev/',
+    url: 'https://onur.dev',
     description: 'Software Engineer, DJ, writer, and minimalist, based in Amsterdam, The Netherlands',
     ogUrl: 'https://onur.dev/opengraph-image',
-    tags: 'Template',
+    tags: 'Blog',
+    type: ResourceType.PORTFOLIO,
+  },
+  {
+    id: 0,
+    name: 'iDoubi',
+    url: 'https://idoubi.cv',
+    description: 'Full-Stack Engineer, Indie Maker.',
+    tags: 'AI',
     type: ResourceType.PORTFOLIO,
   },
 ].map((ele) => {
@@ -46,7 +54,7 @@ const subscribe = [
   {
     id: 0,
     name: '月球背面',
-    url: 'https://moonvy.com/blog/',
+    url: 'https://moonvy.com/blog',
     description: '月维的创造者们对「设计」和「开发」的思考与讨论',
     ogUrl: 'https://moonvy.com/ow-image.png',
     tags: 'Weekly,Design',
@@ -55,7 +63,7 @@ const subscribe = [
   {
     id: 0,
     name: '独立开发者出海周刊',
-    url: 'https://gapis.money/',
+    url: 'https://gapis.money',
     description: '「信息差——独立开发者出海周刊」是一个帮助独立开发者缩小信息差的技术周刊。',
     ogUrl: 'https://gapis.money/og.jpg',
     tags: 'Weekly',
@@ -67,6 +75,7 @@ const subscribe = [
 })
 
 export default async function () {
+  await db.delete(ResourceSites)
   await db.insert(ResourceSites).values(portfolio)
   await db.insert(ResourceSites).values(subscribe)
 }

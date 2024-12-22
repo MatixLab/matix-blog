@@ -10,9 +10,7 @@ export interface NavItem {
 
 export type MenuItem = NavItem & {
   image?: ImageMetadata
-  // menu desc
   description?: string
-  // is new feature
   launched?: boolean
   external?: boolean
   forceReload?: boolean
@@ -39,10 +37,11 @@ export interface SiteConfig {
     twitter: string
     github: string
     blueSky: string
+    notion: string
   }
   pagination: {
     pageSize: number
-    itemMaxNum: number
+    pageBtnNum: number
   }
   home: {
     displayNumber: number
@@ -55,7 +54,6 @@ export interface ResourceItem {
   url?: string
   desc?: string
   cover?: string
-  source?: 'Official' | 'JD'
 }
 
 export interface Resource {

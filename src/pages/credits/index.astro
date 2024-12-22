@@ -1,0 +1,41 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro'
+import { ArrowUpLeft } from 'lucide-react'
+import Colophon from './_components/Colophon.astro'
+import Inspirations from './_components/Inspirations.astro'
+
+---
+
+<MainLayout
+  title="Credits"
+  description="Site Credits"
+>
+  <section class="prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col">
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="hidden md:block fixed pt-12">
+          <span
+            title="back"
+            onclick="history.back()"
+            class="absolute top-16 hidden xl:inline-flex hover:cursor-pointer"
+          >
+            <ArrowUpLeft className="mr-2 size-4 my-auto text-ds-gray-800" />
+            <span
+              class:list={[
+                'text-sm text-ds-gray-800 underline underline-offset-4',
+                'decoration-ds-gray-600 hover:decoration-ds-gray-900',
+              ]}
+            >Back</span>
+          </span>
+        </aside>
+      </div>
+      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
+        <h1 class="mt-2 scroll-m-20 text-2xl font-bold tracking-tight">
+          Site Credits.
+        </h1>
+        <Colophon />
+        <Inspirations />
+      </article>
+    </main>
+  </section>
+</MainLayout>

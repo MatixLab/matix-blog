@@ -1,10 +1,10 @@
 ---
 import type { PaginateFunction } from 'astro'
-import { PaginationComponent } from '@/components/common/PaginationComponent'
+import { PaginationBar } from '@/components/common/PaginationBar'
 import { siteConfig } from '@/config/site'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
-import BlogCard from './_components/BlogCard.astro'
+import BlogList from './_components/BlogList.astro'
 import BlogLayout from './_layout/BlogLayout.astro'
 
 export async function getStaticPaths({
@@ -14,9 +14,7 @@ export async function getStaticPaths({
 }) {
   const allPosts = await getPosts()
   return paginate(
-    allPosts.sort((a, b) => {
-      return b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
-    }),
+    allPosts,
     {
       pageSize: siteConfig.pagination.pageSize,
     },
@@ -24,9 +22,19 @@ export async function getStaticPaths({
 }
 
 const { page } = Astro.props
-const posts: CollectionEntry<'post'>[] = []
+const posts: {
+  [prop: string]: CollectionEntry<'post'>[]
+} = {}
+
 page.data.forEach((post) => {
-  posts.push(post)
+  const year = post.data.pubDate.getFullYear()
+  if (!posts[year]) {
+    posts[year] = []
+  }
+  posts[year].push(post)
+})
+const years = Object.keys(posts).sort((a, b) => {
+  return Number(b) - Number(a)
 })
 ---
 <BlogLayout
@@ -34,22 +42,22 @@ page.data.forEach((post) => {
   description="Writing record."
 >
   <div slot="right-content">
-    <section class="ml-1 pt-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-6 lg:gap-x-8">
-        {
-          posts.map((post) => {
-            return <BlogCard entry={post} />
-          })
-        }
-      </div>
-      <div class="mt-6">
-        <PaginationComponent
-          currentPage={page.currentPage}
-          totalPages={page.lastPage}
-          baseUrl="/post/"
-          client:load
-        />
-      </div>
+    <section class="ml-1 pt-8">
+      <BlogList years={years} posts={posts} />
+      {
+        page.data.length && page.data.length > siteConfig.pagination.pageSize
+        ? (
+          <div class="mt-6">
+            <PaginationBar
+              currentPage={page.currentPage}
+              totalPages={page.lastPage}
+              baseUrl="/post/"
+              client:load
+            />
+          </div>
+        )
+        : null
+      }
     </section>
   </div>
 </BlogLayout>

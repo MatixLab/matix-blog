@@ -1,0 +1,34 @@
+---
+import { credits } from '../_data'
+
+---
+<h2 class="mt-10 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0">
+  Colophon
+</h2>
+<ul class="my-2 ml-1 list-disc">
+  {
+    credits.Colophon.map((item) => {
+      return (
+      <li class="mt-2">
+        <span class="text-sm text-ds-gray-1000">{item.desc}: </span>
+        <a
+          href={`${item.url}?ref=huakucha.top`}
+          target="_blank"
+          title={item.title}
+          rel="noopener noreferrer"
+          class="break-words after:content-['_↗'] text-ds-gray-1000 after:text-ds-gray-1000"
+        >
+          <span
+            class:list={[
+              'text-ds-gray-1000 underline underline-offset-4',
+              'decoration-ds-gray-500 hover:decoration-ds-gray-800  decoration-1 text-sm font-medium',
+            ]}
+          >
+            {item.title}
+          </span>
+        </a>
+      </li>
+      )
+    })
+  }
+</ul>

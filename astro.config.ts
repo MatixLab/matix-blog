@@ -49,12 +49,12 @@ export default defineConfig({
           'settings',
           'search',
         ],
-        'simple-icons': ['github', 'x', 'bluesky'],
+        'simple-icons': ['github', 'x', 'bluesky', 'notion'],
       },
     }),
     partytown({
       config: {
-        debug: true,
+        debug: false,
         forward: ['dataLayer.push'],
       },
     }),

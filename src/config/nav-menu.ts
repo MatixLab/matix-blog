@@ -19,6 +19,5 @@ export const navMenuConfig: NavMenuConfig = {
     { title: 'Post', href: '/post' },
     { title: 'Short', href: '/short' },
     { title: 'Uses', href: '/uses' },
-    { title: 'Project', href: '/project' },
   ],
 }
