@@ -1,0 +1,92 @@
+---
+import { formatSimpleDate } from '@/lib/utils.ts'
+import { type CollectionEntry } from 'astro:content'
+import { HashIcon } from 'lucide-react'
+
+type Props = {
+  shorts: {
+    [prop: string]: CollectionEntry<'short'>[]
+  }
+  years: string[]
+}
+
+const { shorts, years } = Astro.props
+---
+
+<div class="text-sm">
+  <div class="grid grid-cols-12 py-2 font-medium text-ds-gray-900">
+    <span class="col-span-1 hidden text-left md:grid">Year</span>
+    <span class="col-span-12 md:col-span-11">
+      <span class="grid items-center grid-cols-4 md:grid-cols-8">
+        <span class="col-span-1 text-left">Date</span>
+        <span class="col-span-3 md:col-span-4">Title</span>
+        <span class="md:col-span-3 hidden md:grid">Category</span>
+      </span>
+    </span>
+  </div>
+
+  <div class="group/list-wrapper">
+    {
+      years.map((year: string) => {
+        return (
+          <ul class="group/list list-none">
+            {shorts[year].map((item, itemIndex) => {
+              return (
+                <li class="group/list-item grid grid-cols-12 p-0 group-hover/list-wrapper:text-gray-300">
+                  <span
+                    class:list={[
+                      'pointer-events-none col-span-1 hidden items-center transition-colors duration-300',
+                      ' group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-ds-gray-500',
+                      itemIndex === 0 && 'border-t border-gray-200',
+                    ]}
+                  >
+                    {itemIndex === 0 ? year : ''}
+                  </span>
+                  <a
+                    href={`/short/${item.id}`}
+                    title={item.id}
+                    class:list={[
+                      'col-span-12 md:col-span-11 group-hover/list-item:text-gray-900',
+                      'dark:group-hover/list-item:text-ds-gray-500',
+                    ]}
+                  >
+                    <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
+                      <span class="col-span-1 text-left tabular-nums">
+                        <time
+                          datetime={item.data.pubDate.toDateString()}
+                        >
+                          {formatSimpleDate(item.data.updatedDate)}
+                        </time>
+                      </span>
+                      <span
+                        class="col-span-3 md:col-span-4 line-clamp-1"
+                      >
+                        {item.data.title}
+                      </span>
+                      <span
+                        class="line-clamp-1 md:col-span-3 items-center hidden md:flex md:space-x-2"
+                      >
+                        {
+                          item.data.category.map((item) => {
+                            return (
+                              <span
+                                class="flex items-center border p-1 rounded-md text-xs"
+                              >
+                                <HashIcon className="size-3" />
+                                {item}
+                              </span>
+                            )
+                          })
+                        }
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        )
+      })
+    }
+  </div>
+</div>

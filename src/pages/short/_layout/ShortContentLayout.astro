@@ -41,7 +41,9 @@ const {
                 'text-sm text-ds-gray-800 underline underline-offset-4',
                 'decoration-ds-gray-600 hover:decoration-ds-gray-900',
               ]}
-            >Back</span>
+            >
+              Back
+            </span>
           </a>
         </aside>
       </div>
@@ -81,26 +83,31 @@ const {
             }
 
         </div>
-        <figure>
-          <Image
-            class="rounded-xl overflow-hidden"
-            width={720}
-            height={360}
-            src={cover}
-            alt={title}
-            loading="lazy"
-          />
-
-          {
-            coverAlt && (
-              <figcaption
-                class="mt-2 break-all text-center text-xs text-ds-gray-600"
-              >
-                { coverAlt }
-              </figcaption>
-            )
-          }
-        </figure>
+        {
+          cover
+          ? (
+            <figure>
+              <Image
+                class="rounded-xl overflow-hidden"
+                width={720}
+                height={360}
+                src={cover}
+                alt={title}
+                loading="lazy"
+              />
+              {
+                coverAlt && (
+                  <figcaption
+                    class="mt-2 break-all text-center text-xs text-ds-gray-600"
+                  >
+                    { coverAlt }
+                  </figcaption>
+                )
+              }
+            </figure>
+          )
+          : null
+        }
         <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
           {description}
         </blockquote>

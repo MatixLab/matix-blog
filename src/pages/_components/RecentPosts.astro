@@ -32,24 +32,24 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
             allPosts.map((item) => {
               return (
                 <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
-                  <a
-                    title={item.data.title}
-                    href={`/post/${item.id}`}
+                  <span
                     class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
                   >
                     <div class="grid grid-cols-3 md:grid-cols-5 items-center">
-                      <span
+                      <a
+                        title={item.data.title}
+                        href={`/post/${item.id}`}
                         class="col-span-2 md:col-span-4 line-clamp-1"
                       >
                         {item.data.title}
-                      </span>
+                      </a>
                       <span class="col-span-1 text-end">
                         <time datetime={item.data.pubDate.toDateString()}>
                           { formatDateWithYear(item.data.pubDate) }
                         </time>
                       </span>
                     </div>
-                  </a>
+                  </span>
                 </li>
               )
             })

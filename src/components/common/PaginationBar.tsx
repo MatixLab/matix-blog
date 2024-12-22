@@ -8,6 +8,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
 
 interface PaginationProps {
   currentPage: number
@@ -17,7 +18,7 @@ interface PaginationProps {
   suffix?: string
 }
 
-export function PaginationComponent({
+export function PaginationBar({
   currentPage,
   totalPages,
   baseUrl,
@@ -41,6 +42,9 @@ export function PaginationComponent({
           <PaginationPrevious
             href={currentPage > 1 ? getPageUrl(currentPage - 1) : undefined}
             isActive={currentPage !== 1}
+            className={cn(
+              (currentPage === 1) && 'hover:bg-transparent cursor-default text-ds-gray-800 hover:text-ds-gray-800',
+            )}
           />
         </PaginationItem>
 
@@ -49,13 +53,16 @@ export function PaginationComponent({
             <PaginationLink
               href={getPageUrl(page)}
               isActive={page === currentPage}
+              className={cn(
+                (page === currentPage) && 'pointer-events-none',
+              )}
             >
               {page}
             </PaginationLink>
           </PaginationItem>
         ))}
 
-        { totalPages > siteConfig.pagination.itemMaxNum && (
+        { totalPages > siteConfig.pagination.pageBtnNum && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
@@ -67,6 +74,9 @@ export function PaginationComponent({
               currentPage < totalPages ? getPageUrl(currentPage + 1) : undefined
             }
             isActive={currentPage < totalPages}
+            className={cn(
+              (currentPage === totalPages) && 'hover:bg-transparent cursor-default text-ds-gray-800 hover:text-ds-gray-800',
+            )}
           />
         </PaginationItem>
       </PaginationContent>
