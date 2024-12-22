@@ -141,5 +141,7 @@ export default defineConfig({
     schema,
     validateSecrets: false,
   },
-  adapter: netlify(),
+  adapter: netlify({
+    cacheOnDemandPages: false,
+  }),
 })
