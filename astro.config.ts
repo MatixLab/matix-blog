@@ -9,11 +9,7 @@ import playformCompress from '@playform/compress'
 import {
   transformerMetaHighlight,
   transformerMetaWordHighlight,
-  transformerNotationDiff,
-  transformerNotationErrorLevel,
   transformerNotationFocus,
-  transformerNotationHighlight,
-  transformerNotationWordHighlight,
 } from '@shikijs/transformers'
 import icon from 'astro-icon'
 import {
@@ -77,11 +73,7 @@ export default defineConfig({
         dark: 'github-dark-default',
       },
       transformers: [
-        transformerNotationDiff(),
-        transformerNotationHighlight(),
-        transformerNotationWordHighlight(),
         transformerNotationFocus(),
-        transformerNotationErrorLevel(),
         transformerMetaHighlight(),
         transformerMetaWordHighlight(),
         {
