@@ -1,0 +1,146 @@
+---
+title: "Shiki CopyButton"
+description: "为 Astro 的代码片段加上 copy 组件"
+pubDate: "2024/12/28"
+updatedDate: "2024/12/28"
+category:
+  - "Shiki"
+  - "Astro"
+---
+
+我为博客的代码片段加上了 Copy 功能, `rehype-code` 虽然也有这个功能,但是我已经引入了 `@shikijs/transformers` 库,我不想再单独引入其他的库。
+而且我并不喜欢 `rehype-code` 的拷贝按钮的样式,相反我觉得 Shadcn 文档的拷贝按钮很不错。在参考了他的代码之后,最终我实现了一个不错的拷贝按钮。
+
+下面是实现步骤:
+
+## 创建拷贝按钮组件
+
+> 该组件依赖于 ShadcnUI 的 Button 组件,具体参考 [Button](https://ui.shadcn.com/docs/components/button)
+
+```ts
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { Check, Copy } from 'lucide-react'
+import * as React from 'react'
+
+interface CopyButtonProps {
+  value: string
+  src?: string
+  className?: string
+}
+
+export function CopyButton({
+  value,
+  className,
+  ...props
+}: CopyButtonProps) {
+  const [hasCopied, setHasCopied] = React.useState(false)
+  React.useEffect(() => {
+    setTimeout(() => {
+      setHasCopied(false)
+    }, 3000)
+  }, [hasCopied])
+
+  return (
+    <Button
+      size="icon"
+      variant="ghost"
+      className={cn(
+        'relative z-10 h-6 w-6 dark:text-zinc-50 dark:hover:bg-zinc-700 dark:hover:text-zinc-50',
+        'text-zinc-800 hover:bg-zinc-50 hover::bg-zinc-800',
+        className,
+      )}
+      data-copy={value}
+      onClick={() => {
+        window.navigator.clipboard.writeText(value)
+        setHasCopied(true)
+      }}
+      {...props}
+    >
+      <span className="sr-only">Copy</span>
+      {
+        hasCopied
+          ? <Check className="size-3" />
+          : <Copy className="size-3" />
+      }
+    </Button>
+  )
+}
+
+```
+
+## 自定义 Shiki Transformer
+
+> Shiki 在经过一次重大变更之后变得更加灵活了,它提供了 [transformer](https://shiki.style/guide/transformers) 来自定义代码输出。
+
+通过自定义 transformer 传入 `this.source` 将代码段作为属性存储在 `pre` 的 属性 `__rawString__` 中
+
+```ts {11-15}
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light-default',
+        dark: 'github-dark-default',
+      },
+      transformers: [
+        transformerNotationFocus(),
+        transformerMetaHighlight(),
+        transformerMetaWordHighlight(),
+        {
+          pre(node) {
+            node.properties.__rawString__ = this.source
+          },
+        },
+      ],
+    },
+  }
+```
+
+## 定义一个自定义的 Pre 组件
+
+创建一个 Astro 组件, 渲染后的代码段会通过插槽 `<slot/>` 传入,而 `props.__rawString__` 则是上一步 Shiki Transformer 保留的代码元信息。
+
+```astro
+---
+import { CopyButton } from '@/components/markdown/CopyButton'
+import { cn } from '@/lib/utils'
+const props = Astro.props
+---
+<figure class="relative">
+  <pre
+    class={cn(
+    'flex  max-h-[500px] overflow-x-auto',
+    props.class,
+  )}
+    style={{ ...props?.style }}
+  >
+    <slot />
+    {props.__rawString__ && (
+      <CopyButton
+        value={props.__rawString__}
+        className={cn('absolute right-2 top-2', props.__withMeta__ && 'top-16')}
+        client:load
+      />
+    )}
+  </pre>
+</figure>
+
+```
+
+## 为 MDX 自定义组件
+
+Astro 提了了 [`<Content />`组件](https://docs.astro.build/en/guides/markdown-content/#the-content--component),
+通过 `components` 可以对 MDX组件进行映射替换
+
+下面将 pre 组件传入到 Content 组件中就可以实现带拷贝功能的 pre 组件
+
+```tsx
+  <Content
+      components={{
+      ...MdxComponents,
+      img: IMG,
+      Image: IMG,
+      pre: Pre,
+    }}
+  />
+```

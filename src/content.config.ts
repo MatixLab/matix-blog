@@ -23,15 +23,11 @@ export const post = defineCollection({
 
 export const timeline = defineCollection({
   loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/timeline' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
       versionNumber: z.string(),
-      image: z.object({
-        src: image(),
-        alt: z.string(),
-      }).optional(),
       date: z.date({ coerce: true }),
     }),
 })

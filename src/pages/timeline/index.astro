@@ -4,7 +4,7 @@ import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import { Badge } from '@/components/ui/badge'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { formatDate } from '@/lib/utils'
+import { formatDateWithYear } from '@/lib/utils'
 import { getCollection, render } from 'astro:content'
 
 const timeline = await getCollection('timeline')
@@ -15,38 +15,26 @@ timeline.sort((a, b) => +b.data.date - +a.data.date);
   title="Timeline"
 >
   <section class="container max-w-[948px] space-y-6 pt-12">
-    <!--
-      <PageHeader
-        heading="Timeline"
-        text="Reproduce Astro Starlog template with Tailwind CSS & shadcn/ui."
-      />
-    -->
-
     <ul class="pt-6">
       {
         timeline.map(timeline => (
           <li class="flex flex-col max-md:gap-y-4 md:flex-row w-full">
             <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
               <div class="md:sticky md:top-24 w-auto mr-6">
-                <a
-                  href={`/timeline/${timeline.id}`}
+                <span
                   class="flex flex-col gap-y-2 pb-4"
-                  title={timeline.data.title}
                 >
                   <Badge
                     variant="default"
-                    className="w-14 h-7 justify-center text-md bg_release_version text-white"
+                    className="w-2/3 h-7 justify-center text-sm bg_release_version text-white"
                   >
-                    {timeline.data.versionNumber}
+                    {formatDateWithYear(timeline.data.date)}
                   </Badge>
-                  <span class="text-sm text-muted-foreground">
-                    {formatDate(timeline.data.date)}
-                  </span>
-                </a>
+                </span>
               </div>
             </div>
 
-            <div class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-24">
+            <div class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-12">
               {render(timeline).then(({ Content }) => (
                 <Content
                   components={{

@@ -128,7 +128,7 @@ export function MainNavigationMenu({
               Collective
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className={`grid w-[250px] gap-2 p-2 md:w-[350px] md:grid-cols-${collective.length}`}>
+              <div className="grid w-[250px] gap-2 p-2 md:w-[350px] md:grid-cols-2">
                 {
                   collective.map((p) => {
                     return (
