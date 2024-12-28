@@ -25,7 +25,7 @@ import { schema } from './env.schema'
  * https://astro.build/config
  */
 export default defineConfig({
-  site: 'http://localhost:4321/',
+  site: 'https://huakucha.top/',
 
   integrations: [
     db(),

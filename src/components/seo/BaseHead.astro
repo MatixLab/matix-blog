@@ -1,5 +1,6 @@
 ---
 import LoadingIndicator from '@/components/common/Loading.astro'
+import { siteConfig } from '@/config/site'
 import { ClientRouter } from 'astro:transitions'
 import '@/styles/index.css'
 
@@ -31,8 +32,8 @@ const {
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Primary Meta Tags -->
-<title>{title ? `${title} | Anthony` : 'Anthony'}</title>
-<meta name="title" content={title ? `${title} | AnthonyZhu` : 'AnthonyZhu'} />
+<title>{title ? `${title} | ${siteConfig.author}` : siteConfig.author}</title>
+<meta name="title" content={title ? `${title} | ${siteConfig.author}` : siteConfig.author} />
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->

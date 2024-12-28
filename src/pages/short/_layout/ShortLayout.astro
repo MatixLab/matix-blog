@@ -1,4 +1,5 @@
 ---
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getShortCategories } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
@@ -34,9 +35,9 @@ const shortCategory = Astro.url.pathname.split('/')[3] || ''
                     'text-left h-8',
                   )}
                   >
-                    <a
-                      title={item}
+                    <Link
                       href={`/short/category/${item}`}
+                      title={item}
                       class={cn(
                         'flex items-center w-full text-sm py-1',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
@@ -47,7 +48,7 @@ const shortCategory = Astro.url.pathname.split('/')[3] || ''
                       <span>
                         {item}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 )
               })

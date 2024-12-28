@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
 import { Image } from 'astro:assets'
@@ -60,7 +61,7 @@ const {
             {
               category.map((cat: string) => {
                 return (
-                  <a
+                  <Link
                     title={cat}
                     class={cn(
                       'flex items-center justify-center space-x-[2px] group no-underline',
@@ -68,39 +69,42 @@ const {
                     )}
                     href={`/post/category/${cat}`}
                   >
-                    <HashIcon className={cn(
-                      'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
-                    )}
-                    ></HashIcon>
+                    <HashIcon className="size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000" />
                     <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
                       {cat}
                     </span>
-                  </a>
+                  </Link>
                 )
               })
             }
 
         </div>
-        <figure>
-          <Image
-            class="rounded-xl overflow-hidden"
-            width={720}
-            height={360}
-            src={cover}
-            alt={title}
-            loading="lazy"
-          />
+        {
+          cover
+          ? (
+            <figure>
+              <Image
+                class="rounded-xl overflow-hidden"
+                width={720}
+                height={360}
+                src={cover}
+                alt={title}
+                loading="lazy"
+              />
 
-          {
-            coverAlt && (
-              <figcaption
-                class="mt-2 break-all text-center text-xs text-ds-gray-600"
-              >
-                { coverAlt }
-              </figcaption>
-            )
-          }
-        </figure>
+              {
+                coverAlt && (
+                  <figcaption
+                    class="mt-2 break-all text-center text-xs text-ds-gray-600"
+                  >
+                    { coverAlt }
+                  </figcaption>
+                )
+              }
+            </figure>
+          )
+          : null
+        }
         <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
           {description}
         </blockquote>

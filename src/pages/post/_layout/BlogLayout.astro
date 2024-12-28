@@ -1,4 +1,5 @@
 ---
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getCategories } from '@/lib/fetchers'
 import { cn } from '@/lib/utils'
@@ -34,7 +35,7 @@ const category = Astro.url.pathname.split('/')[3] || ''
                     'text-left h-8',
                   )}
                   >
-                    <a
+                    <Link
                       title={item}
                       href={`/post/category/${item}`}
                       class={cn(
@@ -47,7 +48,7 @@ const category = Astro.url.pathname.split('/')[3] || ''
                       <span>
                         {item}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 )
               })

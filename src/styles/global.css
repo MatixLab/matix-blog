@@ -106,10 +106,10 @@
 
   /* scrollbar */ 
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 3px;
   }
   ::-webkit-scrollbar:horizontal {
-    height: 7px;
+    height: 3px;
   }
   ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
     background: #fff;

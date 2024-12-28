@@ -12,21 +12,36 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
     <h2 class="font-bold col-span-1 md:col-span-2">
       Recent&nbsp; Short
     </h2>
-    <a
-      href="/short"
-      title="View all"
-      class:list={[
-        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-        'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
-        'col-span-1 md:col-span-2 text-end md:text-start',
-      ]}
-    >
+    <div class="col-span-1 md:col-span-2 text-end md:text-start">
       {
         allShorts.length
-        ? 'View all'
-        : ''
+        ? (
+          <a
+            href="/short"
+            title="View all shorts"
+            rel="noopener noreferrer"
+            class:list={[
+              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
+              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+            ]}
+          >
+            View all
+          </a>
+          <a
+            href="/short.xml"
+            title="Feed short rss "
+            rel="noopener noreferrer"
+            class:list={[
+              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
+              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
+            ]}
+          >
+            Rss
+          </a>
+        )
+        : null
       }
-    </a>
+    </div>
   </dt>
   <dd class="list-content border-none pt-0 space-y-1">
     {

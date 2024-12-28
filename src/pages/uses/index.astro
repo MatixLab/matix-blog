@@ -1,5 +1,6 @@
 ---
 import type { ResourceItem } from '@/types'
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { ArrowUpLeft } from 'lucide-react'
 import { uses } from './_data'
@@ -18,7 +19,6 @@ const useTypes = Object.keys(uses)
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:block">
         <aside class="hidden md:block fixed pt-12">
-          <!-- toc -->
           <span
             title="back"
             onclick="history.back()"
@@ -49,11 +49,9 @@ const useTypes = Object.keys(uses)
                       item.url
                         ? (
                           <li class="mt-2">
-                            <a
+                            <Link
                               href={`${item.url}?ref=huakucha.top`}
-                              target="_blank"
                               title={item.title}
-                              rel="noopener noreferrer"
                               class="break-words after:content-['_↗'] text-ds-gray-1000 after:text-ds-gray-1000"
                             >
                               <span
@@ -64,7 +62,7 @@ const useTypes = Object.keys(uses)
                               >
                                 {item.title}
                               </span>
-                            </a>
+                            </Link>
                             {
                               item.desc && <span class="text-sm text-ds-gray-1000"> — For {item.desc}</span>
                             }

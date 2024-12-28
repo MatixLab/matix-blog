@@ -27,7 +27,6 @@ export interface SidebarNavItem {
 
 export interface SiteConfig {
   author: string
-  name: string
   title: string
   description: string
   url: string

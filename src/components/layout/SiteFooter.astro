@@ -1,8 +1,9 @@
 ---
+import Link from '@/components/common/Link.astro'
 import {
   siteConfig,
 } from '@/config/site'
-import { Github } from 'lucide-react'
+import { Github, Rss } from 'lucide-react'
 
 type Props = {
   className?: string
@@ -15,7 +16,6 @@ const footerLinks: {
   title: string
 }[] = [
   { title: 'Home', url: '/' },
-  { title: 'Uses', url: '/uses' },
   { title: 'Credits', url: '/credits' },
 ]
 
@@ -34,14 +34,12 @@ const footerLinks: {
             footerLinks.map((foot) => {
               return (
                 <li>
-                  <a
+                  <Link
                     href={foot.url}
-                    rel="noopener noreferrer"
-                    class="text-xs text-ds-gray-900 link"
                     title={foot.title}
+                    class="text-xs text-ds-gray-900 link"
                   >
-                    {foot.title}
-                  </a>
+                  </Link>
                 </li>
               )
             })
@@ -71,7 +69,7 @@ const footerLinks: {
           aria-hidden="true"
           role="img"
         >
-          Becoming is better than being.
+          You can be what you want to be.
         </div>
         <div class="flex gap-4">
           <a
@@ -79,9 +77,20 @@ const footerLinks: {
               'text-xs text-ds-gray-800 flex items-center gap-1.5',
               'underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
             ]}
+            href="/rss.xml"
+            title="site rss"
+            rel="noopener noreferrer"
+          >
+            <Rss size={12} />
+          </a>
+          <a
+            class:list={[
+              'text-xs text-ds-gray-800 flex items-center gap-1.5',
+              'underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+            ]}
             href={siteConfig.repoUrl}
-            target="_blank"
             title="matix-blog"
+            target="_blank"
             rel="noopener noreferrer"
           >
             <Github size={12} />

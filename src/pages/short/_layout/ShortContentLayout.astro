@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDate } from '@/lib/utils'
 import { Image } from 'astro:assets'
@@ -62,22 +63,19 @@ const {
             {
               category.map((cat: string) => {
                 return (
-                  <a
+                  <Link
+                    href={`/short/category/${cat}`}
                     title={cat}
                     class={cn(
                       'flex items-center justify-center space-x-[2px] group no-underline',
                       'after:!content-none hover:!no-underline',
                     )}
-                    href={`/short/category/${cat}`}
                   >
-                    <HashIcon className={cn(
-                      'size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000',
-                    )}
-                    ></HashIcon>
-                    <span class="text-sm  text-ds-gray-800 link hover:text-ds-gray-1000">
+                    <HashIcon className="size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000" />
+                    <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000">
                       {cat}
                     </span>
-                  </a>
+                  </Link>
                 )
               })
             }

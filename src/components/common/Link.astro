@@ -1,0 +1,23 @@
+---
+type Props = {
+  href: string
+  title: string
+  class: string
+}
+
+const { class: className, href, title } = Astro.props
+
+const target = href.startsWith('/') ? '' : '_blank'
+---
+
+<a
+  href={href}
+  target={target}
+  aria-label={title}
+  title={title}
+  class={className}
+>
+  <slot>
+    <span>{title}</span>
+  </slot>
+</a>

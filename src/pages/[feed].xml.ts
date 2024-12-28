@@ -1,10 +1,25 @@
 import type { APIContext } from 'astro'
 import { siteConfig } from '@/config/site'
 import { getPosts, getShorts } from '@/lib/fetchers'
-import rss from '@astrojs/rss'
+import rss, { type RSSFeedItem } from '@astrojs/rss'
+
+const feedTypes: string[] = [
+  'rss',
+  'post',
+  'short',
+]
+
+export function getStaticPaths() {
+  return feedTypes.map((feed) => {
+    return { params: { feed } }
+  })
+}
 
 export async function GET(context: APIContext) {
   try {
+    const feed = context.params.feed
+    const feedItems: RSSFeedItem[] = []
+
     const postsData = (await getPosts()).map(post => ({
       title: post.data.title,
       description: post.data.description,
@@ -20,12 +35,20 @@ export async function GET(context: APIContext) {
       author: siteConfig.author,
       link: `/${short.collection}/${short.id}/`,
     }))
-    // Return RSS feed
+    if (feed === 'rss') {
+      feedItems.push(...postsData, ...shortData)
+    }
+    if (feed === 'post') {
+      feedItems.push(...postsData)
+    }
+    if (feed === 'short') {
+      feedItems.push(...shortData)
+    }
     return rss({
       title: siteConfig.title,
       description: siteConfig.description,
       site: context.site ?? siteConfig.url,
-      items: [...postsData, ...shortData],
+      items: feedItems,
     })
   }
   catch (error) {

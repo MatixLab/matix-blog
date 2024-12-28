@@ -12,21 +12,36 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
     <h2 class="font-bold col-span-1 md:col-span-2">
       Recent&nbsp; Post
     </h2>
-    <a
-      href="/post"
-      title="View all"
-      class:list={[
-        'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-        'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
-        'col-span-1 md:col-span-2 text-end md:text-start',
-      ]}
-    >
+    <div class="col-span-1 md:col-span-2 text-end md:text-start">
       {
         allPosts.length
-        ? 'View all'
-        : ''
+        ? (
+          <a
+            href="/post"
+            title="View all posts"
+            rel="noopener noreferrer"
+            class:list={[
+              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
+              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+            ]}
+          >
+            View all
+          </a>
+          <a
+            href="/post.xml"
+            title="Feed post rss"
+            rel="noopener noreferrer"
+            class:list={[
+              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
+              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
+            ]}
+          >
+            Rss
+          </a>
+        )
+        : null
       }
-    </a>
+    </div>
   </dt>
   <dd class="list-content border-none pt-0 space-y-1">
       {

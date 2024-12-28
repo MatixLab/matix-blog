@@ -2,9 +2,8 @@ import type { SiteConfig } from '@/types'
 
 export const siteConfig: SiteConfig = {
   author: 'AnthonyZhu',
-  name: 'AnthonyZhu',
   title: 'Anthony\'s Blog',
-  description: 'An modern blog built with Astro 5.0 & shadcn-ui.',
+  description: 'A Full Stack Developer.',
   url: 'https://www.huakucha.top',
   repoUrl: 'https://github.com/MatixLab/matix-blog',
   ogImage: 'https://www.huakucha.top/og.jpg',
