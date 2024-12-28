@@ -122,5 +122,8 @@ export const MdxComponents = {
       {...props}
     />
   ),
+  code: ({ className, ...props }: Props) => (
+    <code className={cn('w-full', className)} {...props} />
+  ),
   Callout,
 }

@@ -38,7 +38,7 @@ const category = Astro.url.pathname.split('/')[3] || ''
                       title={item}
                       href={`/post/category/${item}`}
                       class={cn(
-                        'flex items-center w-full text-base py-1',
+                        'flex items-center w-full text-sm py-1',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
                         (item === category) && 'font-medium text-black dark:text-white',
                       )}

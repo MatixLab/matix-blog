@@ -26,17 +26,23 @@ a[aria-hidden='true'] {
   @apply after:content-none;
 }
 
-html .astro-code,
-html .astro-code span {
-  background-color: hsl(0deg 0% 96.38%) !important;
+html .astro-code {
+  background-color: #f5f5f5 !important;
 }
 
 
-html.dark .astro-code,
-html.dark .astro-code span {
+html.dark .astro-code {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
   font-style: var(--shiki-dark-font-style) !important;
   font-weight: var(--shiki-dark-font-weight) !important;
   text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+span.line.highlighted {
+  margin-left: -12px;
+  margin-right: -12px;
+  width: calc(100% + 24px);
+  display: inline-block;
+  background-color: #e4e4e4;
 }
