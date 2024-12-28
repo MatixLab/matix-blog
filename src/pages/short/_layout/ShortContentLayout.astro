@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { cn, formatDate } from '@/lib/utils'
+import { cn, formatDateWithYear } from '@/lib/utils'
 import { Image } from 'astro:assets'
 import { ArrowUpLeft, HashIcon } from 'lucide-react'
 
@@ -58,7 +58,7 @@ const {
           <span
             class="text-ds-gray-600 text-sm mr-2"
           >
-            { formatDate(updatedDate) }
+            { formatDateWithYear(updatedDate) }
           </span>
             {
               category.map((cat: string) => {

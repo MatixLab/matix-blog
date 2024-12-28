@@ -13,7 +13,6 @@ export type MenuItem = NavItem & {
   description?: string
   launched?: boolean
   external?: boolean
-  forceReload?: boolean
 }
 
 export type MainNavItem = NavItem
@@ -37,6 +36,7 @@ export interface SiteConfig {
     github: string
     blueSky: string
     notion: string
+    email: string
   }
   pagination: {
     pageSize: number

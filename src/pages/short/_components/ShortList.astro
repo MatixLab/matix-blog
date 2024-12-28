@@ -1,5 +1,6 @@
 ---
-import { formatSimpleDate } from '@/lib/utils.ts'
+import Link from '@/components/common/Link.astro'
+import { cn, formatSimpleDate } from '@/lib/utils.ts'
 import { type CollectionEntry } from 'astro:content'
 import { HashIcon } from 'lucide-react'
 
@@ -42,13 +43,13 @@ const { shorts, years } = Astro.props
                   >
                     {itemIndex === 0 ? year : ''}
                   </span>
-                  <a
+                  <Link
                     href={`/short/${item.id}`}
                     title={item.id}
-                    class:list={[
+                    class={cn(
                       'col-span-12 md:col-span-11 group-hover/list-item:text-gray-900',
                       'dark:group-hover/list-item:text-ds-gray-500',
-                    ]}
+                    )}
                   >
                     <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                       <span class="col-span-1 text-left tabular-nums">
@@ -80,7 +81,7 @@ const { shorts, years } = Astro.props
                         }
                       </span>
                     </span>
-                  </a>
+                  </Link>
                 </li>
               )
             })}

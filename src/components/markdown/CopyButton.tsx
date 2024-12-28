@@ -30,7 +30,6 @@ export function CopyButton({
         'text-zinc-800 hover:bg-zinc-50 hover::bg-zinc-800',
         className,
       )}
-      data-copy={value}
       onClick={() => {
         window.navigator.clipboard.writeText(value)
         setHasCopied(true)

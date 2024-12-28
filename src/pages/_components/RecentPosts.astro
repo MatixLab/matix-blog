@@ -1,7 +1,8 @@
 ---
+import Link from '@/components/common/Link.astro'
 import { siteConfig } from '@/config/site'
 import { getPosts } from '@/lib/fetchers'
-import { formatDateWithYear } from '@/lib/utils'
+import { cn, formatDateWithYear } from '@/lib/utils'
 
 const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
 
@@ -16,28 +17,26 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
       {
         allPosts.length
         ? (
-          <a
+          <Link
             href="/post"
             title="View all posts"
-            rel="noopener noreferrer"
-            class:list={[
+            class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
-            ]}
+            )}
           >
             View all
-          </a>
-          <a
+          </Link>
+          <Link
             href="/post.xml"
             title="Feed post rss"
-            rel="noopener noreferrer"
-            class:list={[
+            class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
-            ]}
+            )}
           >
             Rss
-          </a>
+          </Link>
         )
         : null
       }
@@ -47,7 +46,7 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
       {
         allPosts.length
         ? (
-          <div class="text-sm">
+          <div class="text-[15px]">
             <div class="group/list-wrapper">
               <ul class="list-none space-y-4">
                 {
@@ -58,13 +57,13 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
                           class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
                         >
                           <div class="grid grid-cols-3 md:grid-cols-5 items-center">
-                            <a
+                            <Link
                               title={item.data.title}
                               href={`/post/${item.id}`}
                               class="col-span-2 md:col-span-4 line-clamp-1"
                             >
                               {item.data.title}
-                            </a>
+                            </Link>
                             <span class="col-span-1 text-end">
                               <time datetime={item.data.pubDate.toDateString()}>
                                 { formatDateWithYear(item.data.pubDate) }

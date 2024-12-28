@@ -6,10 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(date: Date) {
-  return dayjs(date).format('MMMM D YYYY, HH:mm A')
-}
-
 export function formatSimpleDate(date: Date) {
   return dayjs(date).format('MM/DD')
 }

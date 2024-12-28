@@ -1,7 +1,8 @@
 ---
+import Link from '@/components/common/Link.astro'
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
-import { formatDateWithYear } from '@/lib/utils'
+import { cn, formatDateWithYear } from '@/lib/utils'
 
 const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
 
@@ -16,28 +17,26 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
       {
         allShorts.length
         ? (
-          <a
+          <Link
             href="/short"
             title="View all shorts"
-            rel="noopener noreferrer"
-            class:list={[
+            class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
-            ]}
+            )}
           >
             View all
-          </a>
-          <a
+          </Link>
+          <Link
             href="/short.xml"
             title="Feed short rss "
-            rel="noopener noreferrer"
-            class:list={[
+            class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
-            ]}
+            )}
           >
             Rss
-          </a>
+          </Link>
         )
         : null
       }
@@ -47,14 +46,14 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
     {
       allShorts.length
       ? (
-        <div class="text-sm">
+        <div class="text-[15px]">
           <div class="group/list-wrapper">
             <ul class="list-none space-y-4">
               {
                 allShorts.map((item) => {
                   return (
                     <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
-                      <a
+                      <Link
                         href={`/short/${item.id}`}
                         title={item.data.title}
                         class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
@@ -73,7 +72,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
                             </time>
                           </span>
                         </div>
-                      </a>
+                      </Link>
                     </li>
                   )
                 })

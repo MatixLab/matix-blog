@@ -6,26 +6,25 @@ import { Icon } from 'astro-icon/components'
 <dl class="list-container">
   <dt class="list-title !border-none pb-4 pt-0 leading-relaxed sm:pb-0 px-2">
     <h1 class="flex items-center gap-1">
-      <a
+      <Link
         href="/"
         title={siteConfig.author}
-        aria-label={siteConfig.author}
         class="font-bold"
       >
         { siteConfig.author}
-      </a>
+      </Link>
     </h1>
-    <span class="text-ds-gray-800 dark:text-silver-dark text-sm">
+    <span class="text-ds-gray-800 dark:text-silver-dark text-[15px]">
       Full Stack Developer
     </span>
   </dt>
-  <dd class="list-content !border-none px-2 space-y-4 text-sm">
+  <dd class="list-content !border-none px-2 space-y-4 text-[15px]">
     <p>
       Hey 👋 I'm { siteConfig.author}, a full stack developer at
       <Link
         href="https://www.oki.com/"
         title="OKI"
-        class="text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900"
+        class="text-sm text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900"
       />
       .
     </p>
@@ -34,7 +33,7 @@ import { Icon } from 'astro-icon/components'
       <Link
         href="https://www.winning.com.cn/"
         title="WinningHealth"
-        class="text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900"
+        class="text-sm text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900"
       />
       in ChangZhou.
     </p>
@@ -43,18 +42,36 @@ import { Icon } from 'astro-icon/components'
       You can find me on :
     </p>
     <div class="flex space-x-8 ml-4">
-      <a href={siteConfig.links.github} target="_blank" aria-label="github" title="Github">
+      <Link
+        href={siteConfig.links.github}
+        title="Github"
+      >
         <Icon name="simple-icons:github" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-      </a>
-      <a href={siteConfig.links.twitter} target="_blank" aria-label="x" title="x">
+      </Link>
+      <Link
+        href={siteConfig.links.twitter}
+        title="x"
+      >
         <Icon name="simple-icons:x" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-      </a>
-      <a href={siteConfig.links.blueSky} target="_blank" aria-label="blueSky" title="blueSky">
+      </Link>
+      <Link
+        href={siteConfig.links.blueSky}
+        title="blueSky"
+      >
         <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-      </a>
-      <a href={siteConfig.links.notion} target="_blank" aria-label="notion" title="notion">
+      </Link>
+      <Link
+        href={siteConfig.links.notion}
+        title="notion"
+      >
         <Icon name="simple-icons:notion" class="size-5 inline-flex opacity-50 hover:opacity-100" />
-      </a>
+      </Link>
+      <Link
+        href={`mailto:${siteConfig.links.email}`}
+        title="email"
+      >
+        <Icon name="simple-icons:mailgun" class="size-5 inline-flex opacity-50 hover:opacity-100" />
+      </Link>
     </div>
   </dd>
 </dl>

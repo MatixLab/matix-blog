@@ -45,7 +45,7 @@ export default defineConfig({
           'settings',
           'search',
         ],
-        'simple-icons': ['github', 'x', 'bluesky', 'notion'],
+        'simple-icons': ['github', 'x', 'bluesky', 'notion', 'mailgun'],
       },
     }),
     partytown({
@@ -78,6 +78,7 @@ export default defineConfig({
         transformerMetaWordHighlight(),
         {
           pre(node) {
+            node.properties.__lang__ = this.options.lang
             node.properties.__rawString__ = this.source
           },
         },
@@ -85,7 +86,6 @@ export default defineConfig({
     },
     rehypePlugins: [
       rehypeSlug,
-      // rehypeHeadingIds,
       [
         rehypeAutolinkHeadings,
         {

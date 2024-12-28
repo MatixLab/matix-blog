@@ -24,7 +24,6 @@ const ListItem: React.FC<MenuItem> = ({
   launched,
   disabled,
   external,
-  forceReload,
 }) => {
   const target = external ? '_blank' : undefined
 
@@ -34,18 +33,19 @@ const ListItem: React.FC<MenuItem> = ({
         target={target}
         title={title}
         href={disabled ? undefined : href}
-        {...(forceReload ? { 'data-astro-reload': true } : {})}
         className={cn(
-          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors text-ds-gray-1000',
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
           'hover:bg-accent focus:bg-accent focus:text-accent-foreground',
+          'text-ds-gray-900 hover:text-ds-gray-1000',
           disabled
             ? 'text-muted-foreground hover:bg-transparent hover:text-muted-foreground hover:cursor-not-allowed'
             : '',
         )}
       >
-        <div className="flex items-center text-sm font-medium leading-none">
-          <span className="mr-2">{title}</span>
-
+        <div className="flex items-center text-sm leading-none">
+          <span className="mr-2">
+            {title}
+          </span>
           {
             disabled
               ? (
@@ -113,7 +113,6 @@ export function MainNavigationMenu({
                             ? 'text-black dark:text-white'
                             : 'text-ds-gray-900',
                         )}
-                        {...(link.forceReload ? { 'data-astro-reload': true } : {})}
                       >
                         {link.title}
                       </a>
