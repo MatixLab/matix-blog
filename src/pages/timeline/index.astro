@@ -1,54 +1,95 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import { Badge } from '@/components/ui/badge'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { formatDateWithYear } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
 import { getCollection, render } from 'astro:content'
 
 const timeline = await getCollection('timeline')
-timeline.sort((a, b) => +b.data.date - +a.data.date);
+
+const timelineData: {
+  [prop: string]: CollectionEntry<'timeline'>[]
+} = {}
+
+timeline.forEach((item) => {
+  const year = item.data.pubDate.getFullYear()
+  if (!timelineData[year]) {
+    timelineData[year] = []
+  }
+  timelineData[year].push(item)
+})
+const years = Object.keys(timelineData).sort((a, b) => {
+  return Number(b) - Number(a)
+})
+
 ---
 
 <MainLayout
   title="Timeline"
 >
   <section class="container max-w-[948px] space-y-6 pt-12">
-    <ul class="pt-6">
-      {
-        timeline.map(timeline => (
-          <li class="flex flex-col max-md:gap-y-4 md:flex-row w-full">
-            <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
-              <div class="md:sticky md:top-24 w-auto mr-6">
-                <span
-                  class="flex flex-col gap-y-2 pb-4"
-                >
-                  <Badge
-                    variant="default"
-                    className="w-2/3 h-7 justify-center text-sm bg_release_version text-white"
-                  >
-                    {formatDateWithYear(timeline.data.date)}
-                  </Badge>
-                </span>
-              </div>
-            </div>
+    {
+      years.length
+      ? (
+        <div class="flex flex-col items-stretch gap-12">
+          {
+            years.map((year) => {
+              return (
+                <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
+                  <div class="flex items-center">
+                    <span class="text-xl font-semibold">{year}</span>
+                    <hr class="my-0 ml-4 flex-1 border-dashed border-gray-200" />
+                  </div>
+                  <section>
+                    {
+                      timelineData[year].map((line, index) => {
+                        return (
+                          <div class="relative flex pb-8 last:pb-0">
+                            {
+                              (index !== timelineData[year].length - 1)
+                              ? (
+                                <div class="absolute inset-0 flex w-6 items-center justify-center">
+                                  <div class="pointer-events-none h-full w-px border-l border-gray-200" />
+                                </div>
+                              )
+                              : null
+                            }
+                            <div class="z-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus "><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                            </div>
+                            <div class="grow pl-8">
+                              <div class="word-break-word flex flex-col">
+                                {
+                                  render(line).then(({ Content }) => (
+                                    <Content
+                                      components={{
+                                        ...MdxComponents,
+                                        img: IMG,
+                                        Image: IMG,
+                                        pre: Pre,
+                                      }}
+                                    />
+                                  ))
+                                }
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
+                  </section>
+                </div>
+              )
+            })
+          }
+        </div>
+      )
+      : null
+    }
+    <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
 
-            <div class="prose dark:prose-invert prose-img:rounded-3xl max-w-none w-full pb-12">
-              {render(timeline).then(({ Content }) => (
-                <Content
-                  components={{
-                    ...MdxComponents,
-                    img: IMG,
-                    Image: IMG,
-                    pre: Pre,
-                  }}
-                />
-              ))}
-            </div>
-          </li>
-        ))
-      }
-    </ul>
+    </div>
   </section>
 </MainLayout>

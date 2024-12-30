@@ -27,8 +27,7 @@ export const timeline = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      versionNumber: z.string(),
-      date: z.date({ coerce: true }),
+      pubDate: z.date({ coerce: true }),
     }),
 })
 
