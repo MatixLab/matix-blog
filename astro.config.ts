@@ -44,7 +44,7 @@ export default defineConfig({
           'laptop',
           'settings',
           'search',
-          'circle-plus',
+          'plus',
         ],
         'simple-icons': ['github', 'x', 'bluesky', 'notion', 'mailgun'],
       },
