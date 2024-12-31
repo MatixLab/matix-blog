@@ -4,7 +4,7 @@ import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { Icon } from 'astro-icon/components'
+import { formatSimpleDate } from '@/lib/utils'
 import { getCollection, render } from 'astro:content'
 
 const timeline = await getCollection('timeline')
@@ -39,7 +39,7 @@ const years = Object.keys(timelineData).sort((a, b) => {
               return (
                 <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
                   <div class="flex items-center">
-                    <span class="text-xl font-semibold">{year}</span>
+                    <span class="text-xl font-bold">{year}</span>
                     <hr class="my-0 ml-4 flex-1 border-dashed border-gray-200" />
                   </div>
                   <section>
@@ -56,8 +56,8 @@ const years = Object.keys(timelineData).sort((a, b) => {
                               )
                               : null
                             }
-                            <div class="z-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
-                              <Icon name="lucide:plus" />
+                            <div class="rounded-md p-1 bg-ds-gray-1000 text-ds-gray-100">
+                              { formatSimpleDate(line.data.pubDate) }
                             </div>
                             <div class="grow pl-8">
                               <div class="word-break-word flex flex-col">
