@@ -39,7 +39,7 @@ const portfolio: portfolioType[] = [
     url: 'https://onur.dev',
     description: 'Software Engineer, DJ, writer, and minimalist, based in Amsterdam, The Netherlands',
     ogUrl: 'https://onur.dev/opengraph-image',
-    tags: 'Blog',
+    tags: 'Share',
   },
   {
     name: 'iDoubi',
@@ -49,9 +49,29 @@ const portfolio: portfolioType[] = [
   },
   {
     name: 'JerryQu',
-    url: 'https://imququ.com/',
+    url: 'https://imququ.com',
     description: '专注 Web 开发',
-    tags: 'Blog',
+    tags: 'Tech',
+  },
+  {
+    name: 'Guangzheng Li',
+    url: 'https://guangzhengli.com',
+    description: '一个还在重新学习，重塑思想的开发者',
+    tags: 'Share,Indie',
+  },
+  {
+    name: 'Bra',
+    url: 'https://bra.live',
+    description: 'A flying idealist',
+    ogUrl: 'https://bra.live/content/images/2019/02/blog-bg---.jpg',
+    tags: 'Share,Indie',
+  },
+  {
+    name: 'pipuwong',
+    url: 'https://pipuwong.com',
+    description: 'Pipu的个人网站: 记录学习、分享、创造，追求未来无限可能',
+    ogUrl: 'https://pipuwong.com/favicon.png',
+    tags: 'Share',
   },
 ].map((ele: portfolioType) => {
   ele.id = ++idx
