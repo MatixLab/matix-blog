@@ -27,11 +27,6 @@ a[aria-hidden='true'] {
 }
 
 html .astro-code {
-  background-color: #fbfbfb !important;
-}
-
-
-html.dark .astro-code {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
   font-style: var(--shiki-dark-font-style) !important;
@@ -39,10 +34,11 @@ html.dark .astro-code {
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
+
 span.line.highlighted {
   margin-left: -12px;
   margin-right: -12px;
   width: calc(100% + 24px);
   display: inline-block;
-  background-color: #e4e4e4;
+  background-color: rgba(63, 63, 70, .5);
 }

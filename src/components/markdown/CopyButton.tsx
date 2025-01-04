@@ -27,7 +27,7 @@ export function CopyButton({
       variant="ghost"
       className={cn(
         'relative z-10 h-6 w-6 dark:text-zinc-50 dark:hover:bg-zinc-700 dark:hover:text-zinc-50',
-        'text-zinc-800 hover:bg-zinc-50 hover::bg-zinc-800',
+        'text-zinc-50 hover:bg-zinc-700 hover:text-zinc-100',
         className,
       )}
       onClick={() => {

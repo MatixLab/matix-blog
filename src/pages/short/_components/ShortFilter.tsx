@@ -33,7 +33,7 @@ export function ShortFilter({
               Category
             </div>
             <span className="mr-2">
-              {category || 'all'}
+              { decodeURI(category || 'all') }
             </span>
           </div>
         </Button>

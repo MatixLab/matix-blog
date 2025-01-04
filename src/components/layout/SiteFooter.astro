@@ -20,6 +20,9 @@ const footerLinks: {
   { title: 'Credits', url: '/credits' },
 ]
 
+// eslint-disable-next-line no-undef
+const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 6)
+
 ---
 
 <footer class:list={[
@@ -70,7 +73,7 @@ const footerLinks: {
           aria-hidden="true"
           role="img"
         >
-          You can be what you want to be.
+          You can what you wanna be.
         </div>
         <div class="flex gap-4">
           <Link
@@ -92,7 +95,7 @@ const footerLinks: {
             title="matix-blog"
           >
             <Github size={12} />
-            matix-blog
+            matix-blog/{gitHash}
           </Link>
         </div>
       </div>
