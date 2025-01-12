@@ -10,16 +10,26 @@ import BaseLayout from './BaseLayout.astro'
 type Props = {
   title: string
   description?: string
+  image?: string
+  imageAlt?: string
   mainClass?: string
 }
 
-const { title, description, mainClass } = Astro.props
 const segment = extractSegmentURL(Astro.url.pathname)
+const {
+  title,
+  description,
+  mainClass,
+  image = `https://img.huakucha.top${Astro.url.pathname}.webp`,
+  imageAlt,
+  } = Astro.props
 ---
 
 <BaseLayout
   title={title}
   description={description}
+  image={image}
+  imageAlt={imageAlt}
 >
   <div class="relative flex min-h-screen flex-col bg-background">
     <SiteHeader>

@@ -6,8 +6,8 @@ import { cn, formatDateWithYear } from '@/lib/utils'
 
 const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
 
----
 
+---
 <dl class="list-container">
   <dt class="list-title grid grid-cols-2 align-middle md:block px-2">
     <h2 class="font-bold col-span-1 md:col-span-2">
@@ -19,7 +19,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
         ? (
           <Link
             href="/short"
-            title="View all shorts"
+            title="View all posts"
             class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
@@ -29,7 +29,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
           </Link>
           <Link
             href="/short.xml"
-            title="Feed short rss "
+            title="Feed post rss"
             class={cn(
               'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
               'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
@@ -43,50 +43,47 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
     </div>
   </dt>
   <dd class="list-content border-none pt-0 space-y-1">
-    {
-      allShorts.length
-      ? (
-        <div class="text-[15px]">
-          <div class="group/list-wrapper">
-            <ul class="list-none space-y-4">
-              {
-                allShorts.map((item) => {
-                  return (
-                    <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
-                      <Link
-                        href={`/short/${item.id}`}
-                        title={item.data.title}
-                        class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
-                      >
-                        <div class="grid grid-cols-4 md:grid-cols-5 items-center">
-                          <span
-                            class="col-span-3 md:col-span-4 line-clamp-1"
-                          >
-                            {item.data.title}
-                          </span>
-                          <span class="col-span-1 text-end">
-                            <time
-                              datetime={item.data.pubDate.toDateString()}
+      {
+        allShorts.length
+        ? (
+          <div class="text-[15px]">
+            <div class="group/list-wrapper">
+              <ul class="list-none space-y-4">
+                {
+                  allShorts.map((item) => {
+                    return (
+                      <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
+                        <span
+                          class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500"
+                        >
+                          <div class="grid grid-cols-3 md:grid-cols-5 items-center">
+                            <Link
+                              title={item.data.title}
+                              href={`/post/${item.id}`}
+                              class="col-span-2 md:col-span-4 line-clamp-1"
                             >
-                              { formatDateWithYear(item.data.pubDate) }
-                            </time>
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                  )
-                })
-              }
-            </ul>
+                              {item.data.title}
+                            </Link>
+                            <span class="col-span-1 text-end">
+                              <time datetime={item.data.pubDate.toDateString()}>
+                                { formatDateWithYear(item.data.pubDate) }
+                              </time>
+                            </span>
+                          </div>
+                        </span>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
           </div>
-        </div>
-      )
-      : (
-        <div class="text-sm flex items-center text-center size-full">
-          That's all for now. Come back later for more.
-        </div>
-      )
-    }
+        )
+        : (
+          <div class="text-sm flex items-center text-center size-full">
+            That's all for now. Come back later for more.
+          </div>
+        )
+      }
   </dd>
 </dl>
-

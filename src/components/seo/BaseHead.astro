@@ -8,47 +8,60 @@ interface Props {
   title: string
   description?: string
   image?: string
+  imageAlt?: string
 }
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const {
   title,
   description,
-  image = '/post-placeholder-1.jpg',
+  image,
+  imageAlt,
 } = Astro.props;
 ---
-<!-- TODO add seo -->
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <link rel="icon" href="/favicon.ico" />
+<title>{title ? `${title} | ${siteConfig.author}` : siteConfig.author}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
-
+<meta name="title" content={title ? `${title} | ${siteConfig.author}` : siteConfig.author} />
+<meta name="description" content={description} />
+<meta name="author" content={siteConfig.author} />
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
-
-<!-- Primary Meta Tags -->
-<title>{title ? `${title} | ${siteConfig.author}` : siteConfig.author}</title>
-<meta name="title" content={title ? `${title} | ${siteConfig.author}` : siteConfig.author} />
-<meta name="description" content={description} />
-
-<!-- Open Graph / Facebook -->
+<link rel="robots" href="/robots.txt" />
+<link rel="alternate" type="application/rss+xml" title={siteConfig.title} href="/rss.xml" />
+<!-- OG -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{
+  image ? <meta property="og:image" content={new URL(image, Astro.url)} /> : null
+}
+{
+  imageAlt ? <meta property="og:image:alt" content={imageAlt} /> : null
+}
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:site" content="@hukucha10" />
+<meta property="twitter:creator" content="@hukucha10" />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{
+  image ? <meta property="twitter:image" content={new URL(image, Astro.url)} /> : null
+}
+{
+  imageAlt ? <meta property="twitter:image:alt" content={imageAlt} /> : null
+}
+<!-- Font preloads -->
+<link rel="preload" href="/fonts/GeistMonoVF.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin />
 
 <ClientRouter />
 <LoadingIndicator />

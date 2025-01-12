@@ -12,11 +12,11 @@ let idx = 0
 interface portfolioType {
   name: string
   url: string
-  description: string
+  description?: string
   ogUrl?: string
   tags: string
-  type?: ResourceType
-  id?: number
+  type: ResourceType
+  id: number
 }
 
 const portfolio: portfolioType[] = [
@@ -25,14 +25,14 @@ const portfolio: portfolioType[] = [
     url: 'https://www.joshwcomeau.com',
     description: 'Friendly tutorials for developers. Focus on React, CSS, Animation, and more!',
     ogUrl: 'https://www.joshwcomeau.com/opengraph-image.png',
-    tags: 'React,CSS,Animation',
+    tags: 'React,CSS',
   },
   {
     name: 'Joshua Wootonn',
     url: 'https://www.joshuawootonn.com',
     description: 'Full-stack engineer creating polished software',
     ogUrl: 'https://portfolio-5j17xv4l4-joshua-wootonns-projects.vercel.app/seo.png',
-    tags: 'React,UI',
+    tags: 'React,Component',
   },
   {
     name: 'Onur Şuyalçınkaya',
@@ -46,12 +46,6 @@ const portfolio: portfolioType[] = [
     url: 'https://idoubi.cv',
     description: 'Full-Stack Engineer, Indie Maker.',
     tags: 'AI',
-  },
-  {
-    name: 'JerryQu',
-    url: 'https://imququ.com',
-    description: '专注 Web 开发',
-    tags: 'Tech',
   },
   {
     name: 'Guangzheng Li',
@@ -70,10 +64,9 @@ const portfolio: portfolioType[] = [
     name: 'pipuwong',
     url: 'https://pipuwong.com',
     description: 'Pipu的个人网站: 记录学习、分享、创造，追求未来无限可能',
-    ogUrl: 'https://pipuwong.com/favicon.png',
     tags: 'Share',
   },
-].map((ele: portfolioType) => {
+].map((ele: any) => {
   ele.id = ++idx
   ele.type = ResourceType.PORTFOLIO
   return ele
@@ -96,7 +89,7 @@ const subscribe: portfolioType[] = [
     tags: 'Weekly',
     type: ResourceType.SUBSCRIBE,
   },
-].map((ele: portfolioType) => {
+].map((ele: any) => {
   ele.id = ++idx
   return ele
 })

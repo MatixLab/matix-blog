@@ -93,23 +93,24 @@
 
   * {
     @apply border-border;
-  }
-
-  html {
-    @apply scroll-pt-16 lg:scroll-pt-0;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent
   }
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* scrollbar */ 
   ::-webkit-scrollbar {
-    width: 2px;
+    width: 3px
   }
-  ::-webkit-scrollbar:horizontal {
-    height: 2px;
+
+  ::-webkit-scrollbar-track {
+    background: transparent
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 5px
   }
 
   ::selection:not(img) {
