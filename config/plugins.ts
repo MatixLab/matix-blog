@@ -4,9 +4,16 @@ import {
   transformerMetaWordHighlight,
 } from '@shikijs/transformers'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
+import { createCssVariablesTheme } from 'shiki/core'
+
+export const customTheme = createCssVariablesTheme({
+  name: 'anthonyZhu',
+  variablePrefix: '--shiki-',
+  variableDefaults: {},
+  fontStyle: true,
+})
 
 export const rehypePlugins: RehypePlugins = [
   rehypeSlug,
@@ -35,10 +42,7 @@ export const rehypePlugins: RehypePlugins = [
 ]
 
 export const shikiConfig: ShikiConfig = {
-  themes: {
-    light: 'github-dark-high-contrast',
-    dark: 'github-dark-high-contrast',
-  },
+  theme: customTheme,
   transformers: [
     transformerMetaHighlight({
       className: 'has-highlight',

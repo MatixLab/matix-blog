@@ -6,25 +6,31 @@ const props = Astro.props
 ---
 
 <div class="copy-code-wrapper">
-  <div class="code-header flex space-between center px-1">
-    <div class="code-filename flex center gap-half">
-      <div class="code-icon">
-        IconLang
-      </div>
+  <div class="code-header flex justify-between items-center px-1">
+    <div class="code-filename flex items-center">
       <span class="mono small-text lh-1">title</span>
     </div>
     <div class="code-copy">
-      <button class="copy-btn" data-id="cp" data-copy-btn>
-        <span data-id="copy-icon" class="btn-holder btn-icon-copy">
-          <CopyButton
-            value={props.__rawString__}
-            className={cn('absolute right-2 top-2')}
-            client:load
-          />
-        </span>
-      </button>
+      {props.__rawString__ && (
+        <CopyButton
+          value={props.__rawString__}
+          client:load
+        />
+      )}
     </div>
   </div>
+  <pre
+    data-lang={props.__meta__}
+    class={cn(
+    'flex max-h-[500px] overflow-x-auto w-full',
+    props.class,
+  )}
+  >
+    <slot />
+  </pre>
+</div>
+
+<!-- <figure class="relative">
   <pre
     data-lang={props.__meta__}
     class={cn(
@@ -34,5 +40,12 @@ const props = Astro.props
     style={{ ...props?.style }}
   >
     <slot />
+    {props.__rawString__ && (
+      <CopyButton
+        value={props.__rawString__}
+        className={cn('absolute right-2 top-2')}
+        client:load
+      />
+    )}
   </pre>
-</div>
+</figure> -->

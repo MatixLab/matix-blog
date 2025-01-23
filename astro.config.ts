@@ -38,9 +38,6 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     mdx(),
-    /**
-     *  https://docs.astro.build/zh-cn/guides/integrations-guide/sitemap
-     */
     sitemap(),
     react(),
     icon({
@@ -100,7 +97,6 @@ export default defineConfig({
       name: 'vite-plugin-git-revision-info',
       config() {
         return {
-          // 全局变量，可以在整个应用中使用
           define: {
             PUBLIC_GIT_REVISION_INFO: res,
           },

@@ -1,4 +1,3 @@
-import Callout from '@/components/markdown/callout.astro'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
 
@@ -10,7 +9,7 @@ export const MdxComponents = {
   h1: ({ className, ...props }: Props) => (
     <h1
       className={cn(
-        'mt-2 scroll-m-20 text-4xl font-bold tracking-tight',
+        'mt-2 scroll-m-20 text-4xl  font-semibold tracking-tight',
         className,
       )}
       {...props}
@@ -19,7 +18,7 @@ export const MdxComponents = {
   h2: ({ className, ...props }: Props) => (
     <h2
       className={cn(
-        'mt-10 scroll-m-20 border-b pb-1 text-2xl font-semibold tracking-tight first:mt-0',
+        'mt-10 scroll-m-20 pb-1 text-2xl font-semibold tracking-tight first:mt-0',
         className,
       )}
       {...props}
@@ -122,5 +121,4 @@ export const MdxComponents = {
       {...props}
     />
   ),
-  Callout,
 }

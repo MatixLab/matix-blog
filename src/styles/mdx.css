@@ -1,9 +1,14 @@
-/* callout */
-.callout>* {
-  @apply my-0 !important;
+.prose a {
+  @apply no-underline text-blue-500 font-normal;
 }
-.font-icon-callout {
-  font-family: Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+a[aria-hidden='true'] {
+  @apply after:content-none;
+}
+
+
+/* remove image margin y */
+.prose img {
+  @apply my-0;
 }
 
 /* MdxComponent: For <code></code> with no parent <pre></pre> */
@@ -11,21 +16,15 @@
   @apply relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-background text-foreground;
 }
 
-
-.prose a {
-  @apply no-underline text-blue-500 font-normal;
+/* Highlight */
+.line.has-highlight {
+  background: var(--highlight);
 }
 
-/* remove image margin y */
-.prose img {
-  @apply my-0;
-}
-
-/* hidden link content */
-a[aria-hidden='true'] {
-  @apply after:content-none;
-}
-
-pre code {
-  width: 100%;
+span.highlighted-word {
+  background-color: var(--highlight);
+  border: 1px solid var(--highlight);
+  padding: 1px 3px;
+  margin: -1px -3px;
+  border-radius: 4px;
 }
