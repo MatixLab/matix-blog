@@ -135,6 +135,9 @@ export default defineConfig({
   },
 
   vite: {
+    server: {
+      allowedHosts: true,
+    },
     optimizeDeps: {
       include: ['lucide-react'],
     },
