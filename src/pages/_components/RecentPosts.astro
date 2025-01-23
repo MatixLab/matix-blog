@@ -21,8 +21,8 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
             href="/post"
             title="View all posts"
             class={cn(
-              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+              'duration-500 ease-in-out decoration-1',
             )}
           >
             View all
@@ -31,8 +31,8 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber)
             href="/post.xml"
             title="Feed post rss"
             class={cn(
-              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
+              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+              'duration-500 ease-in-out decoration-1 pl-2',
             )}
           >
             Rss
