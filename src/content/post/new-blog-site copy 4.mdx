@@ -1,0 +1,78 @@
+---
+title: "New blog site"
+description: "新的一年，我又开始折腾起了我的博客"
+pubDate: "2024/12/25"
+updatedDate: "2024/12/25"
+category:
+  - "日常"
+  - "Astro"
+---
+
+2024 年中的时候曾经用 `next.js` 折腾过新的博客，但是由于 Cloudflare 的各种环境问题以及框架复杂度。所以最终还是选择用 `Astro` 作为搭建博客的基础框架。
+
+## 为什么还在折腾博客
+
+> 很多东西你可以不用，但是不能没有 XD
+
+博客是一个记录自己的地方，虽然我也并不擅长说故事，但是有一个可以表达的地方也是挺棒的。那可能有人会说为什么不适用现有的 Blog 平台，这不是省去了大量的时间? 有下面几点:
+
+1. Local-first 和 Self-host-first。我对云存储的服务并不是很信任，所以我更加倾向于自建博客。
+2. Free-first。我只说三次,免费,免费,还是 TMD 免费! 所以虽然有类似于 `Ghost` 这样的开源博客系统，但是毕竟需要单独的云服务器,而 Netlify、Cloudflare 或者 Vercel 都有一定的"白嫖"套餐，对于一个没啥流量的个人博客来说已经是绰绰有余了。
+3. 足够的自由度。自己搭建这就意味着你可以完全按照个人的想法去定制你的博客,虽然难度相对更高一点(比如SEO、性能优化...)，但是你收获的也会更多。
+
+自己搭建博客的方式并不适合所有人,人的本质是懒惰。所以如果你更加追求效率的话，大可以选择其他博客平台，或者采用一些开源的博客系统...
+
+## 用了什么
+
+新的站点使用了下面的几种技术:
+
+- Astro (基础框架)
+- React (UI 框架)
+- ShadCN UI (UI 组件，很喜欢它那种简约的风格)
+- Tailwind CSS (功能优先的 CSS 框架)
+- Netlify (部署平台,由 Cloudflare Page 转过来的...)
+- Shiki (代码高亮)
+- MDX
+
+## 为什么使用 Astro
+
+首先它足够的简洁，虽然提供的功能较为简单，但是对于一个简单的博客已经是足够了。而且 Astro 的 [群岛架构](https://docs.astro.build/zh-cn/concepts/islands/) 可以很容易的与其他 UI 框架结合，比如我的这个站点就是使用 `Astro + React` 搭建的 (至于为什么不选择 Vue,只是单纯的不喜欢 Vue 的写法而已,本质上并没有什么优劣)。
+
+其次是我很喜欢 Astro 的 `Content Loader`(Astro v5 版本前的 Content Collection 也很棒)。最初使用 next.js 时，我就很喜欢 [ContentLayer](https://contentlayer.dev/),但是由于作者的"断更",以及无法在 Cloudflare Page 上部署的问题,导致我放弃使用 next.js,转而使用对内容集合天然支持的 Astro。
+
+## 为什么部署在 Netlify
+
+实际上，这个博客我本来是部署在 Cloudflare Page 上的,但由于 Cf 的各种环境问题导致我选又切换到了对 Node 支持更好的 Netlify (Vercel 主要部署一些 next.js 的项目)。
+
+## 迁移是否方便
+
+> 如果你是从 next.js 迁移过来，我个人觉得还是没有什么复杂度(可能我的要求并不是很高...)
+
+首先 Astro 也是基于文件路由的，这一点和 next.js 类似, 并且 Astro 可以很好的集成 `React`，这也就意味者你可以使用 React 庞大生态中的各种组件!
+
+然后是 Astro 的语法和 `jsx` 很像，所以使用 Astro 的时候应该会感觉很熟悉！当然, 官方也提供了一份简单的[迁移手册](https://docs.astro.build/zh-cn/guides/migrate-to-astro/from-nextjs/)。
+
+## 目前状态
+
+博客目前还处于开发状态(如果你 star/fork 了 [该项目](https://github.com/MatixLab/matix-blog)，我也很欢迎)，所以很多功能还没有编写,下面是待完成的 roadmap:
+
+- 增加 rss 订阅 (不同的页面有各自的订阅源)
+- SEO 优化
+- 样式优化, 统一不同画面的样式
+- 抽取组件，简化代码逻辑
+- 增加脚本,简化编写博客的复杂度
+
+好了，这次搭建博客大概率可以"自我满足"很长一段时间了。还有目前博客也在构建外链中，欢迎大家在 Issue 中[提交你的博客站](https://github.com/MatixLab/matix-blog/issues/new/choose)，我会定时查看并且收集到我的[Portfolios](/resource/portfolios) 中。如果有幸得到你的提交，希望可以按照下面的格式提交:
+
+```jsonc
+{
+  // 你的名字
+  name: "xxx",
+  // 博客地址
+  url: "https://www.example.com",
+  // 你的简介
+  description: "xxxxxxxx",
+  // 你的 OG　地址 [可选]
+  ogUrl: "xxx",
+}
+```

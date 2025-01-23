@@ -5,7 +5,26 @@ import { cn } from '@/lib/utils'
 const props = Astro.props
 ---
 
-<figure class="relative">
+<div class="copy-code-wrapper">
+  <div class="code-header flex space-between center px-1">
+    <div class="code-filename flex center gap-half">
+      <div class="code-icon">
+        IconLang
+      </div>
+      <span class="mono small-text lh-1">title</span>
+    </div>
+    <div class="code-copy">
+      <button class="copy-btn" data-id="cp" data-copy-btn>
+        <span data-id="copy-icon" class="btn-holder btn-icon-copy">
+          <CopyButton
+            value={props.__rawString__}
+            className={cn('absolute right-2 top-2')}
+            client:load
+          />
+        </span>
+      </button>
+    </div>
+  </div>
   <pre
     data-lang={props.__meta__}
     class={cn(
@@ -15,12 +34,5 @@ const props = Astro.props
     style={{ ...props?.style }}
   >
     <slot />
-    {props.__rawString__ && (
-      <CopyButton
-        value={props.__rawString__}
-        className={cn('absolute right-2 top-2')}
-        client:load
-      />
-    )}
   </pre>
-</figure>
+</div>

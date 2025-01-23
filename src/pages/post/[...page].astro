@@ -1,6 +1,6 @@
 ---
 import type { PaginateFunction } from 'astro'
-import { PaginationBar } from '@/components/common/PaginationBar'
+import Pagination from '@/components/common/Pagination.astro'
 import { siteConfig } from '@/config/site'
 import { getPosts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
@@ -36,6 +36,7 @@ page.data.forEach((post) => {
 const years = Object.keys(posts).sort((a, b) => {
   return Number(b) - Number(a)
 })
+
 ---
 <BlogLayout
   title="Posts"
@@ -45,14 +46,14 @@ const years = Object.keys(posts).sort((a, b) => {
     <section class="ml-1 pt-8">
       <BlogList years={years} posts={posts} />
       {
-        page.data.length && page.data.length > siteConfig.pagination.pageSize
+        page.total && page.total > siteConfig.pagination.pageSize
         ? (
           <div class="mt-6">
-            <PaginationBar
+            <Pagination
               currentPage={page.currentPage}
               totalPages={page.lastPage}
-              baseUrl="/post/"
-              client:load
+              prevUrl={page.url.prev || ''}
+              nextUrl={page.url.next || ''}
             />
           </div>
         )

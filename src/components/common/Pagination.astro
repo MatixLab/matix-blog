@@ -1,0 +1,68 @@
+---
+export interface Props {
+  currentPage: number
+  totalPages: number
+  prevUrl: string
+  nextUrl: string
+}
+
+const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props
+
+const prev = currentPage > 1 ? '' : 'disabled'
+const next = currentPage < totalPages ? '' : 'disabled';
+---
+
+<div class="mt">
+  {
+    totalPages > 1 && (
+      <nav aria-label="Pagination" class="flex gap-2 text-sm">
+        { prev === 'disabled' && <span aria-disabled>Previous</span>}
+        { prev !== 'disabled' && (
+          <a
+            aria-label="Previous"
+            data-astro-prefetch="viewport"
+            href={prevUrl}
+          >
+            <span>Prev</span>
+          </a>
+        )}
+        { currentPage } / { totalPages }
+        { next === 'disabled' && <span aria-disabled>Next</span>}
+        { next !== 'disabled' && (
+          <a
+            href={nextUrl}
+            aria-label="Next"
+            data-astro-prefetch="viewport"
+          >
+            <span>Next</span>
+          </a>
+        )}
+      </nav>
+    )
+  }
+</div>
+
+<style>
+  [aria-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #171717;
+  }
+
+  a > span {
+    transition: 0.5s ease;
+    border-bottom: 1.5px solid rgba(33, 33, 33, 0.2);
+  }
+
+  a:hover > span {
+    border-bottom-color: #171717;
+  }
+</style>
+

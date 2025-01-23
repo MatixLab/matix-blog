@@ -26,23 +26,6 @@ a[aria-hidden='true'] {
   @apply after:content-none;
 }
 
-html .astro-code {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-
-span.line.highlighted {
-  margin-left: -12px;
-  margin-right: -12px;
-  width: calc(100% + 24px);
-  display: inline-block;
-  background-color: rgba(63, 63, 70, .5);
-}
-
 pre code {
   width: 100%;
 }

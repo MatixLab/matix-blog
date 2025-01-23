@@ -8,18 +8,13 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import playformCompress from '@playform/compress'
-import {
-  transformerMetaHighlight,
-  transformerMetaWordHighlight,
-  transformerNotationFocus,
-} from '@shikijs/transformers'
 import icon from 'astro-icon'
+import { defineConfig } from 'astro/config'
+
 import {
-  defineConfig,
-} from 'astro/config'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeExternalLinks from 'rehype-external-links'
-import rehypeSlug from 'rehype-slug'
+  rehypePlugins,
+  shikiConfig,
+} from './config/plugins'
 
 import { schema } from './env.schema'
 
@@ -78,48 +73,8 @@ export default defineConfig({
   },
 
   markdown: {
-    shikiConfig: {
-      themes: {
-        light: 'github-dark-high-contrast',
-        dark: 'github-dark-high-contrast',
-      },
-      transformers: [
-        transformerNotationFocus(),
-        transformerMetaHighlight(),
-        transformerMetaWordHighlight(),
-        {
-          pre(node) {
-            node.properties.__meta__ = this.options.meta?.__raw
-            node.properties.__rawString__ = this.source
-          },
-        },
-      ],
-    },
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'prepend',
-          properties: {
-            className: ['subheading-anchor'],
-            ariaLabel: 'Link to section',
-            ariaHidden: 'true',
-          },
-        },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['nofollow', 'noreferrer', 'noopener'],
-          properties: {
-            className: ['link'],
-          },
-          content: { type: 'text', value: ' ↗' },
-        },
-      ],
-    ],
+    shikiConfig,
+    rehypePlugins,
   },
 
   image: {
