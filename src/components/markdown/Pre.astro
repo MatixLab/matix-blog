@@ -1,26 +1,35 @@
 ---
 import { CopyButton } from '@/components/markdown/CopyButton'
-import { cn } from '@/lib/utils'
 
 const props = Astro.props
 ---
 
-<figure class="relative">
+<div class="code-wrapper not-prose">
+  <div class="code-header">
+    {
+      props.__title__ && (
+        <div class="code-filename flex items-center">
+          <span class="text-black">{props.__title__}</span>
+        </div>
+      )
+    }
+    <div class="absolute right-2 flex items-center">
+      {props.__rawString__ && (
+        <CopyButton
+          value={props.__rawString__}
+          client:load
+        />
+      )}
+    </div>
+  </div>
   <pre
-    data-lang={props.__meta__}
-    class={cn(
-    'flex max-h-[500px] overflow-x-auto w-full',
-    props.class,
-  )}
+    data-lang={props.__lang__}
+    class:list={[
+      'grid max-h-[500px] overflow-x-auto w-full',
+      props.class,
+    ]}
     style={{ ...props?.style }}
   >
     <slot />
-    {props.__rawString__ && (
-      <CopyButton
-        value={props.__rawString__}
-        className={cn('absolute right-2 top-2')}
-        client:load
-      />
-    )}
   </pre>
-</figure>
+</div>

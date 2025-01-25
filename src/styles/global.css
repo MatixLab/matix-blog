@@ -1,96 +1,12 @@
+@import 'variables.css';
+@import 'mdx.css';
+@import 'common.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
-
-    /* geist */
-    --ds-background-100: 0 0% 100%;
-    --ds-background-200: 0 0% 98%;  
-    --ds-gray-100: 0 0% 95%;
-    --ds-gray-200: 0 0% 92%;
-    --ds-gray-300: 0 0% 90%;
-    --ds-gray-400: 0 0% 92%;
-    --ds-gray-500: 0 0% 79%;
-    --ds-gray-600: 0 0% 66%;
-    --ds-gray-700: 0 0% 56%;
-    --ds-gray-800: 0 0% 49%;
-    --ds-gray-900: 0 0% 40%;
-    --ds-gray-1000: 0 0% 9%;
-  }
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    /*geist*/
-    --ds-gray-100: 0 0% 10%;
-    --ds-gray-200: 0 0% 12%;
-    --ds-gray-300: 0 0% 16%;
-    --ds-gray-400: 0 0% 18%;
-    --ds-gray-500: 0 0% 27%;
-    --ds-gray-600: 0 0% 53%;
-    --ds-gray-700: 0 0% 56%;
-    --ds-gray-800: 0 0% 49%;
-    --ds-gray-900: 0 0% 63%;
-    --ds-gray-1000: 0 0% 93%;
-  }
-}
-
-
-@layer base {
-  @font-face {
-    font-family: 'Geist';
-    src: url('/fonts/GeistVF.woff2') format('woff2');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Geist Mono';
-    src: url('/fonts/GeistMonoVF.woff2') format('woff2');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
   * {
     @apply border-border;
     scrollbar-width: thin;
@@ -119,22 +35,5 @@
   ::selection img {
     @apply bg-none;
   }
-}
-
-.list-container {
-  @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
-}
-
-.list-container:last-of-type {
-  @apply mb-0;
-}
-
-.list-title {
-  @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
-}
-
-
-.list-content {
-  @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
 }
 

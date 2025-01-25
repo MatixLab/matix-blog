@@ -16,8 +16,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['Geist', ...defaultTheme.fontFamily.sans],
-        mono: ['Geist Mono', ...defaultTheme.fontFamily.mono],
+        sans: ['IBM Plex Sans', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',

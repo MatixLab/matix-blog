@@ -1,6 +1,6 @@
 ---
 import type { PaginateFunction } from 'astro'
-import { PaginationBar } from '@/components/common/PaginationBar'
+import Pagination from '@/components/common/Pagination.astro'
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
 import { type CollectionEntry } from 'astro:content'
@@ -55,15 +55,14 @@ const years = Object.keys(shorts).sort((a, b) => {
     <section class="ml-1 pt-8">
       <ShortList years={years} shorts={shorts} />
       {
-        page.data.length && page.data.length > siteConfig.pagination.pageSize
+        page.total && page.total > siteConfig.pagination.pageSize
         ? (
           <div class="mt-6">
-            <PaginationBar
+            <Pagination
               currentPage={page.currentPage}
               totalPages={page.lastPage}
-              baseUrl="/short/category"
-              suffix={`/${category}`}
-              client:load
+              prevUrl={page.url.prev || ''}
+              nextUrl={page.url.next || ''}
             />
           </div>
         )

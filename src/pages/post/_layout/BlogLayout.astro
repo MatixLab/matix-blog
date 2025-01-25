@@ -41,7 +41,7 @@ const category = Astro.url.pathname.split('/')[3] || ''
                       class={cn(
                         'flex items-center w-full text-sm py-1',
                         'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                        (item === category) && 'font-medium text-black dark:text-white',
+                        (item === decodeURI(category)) && 'font-medium text-black dark:text-white',
                       )}
                     >
                       <HashIcon className="size-3 mr-1"></HashIcon>
@@ -66,14 +66,11 @@ const category = Astro.url.pathname.split('/')[3] || ''
       </div>
       <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <slot name="head-name">
-          <h1 class="mt-2 scroll-m-20 text-2xl font-bold tracking-tight hidden md:block">
+          <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight hidden md:block">
             { description }
           </h1>
         </slot>
         <slot name="right-content" />
-        <p class="pt-8 pb-4 text-sm mx-auto text-center text-ds-gray-800">
-          That's all for now. Come back later for more.
-        </p>
       </div>
     </main>
   </section>

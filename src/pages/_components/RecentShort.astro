@@ -21,8 +21,8 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
             href="/short"
             title="View all posts"
             class={cn(
-              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px]',
+              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+              'duration-500 ease-in-out decoration-1',
             )}
           >
             View all
@@ -31,8 +31,8 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
             href="/short.xml"
             title="Feed post rss"
             class={cn(
-              'text-ds-gray-700 text-xs underline underline-offset-4 decoration-1 decoration-ds-gray-700',
-              'hover:text-ds-gray-1000/80 hover:decoration-[1.2px] pl-2',
+              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
+              'duration-500 ease-in-out decoration-1 pl-2',
             )}
           >
             Rss
@@ -59,7 +59,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
                           <div class="grid grid-cols-3 md:grid-cols-5 items-center">
                             <Link
                               title={item.data.title}
-                              href={`/post/${item.id}`}
+                              href={`/short/${item.id}`}
                               class="col-span-2 md:col-span-4 line-clamp-1"
                             >
                               {item.data.title}
