@@ -59,7 +59,7 @@ const {
           <span
             class="text-ds-gray-600 text-sm mr-2"
           >
-            { formatDateWithYear(updatedDate) }
+            Published On { formatDateWithYear(updatedDate) }
           </span>
             {
               category.map((cat: string) => {
@@ -107,10 +107,10 @@ const {
           )
           : null
         }
+        <hr class="my-6 max-w-24 mx-auto" />
         <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
           {description}
         </blockquote>
-        <hr class="my-6 max-w-24 mx-auto" />
         <slot />
       </article>
     </main>

@@ -1,30 +1,62 @@
-.prose a {
-  @apply no-underline text-blue-500 font-normal;
-}
-a[aria-hidden='true'] {
-  @apply after:content-none;
-}
+@layer utilities {
+
+  /* #region a link style */
+  .prose a {
+    @apply text-gray-600 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900 duration-500 ease-in-out decoration-[1.5px] px-1;
+  }
+  /* #endregion */
+
+  
+  /* #region image style */
+  .prose img {
+    @apply my-0;
+  }
+  /* #endregion */
 
 
-/* remove image margin y */
-.prose img {
-  @apply my-0;
-}
+  /* #region code style and shiki highlight*/
 
-/* MdxComponent: For <code></code> with no parent <pre></pre> */
-:not(pre)>code {
-  @apply relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-background text-foreground;
-}
+  .code-wrapper.not-prose{
+    @apply relative rounded border-[1px]  border-solid border-gray-300;
+    pre code {
+      @apply grid text-[15px] py-4;
+    }
+    pre code .line {
+      @apply px-2 leading-6;
+    }
+    .code-header {
+      @apply flex justify-between items-center px-4 border-b-gray-300 bg-gray-100/25 h-12 border-b-[1px] border-solid;
+    }
 
-/* Highlight */
-.line.has-highlight {
-  background: var(--highlight);
-}
+    .line.has-highlight {
+      background: var(--highlight);
+    }
 
-span.highlighted-word {
-  background-color: var(--highlight);
-  border: 1px solid var(--highlight);
-  padding: 1px 3px;
-  margin: -1px -3px;
-  border-radius: 4px;
+    span.highlighted-word {
+      background-color: var(--highlight);
+      border: 1px solid var(--highlight);
+      padding: 1px 3px;
+      margin: -1px -3px;
+      border-radius: 4px;
+    }
+  }
+
+  :not(pre)>code {
+    @apply relative rounded border px-[0.3rem] py-[0.2rem] text-[15px] bg-background text-foreground;
+  }
+  /* #endregion */
+
+  /* #region list */
+  .prose ul {
+    list-style-type: none;
+  }
+  .prose ul > li{
+    @apply relative pl-2;
+  }
+  .prose  ul li:before {
+    @apply inline-block absolute -ml-6;
+    content: "—";
+    color: inherit;
+  }
+  /* #endregion */
 }

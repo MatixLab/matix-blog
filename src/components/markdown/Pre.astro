@@ -1,16 +1,19 @@
 ---
 import { CopyButton } from '@/components/markdown/CopyButton'
-import { cn } from '@/lib/utils'
 
 const props = Astro.props
 ---
 
-<div class="copy-code-wrapper">
-  <div class="code-header flex justify-between items-center px-1">
-    <div class="code-filename flex items-center">
-      <span class="mono small-text lh-1">title</span>
-    </div>
-    <div class="code-copy">
+<div class="code-wrapper not-prose">
+  <div class="code-header">
+    {
+      props.__title__ && (
+        <div class="code-filename flex items-center">
+          <span class="text-black">{props.__title__}</span>
+        </div>
+      )
+    }
+    <div class="absolute right-2 flex items-center">
       {props.__rawString__ && (
         <CopyButton
           value={props.__rawString__}
@@ -20,32 +23,13 @@ const props = Astro.props
     </div>
   </div>
   <pre
-    data-lang={props.__meta__}
-    class={cn(
-    'flex max-h-[500px] overflow-x-auto w-full',
-    props.class,
-  )}
+    data-lang={props.__lang__}
+    class:list={[
+      'grid max-h-[500px] overflow-x-auto w-full',
+      props.class,
+    ]}
+    style={{ ...props?.style }}
   >
     <slot />
   </pre>
 </div>
-
-<!-- <figure class="relative">
-  <pre
-    data-lang={props.__meta__}
-    class={cn(
-    'flex max-h-[500px] overflow-x-auto w-full',
-    props.class,
-  )}
-    style={{ ...props?.style }}
-  >
-    <slot />
-    {props.__rawString__ && (
-      <CopyButton
-        value={props.__rawString__}
-        className={cn('absolute right-2 top-2')}
-        client:load
-      />
-    )}
-  </pre>
-</figure> -->

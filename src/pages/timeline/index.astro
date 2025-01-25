@@ -39,7 +39,7 @@ const years = Object.keys(timelineData).sort((a, b) => {
               return (
                 <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
                   <div class="flex items-center">
-                    <span class="text-xl font-bold">{year}</span>
+                    <span class="text-3xl font-bold items-center">{year}</span>
                     <hr class="my-0 ml-4 flex-1 border-dashed border-gray-200" />
                   </div>
                   <section>
@@ -56,7 +56,7 @@ const years = Object.keys(timelineData).sort((a, b) => {
                               )
                               : null
                             }
-                            <div class="rounded-md p-1 bg-ds-gray-1000 text-ds-gray-100">
+                            <div class="rounded-md p-1 bg-ds-gray-1000 text-ds-gray-100 text-sm">
                               { formatSimpleDate(line.data.pubDate) }
                             </div>
                             <div class="grow pl-8">

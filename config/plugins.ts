@@ -8,8 +8,8 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 import { createCssVariablesTheme } from 'shiki/core'
 
-export const customTheme = createCssVariablesTheme({
-  name: 'anthonyZhu',
+const vercelTheme = createCssVariablesTheme({
+  name: 'vercel',
   variablePrefix: '--shiki-',
   variableDefaults: {},
   fontStyle: true,
@@ -24,7 +24,6 @@ export const rehypePlugins: RehypePlugins = [
       properties: {
         className: ['subheading-anchor'],
         ariaLabel: 'Link to section',
-        ariaHidden: 'true',
       },
     },
   ],
@@ -41,8 +40,15 @@ export const rehypePlugins: RehypePlugins = [
   ],
 ]
 
+function parseMetaBlock(metaRaw?: string) {
+  if (!metaRaw)
+    return null
+  const titleMatch = metaRaw.match(/title="([^"]*)"/)
+  return titleMatch?.[1] ?? null
+}
+
 export const shikiConfig: ShikiConfig = {
-  theme: customTheme,
+  theme: vercelTheme,
   transformers: [
     transformerMetaHighlight({
       className: 'has-highlight',
@@ -50,7 +56,8 @@ export const shikiConfig: ShikiConfig = {
     transformerMetaWordHighlight(),
     {
       pre(node) {
-        node.properties.__meta__ = this.options.meta?.__raw
+        node.properties.__lang__ = this.options.lang
+        node.properties.__title__ = parseMetaBlock(this.options.meta?.__raw)
         node.properties.__rawString__ = this.source
       },
     },

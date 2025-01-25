@@ -1,0 +1,25 @@
+---
+import ibmPlexNormal from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url'
+import ibmPlexMedium from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2?url'
+import ibmPlexSemiBold from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2?url'
+import ibmPlexBold from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff2?url'
+import '@fontsource/ibm-plex-sans/latin.css'
+
+const preloadFonts = [
+  ibmPlexNormal,
+  ibmPlexMedium,
+  ibmPlexSemiBold,
+  ibmPlexBold,
+]
+---
+{
+  preloadFonts.map(font => (
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={font}
+      crossorigin="anonymous"
+    />
+  ))
+}
