@@ -53,10 +53,9 @@
   .prose ul > li{
     @apply relative pl-2;
   }
-  .prose  ul li:before {
-    @apply inline-block absolute -ml-6;
+  .prose ul li:before {
+    @apply inline-block -ml-6 text-inherit font-medium mr-2;
     content: "—";
-    color: inherit;
   }
   /* #endregion */
 }
