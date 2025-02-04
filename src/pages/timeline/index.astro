@@ -37,7 +37,7 @@ const years = Object.keys(timelineData).sort((a, b) => {
           {
             years.map((year) => {
               return (
-                <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
+                <div class="flex flex-col items-center gap-6 md:flex-row md:gap-12">
                   <div class="flex items-center">
                     <span class="text-3xl font-bold items-center">{year}</span>
                     <hr class="my-0 ml-4 flex-1 border-dashed border-gray-200" />
@@ -88,8 +88,7 @@ const years = Object.keys(timelineData).sort((a, b) => {
       )
       : null
     }
-    <div class="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
-
+    <div class="flex flex-col items-center gap-6 md:flex-row md:gap-12">
     </div>
   </section>
 </MainLayout>

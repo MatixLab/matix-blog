@@ -17,7 +17,7 @@ const { data: subscribes } = await Astro.callAction(actions.SITE.GET, ResourceTy
       {
         subscribes?.map((subscribe) => {
           return (
-            <li>
+            <li class="flex">
               <MarkCard
                 url={subscribe.url}
                 name={subscribe.name}

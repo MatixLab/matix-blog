@@ -40,7 +40,6 @@ export interface SiteConfig {
   }
   pagination: {
     pageSize: number
-    pageBtnNum: number
   }
   home: {
     displayNumber: number

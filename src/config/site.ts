@@ -16,8 +16,7 @@ export const siteConfig: SiteConfig = {
   },
   // pagination
   pagination: {
-    pageSize: 2,
-    pageBtnNum: 5,
+    pageSize: 10,
   },
   home: {
     displayNumber: 5,

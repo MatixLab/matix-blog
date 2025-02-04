@@ -17,7 +17,7 @@ const { data: portfolios } = await Astro.callAction(actions.SITE.GET, ResourceTy
       {
         portfolios?.map((portfolio) => {
           return (
-            <li>
+            <li class="flex">
               <MarkCard
                 url={portfolio.url}
                 name={portfolio.name}

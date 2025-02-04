@@ -10,7 +10,7 @@ export function MarkCard({ url, name, tags, description, children }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <div className="flex justify-between items-center">
+        <div className="flex  flex-1 justify-between items-center">
           <a
             href={`${url}?ref=huakucha.top`}
             target="_blank"
