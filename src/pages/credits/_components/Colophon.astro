@@ -10,7 +10,7 @@ import { credits } from '../_data'
     credits.Colophon.map((item) => {
       return (
       <li class="mt-2">
-        <span class="text-sm text-ds-gray-1000">{item.desc}: </span>
+        <span class="text-[15px] text-ds-gray-1000">{item.desc}: </span>
         <Link
           href={`${item.url}?ref=huakucha.top`}
           title={item.title}
@@ -18,8 +18,8 @@ import { credits } from '../_data'
         >
           <span
             class:list={[
-              'text-ds-gray-1000 underline underline-offset-4',
-              'decoration-ds-gray-500 hover:decoration-ds-gray-800  decoration-1 text-sm font-medium',
+              'text-[15px] text-ds-gray-1000 underline underline-offset-4 duration-500 ease-in-out',
+              'decoration-ds-gray-500 hover:decoration-ds-gray-800  decoration-1',
             ]}
           >
             {item.title}

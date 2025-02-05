@@ -9,7 +9,7 @@ export const navMenuConfig: NavMenuConfig = {
       ],
     },
     {
-      title: 'Tools',
+      title: 'Time',
       items: [
         { title: 'Timeline', href: '/timeline' },
       ],
@@ -18,6 +18,7 @@ export const navMenuConfig: NavMenuConfig = {
   links: [
     { title: 'Post', href: '/post' },
     { title: 'Short', href: '/short' },
+    { title: 'Projects', href: '/projects' },
     { title: 'Uses', href: '/uses' },
   ],
 }

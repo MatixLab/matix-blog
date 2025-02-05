@@ -3,14 +3,14 @@ import type { ResourceItem } from '@/types'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { ArrowUpLeft } from 'lucide-react'
-import { uses } from './_data'
+import { projects } from './_data'
 
-const useTypes = Object.keys(uses)
+const projectTypes = Object.keys(projects)
 ---
 
 <MainLayout
-  title="Uses"
-  description="Things of Choice."
+  title="Projects"
+  description="Projects that I create."
 >
   <section class:list={[
     'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
@@ -37,15 +37,16 @@ const useTypes = Object.keys(uses)
       </div>
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
-          Things of Choice.
+          List of Projects.
         </h1>
         {
-          useTypes.map((type) => {
+          projectTypes.map((type) => {
             return (
               <h2 class="mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{type}</h2>
+
               <ul class="my-2 ml-1 list-disc">
                 {
-                  uses[type].map((item: ResourceItem) => {
+                  projects[type].map((item: ResourceItem) => {
                     return (
                       item.url
                         ? (
@@ -53,11 +54,11 @@ const useTypes = Object.keys(uses)
                             <Link
                               href={`${item.url}?ref=huakucha.top`}
                               title={item.title}
-                              class="break-words after:content-['_↗'] text-ds-gray-1000 after:text-ds-gray-1000"
+                              class="break-words text-ds-gray-1000 after:text-ds-gray-1000"
                             >
                               <span
                                 class:list={[
-                                  'font-medium text-ds-gray-1000 underline underline-offset-4 decoration-1',
+                                  'font-medium text-ds-gray-1000 underline underline-offset-4 decoration-1 duration-500 ease-in-out',
                                   'decoration-ds-gray-500 hover:decoration-ds-gray-800 text-[15px]',
                                 ]}
                               >
@@ -65,20 +66,11 @@ const useTypes = Object.keys(uses)
                               </span>
                             </Link>
                             {
-                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — For {item.desc}</span>
+                              item.desc && <span class="text-[15px] text-ds-gray-1000"> : {item.desc}</span>
                             }
                           </li>
                         )
-                        : (
-                          <li class="mt-2">
-                            <span class="font-medium text-ds-gray-1000 text-[15px]">
-                              {item.title}
-                            </span>
-                            {
-                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — For {item.desc}</span>
-                            }
-                          </li>
-                        )
+                        : null
                     )
                   })
                 }

@@ -16,6 +16,7 @@ const Apps: ResourceItem[] = [
   { title: 'VSCode', desc: 'Coding', url: 'https://code.visualstudio.com/' },
   { title: 'Obsidian', desc: 'Knowledge management', url: 'https://obsidian.md/' },
   { title: 'MonitorControl', desc: 'Control my display', url: 'https://monitorcontrol.app/' },
+  { title: 'Ollama', desc: 'LLM management', url: 'https://ollama.com/' },
 ]
 
 export const uses = {
