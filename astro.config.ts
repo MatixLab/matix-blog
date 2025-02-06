@@ -85,7 +85,9 @@ export default defineConfig({
     responsiveImages: true,
     svg: true,
   },
-
+  build: {
+    redirects: false,
+  },
   vite: {
     server: {
       allowedHosts: true,
