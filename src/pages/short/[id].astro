@@ -6,6 +6,7 @@ import { getShorts } from '@/lib/fetchers'
 import { type CollectionEntry, render } from 'astro:content'
 import ShortContentLayout from './_layout/ShortContentLayout.astro'
 
+export const prerender = true
 export async function getStaticPaths() {
   const shorts = await getShorts()
   return shorts.map(short => ({

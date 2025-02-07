@@ -107,6 +107,7 @@ export default defineConfig({
     schema,
     validateSecrets: false,
   },
+  output: 'server',
   adapter: netlify({
     cacheOnDemandPages: false,
   }),

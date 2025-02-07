@@ -5,6 +5,7 @@ import { Image } from 'astro:assets'
 import { MarkCard } from '../_components/HoverCard'
 import ResourceLayout from '../_layout/ResourceLayout.astro'
 
+export const prerender = true
 const { data: subscribes } = await Astro.callAction(actions.SITE.GET, ResourceType.SUBSCRIBE)
 ---
 
