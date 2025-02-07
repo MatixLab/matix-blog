@@ -31,7 +31,7 @@ const res = JSON.stringify(await generateGitData())
  */
 export default defineConfig({
   site: 'https://huakucha.top/',
-
+	prefetch: true,
   integrations: [
     db(),
     tailwind({
