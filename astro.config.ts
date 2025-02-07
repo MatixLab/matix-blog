@@ -79,14 +79,10 @@ export default defineConfig({
       protocol: 'https',
     }],
   },
-
   experimental: {
     contentIntellisense: true,
     responsiveImages: true,
     svg: true,
-  },
-  build: {
-    redirects: false,
   },
   vite: {
     server: {
