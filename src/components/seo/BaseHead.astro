@@ -20,6 +20,20 @@ const {
 } = Astro.props;
 ---
 
+<!-- Google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZGX09RBK"></script>
+<!-- partytown -->
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || []
+  window.gtag = function gtag() {
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', 'G-GSZGX09RBK')
+</script>
+
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <link rel="icon" href="/favicon.ico" />
@@ -64,14 +78,3 @@ const {
 <BaseFont />
 <ClientRouter />
 <LoadingIndicator />
-
-<!-- partytown -->
-<script type="text/partytown">
-  window.dataLayer = window.dataLayer || []
-  window.gtag = function gtag() {
-    // eslint-disable-next-line prefer-rest-params
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
-  gtag('config', 'G-GSZGX09RBK')
-</script>
