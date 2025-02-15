@@ -4,15 +4,15 @@ export const siteConfig: SiteConfig = {
   author: 'AnthonyZhu',
   title: 'Anthony\'s Blog',
   description: 'A Full Stack Developer.',
-  url: 'https://www.huakucha.top',
+  url: 'https://www.antzhu.com',
   repoUrl: 'https://github.com/MatixLab/matix-blog',
-  ogImage: 'https://www.huakucha.top/og.jpg',
+  ogImage: 'https://www.antzhu.com/og.jpg',
   links: {
     twitter: 'https://twitter.com/huakucha10',
     github: 'https://github.com/MagicalZhu',
     blueSky: 'https://bsky.app/profile/anthonyzhu.bsky.social',
     notion: 'https://huakucha.notion.site/1538b781a49980dfa194f936fb7f2422',
-    email: 'hi@huakucha.top',
+    email: 'hi@antzhu.com',
   },
   // pagination
   pagination: {

@@ -30,7 +30,7 @@ const res = JSON.stringify(await generateGitData())
  * https://astro.build/config
  */
 export default defineConfig({
-  site: 'https://huakucha.top/',
+  site: 'https://antzhu.com/',
   trailingSlash: 'never',
   prefetch: true,
   integrations: [
