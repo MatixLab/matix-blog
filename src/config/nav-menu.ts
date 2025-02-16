@@ -5,20 +5,20 @@ export const navMenuConfig: NavMenuConfig = {
     {
       title: 'Share',
       items: [
-        { title: 'Resource', href: '/resource/tools' },
+        { title: 'Resource', href: '/resource/tools/' },
       ],
     },
     {
       title: 'Time',
       items: [
-        { title: 'Timeline', href: '/timeline' },
+        { title: 'Timeline', href: '/timeline/' },
       ],
     },
   ],
   links: [
-    { title: 'Post', href: '/post' },
-    { title: 'Short', href: '/short' },
-    { title: 'Projects', href: '/projects' },
-    { title: 'Uses', href: '/uses' },
+    { title: 'Post', href: '/post/' },
+    { title: 'Short', href: '/short/' },
+    { title: 'Projects', href: '/projects/' },
+    { title: 'Uses', href: '/uses/' },
   ],
 }

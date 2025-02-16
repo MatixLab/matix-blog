@@ -48,7 +48,7 @@ export function FilterResource({
                 resources.map((res: Resource) => {
                   return (
                     <a
-                      href={`/resource/${res.routeName}`}
+                      href={`/resource/${res.routeName}/`}
                       key={res.name}
                       title={res.name}
                       onClick={() => {

@@ -45,7 +45,7 @@ export function ShortFilter({
             <DrawerTitle>Select the category of inquiry?</DrawerTitle>
             <div className="mt-2">
               <a
-                href="/short"
+                href="/short/"
                 title="All"
                 onClick={() => {
                   setCurrentCat('')
@@ -67,7 +67,7 @@ export function ShortFilter({
                 categories.map((cat: string) => {
                   return (
                     <a
-                      href={`/short/category/${cat}`}
+                      href={`/short/category/${cat}/`}
                       key={cat}
                       title={cat}
                       onClick={() => {

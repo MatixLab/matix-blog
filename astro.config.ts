@@ -31,7 +31,6 @@ const res = JSON.stringify(await generateGitData())
  */
 export default defineConfig({
   site: 'https://antzhu.com/',
-  trailingSlash: 'never',
   prefetch: true,
   integrations: [
     db(),
@@ -64,9 +63,6 @@ export default defineConfig({
       SVG: true,
     }),
   ],
-  build: {
-    format: 'file',
-  },
   devToolbar: {
     enabled: false,
   },

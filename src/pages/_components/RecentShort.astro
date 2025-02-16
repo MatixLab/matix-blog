@@ -18,7 +18,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
         allShorts.length
         ? (
           <Link
-            href="/short"
+            href="/short/"
             title="View all posts"
             class={cn(
               'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
@@ -59,7 +59,7 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
                           <div class="grid grid-cols-3 md:grid-cols-5 items-center">
                             <Link
                               title={item.data.title}
-                              href={`/short/${item.id}`}
+                              href={`/short/${item.id}/`}
                               class="col-span-2 md:col-span-4 line-clamp-1"
                             >
                               {item.data.title}

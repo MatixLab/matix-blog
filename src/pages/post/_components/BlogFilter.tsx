@@ -45,7 +45,7 @@ export function FilterMobile({
             <DrawerTitle>Select the category of inquiry?</DrawerTitle>
             <div className="mt-2">
               <a
-                href="/post"
+                href="/post/"
                 title="All"
                 onClick={() => {
                   setCurrentCat('')
@@ -67,7 +67,7 @@ export function FilterMobile({
                 categories.map((cat: string) => {
                   return (
                     <a
-                      href={`/post/category/${cat}`}
+                      href={`/post/category/${cat}/`}
                       key={cat}
                       title={cat}
                       onClick={() => {
