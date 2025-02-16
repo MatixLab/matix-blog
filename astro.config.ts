@@ -31,7 +31,7 @@ const res = JSON.stringify(await generateGitData())
  */
 export default defineConfig({
   site: 'https://antzhu.com/',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   prefetch: true,
   integrations: [
     db(),
