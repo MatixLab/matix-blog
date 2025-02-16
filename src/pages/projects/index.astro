@@ -1,8 +1,7 @@
 ---
-import type { ResourceItem } from '@/types'
-import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { ArrowUpLeft } from 'lucide-react'
+import Project from './_components/Project.astro'
 import { projects } from './_data'
 
 const projectTypes = Object.keys(projects)
@@ -38,46 +37,30 @@ const projectTypes = Object.keys(projects)
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
           List of Projects.
-        </h1>
-        {
-          projectTypes.map((type) => {
-            return (
-              <h2 class="mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{type}</h2>
-
-              <ul class="my-2 ml-1 list-disc">
-                {
-                  projects[type].map((item: ResourceItem) => {
-                    return (
-                      item.url
-                        ? (
-                          <li class="mt-2">
-                            <Link
-                              href={`${item.url}?ref=antzhu.com`}
-                              title={item.title}
-                              class="break-words text-ds-gray-1000 after:text-ds-gray-1000"
-                            >
-                              <span
-                                class:list={[
-                                  'font-medium text-ds-gray-1000 underline underline-offset-4 decoration-1 duration-500 ease-in-out',
-                                  'decoration-ds-gray-500 hover:decoration-ds-gray-800 text-[15px]',
-                                ]}
-                              >
-                                {item.title}
-                              </span>
-                            </Link>
-                            {
-                              item.desc && <span class="text-[15px] text-ds-gray-1000"> : {item.desc}</span>
-                            }
-                          </li>
+          {
+            projectTypes.map((type: string) => {
+              return (
+                <>
+                  <h2>{type}</h2>
+                  <div class="space-y-2">
+                    {
+                      projects[type].map((project: any) => {
+                        return (
+                          <Project
+                            url={project.url}
+                            title={project.title}
+                            desc={project.desc}
+                            tags={project.tags}
+                          />
                         )
-                        : null
-                    )
-                  })
-                }
-              </ul>
-            )
-          })
-        }
+                      })
+                    }
+                  </div>
+                </>
+              )
+            })
+          }
+        </h1>
       </article>
     </main>
   </section>

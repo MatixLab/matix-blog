@@ -54,6 +54,14 @@ export interface ResourceItem {
   cover?: string
 }
 
+export interface ProjectItem {
+  title: string
+  url: string
+  icon?: ''
+  desc?: string
+  tags?: string[]
+}
+
 export interface Resource {
   name: string
   routeName: string

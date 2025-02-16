@@ -8,15 +8,15 @@ const Device: ResourceItem[] = [
 ]
 
 const Apps: ResourceItem[] = [
-  { title: 'Chrome', desc: 'Browsing' },
-  { title: 'Follow', desc: 'Rss management' },
-  { title: 'ClashX', desc: 'Proxy' },
-  { title: 'DBeaver', desc: 'DB management', url: 'https://dbeaver.io/' },
-  { title: 'Notion', desc: 'Plan management', url: 'https://www.notion.so/' },
-  { title: 'VSCode', desc: 'Coding', url: 'https://code.visualstudio.com/' },
-  { title: 'Obsidian', desc: 'Knowledge management', url: 'https://obsidian.md/' },
-  { title: 'MonitorControl', desc: 'Control my display', url: 'https://monitorcontrol.app/' },
-  { title: 'Ollama', desc: 'LLM management', url: 'https://ollama.com/' },
+  { title: 'Chrome', desc: 'browsing' },
+  { title: 'Follow', desc: 'rss management' },
+  { title: 'ClashX', desc: 'proxy' },
+  { title: 'DBeaver', desc: 'database management', url: 'https://dbeaver.io/' },
+  { title: 'Notion', desc: 'plan management', url: 'https://www.notion.so/' },
+  { title: 'VSCode', desc: 'coding', url: 'https://code.visualstudio.com/' },
+  { title: 'Obsidian', desc: 'knowledge management', url: 'https://obsidian.md/' },
+  { title: 'MonitorControl', desc: 'control my display', url: 'https://monitorcontrol.app/' },
+  { title: 'Ollama', desc: 'llm management', url: 'https://ollama.com/' },
 ]
 
 export const uses = {

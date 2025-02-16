@@ -63,10 +63,6 @@ export default defineConfig({
       SVG: true,
     }),
   ],
-  devToolbar: {
-    enabled: false,
-  },
-
   markdown: {
     shikiConfig,
     rehypePlugins,
