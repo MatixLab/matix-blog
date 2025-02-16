@@ -65,7 +65,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    format: 'directory',
+    format: 'file',
   },
   devToolbar: {
     enabled: false,
