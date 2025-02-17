@@ -1,5 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
+import Tags from '@/components/common/Tags.astro'
 
 interface Props {
   url: string
@@ -27,11 +28,7 @@ const { url, title, tags, desc } = Astro.props
       </span>
     </Link>
     <span class="items-center ml-1 hidden md:flex space-x-2">
-      {
-        tags?.map((tag: string) => (
-          <span class="text-xs text-black inline-flex items-center rounded-md p-1 bg-gray-500/10">{tag}</span>
-        ))
-      }
+      <Tags tags={tags || []} />
     </span>
   </div>
   <div class="text-ds-gray-1000 text-sm">

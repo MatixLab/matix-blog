@@ -1,8 +1,8 @@
 ---
 import Link from '@/components/common/Link.astro'
+import Tags from '@/components/common/Tags.astro'
 import { cn, formatSimpleDate } from '@/lib/utils.ts'
 import { type CollectionEntry } from 'astro:content'
-import { HashIcon } from 'lucide-react'
 
 type Props = {
   shorts: {
@@ -67,18 +67,7 @@ const { shorts, years } = Astro.props
                       <span
                         class="line-clamp-1 md:col-span-3 items-center hidden md:flex md:space-x-2"
                       >
-                        {
-                          item.data.category.map((item) => {
-                            return (
-                              <span
-                                class="inline-flex items-center rounded-md px-2 py-1 ring-1 ring-inset ring-gray-500/10"
-                              >
-                                <HashIcon className="size-3" />
-                                {item}
-                              </span>
-                            )
-                          })
-                        }
+                        <Tags tags={item.data.category} />
                       </span>
                     </span>
                   </Link>
