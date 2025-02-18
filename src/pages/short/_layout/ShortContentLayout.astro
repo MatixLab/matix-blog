@@ -55,12 +55,13 @@ const {
         >
           {title}
         </h1>
-        <div class="flex items-center font-normal space-x-4">
-          <span
-            class="text-ds-gray-600 text-sm mr-2"
+        <div class="flex flex-wrap items-center font-normal">
+          <div
+            class="text-ds-gray-600 text-sm mr-2  md:mr-4"
           >
             Published On { formatDateWithYear(updatedDate) }
-          </span>
+          </div>
+          <div class="flex">
             {
               category.map((cat: string) => {
                 return (
@@ -68,18 +69,19 @@ const {
                     href={`/short/category/${cat}/`}
                     title={cat}
                     class={cn(
-                      'flex items-center justify-center space-x-[2px] group no-underline',
+                      'flex items-center justify-center group no-underline font-normal',
                       'after:!content-none hover:!no-underline',
                     )}
                   >
-                    <HashIcon className="size-3 text-ds-gray-800 hover:scale-150 duration-150 ease-in-out hover:text-ds-gray-1000" />
-                    <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000">
+                    <HashIcon className="size-3 text-ds-gray-800 hover:scale-110 duration-150 ease-in-out hover:text-ds-gray-1000" />
+                    <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000 mr-2">
                       {cat}
                     </span>
                   </Link>
                 )
               })
             }
+          </div>
 
         </div>
         {

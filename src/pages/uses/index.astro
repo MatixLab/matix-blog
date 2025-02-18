@@ -1,5 +1,5 @@
 ---
-import type { ResourceItem } from '@/types'
+import type { UsingItem } from '@/types'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { ArrowUpLeft } from 'lucide-react'
@@ -45,7 +45,7 @@ const useTypes = Object.keys(uses)
               <h2 class="mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{type}</h2>
               <ul class="my-2 ml-1 list-disc">
                 {
-                  uses[type].map((item: ResourceItem) => {
+                  uses[type].map((item: UsingItem) => {
                     return (
                       item.url
                         ? (
@@ -65,7 +65,7 @@ const useTypes = Object.keys(uses)
                               </span>
                             </Link>
                             {
-                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — For {item.desc}</span>
+                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>
                             }
                           </li>
                         )
@@ -75,7 +75,7 @@ const useTypes = Object.keys(uses)
                               {item.title}
                             </span>
                             {
-                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — For {item.desc}</span>
+                              item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>
                             }
                           </li>
                         )

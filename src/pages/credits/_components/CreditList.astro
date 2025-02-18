@@ -1,0 +1,35 @@
+
+---
+import type { CreditItem } from '@/types'
+import Link from '@/components/common/Link.astro'
+
+interface Props {
+  credits: CreditItem[]
+}
+const { credits } = Astro.props
+
+---
+
+{
+  credits.map((item: CreditItem) => {
+    return (
+    <li class="mt-2">
+      <span class="text-[15px] text-ds-gray-1000">{item.desc} </span>
+      <Link
+        href={`${item.url}?ref=antzhu.com`}
+        title={item.title}
+        class="break-words text-ds-gray-1000 after:text-ds-gray-1000 no-underline"
+      >
+        <span
+          class:list={[
+            'text-[15px] text-ds-gray-1000 underline underline-offset-4 duration-500 ease-in-out',
+            'decoration-ds-gray-500 hover:decoration-ds-gray-800  decoration-1',
+          ]}
+        >
+          {item.title}
+        </span>
+      </Link>
+    </li>
+    )
+  })
+}

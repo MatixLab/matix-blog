@@ -18,13 +18,11 @@ export const use: ResourceItem[] = [
     title: '6.1" Apple iPhone 14',
     desc: 'Starlight Color, 5G, 128GB RAM',
     url: 'https://www.apple.com.cn/shop/buy-iphone/iphone-14/',
-    source: 'Official',
   },
   {
     title: 'Apple Watch S9',
     desc: 'GPS, Cellular Network',
     url: 'https://item.jd.com/100066896768.html',
-    source: 'JD',
   },
   {
     title: '27" Dell U2720QM',

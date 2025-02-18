@@ -54,6 +54,20 @@ export interface ResourceItem {
   cover?: string
 }
 
+export interface UsingItem {
+  title: string
+  icon?: ''
+  url?: string
+  desc?: string
+}
+
+export interface CreditItem {
+  title: string
+  icon?: ''
+  url?: string
+  desc?: string
+}
+
 export interface ProjectItem {
   title: string
   url: string
