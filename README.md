@@ -1,64 +1,113 @@
-# How to start
+# Matix-blog Theme
 
-```sh
-npm create astro@latest -- --template blog
-```
+A simple blog built with Astro(v5),Tailwind, Shadcn.
 
-Features:
+## Live Demo
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- [My blog Site](https://www.antzhu.com/)
 
-## 🚀 Project Structure
+## Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- 🚀 Fast and optimized - Built for speed and performance.
+- 🦾 TypeScript, of course.
+- 🎨 [TailwindCss](https://tailwindcss.com/)： A utility-first CSS framework.
+- 📖 Simple: Just md / mdx files.
+- ☁️ Deploy on Netlify, zero-config.
+- 🚀 SEO-friendly: Support for SEO.
+- 📱 Responsive: Support for mobile devices.
+- 📦 Based on [Astro](https://astro.build) version latest.
+- 😃 Better UI: Support [Shadcn UI Components.](https://ui.shadcn.com/docs/components)
+
+## Project Structure
 
 ```text
+├── config/
+├── db/
 ├── public/
 ├── src/
+│   ├── config/
 │   ├── components/
 │   ├── content/
 │   ├── layouts/
+│   ├── styles/
 │   └── pages/
 ├── astro.config.mjs
 ├── README.md
 ├── package.json
+├── tailwind.config.ts
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+1. `src/content/`： This  directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/post/`, and type-check your frontmatter using an optional schema. See [Content Layer](https://docs.astro.build/en/guides/content-collections/#defining-the-collection-loader) to learn more.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```ts
+// src/config/site.ts
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/post/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+export const siteConfig: SiteConfig = {
+  author: 'your name',
+  title: 'your title',
+  description: 'your description',
+  url: 'your site url',
+  repoUrl: 'your github repo url',
+  ogImage: 'og image url',
+  links: {
+    twitter: 'https://twitter.com/yourusername',
+    github: 'https://github.com/yourusername',
+    blueSky: 'https://bsky.app/profile/yourusername',
+    notion: 'your notion site url',
+    email: 'your email',
+  },
+  // pagination
+  pagination: {
+    pageSize: 10,
+  },
+  home: {
+    displayNumber: 5,
+  },
+}
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. `src/config`: This directory is used to configure the basic information of the website and the menu information.
 
-## 🧞 Commands
+3. `src/components/`:  All the components will be placed in this directory, including the  [Shadcn UI Components](https://ui.shadcn.com/docs/components/).
 
-All commands are run from the root of the project, from a terminal:
+4. `src/styles`: All the styles will be placed in this directory and will be modularized according to different functionalities.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Try it now
 
-## 👀 Want to learn more?
+### GitHub Template
+[Create a repo from this template on GitHub.](https://github.com/MatixLab/matix-blog/generate)
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Usage
+
+### Development
+
+Just run and visit http://localhost:431
+
+```bash
+pnpm run dev
+```
+
+### Build
+
+To build the App, run
+
+```bash
+pnpm run build
+```
+
+And you will see the generated file in `dist` that ready to be served.
+
+### Deploy on Netlify
+
+Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along the way, and your App will be live in a minute.
 
 ## Credit
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- Based on [astro](https://astro.build/).
 
-This site is built with  [Cloudflare Page](https://developers.cloudflare.com/workers/frameworks/framework-guides/astro/)
+- [More information](https://antzhu.com/credits/).
 
-[sanity with astro](https://github.com/sanity-io/sanity-template-astro-clean/)
+## 📜 License
+
+Licensed under the [MIT](./LICENSE) License, Copyright © 2025
