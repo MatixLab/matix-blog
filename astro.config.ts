@@ -47,8 +47,9 @@ export default defineConfig({
           'settings',
           'search',
           'plus',
+          'asterisk',
         ],
-        'simple-icons': ['github', 'x', 'bluesky', 'notion', 'mailgun'],
+        'simple-icons': ['github', 'x', 'bluesky', 'notion', 'gmail'],
       },
     }),
     partytown({
@@ -61,6 +62,10 @@ export default defineConfig({
       Image: true,
       JavaScript: true,
       SVG: true,
+      Action: {
+        // https://github.com/PlayForm/Compress/issues/376
+        Passed: async () => true,
+      },
     }),
   ],
   markdown: {

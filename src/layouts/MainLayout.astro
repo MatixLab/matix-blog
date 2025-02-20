@@ -16,13 +16,21 @@ type Props = {
 }
 
 const segment = extractSegmentURL(Astro.url.pathname)
+
+// TODO
+let imageDefault = segment ? Astro.url.pathname : '/home'
+if (imageDefault.endsWith('/')) {
+  imageDefault = imageDefault.substring(0, imageDefault.lastIndexOf('/'))
+}
+
 const {
   title,
   description,
   mainClass,
-  image = `https://images.antzhu.com${Astro.url.pathname}.webp`,
+  image = `https://images.antzhu.com${imageDefault}.webp`,
   imageAlt,
   } = Astro.props
+
 ---
 
 <BaseLayout

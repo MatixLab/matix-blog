@@ -1,4 +1,4 @@
-import type { MenuItem, NavMenuConfig, SidebarNavItem } from '@/types'
+import type { MenuItem, NavMenuConfig } from '@/types'
 import {
   Drawer,
   DrawerContent,
@@ -35,8 +35,8 @@ export function MobileNav({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="ghost" size="icon" title="Toggle drawer" className="my-auto md:hidden">
-          <Menu className="size-6" strokeWidth={2} />
+        <Button variant="ghost" size="icon" title="Toggle drawer" className="my-auto md:hidden [&_svg]:size-6">
+          <Menu strokeWidth={1.5} />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </DrawerTrigger>
@@ -44,9 +44,17 @@ export function MobileNav({
         <DrawerDescription />
         <div className="overflow-y-auto p-4">
           <div className="flex w-full flex-col text-sm  space-y-2">
-            <div className="flex flex-col gap-4 pb-4">
-              <DrawerTitle>
-                <span className="font-bold">{siteConfig.author}</span>
+            <div className="flex flex-col gap-2 pb-4">
+              <DrawerTitle className="text-center">
+                <a
+                  className="inline-flex items-center gap-2 p-2"
+                  title="Home"
+                  href="/"
+                >
+                  <div className="flex flex-row">
+                    <span className="font-bold">{siteConfig.author}</span>
+                  </div>
+                </a>
               </DrawerTitle>
               <div className="flex flex-col gap-1">
                 {
@@ -73,7 +81,7 @@ export function MobileNav({
                   collectiveData.length && (
                     <div className="flex flex-col">
                       <span className="font-bold text-ds-gray-1000 p-2">Collective</span>
-                      <ul>
+                      <ul className="pl-2">
                         {
                           collectiveData.map(subItem => (
                             <li

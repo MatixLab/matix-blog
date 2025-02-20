@@ -5,15 +5,14 @@ import Project from './_components/Project.astro'
 import { projects } from './_data'
 
 const projectTypes = Object.keys(projects)
+
 ---
 
-<MainLayout
-  title="Projects"
-  description="Projects that I create."
->
-  <section class:list={[
-    'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
-  ]}
+<MainLayout title="Projects" description="Projects that I create.">
+  <section
+    class:list={[
+      'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
+    ]}
   >
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:block">
@@ -30,37 +29,38 @@ const projectTypes = Object.keys(projects)
                 'decoration-ds-gray-600 hover:decoration-ds-gray-900',
                 'duration-500 ease-in-out decoration-1',
               ]}
-            >Back</span>
+            >Back</span
+            >
           </span>
         </aside>
       </div>
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
         <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
           List of Projects.
+        </h1>
+        <div>
           {
             projectTypes.map((type: string) => {
               return (
                 <>
                   <h2>{type}</h2>
                   <div class="space-y-2">
-                    {
-                      projects[type].map((project: any) => {
-                        return (
-                          <Project
-                            url={project.url}
-                            title={project.title}
-                            desc={project.desc}
-                            tags={project.tags}
-                          />
-                        )
-                      })
-                    }
+                    {projects[type].map((project: any) => {
+                      return (
+                        <Project
+                          url={project.url}
+                          title={project.title}
+                          desc={project.desc}
+                          tags={project.tags}
+                        />
+                      )
+                    })}
                   </div>
                 </>
               )
             })
           }
-        </h1>
+        </div>
       </article>
     </main>
   </section>

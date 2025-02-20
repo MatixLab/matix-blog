@@ -4,6 +4,7 @@ function getRobotsTxt(sitemapURL: URL) {
   return `
 User-agent: *
 Allow: /
+
 Sitemap: ${sitemapURL.href}
 `
 }

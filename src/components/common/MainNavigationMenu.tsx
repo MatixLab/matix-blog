@@ -1,5 +1,4 @@
 import type { MenuItem } from '@/types'
-import { Badge } from '@/components/ui/badge'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,7 +20,6 @@ const ListItem: React.FC<MenuItem> = ({
   title,
   href,
   description,
-  launched,
   disabled,
   external,
 }) => {
@@ -46,30 +44,6 @@ const ListItem: React.FC<MenuItem> = ({
           <span className="mr-2">
             {title}
           </span>
-          {
-            disabled
-              ? (
-                  <Badge
-                    variant="secondary"
-                    className="h-5 px-1.5 text-xs font-medium text-ds-gray-800"
-                  >
-                    SOON
-                  </Badge>
-                )
-              : null
-          }
-
-          {
-            launched
-              ? (
-                  <Badge
-                    className="h-5 px-1.5 text-xs font-medium bg-ds-green-400 hover:bg-ds-green-500 text-ds-green-700"
-                  >
-                    NEW
-                  </Badge>
-                )
-              : null
-          }
         </div>
         {
           description && (

@@ -1,8 +1,8 @@
 import type { SiteConfig } from '@/types'
 
 export const siteConfig: SiteConfig = {
-  author: 'AnthonyZhu',
-  title: 'Anthony\'s Blog',
+  author: 'Anthony Zhu',
+  title: 'Anthony Zhu\'s Blog',
   description: 'A Full Stack Developer.',
   url: 'https://www.antzhu.com',
   repoUrl: 'https://github.com/MatixLab/matix-blog',
