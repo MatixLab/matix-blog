@@ -25,12 +25,12 @@ A simple blog built with Astro(v5),Tailwind, Shadcn.
 ├── db/
 ├── public/
 ├── src/
-│   ├── config/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   ├── styles/
-│   └── pages/
+│   ├── config/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   ├── styles/
+│   └── pages/
 ├── astro.config.mjs
 ├── README.md
 ├── package.json
