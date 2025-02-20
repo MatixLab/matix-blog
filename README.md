@@ -82,7 +82,7 @@ export const siteConfig: SiteConfig = {
 
 ### Development
 
-Just run and visit http://localhost:431
+Just run and visit http://localhost:4321
 
 ```bash
 pnpm run dev
