@@ -1,6 +1,6 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro'
-import { ArrowUpLeft } from 'lucide-react'
+import { Icon } from 'astro-icon/components'
 import Project from './_components/Project.astro'
 import { projects } from './_data'
 
@@ -20,9 +20,9 @@ const projectTypes: string[] = Object.keys(projects)
           <div
             title="back"
             onclick="history.back()"
-            class="pt-16 hidden xl:inline-flex hover:cursor-pointer"
+            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
           >
-            <ArrowUpLeft className="mr-2 size-4 my-auto text-ds-gray-800" />
+            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
             <span
               class:list={[
                 'text-sm text-ds-gray-800 underline underline-offset-4',
@@ -32,14 +32,14 @@ const projectTypes: string[] = Object.keys(projects)
             >Back</span
             >
           </div>
-
-          <div class="pt-2 flex flex-col pl-2">
+          <div class="pt-2 flex flex-col space-y-2 pl-2 duration-700 ease-in-out opacity-65  hover:opacity-100">
             {
               projectTypes.map((type: string) => {
                 return (
                   <a
-                    class="text-ellipsis hover:cursor-pointer no-underline font-normal text-sm text-ds-gray-800"
+                    class="text-ellipsis hover:cursor-pointer no-underline font-normal text-sm text-ds-gray-900 hover:text-black"
                     href={`#${type}`}
+                    title={type}
                   >
                     {type}
                   </a>
@@ -53,24 +53,22 @@ const projectTypes: string[] = Object.keys(projects)
         <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
           List of Projects.
         </h1>
-        <div>
+        <div class="h-[calc(80vh-8rem)] no-scrollbar overflow-auto">
           {
             projectTypes.map((type: string) => {
               return (
-                <div id={type}>
-                  <h2>{type}</h2>
-                  <div class="space-y-2">
-                    {projects[type].map((project: any) => {
-                      return (
-                        <Project
-                          url={project.url}
-                          title={project.title}
-                          desc={project.desc}
-                          tags={project.tags}
-                        />
-                      )
-                    })}
-                  </div>
+                <h2 id={type} class="pt-[1px] mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{type}</h2>
+                <div class="space-y-2">
+                  {projects[type].map((project: any) => {
+                    return (
+                      <Project
+                        url={project.url}
+                        title={project.title}
+                        desc={project.desc}
+                        tags={project.tags}
+                      />
+                    )
+                  })}
                 </div>
               )
             })

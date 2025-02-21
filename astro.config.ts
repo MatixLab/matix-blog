@@ -43,11 +43,10 @@ export default defineConfig({
     icon({
       include: {
         'lucide': [
-          'laptop',
-          'settings',
-          'search',
-          'plus',
           'asterisk',
+          'arrow-up-left',
+          'align-left',
+          'hash',
         ],
         'simple-icons': ['github', 'x', 'bluesky', 'notion', 'gmail'],
       },

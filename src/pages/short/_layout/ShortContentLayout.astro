@@ -3,8 +3,8 @@ import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn, formatDateWithYear } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
-import { ArrowUpLeft, HashIcon } from 'lucide-react'
 
 type Props = CollectionEntry<'short'>
 
@@ -28,15 +28,13 @@ const {
   >
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="hidden md:block fixed pt-12">
-          <a
-            onclick="history.back()"
+        <aside class="fixed flex flex-col space-y-2">
+          <div
             title="back"
-            class={cn(
-              'absolute top-16 hidden xl:inline-flex hover:cursor-pointer font-normal no-underline',
-            )}
+            onclick="history.back()"
+            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
           >
-            <ArrowUpLeft className="mr-2 size-4 my-auto text-ds-gray-800" />
+            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
             <span
               class:list={[
                 'text-sm text-ds-gray-800 underline underline-offset-4',
@@ -46,7 +44,7 @@ const {
             >
               Back
             </span>
-          </a>
+          </div>
         </aside>
       </div>
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
@@ -73,7 +71,7 @@ const {
                       'after:!content-none hover:!no-underline',
                     )}
                   >
-                    <HashIcon className="size-3 text-ds-gray-800 hover:scale-110 duration-150 ease-in-out hover:text-ds-gray-1000" />
+                    <Icon name="lucide:hash" class="size-3 text-ds-gray-800 hover:scale-110 duration-150 ease-in-out hover:text-ds-gray-1000" />
                     <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000 mr-2">
                       {cat}
                     </span>

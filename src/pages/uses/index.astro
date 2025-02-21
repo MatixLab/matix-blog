@@ -2,7 +2,7 @@
 import type { UsingItem } from '@/types'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { ArrowUpLeft } from 'lucide-react'
+import { Icon } from 'astro-icon/components'
 import { uses } from './_data'
 
 const useTypes = Object.keys(uses)
@@ -18,21 +18,23 @@ const useTypes = Object.keys(uses)
   >
     <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
       <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="hidden md:block fixed pt-12">
-          <span
+        <aside class="fixed flex flex-col space-y-2">
+          <div
             title="back"
             onclick="history.back()"
-            class="absolute top-16 hidden xl:inline-flex hover:cursor-pointer"
+            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
           >
-            <ArrowUpLeft className="mr-2 size-4 my-auto text-ds-gray-800" />
+            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
             <span
               class:list={[
                 'text-sm text-ds-gray-800 underline underline-offset-4',
                 'decoration-ds-gray-600 hover:decoration-ds-gray-900',
                 'duration-500 ease-in-out decoration-1',
               ]}
-            >Back</span>
-          </span>
+            >
+              Back
+            </span>
+          </div>
         </aside>
       </div>
       <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
