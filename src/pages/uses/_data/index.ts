@@ -5,6 +5,8 @@ const Device: UsingItem[] = [
   { title: 'Apple iPhone 14', url: 'https://www.apple.com.cn/shop/buy-iphone/iphone-14/' },
   { title: 'Apple Watch S9', url: 'https://item.jd.com/100066896768.html' },
   { title: 'Dell U2720QM' },
+  { title: 'Keychron K3 Pro', url: 'https://item.jd.com/10073839082426.html' },
+  { title: 'Logitech G102', url: 'https://item.jd.com/100012720924.html' },
 ]
 
 const Apps: UsingItem[] = [

@@ -1,4 +1,3 @@
-import type { MenuItem, NavMenuConfig } from '@/types'
 import {
   Drawer,
   DrawerContent,
@@ -6,6 +5,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
+import { links } from '@/config/menu'
 import { siteConfig } from '@/config/site'
 import { Icons } from '@/icons'
 import { cn } from '@/lib/utils'
@@ -14,22 +14,15 @@ import * as React from 'react'
 import { Button } from '../ui/button'
 
 interface MobileNavProps {
-  navMenu: NavMenuConfig
   segment: string | null
 }
 
 export function MobileNav({
-  navMenu,
   segment,
 }: MobileNavProps) {
-  const mergedLinks = navMenu.links?.filter((item, index, self) =>
+  const mergedLinks = links?.filter((item, index, self) =>
     index === self.findIndex(t => t.href === item.href && t.title === item.title),
   )
-
-  const collectiveData: MenuItem[] = []
-  navMenu.collective.forEach((item) => {
-    collectiveData.push(...item.items)
-  })
 
   const [open, setOpen] = React.useState(false)
   return (
@@ -76,40 +69,6 @@ export function MobileNav({
                       </span>
                     </a>
                   ))
-                }
-                {
-                  collectiveData.length && (
-                    <div className="flex flex-col">
-                      <span className="font-bold text-ds-gray-1000 p-2">Collective</span>
-                      <ul className="pl-2">
-                        {
-                          collectiveData.map(subItem => (
-                            <li
-                              key={subItem.href}
-                              className="pl-2 border-l-ds-gray-300 border-l-[1px] items-center"
-                            >
-                              <a
-                                href={subItem.href}
-                                target={subItem?.external ? '_blank' : undefined}
-                                title={subItem.title}
-                                className={cn(
-                                  'group flex items-center justify-between rounded-lg px-4 py-2 text-ds-gray-1000',
-                                  (subItem.href.startsWith(`/${segment}`) && 'bg-black text-white'),
-                                )}
-                                onClick={() => setOpen(false)}
-                              >
-                                <span className="flex items-center gap-2">
-                                  <span className="font-medium">
-                                    {subItem.title}
-                                  </span>
-                                </span>
-                              </a>
-                            </li>
-                          ))
-                        }
-                      </ul>
-                    </div>
-                  )
                 }
               </div>
             </div>

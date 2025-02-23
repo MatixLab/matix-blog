@@ -3,8 +3,7 @@ import Link from '@/components/common/Link.astro'
 import {
   siteConfig,
 } from '@/config/site'
-import { cn } from '@/lib/utils'
-import { Github, Rss } from 'lucide-react'
+import { Icon } from 'astro-icon/components'
 
 type Props = {
   className?: string
@@ -39,7 +38,7 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
                   <Link
                     href={foot.url}
                     title={foot.title}
-                    class="text-xs text-ds-gray-900 link "
+                    class="link text-xs text-ds-gray-900"
                   >
                   </Link>
                 </li>
@@ -70,29 +69,22 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
           class="hidden flex-1 select-none text-xs text-ds-gray-800 sm:block"
           role="img"
         >
-          You can what you wanna be.
+          {siteConfig.slogan}
         </div>
         <div class="flex gap-2">
           <Link
-            class={cn(
-              'text-xs text-ds-gray-800 flex items-center gap-1.5',
-              'underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-            )}
+            class="common-link text-xs flex items-center gap-1.5"
             href="/rss.xml"
             title="site rss"
           >
-            <Rss size={12} />
+            <Icon name="lucide:rss" class="size-3" />
           </Link>
           <Link
-            class={cn(
-              'text-xs text-ds-gray-800 flex items-center gap-1.5',
-              'underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-              'duration-500 ease-in-out decoration-1',
-            )}
+            class="common-link link-animate text-xs flex items-center gap-1.5 "
             href={siteConfig.repoUrl}
             title="matix-blog"
           >
-            <Github size={12} />
+            <Icon name="simple-icons:github" class="size-3" />
             matix-blog/{gitHash}
           </Link>
         </div>

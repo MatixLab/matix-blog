@@ -1,9 +1,8 @@
 ---
-import { MainNavigationMenu } from '@/components/common/MainNavigationMenu'
+import MainNav from '@/components/common/MainNav.astro'
 import { MobileNav } from '@/components/common/MobileNav'
 import SiteFooter from '@/components/layout/SiteFooter.astro'
 import SiteHeader from '@/components/layout/SiteHeader.astro'
-import { navMenuConfig } from '@/config/nav-menu'
 import { extractSegmentURL } from '@/lib/utils'
 import BaseLayout from './BaseLayout.astro'
 
@@ -41,13 +40,11 @@ const {
 >
   <div class="relative flex min-h-screen flex-col bg-background">
     <SiteHeader>
-      <MainNavigationMenu
+      <MainNav
         slot="nav-header"
         segment={segment}
-        client:load
       />
       <MobileNav
-        navMenu={navMenuConfig}
         segment={segment}
         slot="mobile-nav-header"
         client:load

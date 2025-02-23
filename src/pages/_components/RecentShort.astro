@@ -2,7 +2,7 @@
 import Link from '@/components/common/Link.astro'
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
-import { cn, formatDateWithYear } from '@/lib/utils'
+import { formatDateWithYear } from '@/lib/utils'
 
 const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
 
@@ -20,20 +20,14 @@ const allShorts = (await getShorts()).slice(0, siteConfig.home.displayNumber)
           <Link
             href="/short/"
             title="View all posts"
-            class={cn(
-              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-              'duration-500 ease-in-out decoration-1',
-            )}
+            class="common-link link-animate text-xs"
           >
             View all
           </Link>
           <Link
             href="/short.xml"
             title="Feed post rss"
-            class={cn(
-              'text-xs text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-              'duration-500 ease-in-out decoration-1 pl-2',
-            )}
+            class="common-link link-animate text-xs pl-2"
           >
             Rss
           </Link>

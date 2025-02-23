@@ -1,0 +1,34 @@
+---
+import type { MainNavItem } from '@/types'
+import { links } from '@/config/menu'
+import Link from './Link.astro'
+
+type Props = {
+  segment: string | null
+}
+
+const { segment } = Astro.props
+---
+
+<nav>
+  <ul class="flex flex-row items-center gap-4">
+    {
+      links.map((item: MainNavItem) => (
+        <li class="relative list-none">
+          <Link
+            href={item.href}
+            title={item.title}
+            class:list={[
+              'text-sm hover:text-black ease-linear transition-all duration-500',
+              item.href.startsWith(`/${segment}`)
+                  ? 'text-black dark:text-white'
+                  : 'text-gray-400',
+            ]}
+          >
+            {item.title}
+          </Link>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

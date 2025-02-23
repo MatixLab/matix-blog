@@ -22,25 +22,14 @@ const { className } = Astro.props;
       </Link>
     </div>
 
-    <!-- mobile-nav-header -->
     <div class="hidden md:flex mx-auto">
       <!-- normal nav menu -->
       <slot name="nav-header" />
     </div>
 
-    <!-- normal nav menu -->
     <div class="flex md:hidden">
       <slot name="mobile-nav-header" />
     </div>
-
-    <!-- logo mobile center -->
-    <!--
-      <div class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden">
-        <Link href="/" title="Home">
-          <Icon name="lucide:waves" class="size-6" />
-        </Link>
-      </div>
-    -->
 
     <!-- Theme Toggle -->
     <slot name="right-header" />

@@ -6,6 +6,7 @@ export const siteConfig: SiteConfig = {
   description: 'A Full Stack Developer.',
   url: 'https://www.antzhu.com',
   repoUrl: 'https://github.com/MatixLab/matix-blog',
+  slogan: 'Becoming is better than being.',
   ogImage: 'https://www.antzhu.com/og.jpg',
   links: {
     twitter: 'https://twitter.com/huakucha10',

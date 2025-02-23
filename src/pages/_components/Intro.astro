@@ -1,7 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
 import { siteConfig } from '@/config/site'
-import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 ---
 <dl class="list-container">
@@ -25,10 +24,7 @@ import { Icon } from 'astro-icon/components'
       <Link
         href="https://www.oki.com/"
         title="OKI"
-        class={cn(
-          'text-sm text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-          'duration-500 ease-in-out decoration-1',
-        )}
+        class="text-sm common-link link-animate"
       />
       .
     </p>
@@ -37,10 +33,7 @@ import { Icon } from 'astro-icon/components'
       <Link
         href="https://www.winning.com.cn/"
         title="WinningHealth"
-        class={cn(
-          'text-sm text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900',
-          'duration-500 ease-in-out decoration-1',
-        )}
+        class="text-sm common-link link-animate"
       />
       in ChangZhou.
     </p>

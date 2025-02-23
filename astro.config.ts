@@ -47,6 +47,7 @@ export default defineConfig({
           'arrow-up-left',
           'align-left',
           'hash',
+          'rss',
         ],
         'simple-icons': ['github', 'x', 'bluesky', 'notion', 'gmail'],
       },

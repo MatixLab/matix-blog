@@ -67,22 +67,23 @@ export const siteConfig: SiteConfig = {
 }
 ```
 
-2. `src/config`: This directory is used to configure the basic information of the website and the menu information.
+2.`src/config`: This directory is used to configure the basic information of the website and the menu information.
 
-3. `src/components/`:  All the components will be placed in this directory, including the  [Shadcn UI Components](https://ui.shadcn.com/docs/components/).
+3.`src/components/`:  All the components will be placed in this directory, including the  [Shadcn UI Components](https://ui.shadcn.com/docs/components/).
 
-4. `src/styles`: All the styles will be placed in this directory and will be modularized according to different functionalities.
+4.`src/styles`: All the styles will be placed in this directory and will be modularized according to different functionalities.
 
 ## Try it now
 
 ### GitHub Template
+
 [Create a repo from this template on GitHub.](https://github.com/MatixLab/matix-blog/generate)
 
 ## Usage
 
 ### Development
 
-Just run and visit http://localhost:4321
+Just run and visit [http://localhost:4321](http://localhost:4321)
 
 ```bash
 pnpm run dev

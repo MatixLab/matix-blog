@@ -37,6 +37,17 @@
   }
   /* #endregion */
 
+  /* #region common link*/
+  .common-link {
+    @apply text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900;
+  }
+  .link-animate {
+    @apply duration-500 ease-in-out decoration-1;
+  }
+
+  
+  /* #endregion */
+
   /* #region progress bar */
   .loading {
     @apply fixed left-0 top-0 pointer-events-none h-[2px] w-full bg-black dark:bg-white z-[1031];

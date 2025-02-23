@@ -1,27 +1,8 @@
-import type { ImageMetadata } from 'astro'
-
-export interface NavItem {
+export interface MainNavItem {
   icon?: string
   class?: string
   title: string
   href: string
-  disabled?: boolean
-}
-
-export type MenuItem = NavItem & {
-  image?: ImageMetadata
-  description?: string
-  launched?: boolean
-  external?: boolean
-}
-
-export type MainNavItem = NavItem
-
-export interface SidebarNavItem {
-  title: string
-  disabled?: boolean
-  external?: boolean
-  items: MenuItem[]
 }
 
 export interface SiteConfig {
@@ -30,6 +11,7 @@ export interface SiteConfig {
   description: string
   url: string
   repoUrl: string
+  slogan: string
   ogImage: string
   links: {
     twitter: string
@@ -79,12 +61,4 @@ export interface ProjectItem {
 export interface Resource {
   name: string
   routeName: string
-}
-
-/**
- * Nav Menu Config Definition
- */
-export interface NavMenuConfig {
-  links: MenuItem[]
-  collective: SidebarNavItem[]
 }
