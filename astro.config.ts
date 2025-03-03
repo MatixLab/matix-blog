@@ -45,6 +45,7 @@ export default defineConfig({
         'lucide': [
           'asterisk',
           'arrow-up-left',
+          'arrow-up-right',
           'align-left',
           'hash',
           'rss',

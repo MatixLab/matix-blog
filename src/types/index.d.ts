@@ -28,26 +28,21 @@ export interface SiteConfig {
   }
 }
 
-export interface ResourceItem {
-  title: string
-  icon?: ''
-  url?: string
-  desc?: string
-  cover?: string
-}
-
-export interface UsingItem {
+interface CommonItem {
   title: string
   icon?: ''
   url?: string
   desc?: string
 }
 
-export interface CreditItem {
-  title: string
-  icon?: ''
-  url?: string
+export type UsingItem = CommonItem
+export type CreditItem = CommonItem
+
+export interface CollectiveItem {
+  name: string
+  url: string
   desc?: string
+  tags?: string
 }
 
 export interface ProjectItem {
@@ -56,9 +51,4 @@ export interface ProjectItem {
   icon?: ''
   desc?: string
   tags?: string[]
-}
-
-export interface Resource {
-  name: string
-  routeName: string
 }

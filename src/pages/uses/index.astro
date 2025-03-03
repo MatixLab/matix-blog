@@ -51,11 +51,11 @@ const useTypes = Object.keys(uses)
                     return (
                       item.url
                         ? (
-                          <li class="mt-2">
+                          <li class="mt-2 flex">
                             <Link
                               href={`${item.url}?ref=antzhu.com`}
                               title={item.title}
-                              class="break-words after:content-['_↗'] text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline"
+                              class="flex break-words text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline tracking-tight"
                             >
                               <span
                                 class:list={[
@@ -65,6 +65,10 @@ const useTypes = Object.keys(uses)
                               >
                                 {item.title}
                               </span>
+                              <Icon
+                                name="lucide:arrow-up-right"
+                                class="size-4 mt-px ml-1 p-0.5 shrink-0 text-ds-gray-700"
+                              />
                             </Link>
                             {
                               item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>

@@ -35,7 +35,6 @@ export const rehypePlugins: RehypePlugins = [
       properties: {
         className: ['link'],
       },
-      content: { type: 'text', value: ' ↗' },
     },
   ],
 ]

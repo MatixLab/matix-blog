@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const props = Astro.props
+---
+
+
+
+<a
+  href={`${props.href}?ref=antzhu.com`}
+  title={props.title}
+  class:list={[
+    'break-words text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline tracking-tight',
+    props.class,
+  ]}
+  style={{ ...props?.style }}
+>
+  <span
+    class:list={[
+      'font-normal common-link link-animate hover:text-black',
+    ]}
+  >
+    <slot />
+  </span>
+  {
+    props['aria-label'] || (props.href.startsWith('/'))
+      ? null
+      : (
+        <Icon
+          name="lucide:arrow-up-right"
+          class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-2"
+        />
+    )
+  }
+
+</a>

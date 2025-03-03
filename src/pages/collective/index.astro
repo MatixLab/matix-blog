@@ -1,0 +1,95 @@
+---
+import type { CollectiveItem } from '@/types'
+import Link from '@/components/common/Link.astro'
+import MainLayout from '@/layouts/MainLayout.astro'
+import { Icon } from 'astro-icon/components'
+import { data } from './_data'
+
+const authors = data.Authors
+
+---
+
+<MainLayout
+  title="Collective"
+  description="Collective records."
+>
+  <section class:list={[
+    'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
+  ]}
+  >
+    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
+      <div class="md:col-span-1 rounded-lg hidden md:block">
+        <aside class="fixed flex flex-col space-y-2">
+          <div
+            title="back"
+            onclick="history.back()"
+            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
+          >
+            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
+            <span
+              class:list={[
+                'text-sm text-ds-gray-800 underline underline-offset-4',
+                'decoration-ds-gray-600 hover:decoration-ds-gray-900',
+                'duration-500 ease-in-out decoration-1',
+              ]}
+            >
+              Back
+            </span>
+          </div>
+        </aside>
+      </div>
+      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
+        <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
+          Collective records.
+        </h1>
+        <h2 class="mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
+          博主
+        </h2>
+        <ul class="my-2 ml-1 list-disc">
+        {
+          authors.map((item: CollectiveItem) => {
+            return (
+              item.url
+                ? (
+                  <li class="mt-2 flex">
+                    <Link
+                      href={`${item.url}?ref=antzhu.com`}
+                      title={item.name}
+                      class="flex break-words text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline tracking-tight"
+                    >
+                      <span
+                        class:list={[
+                          'font-medium text-ds-gray-1000 underline underline-offset-4 decoration-1',
+                          'decoration-ds-gray-500 hover:decoration-ds-gray-800 text-[15px]',
+                        ]}
+                      >
+                        {item.name}
+                      </span>
+                      <Icon
+                        name="lucide:arrow-up-right"
+                        class="size-4 mt-px ml-1 p-0.5 shrink-0 text-ds-gray-700"
+                      />
+                    </Link>
+                    {
+                      item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>
+                    }
+                  </li>
+                )
+                : (
+                  <li class="mt-2">
+                    <span class="font-medium text-ds-gray-1000 text-[15px] !pl-0">
+                      {item.name}
+                    </span>
+                    {
+                      item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>
+                    }
+                  </li>
+                )
+            )
+          })
+        }
+        </ul>
+      </article>
+    </main>
+  </section>
+</MainLayout>

@@ -18,6 +18,10 @@ export const links: MainNavItem[] = [
     href: '/uses/',
   },
   {
+    title: 'Collective',
+    href: '/collective/',
+  },
+  {
     title: 'Talk',
     href: '/timeline/',
   },
