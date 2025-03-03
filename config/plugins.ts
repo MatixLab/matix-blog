@@ -32,9 +32,6 @@ export const rehypePlugins: RehypePlugins = [
     {
       target: '_blank',
       rel: ['nofollow', 'noreferrer', 'noopener'],
-      properties: {
-        className: ['link'],
-      },
     },
   ],
 ]
