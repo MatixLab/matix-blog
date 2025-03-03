@@ -13,6 +13,7 @@ const props = Astro.props
     'break-words text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline tracking-tight',
     props.class,
   ]}
+  {...props}
   style={{ ...props?.style }}
 >
   <span
