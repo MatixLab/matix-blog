@@ -51,23 +51,18 @@ const useTypes = Object.keys(uses)
                     return (
                       item.url
                         ? (
-                          <li class="mt-2 flex">
+                          <li class="mt-2">
                             <Link
                               href={`${item.url}?ref=antzhu.com`}
                               title={item.title}
-                              class="flex break-words text-ds-gray-1000 after:text-ds-gray-1000 !pl-0 no-underline tracking-tight"
+                              class="break-words !pl-0 no-underline tracking-tight"
                             >
-                              <span
-                                class:list={[
-                                  'font-medium text-ds-gray-1000 underline underline-offset-4 decoration-1',
-                                  'decoration-ds-gray-500 hover:decoration-ds-gray-800 text-[15px]',
-                                ]}
-                              >
+                              <span class="font-medium common-link link-animate text-[15px] !text-black">
                                 {item.title}
                               </span>
                               <Icon
                                 name="lucide:arrow-up-right"
-                                class="size-4 mt-px ml-1 p-0.5 shrink-0 text-ds-gray-700"
+                                class="inline-flex size-4 -mt-1 p-0.5 shrink-0 text-ds-gray-700"
                               />
                             </Link>
                             {

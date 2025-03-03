@@ -42,7 +42,7 @@ export interface CollectiveItem {
   name: string
   url: string
   desc?: string
-  tags?: string
+  tags?: string[]
 }
 
 export interface ProjectItem {
