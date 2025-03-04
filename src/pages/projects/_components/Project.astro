@@ -1,6 +1,7 @@
 ---
 import Link from '@/components/common/Link.astro'
 import Tags from '@/components/common/Tags.astro'
+import { Icon } from 'astro-icon/components'
 
 interface Props {
   url: string
@@ -11,7 +12,7 @@ interface Props {
 const { url, title, tags, desc } = Astro.props
 ---
 
-<div class="flex flex-col space-y-1 last:border-b-0 border-b-[1px]  pb-2">
+<div class="flex flex-col space-y-2 last:border-b-0 border-b-[1px] pb-3">
   <div class="flex justify-between">
     <Link
       href={`${url}?ref=antzhu.com`}
@@ -20,18 +21,21 @@ const { url, title, tags, desc } = Astro.props
     >
       <span
         class:list={[
-          'font-normal text-lg text-ds-gray-1000 underline underline-offset-4 decoration-[1.5px]',
-          'decoration-ds-gray-500 hover:decoration-ds-gray-800 duration-500 ease-in-out',
+          'font-normal text-lg common-link link-animate !text-ds-gray-1000',
         ]}
       >
         {title}
       </span>
+      <Icon
+        name="lucide:arrow-up-right"
+        class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-1"
+      />
     </Link>
     <span class="items-center ml-1 hidden md:flex space-x-2">
       <Tags tags={tags || []} />
     </span>
   </div>
-  <div class="text-ds-gray-1000 text-sm">
+  <div class="text-ds-gray-800 text-sm">
     {desc}
   </div>
 </div>

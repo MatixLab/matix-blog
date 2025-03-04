@@ -6,8 +6,8 @@ import { data } from '../_data'
 
 const authors = data.Authors
 ---
-<h2 class="mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
-  博主
+<h2 class="scroll-m-20 text-2xl font-semibold  first:mt-0">
+  Blogger
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
   {
@@ -19,7 +19,7 @@ const authors = data.Authors
             <Link
               href={`${item.url}?ref=antzhu.com`}
               title={item.name}
-              class="break-words !pl-0 no-underline tracking-tight"
+              class="break-words !pl-0 no-underline "
             >
               <span class="font-medium common-link link-animate text-[15px] !text-black">
                 {item.name}
@@ -31,8 +31,10 @@ const authors = data.Authors
             </Link>
           </div>
           <div>
-            <span class="text-ds-gray-800 my-2 line-clamp-1 text-sm hover:cursor-default"
-                title={item.desc}>
+            <span
+              class="text-ds-gray-800 my-2 line-clamp-1 text-sm hover:cursor-default"
+              title={item.desc}
+            >
               {item.desc}
             </span>
             <div class="flex flex-wrap gap-2 text-ds-gray-900 text-sm">
@@ -40,8 +42,10 @@ const authors = data.Authors
                 item.tags && item.tags.length > 0
                   ? item.tags?.map((tagName: string) => (
                     <div class="flex items-center">
-                      <Icon name="lucide:hash" 
-                            class="size-3 text-ds-gray-800 hover:text-ds-gray-1000" />
+                      <Icon
+                        name="lucide:hash"
+                        class="size-3 text-ds-gray-800 hover:text-ds-gray-1000"
+                      />
                       <span class="text-xs text-ds-gray-800 hover:text-ds-gray-1000 mr-2">
                         {tagName}
                       </span>

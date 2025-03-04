@@ -1,6 +1,5 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro'
-import { Icon } from 'astro-icon/components'
 import Colophon from './_components/Colophon.astro'
 import Inspirations from './_components/Inspirations.astro'
 
@@ -10,35 +9,13 @@ import Inspirations from './_components/Inspirations.astro'
   title="Credits"
   description="Site Credits"
 >
-  <section class="prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col">
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
-      <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="fixed flex flex-col space-y-2">
-          <div
-            title="back"
-            onclick="history.back()"
-            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
-          >
-            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
-            <span
-              class:list={[
-                'text-sm text-ds-gray-800 underline underline-offset-4',
-                'decoration-ds-gray-600 hover:decoration-ds-gray-900',
-                'duration-500 ease-in-out decoration-1',
-              ]}
-            >
-              Back
-            </span>
-          </div>
-        </aside>
-      </div>
-      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
-        <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
-          Site Credits.
-        </h1>
-        <Colophon />
-        <Inspirations />
-      </article>
-    </main>
+  <section class="prose dark:prose-invert container max-w-[850px]">
+    <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
+      Site Credits.
+    </h1>
+    <article class="overflow-auto relative flex flex-col">
+      <Colophon />
+      <Inspirations />
+    </article>
   </section>
 </MainLayout>

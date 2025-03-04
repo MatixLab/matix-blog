@@ -21,8 +21,4 @@ export const links: MainNavItem[] = [
     title: 'Collective',
     href: '/collective/',
   },
-  {
-    title: 'Talk',
-    href: '/timeline/',
-  },
 ]

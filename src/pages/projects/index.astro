@@ -7,58 +7,36 @@ const projectTypes: string[] = Object.keys(projects)
 
 ---
 
-<MainLayout title="Projects" description="Projects that I create.">
-  <section
-    class:list={[
-      'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
-    ]}
-  >
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
-      <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="fixed flex flex-col space-y-2">
-          <div class="pt-24 duration-700 ease-in-out opacity-65  hover:opacity-100 flex flex-col space-y-2">
-            {
-              projectTypes.map((type: string) => {
+<MainLayout
+  title="Projects"
+  description="Projects that I create."
+>
+  <section class="prose dark:prose-invert container max-w-[850px]">
+    <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
+      List of Projects.
+    </h1>
+    <article class="overflow-auto relative flex flex-col">
+      {
+        projectTypes.map((type: string) => {
+          return (
+            <h2 id={type} class="scroll-m-20 text-2xl font-semibold  first:mt-0">
+              {type}
+            </h2>
+            <div class="space-y-3">
+              {projects[type].map((project: any) => {
                 return (
-                  <a
-                    class="text-ellipsis hover:cursor-pointer no-underline font-normal text-sm text-ds-gray-900 hover:text-black"
-                    href={`#${type}`}
-                    title={type}
-                  >
-                    {type}
-                  </a>
+                  <Project
+                    url={project.url}
+                    title={project.title}
+                    desc={project.desc}
+                    tags={project.tags}
+                  />
                 )
-              })
-            }
-          </div>
-        </aside>
-      </div>
-      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
-        <h1 class="mt-2 scroll-m-20 text-3xl font-bold tracking-tight">
-          List of Projects.
-        </h1>
-        <div class="h-[calc(80vh-8rem)] no-scrollbar overflow-auto">
-          {
-            projectTypes.map((type: string) => {
-              return (
-                <h2 id={type} class="pt-[1px] mt-10 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{type}</h2>
-                <div class="space-y-2">
-                  {projects[type].map((project: any) => {
-                    return (
-                      <Project
-                        url={project.url}
-                        title={project.title}
-                        desc={project.desc}
-                        tags={project.tags}
-                      />
-                    )
-                  })}
-                </div>
-              )
-            })
-          }
-        </div>
-      </article>
-    </main>
+              })}
+            </div>
+          )
+        })
+      }
+    </article>
   </section>
 </MainLayout>
