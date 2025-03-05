@@ -12,7 +12,7 @@ const useTypes = Object.keys(uses)
   title="Uses"
   description="Things of Choice."
 >
-  <section class="prose dark:prose-invert container max-w-[850px]">
+  <section class="prose dark:prose-invert container max-w-[948px] px-12">
     <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
       Things of Choice.
     </h1>
@@ -20,7 +20,7 @@ const useTypes = Object.keys(uses)
       {
         useTypes.map((type) => {
           return (
-            <h2 class="scroll-m-20 text-2xl font-semibold first:mt-0">
+            <h2 class="scroll-m-20 my-0 text-2xl font-semibold first:mt-0">
               {type}
             </h2>
             <ul class="ml-1 list-disc">
@@ -35,9 +35,9 @@ const useTypes = Object.keys(uses)
                             title={item.title}
                             class="break-words !pl-0 no-underline "
                           >
-                            <span class="font-medium common-link link-animate text-[15px] !text-black">
+                            <h3 class="inline-flex my-0 font-medium common-link link-animate text-[15px] !text-black">
                               {item.title}
-                            </span>
+                            </h3>
                             <Icon
                               name="lucide:arrow-up-right"
                               class="inline-flex size-4 -mt-1 p-0.5 shrink-0 text-ds-gray-700"

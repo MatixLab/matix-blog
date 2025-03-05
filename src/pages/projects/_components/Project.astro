@@ -12,20 +12,20 @@ interface Props {
 const { url, title, tags, desc } = Astro.props
 ---
 
-<div class="flex flex-col space-y-2 last:border-b-0 border-b-[1px] pb-3">
+<div class="flex flex-col pb-2">
   <div class="flex justify-between">
     <Link
       href={`${url}?ref=antzhu.com`}
       title={title}
       class="break-words text-black !pl-0 !no-underline"
     >
-      <span
+      <h3
         class:list={[
-          'font-normal text-lg common-link link-animate !text-ds-gray-1000',
+          'inline-flex my-0 font-normal text-lg common-link link-animate !text-ds-gray-1000',
         ]}
       >
         {title}
-      </span>
+      </h3>
       <Icon
         name="lucide:arrow-up-right"
         class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-1"

@@ -11,7 +11,7 @@ const projectTypes: string[] = Object.keys(projects)
   title="Projects"
   description="Projects that I create."
 >
-  <section class="prose dark:prose-invert container max-w-[850px]">
+  <section class="prose dark:prose-invert container max-w-[948px] px-8 md:px-12">
     <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
       List of Projects.
     </h1>
@@ -22,7 +22,7 @@ const projectTypes: string[] = Object.keys(projects)
             <h2 id={type} class="scroll-m-20 text-2xl font-semibold  first:mt-0">
               {type}
             </h2>
-            <div class="space-y-3">
+            <div class="space-y-3 pl-1">
               {projects[type].map((project: any) => {
                 return (
                   <Project
