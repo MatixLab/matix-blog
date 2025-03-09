@@ -1,10 +1,11 @@
 ---
+import type { CollectionEntry } from 'astro:content'
 import A from '@/components/markdown/A.astro'
 import IMG from '@/components/markdown/IMG.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
 import { getShorts } from '@/lib/fetchers'
-import { type CollectionEntry, render } from 'astro:content'
+import { render } from 'astro:content'
 import ShortContentLayout from './_layout/ShortContentLayout.astro'
 
 export async function getStaticPaths() {

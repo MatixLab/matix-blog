@@ -1,16 +1,116 @@
-@import 'variables.css';
-@import 'mdx.css';
-@import 'common.css';
+@import 'tailwindcss';
+@import './mdx.css';
+@import './common.css';
+@import './variables.css' layer(base);
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme inline {
+  /* #region font */
+  --font-sans: IBM Plex Sans;
+  /* #endregion */
+
+  /* #region colors config */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* #endregion */
+
+  /* #region ds-gray  */
+  --color-ds-gray-100: var(--ds-gray-100);
+  --color-ds-gray-200: var(--ds-gray-200);
+  --color-ds-gray-300: var(--ds-gray-300);
+  --color-ds-gray-400: var(--ds-gray-400);
+  --color-ds-gray-500: var(--ds-gray-500);
+  --color-ds-gray-600: var(--ds-gray-600);
+  --color-ds-gray-700: var(--ds-gray-700);
+  --color-ds-gray-800: var(--ds-gray-800);
+  --color-ds-gray-900: var(--ds-gray-900);
+  --color-ds-gray-1000: var(--ds-gray-1000);
+
+  /* #endregion */
+  
+  /* #region borderRadius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* #endregion */
+  
+  /* #region animation */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  /* #endregion */
+
+  /* #region keyframes */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  /* #endregion */
+}
+
+@utility container {
+  margin-inline: auto;
+	padding-inline: 2rem;
+	width: 100%;
+
+  
+  @media (width >= 40rem) {
+    max-width: 38rem;
+  }
+  @media (width >= 48rem) {
+    max-width: 46rem;
+  }
+  @media (width >= 64rem) {
+    max-width: 60rem;
+  }
+}
+
 
 @layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
   * {
-    @apply border-border;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--border)) transparent
+    @apply border-border outline-ring/50;
   }
 
   body {
@@ -18,31 +118,15 @@
   }
 
   ::-webkit-scrollbar {
-    width: 3px
+    display: none;
+    scrollbar-width: none;
   }
 
-  ::-webkit-scrollbar-track {
-    background: transparent
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 5px
-  }
-
-  ::selection:not(img) {
+  :not(img)::selection {
     @apply bg-ds-gray-1000 text-ds-gray-100;
   }
   ::selection img {
     @apply bg-none;
-  }
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
   }
 }
 

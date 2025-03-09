@@ -22,98 +22,84 @@ const {
   title={title}
   description={description}
 >
-  <section class={cn(
-    'prose dark:prose-invert container max-w-[948px] relative flex w-full flex-col',
-  )}
-  >
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
-      <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="fixed flex flex-col space-y-2">
-          <div
-            title="back"
-            onclick="history.back()"
-            class="pt-24 hidden xl:inline-flex hover:cursor-pointer"
-          >
-            <Icon name="lucide:arrow-up-left" class="mr-2 size-4 my-auto text-ds-gray-800" />
-            <span
-              class:list={[
-                'text-sm text-ds-gray-800 underline underline-offset-4',
-                'decoration-ds-gray-600 hover:decoration-ds-gray-900',
-                'duration-500 ease-in-out decoration-1',
-              ]}
-            >
-              Back
-            </span>
-          </div>
-        </aside>
-      </div>
-      <article class="md:col-span-4 overflow-auto pt-2 md:pt-8">
-        <h1
-          class="text-4xl mt-4"
+<section class:list={[
+  'prose dark:prose-invert container max-w-[948px] relative',
+  'flex w-full flex-col py-3 px-4 md:px-20'
+]}>
+    <article class="md:col-span-4 overflow-auto pt-2 md:pt-4 pb-6">
+      <h1 class="text-4xl mt-4">
+        {title}
+      </h1>
+      <div class="flex flex-wrap items-center font-normal">
+        <div
+          class="text-ds-gray-600 text-sm mr-2  md:mr-4"
         >
-          {title}
-        </h1>
-        <div class="flex flex-wrap items-center font-normal">
-          <div
-            class="text-ds-gray-600 text-sm mr-2  md:mr-4"
-          >
-            Updated On { formatDateWithYear(updatedDate) }
-          </div>
-          <div class="flex">
-            {
-              category.map((cat: string) => {
-                return (
-                  <Link
-                    href={`/post/category/${cat}/`}
-                    title={cat}
-                    class={cn(
-                      'flex items-center justify-center group no-underline font-normal',
-                      'after:!content-none hover:!no-underline',
-                    )}
-                  >
-                    <Icon name="lucide:hash" class="size-3 text-ds-gray-800 hover:scale-110 duration-150 ease-in-out hover:text-ds-gray-1000" />
-                    <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000 mr-2">
-                      {cat}
-                    </span>
-                  </Link>
-                )
-              })
-            }
-          </div>
-
+          Updated On { formatDateWithYear(updatedDate) }
         </div>
-        {
-          cover
-          ? (
-            <figure>
-              <Image
-                class="rounded-xl overflow-hidden"
-                width={720}
-                height={360}
-                src={cover}
-                alt={title}
-                loading="lazy"
-              />
+        <div class="flex">
+          {
+            category.map((cat: string) => {
+              return (
+                <Link
+                  href={`/post/category/${cat}/`}
+                  title={cat}
+                  class={cn(
+                    'flex items-center justify-center group no-underline font-normal',
+                    'after:content-none! hover:no-underline!',
+                  )}
+                >
+                  <Icon name="lucide:hash" class="size-3 text-ds-gray-800 hover:scale-110 duration-150 ease-in-out hover:text-ds-gray-1000" />
+                  <span class="text-sm text-ds-gray-800 link hover:text-ds-gray-1000 mr-2">
+                    {cat}
+                  </span>
+                </Link>
+              )
+            })
+          }
+        </div>
 
-              {
-                coverAlt && (
-                  <figcaption
-                    class="mt-2 break-all text-center text-xs text-ds-gray-600"
-                  >
-                    { coverAlt }
-                  </figcaption>
-                )
-              }
-            </figure>
-          )
-          : null
-        }
-        <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
-          {description}
-        </blockquote>
-        <hr class="my-6 max-w-24 mx-auto" />
-        <slot />
-      </article>
-    </main>
+      </div>
+      {
+        cover
+        ? (
+          <figure>
+            <Image
+              class="rounded-xl overflow-hidden"
+              width={720}
+              height={360}
+              src={cover}
+              alt={title}
+              loading="lazy"
+            />
+
+            {
+              coverAlt && (
+                <figcaption
+                  class="mt-2 break-all text-center text-xs text-ds-gray-600"
+                >
+                  { coverAlt }
+                </figcaption>
+              )
+            }
+          </figure>
+        )
+        : null
+      }
+      <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
+        {description}
+      </blockquote>
+      <slot />
+    </article>
   </section>
+  <div
+    title="back"
+    onclick="history.back()"
+    class="fixed lef-0 top-32 hidden xl:inline-flex hover:cursor-pointer opacity-50 hover:opacity-85 ease-in-out duration-500"
+  >
+    <Icon name="lucide:arrow-up-left"
+      class="mr-0.5 size-4 my-auto text-ds-gray-600" />
+    <span class="text-xs text-ds-gray-800 no-underline">
+      Back
+    </span>
+  </div>
 </MainLayout>

@@ -1,7 +1,7 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro'
 import Project from './_components/Project.astro'
-import { projects } from './_data'
+import {projects} from './_data'
 
 const projectTypes: string[] = Object.keys(projects)
 
@@ -11,7 +11,7 @@ const projectTypes: string[] = Object.keys(projects)
   title="Projects"
   description="Projects that I create."
 >
-  <section class="prose dark:prose-invert container max-w-[948px] px-8 md:px-12">
+  <section class="prose dark:prose-invert container max-w-[948px] py-3 px-4 md:px-20">
     <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
       List of Projects.
     </h1>
@@ -19,10 +19,10 @@ const projectTypes: string[] = Object.keys(projects)
       {
         projectTypes.map((type: string) => {
           return (
-            <h2 id={type} class="scroll-m-20 text-2xl font-semibold  first:mt-0">
+            <h2 id={type} class="scroll-m-20 mt-0 mb-2 text-2xl font-semibold">
               {type}
             </h2>
-            <div class="space-y-3 pl-1">
+            <div class="space-y-4">
               {projects[type].map((project: any) => {
                 return (
                   <Project
@@ -30,6 +30,7 @@ const projectTypes: string[] = Object.keys(projects)
                     title={project.title}
                     desc={project.desc}
                     tags={project.tags}
+                    icon={project.icon}
                   />
                 )
               })}

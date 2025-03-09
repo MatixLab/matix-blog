@@ -1,5 +1,6 @@
 import type { RehypePlugins, ShikiConfig } from 'astro'
 import {
+  transformerNotationDiff,
   transformerMetaHighlight,
   transformerMetaWordHighlight,
 } from '@shikijs/transformers'
@@ -46,6 +47,7 @@ function parseMetaBlock(metaRaw?: string) {
 export const shikiConfig: ShikiConfig = {
   theme: vercelTheme,
   transformers: [
+    transformerNotationDiff(),
     transformerMetaHighlight({
       className: 'has-highlight',
     }),

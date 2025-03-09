@@ -48,7 +48,7 @@ export interface CollectiveItem {
 export interface ProjectItem {
   title: string
   url: string
-  icon?: ''
+  icon?: string
   desc?: string
   tags?: string[]
 }

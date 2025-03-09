@@ -1,12 +1,6 @@
 ---
-import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getShortCategories } from '@/lib/fetchers'
-import { cn } from '@/lib/utils'
-import { HashIcon } from 'lucide-react'
-import { ShortFilter } from '../_components/ShortFilter'
 
-const shortCategories = await getShortCategories()
 
 type Props = {
   title: string
@@ -15,63 +9,20 @@ type Props = {
 }
 
 const { title, description, mainClass } = Astro.props
-const shortCategory = Astro.url.pathname.split('/')[3] || ''
 ---
 <MainLayout
   title={title}
   description={description}
   mainClass={mainClass}
 >
-  <section class="container max-w-[948px] relative flex w-full flex-col">
-    <main class="grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-5">
-      <div class="md:col-span-1 rounded-lg hidden md:block">
-        <aside class="hidden md:block fixed">
-          <ul class="group pt-24">
-            {
-              shortCategories.map((item) => {
-                return (
-                  <li class={cn(
-                    'group/list-item group-hover:text-gray-300 dark:group-hover:text-ds-gray-700 text-ds-gray-800',
-                    'text-left h-8',
-                  )}
-                  >
-                    <Link
-                      href={`/short/category/${item}/`}
-                      title={item}
-                      class={cn(
-                        'flex items-center w-full text-sm py-1',
-                        'group-hover/list-item:text-ds-gray-1000 dark:group-hover/list-item:text-gray-100',
-                        (item === decodeURI(shortCategory)) && 'font-medium text-black dark:text-white',
-                      )}
-                    >
-                      <HashIcon className="size-3 mr-1"></HashIcon>
-                      <span>
-                        {item}
-                      </span>
-                    </Link>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        </aside>
-      </div>
-      <div class="pt-4 md:hidden w-full">
-        <ShortFilter
-          categories={shortCategories as string[]}
-          category={shortCategory}
-          client:load
-          slot="mobile-nav-header"
-        />
-      </div>
-      <div class="md:col-span-4 overflow-auto pt-2 md:pt-8">
-        <slot name="head-name">
-          <h1 class="mt-2 scroll-m-20 text-3xl font-bold  hidden md:block">
-            { description }
-          </h1>
-        </slot>
-        <slot name="right-content" />
-      </div>
-    </main>
+  <section class="container max-w-[948px] py-3 px-4 md:px-20">
+    <slot name="head-name">
+      <h1 class="pt-8 scroll-m-20 text-3xl font-bold">
+        {description}
+      </h1>
+    </slot>
+    <section class="overflow-auto relative flex flex-col">
+      <slot name="right-content" />
+    </section>
   </section>
 </MainLayout>

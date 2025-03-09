@@ -1,63 +1,57 @@
-@layer utilities {
-
-  /* #region list-container */
-  .list-container {
-    @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
-  }
-  .list-container:last-of-type {
+@utility  list-container {
+  @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
+  &:last-of-type {
     @apply mb-0;
   }
-  .list-title {
-    @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
-  }
-  .list-content {
-    @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
-  }
-  /* #endregion */
+}
+@utility list-title {
+  @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
+}
 
-  /* #region animate link component*/
-  .link {
-    @apply relative;
-  }
-  .link:after {
-    @apply absolute bottom-0 left-0 h-[1px] w-full;
+@utility  list-content {
+  @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
+}
+
+@utility link {
+  position: relative;
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
     transform-origin: bottom right;
     transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(0) scaleY(1.2);
     background-color: currentColor;
     transition-property: transform;
-    transition-duration: .3s;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    animation-duration: .3s;
-    content: "";
-    animation-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-duration: 0.3s;
+    content: '';
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .link:hover:after {
+  &:hover:after {
     transform-origin: bottom left;
     transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
   }
-  /* #endregion */
+}
 
-  /* #region common link*/
-  .common-link {
-    @apply text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900;
-  }
-  .link-animate {
-    @apply duration-500 ease-in-out decoration-1;
-  }
+@utility common-link {
+  @apply text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900;
+}
 
-  
-  /* #endregion */
+@utility link-animate {
+  @apply duration-500 ease-in-out decoration-1;
+}
 
-  /* #region progress bar */
-  .loading {
-    @apply fixed left-0 top-0 pointer-events-none h-[2px] w-full bg-black dark:bg-white z-[1031];
-    transition: transform 300ms ease-out, opacity 150ms 150ms ease-in;
-    transform: translate3d(0, 0, 0) scaleX(var(--progress, 0));
-    transform-origin: 0;
-  }
-  /* #endregion */
+@utility loading {
+  @apply fixed left-0 top-0 pointer-events-none h-[2px] w-full bg-black dark:bg-white z-1031;
+  transition:transform 300ms ease-out,opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0) scaleX(var(--progress, 0));
+  transform-origin: 0;
+}
 
-  /* #region slideFromBottom */
+@layer utilities {
   @keyframes slideFromBottom {
     from {
       transform: translate3d(0, var(--initial-transform, 100%), 0);
@@ -66,9 +60,7 @@
       transform: translate3d(0, 0, 0);
     }
   }
-  /* #endregion */
-
-  /* #region vaul */
+  
   [data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open] {
     animation-name: slideFromBottom;
   }
@@ -79,7 +71,14 @@
     animation-duration: .5s;
     animation-timing-function: cubic-bezier(0.32,0.72,0,1);
   }
-  /* #endregion */
-
-
+  [data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open] {
+    animation-name: slideFromBottom;
+  }
+  [data-vaul-drawer] {
+    touch-action: none;
+    will-change: transform;
+    transition: transform .5s cubic-bezier(.32, .72, 0, 1);
+    animation-duration: .5s;
+    animation-timing-function: cubic-bezier(0.32,0.72,0,1);
+  }
 }

@@ -2,15 +2,17 @@
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { cn } from '@/lib/utils'
-
 ---
 
-<MainLayout title="Not Found" description="Not found page">
+<MainLayout
+  title="Not Found"
+  description="Not found page"
+>
   <div class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 text-center">
-    <h2 class="mt-4 text-balance text-5xl font-semibold  text-gray-900 sm:text-7xl">
+    <h2 class="mt-4 text-balance text-5xl font-semibold text-gray-900 sm:text-7xl">
       Page not found
     </h2>
-    <p class="mt-6 text-pretty text-lg text-ds-gray-800 sm:text-xl/8">
+    <p class="text-pretty mt-6 text-lg text-ds-gray-800 sm:text-xl/8">
       Sorry, we couldn't find the page you're looking for.
     </p>
     <div class="mt-10 flex items-center justify-center gap-x-6">
@@ -18,8 +20,8 @@ import { cn } from '@/lib/utils'
         href="/"
         title="Home"
         class={cn(
-          'rounded-md px-3.5 py-2 text-sm font-semibold text-white shadow-sm',
-          'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ',
+          'rounded-md px-3.5 py-2 text-sm font-semibold text-white shadow-2xs',
+          'focus-visible:outline focus-visible:outline-offset-2 ',
           'bg-zinc-900  hover:bg-zinc-700 focus-visible:outline-zinc-900',
         )}
       >

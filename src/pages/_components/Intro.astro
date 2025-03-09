@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site'
 import { Icon } from 'astro-icon/components'
 ---
 <dl class="list-container">
-  <dt class="list-title !border-none pb-4 pt-0 leading-relaxed sm:pb-0 px-2">
+  <dt class="list-title border-none! pb-4 pt-0 leading-relaxed sm:pb-0 px-2">
     <h1 class="flex items-center gap-1">
       <Link
         href="/"
@@ -18,7 +18,7 @@ import { Icon } from 'astro-icon/components'
       Full Stack Developer
     </span>
   </dt>
-  <dd class="list-content !border-none px-2 space-y-4 text-[15px]">
+  <dd class="list-content border-none! px-2 space-y-4 text-[15px]">
     <p>
       Hey 👋 I'm { siteConfig.author}, a full stack developer at
       <Link
@@ -58,7 +58,10 @@ import { Icon } from 'astro-icon/components'
         href={siteConfig.links.blueSky}
         title="blueSky"
       >
-        <Icon name="simple-icons:bluesky" class="size-5 inline-flex opacity-50 hover:opacity-100 hover:text-blue-500" />
+        <Icon
+          name="simple-icons:bluesky"
+          class="size-5 inline-flex opacity-50 hover:opacity-100 hover:text-blue-500"
+        />
       </Link>
       <Link
         href={siteConfig.links.notion}

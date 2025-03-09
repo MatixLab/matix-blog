@@ -1,8 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
-import {
-  siteConfig,
-} from '@/config/site'
+import { siteConfig } from '@/config/site'
 import { Icon } from 'astro-icon/components'
 
 type Props = {
@@ -14,37 +12,27 @@ const { className } = Astro.props
 const footerLinks: {
   url: string
   title: string
-}[] = [
-  { title: 'Credits', url: '/credits/' },
-]
+}[] = [{ title: 'Credits', url: '/credits/' }]
 
 // eslint-disable-next-line no-undef
 const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
 ---
 
-<footer class:list={[
-    'flex w-full justify-center py-4',
-    className,
-  ]}
->
-  <div class="container max-w-[948px] flex-1">
-    <div class="flex h-full w-full items-end justify-between border-t border-solid pt-4 border-neutral-500/10  dark:border-neutral-900">
-      <div class="flex-1">
-        <ul class="flex gap-2 pb-4 text-ds-gray-800 text-xs">
+<footer class:list={['flex w-full justify-center', className]}>
+  <div class="container flex-1 border-t-[1px] border-ds-gray-100">
+    <div
+      class="max-w-[948px] mx-auto flex size-full items-end justify-between p-3"
+    >
+      <div class="flex-1 space-y-2">
+        <ul class="flex gap-2  text-ds-gray-800 text-xs">
           {
             footerLinks.map((foot) => {
               return (
                 <li>
-                  <Link
-                    href={foot.url}
-                    title={foot.title}
-                    class="link text-xs text-ds-gray-900"
-                  >
-                  </Link>
+                  <Link href={foot.url} title={foot.title} class="link text-xs text-ds-gray-900" />
                 </li>
               )
             })
-
           }
         </ul>
         <div class="flex gap-1.5 text-xs text-ds-gray-800">
@@ -57,18 +45,13 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
             class="fill-neutral-500 dark:fill-silver-dark"
           >
             <path d="M3 6.5h1v6l-.5 1-.5-1v-6z"></path>
-            <path
-              d="M3.5 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-1-3a.5.5 0 100-1 .5.5 0 000 1z"
-            ></path>
+            <path d="M3.5 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-1-3a.5.5 0 100-1 .5.5 0 000 1z"></path>
           </svg>
           Made in JiangSu, CN
         </div>
       </div>
       <div class="flex h-full flex-col items-end justify-end sm:justify-between">
-        <div
-          class="hidden flex-1 select-none text-xs text-ds-gray-800 sm:block"
-          role="img"
-        >
+        <div class="hidden flex-1 select-none text-xs text-ds-gray-800 sm:block" role="img">
           {siteConfig.slogan}
         </div>
         <div class="flex gap-2">
@@ -80,7 +63,7 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
             <Icon name="lucide:rss" class="size-3" />
           </Link>
           <Link
-            class="common-link link-animate text-xs flex items-center gap-1.5 "
+            class="common-link link-animate text-xs flex items-center gap-1.5"
             href={siteConfig.repoUrl}
             title="matix-blog"
           >
