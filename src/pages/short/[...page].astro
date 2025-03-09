@@ -1,9 +1,9 @@
 ---
 import type { PaginateFunction } from 'astro'
+import type { CollectionEntry } from 'astro:content'
 import Pagination from '@/components/common/Pagination.astro'
 import { siteConfig } from '@/config/site'
 import { getShorts } from '@/lib/fetchers'
-import { type CollectionEntry } from 'astro:content'
 import ShortList from './_components/ShortList.astro'
 import ShortLayout from './_layout/ShortLayout.astro'
 
@@ -39,25 +39,25 @@ const years = Object.keys(shorts).sort((a, b) => {
 ---
 <ShortLayout
   title="Shorts"
-  description="Writing record."
+  description="Shorts record."
 >
   <div slot="right-content">
-    <section class="ml-1 pt-8">
+    <div class="pt-8">
       <ShortList years={years} shorts={shorts} />
-      {
-        page.total && page.total > siteConfig.pagination.pageSize
-        ? (
-          <div class="mt-6">
-            <Pagination
-              currentPage={page.currentPage}
-              totalPages={page.lastPage}
-              prevUrl={page.url.prev || ''}
-              nextUrl={page.url.next || ''}
-            />
-          </div>
-        )
-        : null
-      }
-    </section>
+    </div>
+    {
+      page.total && page.total > siteConfig.pagination.pageSize
+      ? (
+        <div class="mt-6">
+          <Pagination
+            currentPage={page.currentPage}
+            totalPages={page.lastPage}
+            prevUrl={page.url.prev || ''}
+            nextUrl={page.url.next || ''}
+          />
+        </div>
+      )
+      : null
+    }
   </div>
 </ShortLayout>

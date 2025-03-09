@@ -10,6 +10,7 @@
     },
     "strictNullChecks": true
   },
+  
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
 }

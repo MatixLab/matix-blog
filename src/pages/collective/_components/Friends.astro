@@ -6,7 +6,7 @@ import { data } from '../_data'
 
 const authors = data.Authors
 ---
-<h2 class="scroll-m-20 mb-2 text-2xl font-semibold  first:mt-0">
+<h2 class="scroll-m-20 mt-0 mb-2 text-2xl font-semibold ">
   Blogger
 </h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pl-1">
@@ -19,14 +19,14 @@ const authors = data.Authors
             <Link
               href={`${item.url}?ref=antzhu.com`}
               title={item.name}
-              class="break-words !pl-0 no-underline "
+              class="break-words pl-0! no-underline "
             >
-              <h3 class="inline-flex my-0 font-medium common-link link-animate text-[15px] !text-black">
+              <h3 class="inline-flex mt-0 mb-0 font-medium common-link link-animate text-[15px] text-black!">
                 {item.name}
               </h3>
               <Icon
                 name="lucide:arrow-up-right"
-                class="inline-flex size-4 -mt-1 p-0.5 shrink-0 text-ds-gray-700"
+                class="inline-flex size-4 -mt-0.5 p-0.5 shrink-0 text-ds-gray-700"
               />
             </Link>
           </div>

@@ -1,6 +1,6 @@
 # Matix-blog Theme
 
-A simple blog built with Astro(v5),Tailwind, Shadcn.
+A simple blog built with Astro(v5),Tailwind(v4), Shadcn.
 
 ## Live Demo
 
@@ -10,7 +10,7 @@ A simple blog built with Astro(v5),Tailwind, Shadcn.
 
 - 🚀 Fast and optimized - Built for speed and performance.
 - 🦾 TypeScript, of course.
-- 🎨 [TailwindCss](https://tailwindcss.com/)： A utility-first CSS framework.
+- 🎨 [TailwindCss v4](https://tailwindcss.com/)： A utility-first CSS framework.
 - 📖 Simple: Just md / mdx files.
 - ☁️ Deploy on Netlify, zero-config.
 - 🚀 SEO-friendly: Support for SEO.

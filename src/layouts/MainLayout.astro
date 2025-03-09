@@ -16,7 +16,6 @@ type Props = {
 
 const segment = extractSegmentURL(Astro.url.pathname)
 
-// TODO
 let imageDefault = segment ? Astro.url.pathname : '/home'
 if (imageDefault.endsWith('/')) {
   imageDefault = imageDefault.substring(0, imageDefault.lastIndexOf('/'))
@@ -38,7 +37,7 @@ const {
   image={image}
   imageAlt={imageAlt}
 >
-  <div class="relative flex min-h-screen flex-col bg-background">
+  <div class="flex min-h-screen flex-col">
     <SiteHeader>
       <MainNav
         slot="nav-header"
@@ -50,7 +49,11 @@ const {
         client:load
       />
     </SiteHeader>
-    <main class:list={['flex-1', mainClass]}>
+    <main class:list={[
+        'flex-1 container',
+        mainClass,
+      ]}
+    >
       <slot />
     </main>
     <SiteFooter />

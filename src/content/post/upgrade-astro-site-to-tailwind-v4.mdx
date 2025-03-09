@@ -1,0 +1,109 @@
+---
+title: "Upgrade to tailwind v4"
+description: "tailwind 的 4.0 版本发布了,我也把我博客的 tailwind 版本升级到了最新的 4.0"
+pubDate: "2025/03/09"
+updatedDate: "2025/03/09"
+category:
+  - "tailwind"
+  - "astro"
+---
+
+## Astro 升级
+
+> 我第一步升级的是 Astro 的版本.
+
+我之前的 Astro 的版本是 *5.1.8*, 所以我先执行 `npx @astrojs/upgrade` 命令将 Astro 升级到最新的版本 *5.4.2*。
+因为有 ***Breaking Changes***, 所以需要你确认是否要继续升级。所以我当然是选择了 ***Yes***.
+
+在 Astro *5.2.0* 以上的版本, 可以通过 `astro add tailwind` 命令将 tailwind 添加到 Astro 中,它会以 **Vite 插件** 的形式添加到你的 astro 配置文件中:
+
+```ts title="astro.config.ts"
+vite: {
+  // ...
+  plugins: [
+    // ... plugins
+    tailwindcss(), // [!code ++]
+  ],
+}
+```
+
+最后,我移除了 `@astrojs/tailwind` 插件, 因为我已经使用了 Vite 插件的形式添加了 tailwind.
+
+```ts title="astro.config.ts"
+integrations: [
+  // ... integrations
+  tailwind({ // [!code --]
+    applyBaseStyles: false, // [!code --]
+  }), // [!code --]
+]
+```
+
+
+## tailwind 升级
+
+> 升级工具需要 Node.js 20 或更高版本, 因此运行前请确保 Node 版本是否符合要求。
+
+tailwind 提供了v3 -> v4 的升级工具,对于大多数项目来说, 它可以自动完成整个迁移过程，包括更新依赖关系、将配置文件迁移到 CSS 等。
+
+
+```bash
+npx @tailwindcss/upgrade
+```
+
+运行上面的命令后, tailwind 的升级基本完成了, 升级工具默认采用 `@config` 的方式引入 tailwind 的配置文件, 这里我将配置信息移动到了 css 文件中
+
+```css title="src/styles/global.css"
+@import 'tailwindcss';
+/* 将 css 变量分隔到其他的 css 文件中 */
+@import './variables.css' layer(base);
+/* 引入 animate */
+@plugin 'tailwindcss-animate';
+/* 引入 typography */
+@plugin '@tailwindcss/typography';
+/* 其他的 css 文件 */
+@import './mdx.css';
+@import './common.css';
+
+/* 
+  详细可以参看 https://tailwindcss.com/docs/theme
+*/
+@theme inline {
+  /* font config */
+  --font-sans: IBM Plex Sans;
+
+  /* colors config */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  
+  /* borderRadius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /*  animation */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  /* .... more */
+}
+
+/* container 的配置 */
+@utility container {
+  margin-inline: auto;
+	padding-inline: 2rem;
+	width: 100%;
+}
+```
+
+## 最后
+
+整体来说升级的过程不算麻烦, 但是最新的 tailwind 的颜色系统使用了更好的 `oklch`, 这个颜色系统更加的符合人眼的感知, 所以我通过 Claude3.5 将颜色转换为了 oklch 的形式。
+
+总的来说, tailwind 的升级总算是完成了,但有些兼容性的问题需要关注 tailwind 给出的[破坏性变更](https://tailwindcss.com/docs/upgrade-guide#changes-from-v3),
+然后按照文档适当的调整样式即可!
+
+## 相关链接
+
+- [Astro 样式与 Css](https://docs.astro.build/zh-cn/guides/styling/#tailwind)
+- [Upgrade guide](https://tailwindcss.com/docs/upgrade-guide)

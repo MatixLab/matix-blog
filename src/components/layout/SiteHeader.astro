@@ -11,14 +11,24 @@ const { className } = Astro.props;
 
 <header
   class:list={[
-    'h-12 flex items-center justify-center bg-background z-50 sticky top-0 container',
+    'h-12 flex items-center justify-center bg-background sticky z-50 top-0',
     className,
   ]}
 >
-  <div class="relative flex items-center size-full md:max-w-[948px]">
+  <div class:list={[
+    'container relative flex items-center size-full px-3',
+  ]}
+  >
     <div class="items-center gap-6 md:gap-8 lg:gap-10 hidden md:flex">
-      <Link href="/" class="items-center space-x-2" title="Home">
-        <Icon name="lucide:asterisk" class="size-8" />
+      <Link
+        href="/"
+        class="items-center space-x-2"
+        title="Home"
+      >
+        <Icon
+          name="lucide:asterisk"
+          class="size-8"
+        />
       </Link>
     </div>
 

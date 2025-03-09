@@ -6,9 +6,10 @@ import netlify from '@astrojs/netlify'
 import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
 import playformCompress from '@playform/compress'
+import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
+
 import { defineConfig } from 'astro/config'
 
 import {
@@ -34,9 +35,6 @@ export default defineConfig({
   prefetch: true,
   integrations: [
     db(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
     mdx(),
     sitemap(),
     react(),
@@ -94,16 +92,19 @@ export default defineConfig({
     optimizeDeps: {
       include: ['lucide-react'],
     },
-    plugins: [{
-      name: 'vite-plugin-git-revision-info',
-      config() {
-        return {
-          define: {
-            PUBLIC_GIT_REVISION_INFO: res,
-          },
-        }
+    plugins: [
+      {
+        name: 'vite-plugin-git-revision-info',
+        config() {
+          return {
+            define: {
+              PUBLIC_GIT_REVISION_INFO: res,
+            },
+          }
+        },
       },
-    }],
+      tailwindcss(),
+    ],
   },
 
   env: {
