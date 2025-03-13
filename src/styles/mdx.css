@@ -24,7 +24,7 @@
       @apply grid text-sm py-4;
     }
     pre code .line {
-      @apply px-2 leading-6;
+      @apply pl-4 pr-2 leading-6;
     }
     .code-header {
       @apply flex justify-between items-center px-4 border-b-gray-300  h-12 border-b-[1px] border-solid;

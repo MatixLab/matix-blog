@@ -1,9 +1,10 @@
 @import 'tailwindcss';
+@import './variables.css' layer(base);
 @import './mdx.css';
 @import './common.css';
-@import './variables.css' layer(base);
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
+
 
 @theme inline {
   /* #region font */
@@ -84,10 +85,9 @@
 
 @utility container {
   margin-inline: auto;
-	padding-inline: 2rem;
+	padding-inline: 0.75rem;
 	width: 100%;
 
-  
   @media (width >= 40rem) {
     max-width: 38rem;
   }
@@ -110,7 +110,7 @@
   }
 
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 text-base;
   }
 
   body {
