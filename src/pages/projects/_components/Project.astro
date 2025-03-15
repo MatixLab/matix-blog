@@ -1,46 +1,61 @@
 ---
 import Link from '@/components/common/Link.astro'
 import Tags from '@/components/common/Tags.astro'
-import { Icon } from 'astro-icon/components'
 
 interface Props {
-  url: string
   title: string
+  state: 'InProgress' | 'Fail' | 'Success'
+  url: string
   desc?: string
-  tags?: string[],
-  icon?: string
+  tags?: string[]
 }
-const { url, title, tags, desc, icon='' } = Astro.props
+const { url, title, tags, desc, state } = Astro.props
+
+const dotClass: string[] = ['size-2 flex-none rounded-full']
+if (state === 'Success') {
+  dotClass.push(
+    'bg-green-500 before:absolute before:size-2 before:animate-ping before:rounded-full before:bg-green-300'
+  )
+}
+if (state === 'Fail') {
+  dotClass.push('bg-rose-500')
+}
+if (state === 'InProgress') {
+  dotClass.push(
+    'bg-yellow-500 before:absolute before:size-2 before:animate-ping before:rounded-full before:bg-yellow-300'
+  )
+}
 ---
 
-<div class="flex flex-col">
-  <div class="flex justify-between">
-    <Link
-      href={`${url}?ref=antzhu.com`}
-      title={title}
-      class="break-words pl-0! no-underline"
-    >
-      <Icon
-        name={`simple-icons:${icon}`}
-        class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-0.5"
-      />
-      <h3
-        class:list={[
-          'inline-flex mt-0 mb-0 font-medium common-link link-animate text-base text-black!',
-        ]}
-      >
-        {title}
-      </h3>
-      <Icon
-        name="lucide:arrow-up-right"
-        class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-0.5"
-      />
-    </Link>
-    <span class="items-center ml-1 hidden md:flex space-x-2">
-      <Tags tags={tags || []} />
-    </span>
+<div
+  class="ml-2 grid grid-cols-12 gap-4 rounded p-2 text-xs hover:bg-ds-gray-100/40 md:grid-cols-24"
+>
+  <div class="col-span-1 my-auto items-center justify-center">
+    <div aria-hidden="true" title={state} class:list={dotClass}></div>
   </div>
-  <div class="text-ds-gray-800 text-sm ml-2">
-    {desc}
+  <div class="col-span-10">
+    <div class="flex flex-col justify-between space-y-1">
+      <Link
+        href={`${url}?ref=antzhu.com`}
+        title={title}
+        class="pl-0! break-words no-underline"
+      >
+        <h3
+          class:list={[
+            'mt-0 mb-0 inline-flex text-base font-medium text-black!'
+          ]}
+        >
+          {title}
+        </h3>
+      </Link>
+      <div class:list={['line-clamp-1 items-center text-xs md:flex']}>
+        {desc}
+      </div>
+    </div>
+  </div>
+  <div class="my-auto hidden justify-end md:col-span-12 md:flex">
+    <div class="space-x-1">
+      <Tags tags={tags || []} />
+    </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import Link from '@/components/common/Link.astro'
 import Tags from '@/components/common/Tags.astro'
-import { cn, formatSimpleDate } from '@/lib/utils.ts'
+import {cn, formatSimpleDate} from '@/lib/utils.ts'
+import {type CollectionEntry} from 'astro:content'
 
 type Props = {
   posts: {
@@ -11,17 +11,17 @@ type Props = {
   years: string[]
 }
 
-const { posts, years } = Astro.props
+const {posts, years} = Astro.props
 ---
 
 <div class="text-sm">
   <div class="grid grid-cols-12 py-2 font-medium text-ds-gray-900">
     <span class="col-span-1 hidden text-left md:grid">Year</span>
     <span class="col-span-12 md:col-span-11">
-      <span class="grid items-center grid-cols-4 md:grid-cols-8">
+      <span class="grid grid-cols-4 items-center md:grid-cols-8">
         <span class="col-span-1 text-left">Date</span>
         <span class="col-span-3 md:col-span-4">Title</span>
-        <span class="md:col-span-3 hidden md:grid">Category</span>
+        <span class="hidden md:col-span-3 md:grid">Category</span>
       </span>
     </span>
   </div>
@@ -37,8 +37,8 @@ const { posts, years } = Astro.props
                   <span
                     class:list={[
                       'pointer-events-none col-span-1 hidden items-center transition-colors duration-300',
-                      ' group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-ds-gray-500',
-                      itemIndex === 0 && 'border-t border-gray-200',
+                      'group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-ds-gray-500',
+                      itemIndex === 0 && 'border-t border-gray-200'
                     ]}
                   >
                     {itemIndex === 0 ? year : ''}
@@ -47,26 +47,20 @@ const { posts, years } = Astro.props
                     href={`/post/${item.id}/`}
                     title={item.id}
                     class={cn(
-                      'col-span-12 md:col-span-11 group-hover/list-item:text-gray-900',
-                      'dark:group-hover/list-item:text-ds-gray-500',
+                      'col-span-12 group-hover/list-item:text-gray-900 md:col-span-11',
+                      'dark:group-hover/list-item:text-ds-gray-500'
                     )}
                   >
                     <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                       <span class="col-span-1 text-left tabular-nums">
-                        <time
-                          datetime={item.data.pubDate.toDateString()}
-                        >
+                        <time datetime={item.data.pubDate.toDateString()}>
                           {formatSimpleDate(item.data.updatedDate)}
                         </time>
                       </span>
-                      <span
-                        class="col-span-3 md:col-span-4 line-clamp-1"
-                      >
+                      <span class="col-span-3 line-clamp-1 md:col-span-4">
                         {item.data.title}
                       </span>
-                      <span
-                        class="line-clamp-1 md:col-span-3 items-center hidden md:flex md:space-x-2"
-                      >
+                      <span class="line-clamp-1 hidden items-center md:col-span-3 md:flex md:space-x-2">
                         <Tags tags={item.data.category || []} />
                       </span>
                     </span>

@@ -47,6 +47,7 @@ export interface CollectiveItem {
 
 export interface ProjectItem {
   title: string
+  state: 'InProgress' | 'Fail' | 'Success'
   url: string
   icon?: string
   desc?: string

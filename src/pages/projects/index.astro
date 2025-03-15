@@ -1,42 +1,34 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro'
+import type { ProjectItem } from '@/types'
 import Project from './_components/Project.astro'
-import {projects} from './_data'
-
-const projectTypes: string[] = Object.keys(projects)
-
+import { projects } from './_data'
 ---
 
-<MainLayout
-  title="Projects"
-  description="Projects that I create."
->
-  <section class="prose dark:prose-invert container max-w-[948px] py-3 px-4 md:px-10">
-    <h1 class="pt-4 md:pt-8 scroll-m-20 text-3xl font-bold">
+<MainLayout title="Projects" description="Projects that I create.">
+  <section
+    class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
+  >
+    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
       List of Projects.
     </h1>
-    <article class="overflow-auto relative flex flex-col">
+    <article class="relative flex flex-col overflow-auto">
       {
-        projectTypes.map((type: string) => {
-          return (
-            <h2 id={type} class="scroll-m-20 mt-0 mb-2 text-2xl font-semibold">
-              {type}
-            </h2>
-            <div class="space-y-4">
-              {projects[type].map((project: any) => {
-                return (
-                  <Project
-                    url={project.url}
-                    title={project.title}
-                    desc={project.desc}
-                    tags={project.tags}
-                    icon={project.icon}
-                  />
-                )
-              })}
-            </div>
-          )
-        })
+        (
+          <div class="space-y-4">
+            {projects.map((project: ProjectItem) => {
+              return (
+                <Project
+                  url={project.url}
+                  title={project.title}
+                  desc={project.desc}
+                  tags={project.tags}
+                  state={project.state}
+                />
+              )
+            })}
+          </div>
+        )
       }
     </article>
   </section>

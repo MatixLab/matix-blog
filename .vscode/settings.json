@@ -1,35 +1,10 @@
 {
-  	"editor.tabSize": 4,
-	"editor.defaultFormatter": "biomejs.biome",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
-	"emmet.showExpandedAbbreviation": "never",
-	"tailwindCSS.experimental.classRegex": [
-		["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-	],
 	"editor.codeActionsOnSave": {
-		"quickfix.biome": "explicit",
-		"source.organizeImports.biome": "explicit"
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "explicit"
 	},
-	"[json]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[astro]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-  "mdx.server.enable": true,
-  "files.exclude": {
-    ".astro": false,
-    ".wrangler": true,
-    "dist": false
-  }
+	"mdx.server.enable": true,
 }

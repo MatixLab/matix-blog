@@ -10,24 +10,22 @@
     @apply relative pl-2;
   }
   & ul li:before {
-    @apply inline-block -ml-6  font-medium mr-2;
+    @apply mr-2 -ml-6 inline-block font-medium;
     content: '-';
   }
 }
 
-
 @utility not-prose {
-
   &.code-wrapper {
-    @apply relative rounded border-[1px]  border-solid border-gray-300;
+    @apply relative rounded border-[1px] border-solid border-gray-300;
     pre code {
-      @apply grid text-sm py-4;
+      @apply grid py-4 text-sm;
     }
     pre code .line {
-      @apply pl-4 pr-2 leading-6;
+      @apply pr-2 pl-4 leading-6;
     }
     .code-header {
-      @apply flex justify-between items-center px-4 border-b-gray-300  h-12 border-b-[1px] border-solid;
+      @apply flex h-12 items-center justify-between border-b-[1px] border-solid border-b-gray-300 px-4;
     }
 
     .line.has-highlight {
@@ -62,7 +60,7 @@
 }
 
 @layer utilities {
-  :not(pre)>code {
-    @apply relative rounded border px-[0.3rem] py-[0.2rem] text-[15px] bg-background text-foreground;
+  :not(pre) > code {
+    @apply relative rounded bg-background text-sm text-foreground;
   }
 }

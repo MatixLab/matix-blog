@@ -6,33 +6,23 @@ type Props = {
   className?: string
 }
 
-const { className } = Astro.props;
+const { className } = Astro.props
 ---
 
 <header
   class:list={[
-    'h-12 flex items-center justify-center bg-background sticky z-50 top-0',
-    className,
+    'sticky top-0 z-50 flex h-12 items-center justify-center bg-background',
+    className
   ]}
 >
-  <div class:list={[
-    'container relative flex items-center size-full px-3',
-  ]}
-  >
-    <div class="items-center gap-6 md:gap-8 lg:gap-10 hidden md:flex">
-      <Link
-        href="/"
-        class="items-center space-x-2"
-        title="Home"
-      >
-        <Icon
-          name="lucide:asterisk"
-          class="size-8"
-        />
+  <div class:list={['relative container flex size-full items-center px-3']}>
+    <div class="hidden items-center gap-6 md:flex md:gap-8 lg:gap-10">
+      <Link href="/" class="items-center space-x-2" title="Home">
+        <Icon name="lucide:asterisk" class="size-8" />
       </Link>
     </div>
 
-    <div class="hidden md:flex mx-auto">
+    <div class="mx-auto hidden md:flex">
       <!-- normal nav menu -->
       <slot name="nav-header" />
     </div>
