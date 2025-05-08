@@ -1,5 +1,3 @@
-import ChildProcess from 'node:child_process'
-import { promisify } from 'node:util'
 import db from '@astrojs/db'
 import mdx from '@astrojs/mdx'
 import netlify from '@astrojs/netlify'
@@ -9,13 +7,12 @@ import sitemap from '@astrojs/sitemap'
 import playformCompress from '@playform/compress'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
+import ChildProcess from 'node:child_process'
+import { promisify } from 'node:util'
 
 import { defineConfig } from 'astro/config'
 
-import {
-  rehypePlugins,
-  shikiConfig,
-} from './config/plugins'
+import { rehypePlugins, shikiConfig } from './config/plugins'
 
 import { schema } from './env.schema'
 
@@ -40,21 +37,21 @@ export default defineConfig({
     react(),
     icon({
       include: {
-        'lucide': [
+        lucide: [
           'asterisk',
           'arrow-up-left',
           'arrow-up-right',
           'align-left',
           'hash',
-          'rss',
+          'rss'
         ],
-        'simple-icons': ['github', 'x', 'bluesky', 'notion', 'gmail'],
-      },
+        'simple-icons': ['github', 'x', 'bluesky', 'notion', 'gmail']
+      }
     }),
     partytown({
       config: {
-        forward: ['dataLayer.push'],
-      },
+        forward: ['dataLayer.push']
+      }
     }),
     playformCompress({
       HTML: true,
@@ -63,34 +60,35 @@ export default defineConfig({
       SVG: true,
       Action: {
         // https://github.com/PlayForm/Compress/issues/376
-        Passed: async () => true,
-      },
-    }),
+        Passed: async () => true
+      }
+    })
   ],
   markdown: {
     shikiConfig,
-    rehypePlugins,
+    rehypePlugins
   },
 
   image: {
-    remotePatterns: [{
-      protocol: 'https',
-    }],
+    remotePatterns: [
+      {
+        protocol: 'https'
+      }
+    ]
   },
   experimental: {
     contentIntellisense: true,
-    responsiveImages: true,
-    svg: true,
+    responsiveImages: true
   },
   devToolbar: {
-    enabled: false,
+    enabled: false
   },
   vite: {
     server: {
-      allowedHosts: true,
+      allowedHosts: true
     },
     optimizeDeps: {
-      include: ['lucide-react'],
+      include: ['lucide-react']
     },
     plugins: [
       {
@@ -98,20 +96,20 @@ export default defineConfig({
         config() {
           return {
             define: {
-              PUBLIC_GIT_REVISION_INFO: res,
-            },
+              PUBLIC_GIT_REVISION_INFO: res
+            }
           }
-        },
+        }
       },
-      tailwindcss(),
-    ],
+      tailwindcss()
+    ]
   },
 
   env: {
     schema,
-    validateSecrets: false,
+    validateSecrets: false
   },
   adapter: netlify({
-    cacheOnDemandPages: false,
-  }),
+    cacheOnDemandPages: false
+  })
 })
