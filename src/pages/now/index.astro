@@ -7,23 +7,20 @@ import MainLayout from '@/layouts/MainLayout.astro'
 import { Content } from './now.mdx'
 ---
 
-<MainLayout
-  title="Now"
-  description="What I'm up to."
->
-  <section class="prose dark:prose-invert container max-w-[948px] py-3 px-4 md:px-16">
-    <h1 class="pt-4 md:pt-8 scroll-m-20 text-3xl font-bold">
-      What I'm up to.
-    </h1>
-    <article class="overflow-auto relative flex flex-col">
+<MainLayout title="Now" description="What I'm up to.">
+  <section
+    class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
+  >
+    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">What I'm up to.</h1>
+    <article class="relative overflow-auto">
       <Content
         components={{
-        ...MdxComponents,
-        img: IMG,
-        Image: IMG,
-        pre: Pre,
-        a: A,
-    }}
+          ...MdxComponents,
+          img: IMG,
+          Image: IMG,
+          pre: Pre,
+          a: A
+        }}
       />
     </article>
   </section>
