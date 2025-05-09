@@ -1,0 +1,83 @@
+---
+title: 'SetUp your Mac'
+description: '利用脚本初始化你的 Mac(非原创)'
+pubDate: '2025/05/08'
+updatedDate: '2025/05/08'
+category:
+  - 'mac'
+  - 'homebrew'
+---
+
+## Brewfile
+
+> 通过 `Brewfile`, 可以批量安装命令行工具、App、字体, 甚至 Vs 扩展，而不用逐个安装.
+
+需要在 `root` 目录下创建 `Brewfile` 文件,然后运行 `brew bundle`,bundle 命令会安装文件中指定的所有内容。
+
+```sh title="Brewfile"
+# 命令行工具
+
+brew "oven-sh/bun/bun"
+brew "git"
+brew "node"
+brew "cask"
+brew "postgresql@17"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+brew "pnpm"
+brew "npm"
+brew "gh"
+
+# App
+cask "cursor"
+cask "discord"
+cask "raycast"
+cask "google-chrome"
+cask "postman"
+cask "screen-studio"
+cask "docker"
+cask "zed"
+cask "ngrok"
+
+# 字体
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-geist-mono"
+```
+
+## MacOs 的默认设置
+
+> macOS 还提供`defaults`，用于自定义 MacBook 和某些应用软件的设置.
+
+为了更方便的设置系统, 可以通过`defaults`实现同样的目的
+
+```sh
+# 启用触控板的 "点击到点击 "功能，并在系统偏好设置中显示正确状态
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+
+# 禁用 .DS 文件创建
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# 在 Finder 中显示路径栏
+defaults write com.apple.finder "ShowPathbar" -bool "true" && killall Finder
+
+# 在 Finder 中显示隐藏文件
+defaults write com.apple.finder "AppleShowAllFiles" -bool "false" && killall Finder
+
+# 保持文件夹在 Finder 顶部
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true" && killall Finder
+
+# 保持文件夹在桌面顶部
+defaults write com.apple.finder "_FXSortFoldersFirstOnDesktop" -bool "true" && killall Finder
+
+# 应用上述的设置
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+```
+
+## 相关链接
+
+- [How I Set Up New MacBooks](https://catalins.tech/how-i-setup-new-macbooks/)
