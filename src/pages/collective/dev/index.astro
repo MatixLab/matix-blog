@@ -2,16 +2,21 @@
 import A from '@/components/markdown/A.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import { Content } from '@/content/now.mdx'
+import { Content } from '@/content/collective/dev.mdx'
 import MainLayout from '@/layouts/MainLayout.astro'
 ---
 
-<MainLayout title="Now" description="What I'm up to.">
+<MainLayout title="Developer Sites" description="Sites I Enjoy Reading.">
   <section
     class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
   >
-    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">What I'm up to.</h1>
+    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
+      Developer Sites I Enjoy Reading.
+    </h1>
     <article class="relative overflow-auto">
+      <p class="mt-0 mb-2 scroll-m-20 text-ds-gray-900">
+        下面网站的排名不分先后:
+      </p>
       <Content
         components={{
           ...MdxComponents,

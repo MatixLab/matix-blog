@@ -1,18 +1,53 @@
 ---
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import Friends from './_components/Friends.astro'
+import { Icon } from 'astro-icon/components'
+
+type CollectiveItem = {
+  title: string
+  subPath: string
+}
+
+const collectiveData: CollectiveItem[] = [
+  { title: '喜欢的开发者网站', subPath: '/dev/' }
+]
 ---
 
-<MainLayout
-  title="Collective"
-  description="Collective records."
->
-  <section class="prose dark:prose-invert container max-w-[948px] py-3 px-4 md:px-16">
-    <h1 class="pt-4 md:pt-8 scroll-m-20 text-3xl font-bold">
+<MainLayout title="Collective" description="Collective records.">
+  <section
+    class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
+  >
+    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
       Collective records.
     </h1>
-    <article class="overflow-auto relative flex flex-col">
-      <Friends />
+    <article class="relative flex flex-col overflow-auto">
+      <p class="mt-0 mb-2 scroll-m-20 text-ds-gray-900">
+        如今很难找到优质的博客,因为很多都被 AI
+        生成的内容给淹没了。所以我创建了这个页面,收录了我喜欢的博客(必须由人类撰写)。
+      </p>
+      <ul class="ml-1 list-disc">
+        {
+          collectiveData.map((item: CollectiveItem) => {
+            return (
+              <li class="mt-2">
+                <Link
+                  href={`/collective${item.subPath}/`}
+                  title={item.title}
+                  class="pl-0! break-words no-underline"
+                >
+                  <h3 class="mt-0 mb-0 inline-flex text-base leading-[2] font-medium common-link text-black! link-animate">
+                    {item.title}
+                  </h3>
+                  <Icon
+                    name="lucide:arrow-up-right"
+                    class="-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-ds-gray-700"
+                  />
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ul>
     </article>
   </section>
 </MainLayout>

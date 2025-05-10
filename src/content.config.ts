@@ -17,8 +17,8 @@ export const post = defineCollection({
       updatedDate: z
         .string()
         .or(z.date())
-        .transform(val => new Date(val)),
-    }),
+        .transform(val => new Date(val))
+    })
 })
 
 export const short = defineCollection({
@@ -37,8 +37,8 @@ export const short = defineCollection({
       updatedDate: z
         .string()
         .or(z.date())
-        .transform(val => new Date(val)),
-    }),
+        .transform(val => new Date(val))
+    })
 })
 
 export const collections = { post, short }
