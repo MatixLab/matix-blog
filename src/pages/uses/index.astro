@@ -1,7 +1,7 @@
 ---
-import type { UsingItem } from '@/types'
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
+import type { UsingItem } from '@/types'
 import { Icon } from 'astro-icon/components'
 import { uses } from './_data'
 
@@ -30,6 +30,9 @@ const useTypes = Object.keys(uses)
                     item.url
                       ? (
                         <li class="mt-2">
+                          {
+                            item.desc && <span class="text-[15px] pr-1 text-ds-gray-1000">{item.desc} : </span>
+                          }
                           <Link
                             href={`${item.url}?ref=antzhu.com`}
                             title={item.title}
@@ -43,19 +46,17 @@ const useTypes = Object.keys(uses)
                               class="inline-flex size-4 -mt-0.5 p-0.5 shrink-0 text-ds-gray-700"
                             />
                           </Link>
-                          {
-                            item.desc && <span class="text-[15px] text-ds-gray-1000"> — {item.desc}</span>
-                          }
+
                         </li>
                       )
                       : (
                         <li class="mt-2">
+                          {
+                            item.desc && <span class="text-[15px] pr-1 text-ds-gray-1000">{item.desc} : </span>
+                          }
                           <span class="font-medium text-ds-gray-1000 text-base pl-0!">
                             {item.title}
                           </span>
-                          {
-                            item.desc && <span class="text-sm text-ds-gray-1000"> — {item.desc}</span>
-                          }
                         </li>
                       )
                   )

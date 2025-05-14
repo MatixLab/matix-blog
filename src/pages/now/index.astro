@@ -1,7 +1,6 @@
 ---
 import A from '@/components/markdown/A.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
-import Pre from '@/components/markdown/Pre.astro'
 import { Content } from '@/content/now.mdx'
 import MainLayout from '@/layouts/MainLayout.astro'
 ---
@@ -15,7 +14,6 @@ import MainLayout from '@/layouts/MainLayout.astro'
       <Content
         components={{
           ...MdxComponents,
-          pre: Pre,
           a: A
         }}
       />

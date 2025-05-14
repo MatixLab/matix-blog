@@ -41,4 +41,8 @@ export const short = defineCollection({
     })
 })
 
-export const collections = { post, short }
+export const collective = defineCollection({
+  loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/collective' })
+})
+
+export const collections = { post, short, collective }

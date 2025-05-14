@@ -1,17 +1,29 @@
 ---
 import A from '@/components/markdown/A.astro'
-import { MdxComponents } from '@/components/markdown/mdx-components'
 import Pre from '@/components/markdown/Pre.astro'
-import { Content } from '@/content/collective/dev.mdx'
+import { MdxComponents } from '@/components/markdown/mdx-components'
 import MainLayout from '@/layouts/MainLayout.astro'
+import { getCollective } from '@/lib/fetchers'
+import { render } from 'astro:content'
+
+const entry = await getCollective('dev-china')
+
+if (!entry) {
+  throw new Error('Could not find dev-china')
+}
+
+const { Content } = await render(entry)
 ---
 
-<MainLayout title="Developer Sites" description="Sites I Enjoy Reading.">
+<MainLayout
+  title="China Developer Sites"
+  description="China Developer Sites I Enjoy Reading."
+>
   <section
     class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
   >
     <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
-      Developer Sites I Enjoy Reading.
+      China Developer Sites I Enjoy Reading.
     </h1>
     <article class="relative overflow-auto">
       <p class="mt-0 mb-2 scroll-m-20 text-ds-gray-900">

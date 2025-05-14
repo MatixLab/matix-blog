@@ -1,8 +1,8 @@
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
 
 export async function getCategories() {
   const posts = await getCollection('post')
-  const categories = [...new Set(posts.map(post => post.data.category).flat())]
+  const categories = [...new Set(posts.flatMap(post => post.data.category))]
   return categories
 }
 
@@ -21,7 +21,7 @@ export async function getShorts() {
 
 export async function getShortCategories() {
   const shorts = await getCollection('short')
-  return [...new Set(shorts.map(short => short.data.category).flat())]
+  return [...new Set(shorts.flatMap(short => short.data.category))]
 }
 
 export async function getShortsByYear(year: string) {
@@ -39,4 +39,8 @@ export async function getPostsByCategory(category: string) {
     .sort((a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf())
 
   return posts
+}
+
+export async function getCollective(id: string) {
+  return await getEntry('collective', id)
 }

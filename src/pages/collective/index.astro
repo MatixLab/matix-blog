@@ -1,7 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { Icon } from 'astro-icon/components'
 
 type CollectiveItem = {
   title: string
@@ -9,7 +8,8 @@ type CollectiveItem = {
 }
 
 const collectiveData: CollectiveItem[] = [
-  { title: '喜欢的开发者网站', subPath: '/dev/' }
+  { title: '开发者个人站', subPath: 'dev' },
+  { title: '国内开发者个人站', subPath: 'dev-china' }
 ]
 ---
 
@@ -31,17 +31,13 @@ const collectiveData: CollectiveItem[] = [
             return (
               <li class="mt-2">
                 <Link
-                  href={`/collective${item.subPath}/`}
+                  href={`/collective/${item.subPath}/`}
                   title={item.title}
                   class="pl-0! break-words no-underline"
                 >
                   <h3 class="mt-0 mb-0 inline-flex text-base leading-[2] font-medium common-link text-black! link-animate">
                     {item.title}
                   </h3>
-                  <Icon
-                    name="lucide:arrow-up-right"
-                    class="-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-ds-gray-700"
-                  />
                 </Link>
               </li>
             )

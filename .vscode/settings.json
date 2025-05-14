@@ -16,4 +16,7 @@
 		"**/.netlify": true,
 	},
 	"mdx.server.enable": true,
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
 }
