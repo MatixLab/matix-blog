@@ -1,4 +1,4 @@
-import { getCollection, getEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 
 export async function getCategories() {
   const posts = await getCollection('post')
@@ -41,6 +41,13 @@ export async function getPostsByCategory(category: string) {
   return posts
 }
 
-export async function getCollective(id: string) {
-  return await getEntry('collective', id)
+export async function getProjects() {
+  return (await getCollection('projects'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .map(project => {
+      return {
+        id: project.id,
+        name: project.data.name
+      }
+    })
 }

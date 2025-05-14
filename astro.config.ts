@@ -85,7 +85,7 @@ export default defineConfig({
   },
   vite: {
     server: {
-      allowedHosts: ['4321-matixlab-matixblog-snn4inb89h7.ws-us118.gitpod.io']
+      allowedHosts: true
     },
     optimizeDeps: {
       include: ['lucide-react']

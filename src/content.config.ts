@@ -45,4 +45,19 @@ export const collective = defineCollection({
   loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/collective' })
 })
 
-export const collections = { post, short, collective }
+export const projects = defineCollection({
+  loader: glob({ pattern: '**\/[^_]*.mdx', base: './src/content/projects' }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      description: z.string(),
+      cover: image().optional(),
+      coverAlt: z.string().optional(),
+      pubDate: z
+        .string()
+        .or(z.date())
+        .transform(val => new Date(val))
+    })
+})
+
+export const collections = { post, short, collective, projects }

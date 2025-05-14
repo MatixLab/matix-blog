@@ -1,12 +1,10 @@
 ---
 import A from '@/components/markdown/A.astro'
-import Pre from '@/components/markdown/Pre.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
 import MainLayout from '@/layouts/MainLayout.astro'
-import { getCollective } from '@/lib/fetchers'
-import { render } from 'astro:content'
+import { getEntry, render } from 'astro:content'
 
-const entry = await getCollective('dev-china')
+const entry = await getEntry('collective', 'dev-china')
 
 if (!entry) {
   throw new Error('Could not find dev-china')
@@ -32,7 +30,6 @@ const { Content } = await render(entry)
       <Content
         components={{
           ...MdxComponents,
-          pre: Pre,
           a: A
         }}
       />

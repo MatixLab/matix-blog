@@ -1,8 +1,12 @@
 ---
+import Link from '@/components/common/Link.astro'
 import MainLayout from '@/layouts/MainLayout.astro'
-import type { ProjectItem } from '@/types'
-import Project from './_components/Project.astro'
-import { projects } from './_data'
+import { getProjects } from '@/lib/fetchers'
+
+const projectData: {
+  id: string
+  name: string
+}[] = await getProjects()
 ---
 
 <MainLayout title="Projects" description="Projects that I create.">
@@ -10,26 +14,28 @@ import { projects } from './_data'
     class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
   >
     <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
-      List of Projects.
+      Projects that I create.
     </h1>
     <article class="relative flex flex-col overflow-auto">
-      {
-        (
-          <div class="space-y-4">
-            {projects.map((project: ProjectItem) => {
-              return (
-                <Project
-                  url={project.url}
-                  title={project.title}
-                  desc={project.desc}
-                  tags={project.tags}
-                  state={project.state}
-                />
-              )
-            })}
-          </div>
-        )
-      }
+      <ul class="ml-1 list-disc">
+        {
+          projectData.map(project => {
+            return (
+              <li class="mt-2">
+                <Link
+                  href={`/projects/${project.id}/`}
+                  title={project.name}
+                  class="pl-0! break-words no-underline"
+                >
+                  <h3 class="mt-0 mb-0 inline-flex text-base leading-[2] font-medium common-link text-black! link-animate">
+                    {project.name}
+                  </h3>
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ul>
     </article>
   </section>
 </MainLayout>
