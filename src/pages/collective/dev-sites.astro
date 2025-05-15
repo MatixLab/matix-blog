@@ -4,7 +4,7 @@ import { MdxComponents } from '@/components/markdown/mdx-components'
 import MainLayout from '@/layouts/MainLayout.astro'
 import { getEntry, render } from 'astro:content'
 
-const entry = await getEntry('collective', 'dev')
+const entry = await getEntry('collective', 'dev-sites')
 
 if (!entry) {
   throw new Error('Could not find dev-china')
