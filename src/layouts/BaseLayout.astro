@@ -2,6 +2,7 @@
 import BaseHead from '@/components/seo/BaseHead.astro'
 import TailwindIndicator from '@/components/util/tailwind-indicator.astro'
 import { cn } from '@/lib/utils'
+import 'lenis/dist/lenis.css'
 
 type Props = {
   title: string
@@ -11,17 +12,11 @@ type Props = {
   bodyClass?: string
 }
 
-const {
-  title,
-  description,
-  bodyClass,
-  image,
-  imageAlt,
-} = Astro.props;
+const { title, description, bodyClass, image, imageAlt } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="zh">
   <head>
     <BaseHead
       title={title}
@@ -30,11 +25,7 @@ const {
       imageAlt={imageAlt}
     />
   </head>
-  <body class={cn(
-    'min-h-screen bg-background  antialiased',
-    bodyClass,
-    )}
-  >
+  <body class={cn('min-h-screen bg-background  antialiased', bodyClass)}>
     <slot />
     <TailwindIndicator />
   </body>

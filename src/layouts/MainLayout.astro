@@ -26,9 +26,8 @@ const {
   description,
   mainClass,
   image = `https://images.antzhu.com${imageDefault}.webp`,
-  imageAlt,
-  } = Astro.props
-
+  imageAlt
+} = Astro.props
 ---
 
 <BaseLayout
@@ -39,21 +38,10 @@ const {
 >
   <div class="flex min-h-screen flex-col">
     <SiteHeader>
-      <MainNav
-        slot="nav-header"
-        segment={segment}
-      />
-      <MobileNav
-        segment={segment}
-        slot="mobile-nav-header"
-        client:load
-      />
+      <MainNav slot="nav-header" segment={segment} />
+      <MobileNav segment={segment} slot="mobile-nav-header" client:load />
     </SiteHeader>
-    <main class:list={[
-        'flex-1 container',
-        mainClass,
-      ]}
-    >
+    <main class:list={['container flex-1', mainClass]}>
       <slot />
     </main>
     <SiteFooter />
