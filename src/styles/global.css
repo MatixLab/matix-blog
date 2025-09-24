@@ -5,7 +5,6 @@
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
 
-
 @theme inline {
   /* #region font */
   --font-sans: IBM Plex Sans;
@@ -47,7 +46,7 @@
   --color-ds-gray-1000: var(--ds-gray-1000);
 
   /* #endregion */
-  
+
   /* #region borderRadius */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -55,7 +54,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* #endregion */
-  
+
   /* #region animation */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -85,8 +84,8 @@
 
 @utility container {
   margin-inline: auto;
-	padding-inline: 0.75rem;
-	width: 100%;
+  padding-inline: 0.75rem;
+  width: 100%;
 
   @media (width >= 40rem) {
     max-width: 38rem;
@@ -99,9 +98,7 @@
   }
 }
 
-
 @layer base {
-
   *,
   ::after,
   ::before,
@@ -114,12 +111,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
-    scrollbar-width: none;
+    @apply bg-background font-sans text-foreground;
   }
 
   :not(img)::selection {
@@ -129,4 +121,3 @@
     @apply bg-none;
   }
 }
-

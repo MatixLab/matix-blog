@@ -29,11 +29,9 @@ const { title, description, image, imageAlt } = Astro.props
   gtag('config', 'G-GSZGX09RBK')
 </script>
 
-<script>
+<!-- <script>
   import '@/assets/scripts/lenis-smooth-scroll.js'
-</script>
-
-<!-- Global Metadata -->
+</script> --><!-- Global Metadata -->
 <meta charset="utf-8" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <title>{title ? `${title} | ${siteConfig.author}` : siteConfig.author}</title>
@@ -64,9 +62,9 @@ const { title, description, image, imageAlt } = Astro.props
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 {
-  image ? (
+  image ?
     <meta property="og:image" content={new URL(image, Astro.url)} />
-  ) : null
+  : null
 }
 {imageAlt ? <meta property="og:image:alt" content={imageAlt} /> : null}
 <meta property="og:image:width" content="1200" />
@@ -79,9 +77,9 @@ const { title, description, image, imageAlt } = Astro.props
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 {
-  image ? (
+  image ?
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
-  ) : null
+  : null
 }
 {imageAlt ? <meta property="twitter:image:alt" content={imageAlt} /> : null}
 

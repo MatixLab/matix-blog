@@ -77,8 +77,7 @@ export default defineConfig({
     ]
   },
   experimental: {
-    contentIntellisense: true,
-    responsiveImages: true
+    contentIntellisense: true
   },
   devToolbar: {
     enabled: false
