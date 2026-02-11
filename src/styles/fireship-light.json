@@ -1,0 +1,69 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Fireship Codeblock (Light, code-theme)",
+  "type": "light",
+  "semanticHighlighting": true,
+  "colors": {
+    "editor.background": "#ffffff",
+    "editor.foreground": "#231f20",
+    "editorCursor.foreground": "#231f20",
+    "editorLineNumber.foreground": "#767980",
+    "editor.selectionBackground": "#e9eaec",
+    "editor.inactiveSelectionBackground": "#e9eaec99",
+    "editor.lineHighlightBackground": "#f3f3f5",
+    "editorWhitespace.foreground": "#e6e6e6",
+    "editorIndentGuide.background": "#e6e6e6",
+    "editorIndentGuide.activeBackground": "#c8ccd0",
+    "editorBracketMatch.background": "#eef2f6",
+    "editorBracketMatch.border": "#c8ccd0",
+
+    "sideBar.background": "#ffffff",
+    "sideBar.foreground": "#231f20",
+    "sideBar.border": "#e9eaec",
+
+    "activityBar.background": "#ffffff",
+    "activityBar.foreground": "#231f20",
+    "activityBar.inactiveForeground": "#767980",
+    "activityBar.border": "#e9eaec",
+
+    "titleBar.activeBackground": "#ffffff",
+    "titleBar.activeForeground": "#231f20",
+    "statusBar.background": "#ffffff",
+    "statusBar.foreground": "#231f20",
+    "statusBar.border": "#e9eaec"
+
+
+
+  },
+  "semanticTokenColors": {
+    "string":   { "foreground": "#a95525" },
+    "number":   { "foreground": "#7c7651" },
+    "keyword":  { "foreground": "#ca3e6a" },
+    "operator": { "foreground": "#231f20" },
+    "function": { "foreground": "#6c4c9f" },
+    "method":   { "foreground": "#6c4c9f" },
+    "class":     { "foreground": "#038282" },
+    "struct":    { "foreground": "#038282" },
+    "type":      { "foreground": "#038282" },
+    "interface": { "foreground": "#038282" },
+    "namespace": { "foreground": "#038282" },
+    "property":  { "foreground": "#038282" },
+    "parameter": { "foreground": "#231f20" },
+    "enumMember":        { "foreground": "#038282" },
+    "variable.constant": { "foreground": "#7c7651" }
+  },
+  "tokenColors": [
+    { "name": "Plain / Punctuation", "scope": ["source", "meta", "punctuation"], "settings": { "foreground": "#231f20" } },
+    { "name": "Comments", "scope": ["comment", "punctuation.definition.comment"], "settings": { "foreground": "#8c8c8c", "fontStyle": "italic" } },
+    { "name": "Strings / URLs", "scope": ["string", "constant.character", "markup.underline.link", "meta.link.inline.markdown"], "settings": { "foreground": "#a95525" } },
+    { "name": "Numbers / Attribute Values", "scope": ["constant.numeric", "constant.other.color", "constant.other.symbol", "string.quoted.double.json meta.structure.dictionary.value.json"], "settings": { "foreground": "#7c7651" } },
+    { "name": "Booleans", "scope": ["constant.language.boolean"], "settings": { "foreground": "#6c4c9f" } },
+    { "name": "Keywords", "scope": ["keyword", "keyword.control", "storage.type", "storage.modifier"], "settings": { "foreground": "#ca3e6a" } },
+    { "name": "Functions / Methods / Console", "scope": ["entity.name.function", "variable.function", "support.function", "support.function.console"], "settings": { "foreground": "#6c4c9f" } },
+    { "name": "Classes / Types / Namespaces / Modules", "scope": ["entity.name.type", "entity.name.type.class", "entity.name.class", "entity.name.namespace", "entity.name.module", "support.class"], "settings": { "foreground": "#038282" } },
+    { "name": "Properties / Attributes / Operators", "scope": ["support.type.property-name", "variable.other.property", "meta.object-literal.key", "entity.other.attribute-name", "keyword.operator"], "settings": { "foreground": "#038282" } },
+    { "name": "Tags (HTML/JSX)", "scope": ["entity.name.tag"], "settings": { "foreground": "#ca3e6a" } },
+    { "name": "Inserted (diff/markup)", "scope": ["markup.inserted", "meta.diff.header.to-file", "punctuation.definition.inserted", "entity.other.attribute-name.inserted"], "settings": { "foreground": "#178040" } },
+    { "name": "Deleted (diff/markup)", "scope": ["markup.deleted", "meta.diff.header.from-file", "punctuation.definition.deleted", "entity.other.attribute-name.deleted"], "settings": { "foreground": "#d81f2e" } }
+  ]
+}
