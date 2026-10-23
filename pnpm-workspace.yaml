@@ -1,0 +1,6 @@
+allowBuilds:
+  '@biomejs/biome': true
+  '@tailwindcss/oxide': true
+  esbuild: false
+  sharp: true
+  workerd: true
