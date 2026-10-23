@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.4.1",
-    "@astrojs/db": "^0.15.0",
-    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/db": "^0.21.3",
+    "@astrojs/mdx": "^8.1.1",
     "@astrojs/partytown": "^2.1.9",
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/react": "^7.1.1",
     "@astrojs/sitemap": "^3.7.4",
     "@base-ui/react": "^1.9.0",
     "@cloudflare/workers-types": "^5.20261022.1",

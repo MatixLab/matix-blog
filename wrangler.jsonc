@@ -1,0 +1,39 @@
+{
+  "name": "ui-skills",
+  "compatibility_date": "2026-01-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "keep_vars": true,
+  "vars": {
+    "BETTER_AUTH_URL": "https://www.antzhu.com"
+  },
+  "routes": [
+    {
+      "pattern": "*.antzhu.com/*",
+      "zone_name": "antzhu.com"
+    }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash",
+    "run_worker_first": [
+      "/api/auth",
+      "/api/auth/*",
+      "/login",
+      "/account",
+      "/account/*",
+      "/library",
+      "/library/*",
+      "/api/library",
+      "/api/library/*",
+      "/mcp",
+      "/mcp/rpc",
+      "/oauth/*",
+      "/jobs",
+      "/jobs/*",
+      "/_server-islands/*",
+      "/_image"
+    ]
+  }
+}
