@@ -1,10 +1,11 @@
-import { defineConfig } from "oxfmt";
-import ultracite from "ultracite/oxfmt";
+import { defineConfig } from 'oxfmt'
+import ultracite from 'ultracite/oxfmt'
 
 export default defineConfig({
   ...ultracite,
   jsxSingleQuote: true,
   printWidth: 85,
+  quoteProps: 'preserve',
   semi: false,
   singleQuote: true,
   sortImports: {

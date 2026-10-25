@@ -1,13 +1,10 @@
 ---
-import Link from '@/components/common/Link.astro'
-import MainLayout from '@/layouts/MainLayout.astro'
-import { cn } from '@/lib/utils'
+import Link from "@/components/common/Link.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { cn } from "@utils/tv";
 ---
 
-<MainLayout
-  title="Not Found"
-  description="Not found page"
->
+<MainLayout title="Not Found" description="Not found page">
   <div class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 text-center">
     <h2 class="mt-4 text-balance text-5xl font-semibold text-gray-900 sm:text-7xl">
       Page not found
@@ -20,9 +17,9 @@ import { cn } from '@/lib/utils'
         href="/"
         title="Home"
         class={cn(
-          'rounded-md px-3.5 py-2 text-sm font-semibold text-white shadow-2xs',
-          'focus-visible:outline focus-visible:outline-offset-2 ',
-          'bg-zinc-900  hover:bg-zinc-700 focus-visible:outline-zinc-900',
+          "rounded-md px-3.5 py-2 text-sm font-semibold text-white shadow-2xs",
+          "focus-visible:outline focus-visible:outline-offset-2 ",
+          "bg-zinc-900  hover:bg-zinc-700 focus-visible:outline-zinc-900",
         )}
       >
         Home

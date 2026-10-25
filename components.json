@@ -14,7 +14,7 @@
   "rtl": false,
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
+    "utils": "@utils/tv",
     "ui": "@/components/ui",
     "lib": "@/lib",
     "hooks": "@/hooks"
@@ -25,4 +25,3 @@
     "@diceui": "https://diceui.com/r/{style}/{name}.json"
   }
 }
-

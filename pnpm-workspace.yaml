@@ -4,3 +4,6 @@ allowBuilds:
   esbuild: false
   sharp: true
   workerd: true
+permissions:
+  ultracite:
+    skills: false

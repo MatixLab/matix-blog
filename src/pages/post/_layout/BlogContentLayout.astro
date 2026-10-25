@@ -1,77 +1,71 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import Link from '@/components/common/Link.astro'
-import MainLayout from '@/layouts/MainLayout.astro'
-import { cn, formatDateWithYear } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
+import type { CollectionEntry } from "astro:content";
+import Link from "@/components/common/Link.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { cn, formatDateWithYear } from "@utils/tv";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 
-type Props = CollectionEntry<'post'>
+type Props = CollectionEntry<"post">;
 
 const { title, description, updatedDate, cover, category, coverAlt } =
-  Astro.props.data
+  Astro.props.data;
 ---
 
 <MainLayout title={title} description={description} mainClass="px-2 md:px-10">
   <section
     class:list={[
-      'prose relative container max-w-[948px] dark:prose-invert',
-      'flex w-full flex-col py-3 pl-4 md:pl-28'
+      "prose relative container max-w-[948px] dark:prose-invert",
+      "flex w-full flex-col py-3 pl-4 md:pl-28",
     ]}
   >
     <article class="overflow-auto pt-2 pb-6 md:col-span-4 md:pt-4">
-      <h1 class="mt-4 text-3xl">
-        {title}
-      </h1>
+      <h1 class="mt-4 text-3xl">{title}</h1>
       <div class="flex flex-wrap items-center font-normal">
         <div class="mr-2 text-sm text-ds-gray-600 md:mr-4">
           Updated On {formatDateWithYear(updatedDate)}
         </div>
         <div class="flex">
-          {
-            category.map((cat: string) => {
-              return (
-                <Link
-                  href={`/post/category/${cat}/`}
-                  title={cat}
-                  class={cn(
-                    'group flex items-center justify-center font-normal no-underline',
-                    'after:content-none! hover:no-underline!'
-                  )}
-                >
-                  <Icon
-                    name="lucide:hash"
-                    class="size-3 text-ds-gray-600 duration-150 ease-in-out hover:scale-110 hover:text-ds-gray-1000"
-                  />
-                  <span class="link mr-2 text-sm text-ds-gray-600 hover:text-ds-gray-1000">
-                    {cat}
-                  </span>
-                </Link>
-              )
-            })
-          }
+          {category.map((cat: string) => {
+            return (
+              <Link
+                href={`/post/category/${cat}/`}
+                title={cat}
+                class={cn(
+                  "group flex items-center justify-center font-normal no-underline",
+                  "after:content-none! hover:no-underline!",
+                )}
+              >
+                <Icon
+                  name="lucide:hash"
+                  class="size-3 text-ds-gray-600 duration-150 ease-in-out hover:scale-110 hover:text-ds-gray-1000"
+                />
+                <span class="link mr-2 text-sm text-ds-gray-600 hover:text-ds-gray-1000">
+                  {cat}
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
-      {
-        cover ?
-          <figure>
-            <Image
-              class="overflow-hidden rounded-xl"
-              width={720}
-              height={360}
-              src={cover}
-              alt={title}
-              loading="lazy"
-            />
+      {cover ? (
+        <figure>
+          <Image
+            class="overflow-hidden rounded-xl"
+            width={720}
+            height={360}
+            src={cover}
+            alt={title}
+            loading="lazy"
+          />
 
-            {coverAlt && (
-              <figcaption class="mt-2 text-center text-xs break-all text-ds-gray-600">
-                {coverAlt}
-              </figcaption>
-            )}
-          </figure>
-        : null
-      }
+          {coverAlt && (
+            <figcaption class="mt-2 text-center text-xs break-all text-ds-gray-600">
+              {coverAlt}
+            </figcaption>
+          )}
+        </figure>
+      ) : null}
       <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
         {description}
       </blockquote>

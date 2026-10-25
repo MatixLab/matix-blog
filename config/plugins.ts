@@ -10,10 +10,10 @@ import rehypeSlug from 'rehype-slug'
 import { createCssVariablesTheme } from 'shiki/core'
 
 const vercelTheme = createCssVariablesTheme({
-  name: 'vercel',
-  variablePrefix: '--shiki-',
-  variableDefaults: {},
   fontStyle: true,
+  name: 'vercel',
+  variableDefaults: {},
+  variablePrefix: '--shiki-',
 })
 
 export const rehypePlugins: RehypePlugins = [
@@ -23,24 +23,24 @@ export const rehypePlugins: RehypePlugins = [
     {
       behavior: 'prepend',
       properties: {
-        className: ['subheading-anchor'],
         ariaLabel: 'Link to section',
+        className: ['subheading-anchor'],
       },
     },
   ],
   [
     rehypeExternalLinks,
     {
-      target: '_blank',
       rel: ['nofollow', 'noreferrer', 'noopener'],
+      target: '_blank',
     },
   ],
 ]
 
 function parseMetaBlock(metaRaw?: string) {
   if (!metaRaw)
-    return null
-  const titleMatch = metaRaw.match(/title="([^"]*)"/)
+    {return null}
+  const titleMatch = /title="([^"]*)"/.exec(metaRaw)
   return titleMatch?.[1] ?? null
 }
 

@@ -1,37 +1,37 @@
 ---
-import { ClientRouter } from 'astro:transitions'
-import LoadingIndicator from '@/components/common/Loading.astro'
-import BaseFont from '@/components/seo/BaseFont.astro'
-import { siteConfig } from '@/config/site'
-import '@/styles/global.css'
+import { ClientRouter } from "astro:transitions";
+import LoadingIndicator from "@/components/common/Loading.astro";
+import BaseFont from "@components/seo/base-font.astro";
+import { siteConfig } from "@/config/site";
+import "@/styles/global.css";
 
 interface Props {
-  title: string
-  description?: string
-  image?: string
-  imageAlt?: string
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
 }
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const { title, description, image, imageAlt } = Astro.props
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description, image, imageAlt } = Astro.props;
 ---
 
 <!-- Google analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZGX09RBK"
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-GSZGX09RBK"
 ></script>
 <!-- partytown -->
 <script type="text/partytown">
-  window.dataLayer = window.dataLayer || []
+  window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
     // eslint-disable-next-line prefer-rest-params
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
-  gtag('config', 'G-GSZGX09RBK')
+    dataLayer.push(arguments);
+  };
+  gtag("js", new Date());
+  gtag("config", "G-GSZGX09RBK");
 </script>
 
-<!-- <script>
-  import '@/assets/scripts/lenis-smooth-scroll.js'
-</script> --><!-- Global Metadata -->
+<!-- Global Metadata -->
 <meta charset="utf-8" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <title>{title ? `${title} | ${siteConfig.author}` : siteConfig.author}</title>
@@ -54,18 +54,16 @@ const { title, description, image, imageAlt } = Astro.props
   rel="alternate"
   type="application/rss+xml"
   title={siteConfig.title}
-  href={new URL('rss.xml', Astro.site)}
+  href={new URL("rss.xml", Astro.site)}
 />
 <!-- OG -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-{
-  image ?
-    <meta property="og:image" content={new URL(image, Astro.url)} />
-  : null
-}
+{image ? (
+  <meta property="og:image" content={new URL(image, Astro.url)} />
+) : null}
 {imageAlt ? <meta property="og:image:alt" content={imageAlt} /> : null}
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="628" />
@@ -76,11 +74,9 @@ const { title, description, image, imageAlt } = Astro.props
 <meta property="twitter:creator" content="@hukucha10" />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-{
-  image ?
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
-  : null
-}
+{image ? (
+  <meta property="twitter:image" content={new URL(image, Astro.url)} />
+) : null}
 {imageAlt ? <meta property="twitter:image:alt" content={imageAlt} /> : null}
 
 <BaseFont />

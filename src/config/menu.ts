@@ -1,28 +1,28 @@
 import type { MainNavItem } from '@/types'
 
 export const links: MainNavItem[] = [
-  {
-    title: 'Post',
-    href: '/post/'
-  },
-  {
-    title: 'Short',
-    href: '/short/'
-  },
-  {
-    title: 'Projects',
-    href: '/projects/'
-  },
-  {
-    title: 'Uses',
-    href: '/uses/'
-  },
-  {
-    title: 'Now',
-    href: '/now/'
-  },
-  {
-    title: 'Collective',
-    href: '/collective/'
-  }
+    {
+        href: '/post/',
+        title: 'Post'
+    },
+    {
+        href: '/short/',
+        title: 'Short'
+    },
+    {
+        href: '/projects/',
+        title: 'Projects'
+    },
+    {
+        href: '/uses/',
+        title: 'Uses'
+    },
+    {
+        href: '/now/',
+        title: 'Now'
+    },
+    {
+        href: '/collective/',
+        title: 'Collective'
+    }
 ]

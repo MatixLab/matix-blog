@@ -1,18 +1,18 @@
 ---
-import BaseHead from '@/components/seo/BaseHead.astro'
-import TailwindIndicator from '@/components/util/tailwind-indicator.astro'
-import { cn } from '@/lib/utils'
+import BaseHead from "@/components/seo/BaseHead.astro";
+import TailwindIndicator from "@/components/util/tailwind-indicator.astro";
+import { cn } from "@utils/tv";
 // import 'lenis/dist/lenis.css'
 
-type Props = {
-  title: string
-  description?: string
-  image?: string
-  imageAlt?: string
-  bodyClass?: string
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  bodyClass?: string;
 }
 
-const { title, description, bodyClass, image, imageAlt } = Astro.props
+const { title, description, bodyClass, image, imageAlt } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,7 +25,7 @@ const { title, description, bodyClass, image, imageAlt } = Astro.props
       imageAlt={imageAlt}
     />
   </head>
-  <body class={cn('min-h-screen bg-background  antialiased', bodyClass)}>
+  <body class={cn("min-h-screen bg-background  antialiased", bodyClass)}>
     <slot />
     <TailwindIndicator />
   </body>

@@ -1,19 +1,11 @@
 import { defineConfig } from "oxlint";
 import core from "ultracite/oxlint/core";
-import react from "ultracite/oxlint/react";
 import astro from "ultracite/oxlint/astro";
-import { jsPluginSettings, selectJsPlugins } from "ultracite/oxlint/js-plugins";
-
-const jsPlugins = selectJsPlugins(["react-doctor"]);
+import react from "ultracite/oxlint/react";
 
 export default defineConfig({
   env: core.env,
-  extends: [core, react, astro, jsPlugins],
+  extends: [core, astro, react],
   ignorePatterns: core.ignorePatterns,
-  jsPlugins: jsPlugins.jsPlugins,
-  rules: {
-    'require-await': 'allow',
-    'unicorn/no-await-expression-member': 'allow'
-  },
-  settings: jsPluginSettings
+  options: { typeAware: true },
 });
