@@ -15,7 +15,7 @@ const { shorts, years } = Astro.props;
 ---
 
 <div class="text-sm">
-  <div class="grid grid-cols-12 py-2 font-medium text-ds-gray-900">
+  <div class="grid grid-cols-12 py-2 font-medium text-gray-900">
     <span class="col-span-1 hidden text-left md:grid">Year</span>
     <span class="col-span-12 md:col-span-11">
       <span class="grid items-center grid-cols-4 md:grid-cols-8">
@@ -36,7 +36,7 @@ const { shorts, years } = Astro.props;
                 <span
                   class:list={[
                     "pointer-events-none col-span-1 hidden items-center transition-colors duration-300",
-                    " group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-ds-gray-500",
+                    " group-hover/list:text-gray-900 md:grid dark:group-hover/list:text-gray-500",
                     itemIndex === 0 && "border-t border-gray-200",
                   ]}
                 >
@@ -47,7 +47,7 @@ const { shorts, years } = Astro.props;
                   title={item.id}
                   class={cn(
                     "col-span-12 md:col-span-11 group-hover/list-item:text-gray-900",
-                    "dark:group-hover/list-item:text-ds-gray-500",
+                    "dark:group-hover/list-item:text-gray-500",
                   )}
                 >
                   <span class="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">

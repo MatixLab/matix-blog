@@ -1,8 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Link from "@/components/common/Link.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import { cn, formatDateWithYear } from "@utils/tv";
+import MainLayout from "@layouts/main-layout.astro";
+import { cn } from "@utils/tv";
+import { formatDateWithYear } from "@lib/utils";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
@@ -22,7 +23,7 @@ const { title, description, updatedDate, cover, category, coverAlt } =
     <article class="overflow-auto pt-2 pb-6 md:col-span-4 md:pt-4">
       <h1 class="mt-4 text-3xl">{title}</h1>
       <div class="flex flex-wrap items-center font-normal">
-        <div class="mr-2 text-sm text-ds-gray-600 md:mr-4">
+        <div class="mr-2 text-sm text-gray-600 md:mr-4">
           Published On {formatDateWithYear(updatedDate)}
         </div>
         <div class="flex">
@@ -38,9 +39,9 @@ const { title, description, updatedDate, cover, category, coverAlt } =
               >
                 <Icon
                   name="lucide:hash"
-                  class="size-3 text-ds-gray-600 duration-150 ease-in-out hover:scale-110 hover:text-ds-gray-1000"
+                  class="size-3 text-gray-600 duration-150 ease-in-out hover:scale-110 hover:text-gray-1000"
                 />
-                <span class="link mr-2 text-sm text-ds-gray-600 hover:text-ds-gray-1000">
+                <span class="link mr-2 text-sm text-gray-600 hover:text-gray-1000">
                   {cat}
                 </span>
               </Link>
@@ -59,13 +60,13 @@ const { title, description, updatedDate, cover, category, coverAlt } =
             loading="lazy"
           />
           {coverAlt && (
-            <figcaption class="mt-2 text-center text-xs break-all text-ds-gray-600">
+            <figcaption class="mt-2 text-center text-xs break-all text-gray-600">
               {coverAlt}
             </figcaption>
           )}
         </figure>
       ) : null}
-      <blockquote class="mt-6 border-l-2 pl-6 font-normal text-ds-gray-700">
+      <blockquote class="mt-6 border-l-2 pl-6 font-normal text-gray-700">
         {description}
       </blockquote>
       <slot />
@@ -78,8 +79,8 @@ const { title, description, updatedDate, cover, category, coverAlt } =
   >
     <Icon
       name="lucide:arrow-up-left"
-      class="my-auto mr-0.5 size-4 text-ds-gray-600"
+      class="my-auto mr-0.5 size-4 text-gray-600"
     />
-    <span class="text-xs text-ds-gray-800 no-underline"> Back </span>
+    <span class="text-xs text-gray-800 no-underline"> Back </span>
   </div>
 </MainLayout>

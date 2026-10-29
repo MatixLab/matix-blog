@@ -13,12 +13,12 @@ const { credits } = Astro.props
   credits.map((item: CreditItem) => {
     return (
       <li class="mt-2">
-        <span class="text-[15px] text-ds-gray-1000">{item.desc} </span>
+        <span class="text-[15px] text-gray-1000">{item.desc} </span>
         <Link href={`${item.url}?ref=antzhu.com`} title={item.title} class="break-words no-underline">
           <h3 class="inline-flex leading-[2] mt-0 mb-0 font-medium common-link link-animate text-base text-black!">
             {item.title}
           </h3>
-          <Icon name="lucide:arrow-up-right" class="inline-flex size-4 p-0.5 shrink-0 text-ds-gray-700 -mt-0.5" />
+          <Icon name="lucide:arrow-up-right" class="inline-flex size-4 p-0.5 shrink-0 text-gray-700 -mt-0.5" />
         </Link>
       </li>
     )

@@ -1,7 +1,7 @@
 ---
 import A from '@/components/markdown/A.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
-import MainLayout from '@/layouts/MainLayout.astro'
+import MainLayout from "@layouts/main-layout.astro";
 import { getProjects } from '@/lib/fetchers'
 import { getEntry, render } from 'astro:content'
 
@@ -11,11 +11,11 @@ export async function getStaticPaths() {
     name: string
   }[] = await getProjects()
 
-  return projectData.map(project => {
-    return {
+  return projectData.map(project => (
+    {
       params: { item: project.id }
     }
-  })
+  ))
 }
 
 const { item } = Astro.params

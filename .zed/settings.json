@@ -45,6 +45,7 @@
       "code_actions_on_format": {
         "source.fixAll.oxc": true,
         "source.organizeImports.oxc": true,
+         "source.organizeImports.tailwindcss": true,
       },
       "formatter": {
         "language_server": {
@@ -56,6 +57,7 @@
       "code_actions_on_format": {
         "source.fixAll.oxc": true,
         "source.organizeImports.oxc": true,
+          "source.organizeImports.tailwindcss": true,
       },
       "formatter": {
         "language_server": {
@@ -66,7 +68,19 @@
     "TypeScript": {
       "code_actions_on_format": {
         "source.fixAll.oxc": true,
+        "source.organizeImports.tailwindcss": true,
+      },
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt",
+        },
+      },
+    },
+    "Astro": {
+      "code_actions_on_format": {
+        "source.fixAll.oxc": true,
         "source.organizeImports.oxc": true,
+          "source.organizeImports.tailwindcss": true,
       },
       "formatter": {
         "language_server": {

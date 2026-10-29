@@ -8,4 +8,10 @@ export default defineConfig({
   extends: [core, astro, react],
   ignorePatterns: core.ignorePatterns,
   options: { typeAware: true },
+  rules: {
+    "func-style": "allow",
+    "no-use-before-define": "allow",
+    "react/function-component-definition": "allow",
+    "typescript/consistent-type-definitions": "allow"
+  }
 });

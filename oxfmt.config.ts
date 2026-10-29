@@ -5,7 +5,7 @@ export default defineConfig({
   ...ultracite,
   jsxSingleQuote: true,
   printWidth: 85,
-  quoteProps: 'preserve',
+  quoteProps: 'as-needed',
   semi: false,
   singleQuote: true,
   sortImports: {

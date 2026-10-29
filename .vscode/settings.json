@@ -14,7 +14,7 @@
 		"**/.netlify": true,
 	},
 	"[astro]": {
-		"editor.defaultFormatter": "astro-build.astro-vscode"
+		"editor.defaultFormatter": "oxc.oxc-vscode"
 	},
 	"[css]": {
         "editor.defaultFormatter": "oxc.oxc-vscode"

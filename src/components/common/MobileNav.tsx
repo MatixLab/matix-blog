@@ -63,7 +63,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                         href={item.href}
                                         title={item.title}
                                         className={cn(
-                                            'group text-ds-gray-1000 flex items-center justify-between rounded-lg p-2',
+                                            'group text-gray-1000 flex items-center justify-between rounded-lg p-2',
                                             item.href.startsWith(`/${segment}`) &&
                                                 'bg-black text-white'
                                         )}
@@ -87,7 +87,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     key='github'
                                     href={siteConfig.links.github}
                                     title='Github'
-                                    className='text-ds-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
+                                    className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
                                         <Github size={16} /> Github
@@ -98,7 +98,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     key='twitter'
                                     title='X'
                                     href={siteConfig.links.twitter}
-                                    className='text-ds-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
+                                    className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
                                         <Icons.x className='size-4' /> X (Twitter)
@@ -109,7 +109,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     key='blueSky'
                                     title='BlueSky'
                                     href={siteConfig.links.blueSky}
-                                    className='text-ds-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
+                                    className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
                                         <Icons.bluesky className='size-4' /> BlueSky

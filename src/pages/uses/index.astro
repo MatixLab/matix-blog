@@ -1,6 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
-import MainLayout from '@/layouts/MainLayout.astro'
+import MainLayout from '@layouts/main-layout.astro'
 import type { UsingItem } from '@/types'
 import { Icon } from 'astro-icon/components'
 import { uses } from './_data'
@@ -31,7 +31,7 @@ const useTypes = Object.keys(uses)
                       ? (
                         <li class="mt-2">
                           {
-                            item.desc && <span class="text-[15px] pr-1 text-ds-gray-1000">{item.desc} : </span>
+                            item.desc && <span class="text-[15px] pr-1 text-gray-1000">{item.desc} : </span>
                           }
                           <Link
                             href={`${item.url}?ref=antzhu.com`}
@@ -43,7 +43,7 @@ const useTypes = Object.keys(uses)
                             </h3>
                             <Icon
                               name="lucide:arrow-up-right"
-                              class="inline-flex size-4 -mt-0.5 p-0.5 shrink-0 text-ds-gray-700"
+                              class="inline-flex size-4 -mt-0.5 p-0.5 shrink-0 text-gray-700"
                             />
                           </Link>
 
@@ -52,9 +52,9 @@ const useTypes = Object.keys(uses)
                       : (
                         <li class="mt-2">
                           {
-                            item.desc && <span class="text-[15px] pr-1 text-ds-gray-1000">{item.desc} : </span>
+                            item.desc && <span class="text-[15px] pr-1 text-gray-1000">{item.desc} : </span>
                           }
-                          <span class="font-medium text-ds-gray-1000 text-base pl-0!">
+                          <span class="font-medium text-gray-1000 text-base pl-0!">
                             {item.title}
                           </span>
                         </li>

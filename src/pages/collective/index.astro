@@ -1,6 +1,6 @@
 ---
 import Link from '@/components/common/Link.astro'
-import MainLayout from '@/layouts/MainLayout.astro'
+import MainLayout from "@layouts/main-layout.astro";
 
 type CollectiveItem = {
   title: string
@@ -8,8 +8,8 @@ type CollectiveItem = {
 }
 
 const collectiveData: CollectiveItem[] = [
-  { title: '开发者个人站', subPath: 'dev-sites' },
-  { title: '国内开发者个人站', subPath: 'dev-china' }
+  { subPath: 'dev-sites', title: '开发者个人站' },
+  { subPath: 'dev-china', title: '国内开发者个人站' }
 ]
 ---
 
@@ -21,7 +21,7 @@ const collectiveData: CollectiveItem[] = [
       Collective records.
     </h1>
     <article class="relative flex flex-col overflow-auto">
-      <p class="mt-0 mb-2 scroll-m-20 text-ds-gray-900">
+      <p class="mt-0 mb-2 scroll-m-20 text-gray-900">
         如今很难找到优质的博客,因为很多都被 AI
         生成的内容给淹没了。所以我创建了这个页面,收录了我喜欢的博客(必须由人类撰写)。
       </p>

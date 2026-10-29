@@ -4,9 +4,6 @@ import { promisify } from 'node:util'
 import tailwindcss from '@tailwindcss/vite'
 
 
-// ==========================================
-// Git Information
-// ==========================================
 const execAsync = promisify(ChildProcess.exec)
 const generateGitData = async () => (await execAsync('git rev-parse HEAD')).stdout
 const gitRevision = JSON.stringify(await generateGitData())

@@ -7,6 +7,6 @@ export const contentConfig = {
     },
     image: {
         remotePatterns: [{ protocol: 'https' }]
-  },
-  ...markdownConfig
+    },
+    ...markdownConfig
 } satisfies Pick<AstroUserConfig, 'experimental' | 'image' | 'markdown'>

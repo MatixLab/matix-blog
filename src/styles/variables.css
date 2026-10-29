@@ -26,19 +26,19 @@
   /* #region geist light color*/
   --ds-background-100: oklch(1 0 0);
   --ds-background-200: oklch(0.98 0 0);
-  --ds-gray-100: oklch(0.95 0 0);
-  --ds-gray-200: oklch(0.92 0 0);
-  --ds-gray-300: oklch(0.90 0 0);
-  --ds-gray-400: oklch(0.92 0 0);
-  --ds-gray-500: oklch(0.79 0 0);
-  --ds-gray-600: oklch(0.66 0 0);
-  --ds-gray-700: oklch(0.56 0 0);
-  --ds-gray-800: oklch(0.49 0 0);
-  --ds-gray-900: oklch(0.40 0 0);
-  --ds-gray-1000: oklch(0.09 0 0);
+  --gray-100: oklch(0.95 0 0);
+  --gray-200: oklch(0.92 0 0);
+  --gray-300: oklch(0.9 0 0);
+  --gray-400: oklch(0.92 0 0);
+  --gray-500: oklch(0.79 0 0);
+  --gray-600: oklch(0.66 0 0);
+  --gray-700: oklch(0.56 0 0);
+  --gray-800: oklch(0.49 0 0);
+  --gray-900: oklch(0.4 0 0);
+  --gray-1000: oklch(0.09 0 0);
 
   /* #endregion */
-  
+
   /* #region shiki light theme */
   --shiki-tabs-selected-bg: oklch(0.17 0 0);
   --shiki-tabs-selected-text: oklch(1 0 0);
@@ -59,10 +59,10 @@
   --shiki-light: oklch(0.6 0.2 27.325);
   --highlight: oklch(0.85 0.05 142.77 / 0.2);
   --diff-remove: oklch(0.94 0.02 26.18);
-  
+
   /* #endregion */
 }
-  
+
 .dark {
   /* #region shadcn-ui */
   --background: oklch(0.145 0 0);
@@ -85,18 +85,18 @@
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
   /* #endregion */
-  
+
   /* #region geist*/
-  --ds-gray-100: oklch(0.145 0 0);
-  --ds-gray-200: oklch(0.17 0 0);
-  --ds-gray-300: oklch(0.20 0 0);
-  --ds-gray-400: oklch(0.22 0 0);
-  --ds-gray-500: oklch(0.27 0 0);
-  --ds-gray-600: oklch(0.53 0 0);
-  --ds-gray-700: oklch(0.56 0 0);
-  --ds-gray-800: oklch(0.49 0 0);
-  --ds-gray-900: oklch(0.63 0 0);
-  --ds-gray-1000: oklch(0.93 0 0);
+  --gray-100: oklch(0.145 0 0);
+  --gray-200: oklch(0.17 0 0);
+  --gray-300: oklch(0.2 0 0);
+  --gray-400: oklch(0.22 0 0);
+  --gray-500: oklch(0.27 0 0);
+  --gray-600: oklch(0.53 0 0);
+  --gray-700: oklch(0.56 0 0);
+  --gray-800: oklch(0.49 0 0);
+  --gray-900: oklch(0.63 0 0);
+  --gray-1000: oklch(0.93 0 0);
   /* #endregion */
 
   /* #region shiki dark theme */

@@ -1,7 +1,7 @@
 ---
 import A from '@/components/markdown/A.astro'
 import { MdxComponents } from '@/components/markdown/mdx-components'
-import MainLayout from '@/layouts/MainLayout.astro'
+import MainLayout from "@layouts/main-layout.astro";
 import { getEntry, render } from 'astro:content'
 
 const entry = await getEntry('collective', 'dev-china')
@@ -24,7 +24,7 @@ const { Content } = await render(entry)
       China Developer Sites I Enjoy Reading.
     </h1>
     <article class="relative overflow-auto">
-      <p class="mt-0 mb-2 scroll-m-20 text-ds-gray-900">
+      <p class="mt-0 mb-2 scroll-m-20 text-gray-900">
         下面网站的排名不分先后:
       </p>
       <Content

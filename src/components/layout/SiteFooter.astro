@@ -14,16 +14,16 @@ const footerLinks: {
   title: string
 }[] = [{ title: 'Credits', url: '/credits/' }]
 
-const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
+const gitHash = PUBLIC_GIT_REVISION_INFO.slice(0, 7)
 ---
 
 <footer class:list={['flex w-full justify-center', className]}>
-  <div class="container flex-1 border-t-[1px] border-ds-gray-100">
+  <div class="container flex-1 border-t-[1px] border-gray-100">
     <div
       class="mx-auto flex size-full max-w-[948px] items-end justify-between px-2 py-6 md:px-3"
     >
       <div class="flex-1 space-y-2">
-        <ul class="flex gap-2 text-xs text-ds-gray-800">
+        <ul class="flex gap-2 text-xs text-gray-800">
           {
             footerLinks.map(foot => {
               return (
@@ -31,14 +31,14 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
                   <Link
                     href={foot.url}
                     title={foot.title}
-                    class="link text-xs text-ds-gray-900"
+                    class="link text-xs text-gray-900"
                   />
                 </li>
               )
             })
           }
         </ul>
-        <div class="flex gap-1.5 text-xs text-ds-gray-800">
+        <div class="flex gap-1.5 text-xs text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="7"
@@ -59,7 +59,7 @@ const gitHash = PUBLIC_GIT_REVISION_INFO.substring(0, 7)
         class="flex h-full flex-col items-end justify-end sm:justify-between"
       >
         <div
-          class="hidden flex-1 text-xs text-ds-gray-800 select-none sm:block"
+          class="hidden flex-1 text-xs text-gray-800 select-none sm:block"
           role="img"
         >
           {siteConfig.slogan}

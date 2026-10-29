@@ -1,4 +1,4 @@
-@utility  list-container {
+@utility list-container {
   @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
   &:last-of-type {
     @apply mb-0;
@@ -8,7 +8,7 @@
   @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-4;
 }
 
-@utility  list-content {
+@utility list-content {
   @apply col-span-12 border-solid border-neutral-500/10 pt-4 dark:border-neutral-900 sm:col-span-8 sm:border-t;
 }
 
@@ -27,7 +27,7 @@
     transition-duration: 0.3s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     animation-duration: 0.3s;
-    content: '';
+    content: "";
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   &:hover:after {
@@ -37,7 +37,7 @@
 }
 
 @utility common-link {
-  @apply text-ds-gray-800 underline underline-offset-4 decoration-ds-gray-500 hover:decoration-ds-gray-900;
+  @apply text-gray-800 underline underline-offset-4 decoration-gray-500 hover:decoration-gray-900;
 }
 
 @utility link-animate {
@@ -46,7 +46,9 @@
 
 @utility loading {
   @apply fixed left-0 top-0 pointer-events-none h-[2px] w-full bg-black dark:bg-white z-1031;
-  transition:transform 300ms ease-out,opacity 150ms 150ms ease-in;
+  transition:
+    transform 300ms ease-out,
+    opacity 150ms 150ms ease-in;
   transform: translate3d(0, 0, 0) scaleX(var(--progress, 0));
   transform-origin: 0;
 }
@@ -60,25 +62,25 @@
       transform: translate3d(0, 0, 0);
     }
   }
-  
-  [data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open] {
+
+  [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="bottom"][data-state="open"] {
     animation-name: slideFromBottom;
   }
   [data-vaul-drawer] {
     touch-action: none;
     will-change: transform;
-    transition: transform .5s cubic-bezier(.32, .72, 0, 1);
-    animation-duration: .5s;
-    animation-timing-function: cubic-bezier(0.32,0.72,0,1);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
   }
-  [data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open] {
+  [data-vaul-drawer][data-vaul-snap-points="false"][data-vaul-drawer-direction="bottom"][data-state="open"] {
     animation-name: slideFromBottom;
   }
   [data-vaul-drawer] {
     touch-action: none;
     will-change: transform;
-    transition: transform .5s cubic-bezier(.32, .72, 0, 1);
-    animation-duration: .5s;
-    animation-timing-function: cubic-bezier(0.32,0.72,0,1);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
   }
 }

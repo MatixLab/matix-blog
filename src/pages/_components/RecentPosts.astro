@@ -2,7 +2,7 @@
 import Link from "@/components/common/Link.astro";
 import { siteConfig } from "@/config/site";
 import { getPosts } from "@/lib/fetchers";
-import { formatDateWithYear } from "@utils/tv";
+import { formatDateWithYear } from "@lib/utils";
 
 const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber);
 ---
@@ -39,7 +39,7 @@ const allPosts = (await getPosts()).slice(0, siteConfig.home.displayNumber);
             {allPosts.map((item) => {
               return (
                 <li class="group/list-item grid px-2 group-hover/list-wrapper:text-gray-300">
-                  <span class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-ds-gray-500">
+                  <span class="group-hover/list-item:text-gray-900 dark:group-hover/list-item:text-gray-500">
                     <div class="grid grid-cols-3 md:grid-cols-5 items-center">
                       <Link
                         title={item.data.title}
