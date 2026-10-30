@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/utils/tv'
+
+type Props = Omit<HTMLAttributes<'div'>, 'class'> & {
+    className?: string
+}
+
+const { className, ...attrs } = Astro.props
+---
+
+<div
+    class={cn(
+        'relative container mx-auto flex w-full max-w-[948px] flex-col',
+        'px-4 pb-3 md:px-8 lg:px-12 xl:px-16',
+        className
+    )}
+    {...attrs}
+>
+    <slot />
+</div>
