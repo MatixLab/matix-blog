@@ -5,6 +5,7 @@ import SiteFooter from "@/components/layout/SiteFooter.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
 import { extractSegmentURL } from "@lib/utils";
 import BaseLayout from "@layouts/base-layout.astro";
+import BaseContainer from "@/components/shared/base-container.astro";
 
 type Props = {
   title: string;
@@ -36,14 +37,16 @@ const {
   image={image}
   imageAlt={imageAlt}
 >
-  <div class="flex min-h-screen flex-col">
-    <SiteHeader>
-      <MainNav slot="nav-header" segment={segment} />
-      <MobileNav segment={segment} slot="mobile-nav-header" client:load />
-    </SiteHeader>
-    <main class:list={["container flex-1", mainClass]}>
-      <slot />
-    </main>
+  <div class="flex min-h-screen flex-col mx-auto">
+    <BaseContainer className="mx-auto  flex-1">
+      <SiteHeader>
+        <MainNav slot="nav-header" segment={segment} />
+        <MobileNav segment={segment} slot="mobile-nav-header" client:load />
+      </SiteHeader>
+      <main class:list={['mx-auto container', mainClass]}>
+        <slot />
+      </main>
+    </BaseContainer>
     <SiteFooter />
   </div>
 </BaseLayout>

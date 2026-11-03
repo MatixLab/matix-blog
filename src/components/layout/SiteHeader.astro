@@ -9,29 +9,30 @@ type Props = {
 const { className } = Astro.props
 ---
 
-<header
-  class:list={[
-    'sticky top-0 z-50 flex h-12 items-center justify-center bg-background',
-    className
-  ]}
->
-  <div class:list={['relative container flex size-full items-center px-3']}>
-    <div class="hidden items-center gap-6 md:flex md:gap-8 lg:gap-10">
-      <Link href="/" class="items-center space-x-2" title="Home">
-        <Icon name="lucide:asterisk" class="size-8" />
-      </Link>
-    </div>
+  <header
+    class:list={[
+      'sticky top-0 z-50 flex h-12  bg-background',
+      className
+    ]}
+  >
+    <div class="relative container flex size-full items-center space-x-12">
+      <div class="hidden items-center gap-6 md:flex md:gap-8 lg:gap-10">
+        <Link href="/" class="items-center space-x-2" title="Home">
+          <Icon name="lucide:asterisk" class="size-8" />
+        </Link>
+      </div>
 
-    <div class="mx-auto hidden md:flex">
-      <!-- normal nav menu -->
-      <slot name="nav-header" />
-    </div>
+      <div class="mx-auto hidden md:flex">
+        <!-- normal nav menu -->
+        <slot name="nav-header" />
+      </div>
 
-    <div class="flex md:hidden">
-      <slot name="mobile-nav-header" />
-    </div>
+      <div class="flex md:hidden">
+        <slot name="mobile-nav-header" />
+      </div>
 
-    <!-- Theme Toggle -->
-    <slot name="right-header" />
-  </div>
-</header>
+      <!-- Theme Toggle -->
+      <slot name="right-header" />
+
+    </div>
+  </header>

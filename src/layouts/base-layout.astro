@@ -22,7 +22,7 @@ const { title, description, bodyClass, image, imageAlt } = Astro.props;
     image={image}
     imageAlt={imageAlt}
   />
-  <body class={cn("min-h-screen bg-background", bodyClass)}>
+  <body class={cn('bg-background', bodyClass)}>
     <slot />
     <TailwindIndicator />
   </body>
