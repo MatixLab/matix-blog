@@ -1,11 +1,10 @@
 ---
+import MainNav from '@components/common/MainNav.astro'
+import { MobileNav } from '@components/common/MobileNav'
+import SiteFooter from '@components/layout/site-footer.astro'
+import SiteHeader from '@components/layout/site-header.astro'
 import BaseLayout from '@layouts/base-layout.astro'
 import { extractSegmentURL } from '@lib/utils'
-import MainNav from '@/components/common/MainNav.astro'
-import { MobileNav } from '@/components/common/MobileNav'
-import SiteFooter from '@/components/layout/SiteFooter.astro'
-import SiteHeader from '@/components/layout/SiteHeader.astro'
-import BaseContainer from '@/components/shared/base-container.astro'
 import { cn } from '@/utils/tv'
 
 type Props = {
@@ -38,23 +37,31 @@ const {
     image={image}
     imageAlt={imageAlt}
 >
-    <div class='mx-auto flex min-h-screen flex-col'>
-        <BaseContainer className='mx-auto flex-1'>
-            <SiteHeader>
-                <MainNav
-                    slot='nav-header'
-                    segment={segment}
-                />
-                <MobileNav
-                    segment={segment}
-                    slot='mobile-nav-header'
-                    client:load
-                />
-            </SiteHeader>
-            <main class={cn('container mx-auto', mainClass)}>
-                <slot />
-            </main>
-        </BaseContainer>
+    <!-- 桌面端锁定屏幕高度，禁止外层滚动 -->
+    <div class='mx-auto flex min-h-screen flex-col lg:h-screen lg:overflow-hidden'>
+        <div class='mx-auto flex w-full max-w-6xl flex-1 flex-col lg:flex-row lg:gap-16 lg:overflow-hidden'>
+            <!-- 移动端导航 -->
+            <div class='mb-6 w-full lg:hidden'>
+                <MobileNav segment={segment} client:load />
+            </div>
+
+            <!-- 左侧：主内容区 (加上 no-scrollbar) -->
+            <!-- 注意这里加了 lg:pr-6 给隐藏的滚动条留出一点视觉呼吸空间 -->
+            <div class='no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:overflow-y-auto lg:py-8 lg:pr-6'>
+                <main class={cn('flex-1', mainClass)}>
+                    <slot />
+                </main>
+            </div>
+
+            <!-- 右侧：Header / 导航侧边栏 (同样加上 no-scrollbar 防患于未然) -->
+            <aside class='no-scrollbar hidden w-64 shrink-0 lg:block lg:h-full lg:overflow-y-auto lg:py-8'>
+                <SiteHeader>
+                    <MainNav slot='nav-header' segment={segment} />
+                </SiteHeader>
+            </aside>
+        </div>
+
+        <!-- 页脚 -->
         <SiteFooter />
     </div>
 </BaseLayout>

@@ -1,80 +1,98 @@
 ---
-import Link from '@/components/common/Link.astro'
-import { siteConfig } from '@/config/site'
+import Link from '@components/common/Link.astro'
+import { siteConfig } from '@config/site'
 import { Icon } from 'astro-icon/components'
 ---
 
-<dl class="list-container">
-  <dt class="list-title border-none! px-2 pt-0 pb-4 leading-relaxed sm:pb-0">
-    <h1 class="flex items-center gap-1">
-      <Link href="/" title={siteConfig.author} class="font-bold">
-        {siteConfig.author}
-      </Link>
-    </h1>
-    <span class="dark:text-silver-dark text-[15px] text-gray-800">
-      Full Stack Developer
-    </span>
-  </dt>
-  <dd class="list-content space-y-4 border-none! px-2 text-[15px]">
-    <p>
-      Hey 👋 I'm {siteConfig.author}, a full stack developer at
-      <Link
-        href="https://www.oki.com/"
-        title="OKI"
-        class="text-sm common-link link-animate"
-      />
-      .
-      {}
-      Previously, I was a developer at
-      <Link
-        href="https://www.winning.com.cn/"
-        title="WinningHealth"
-        class="text-sm common-link link-animate"
-      />
-      in ChangZhou.
-    </p>
-    <p>
-      You can see what I'm up to on
-      <Link
-        href="/now/"
-        title="my now page"
-        class="text-sm common-link link-animate"
-      />
-      .
-    </p>
+<dl class='list-container'>
+    <dt class='list-title border-none! px-2 pt-0 pb-4 leading-relaxed sm:pb-0'>
+        <h1 class='flex items-center gap-1'>
+            <Link
+                href='/'
+                title={siteConfig.author}
+                class='font-bold'
+            >
+                {siteConfig.author}
+            </Link>
+        </h1>
+        <span class='dark:text-silver-dark text-[15px] text-gray-800'>
+            Full Stack Developer
+        </span>
+    </dt>
+    <dd class='list-content space-y-4 border-none! px-2 text-[15px]'>
+        <p>
+            Hey 👋 I'm {siteConfig.author}, a full stack developer at
+            <Link
+                href='https://www.oki.com/'
+                title='OKI'
+                class='common-link link-animate text-sm'
+            />
+            .{}
+            Previously, I was a developer at
+            <Link
+                href='https://www.winning.com.cn/'
+                title='WinningHealth'
+                class='common-link link-animate text-sm'
+            />
+            in ChangZhou.
+        </p>
+        <p>
+            You can see what I'm up to on
+            <Link
+                href='/now/'
+                title='my now page'
+                class='common-link link-animate text-sm'
+            />
+            .
+        </p>
 
-    <p>You can also find me on :</p>
-    <div class="ml-4 flex space-x-8">
-      <Link href={siteConfig.links.github} title="Github">
-        <Icon
-          name="simple-icons:github"
-          class="inline-flex size-5 opacity-50 hover:opacity-100"
-        />
-      </Link>
-      <Link href={siteConfig.links.twitter} title="x">
-        <Icon
-          name="simple-icons:x"
-          class="inline-flex size-5 opacity-50 hover:opacity-100"
-        />
-      </Link>
-      <Link href={siteConfig.links.blueSky} title="blueSky">
-        <Icon
-          name="simple-icons:bluesky"
-          class="inline-flex size-5 opacity-50 hover:text-blue-500 hover:opacity-100"
-        />
-      </Link>
-      <Link href={siteConfig.links.notion} title="notion">
-        <Icon
-          name="simple-icons:notion"
-          class="inline-flex size-5 opacity-50 hover:opacity-100"
-        />
-      </Link>
-      <Link href={`mailto:${siteConfig.links.email}`} title="email">
-        <Icon
-          name="simple-icons:gmail"
-          class="inline-flex size-5 opacity-50 hover:opacity-100"
-        />
-      </Link>
-    </div>
-  </dd>
+        <p>You can also find me on :</p>
+        <div class='ml-4 flex space-x-8'>
+            <Link
+                href={siteConfig.links.github}
+                title='Github'
+            >
+                <Icon
+                    name='simple-icons:github'
+                    class='inline-flex size-5 opacity-50 hover:opacity-100'
+                />
+            </Link>
+            <Link
+                href={siteConfig.links.twitter}
+                title='x'
+            >
+                <Icon
+                    name='simple-icons:x'
+                    class='inline-flex size-5 opacity-50 hover:opacity-100'
+                />
+            </Link>
+            <Link
+                href={siteConfig.links.blueSky}
+                title='blueSky'
+            >
+                <Icon
+                    name='simple-icons:bluesky'
+                    class='inline-flex size-5 opacity-50 hover:text-blue-500 hover:opacity-100'
+                />
+            </Link>
+            <Link
+                href={siteConfig.links.notion}
+                title='notion'
+            >
+                <Icon
+                    name='simple-icons:notion'
+                    class='inline-flex size-5 opacity-50 hover:opacity-100'
+                />
+            </Link>
+            <Link
+                href={`mailto:${siteConfig.links.email}`}
+                title='email'
+            >
+                <Icon
+                    name='simple-icons:gmail'
+                    class='inline-flex size-5 opacity-50 hover:opacity-100'
+                />
+            </Link>
+        </div>
+    </dd>
 </dl>

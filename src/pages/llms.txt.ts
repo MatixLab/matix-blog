@@ -1,6 +1,6 @@
+import { siteConfig } from '@config/site'
+import { getPosts, getShorts } from '@lib/fetchers'
 import type { APIRoute } from 'astro'
-import { siteConfig } from '@/config/site'
-import { getPosts, getShorts } from '@/lib/fetchers'
 
 export const GET: APIRoute = async () => {
     const posts = await getPosts()
@@ -32,7 +32,6 @@ export const GET: APIRoute = async () => {
 
     const otherPages = [
         `## Other Pages`,
-        `- [Projects](${siteConfig.url}/projects/): Projects I've worked on, both ongoing and failed.`,
         `- [Uses](${siteConfig.url}/uses/): Tools I'm currently using, both hardware and software.`,
         `- [Now](${siteConfig.url}/now/): Here's what I'm currently working on.`,
         `- [Collective](${siteConfig.url}/collective/dev): I'll list my favorite developers here.`,

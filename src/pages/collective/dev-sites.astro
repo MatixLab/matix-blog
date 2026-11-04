@@ -1,35 +1,36 @@
 ---
-import A from '@/components/markdown/A.astro'
-import { MdxComponents } from '@/components/markdown/mdx-components'
-import MainLayout from "@layouts/main-layout.astro";
+import A from '@components/markdown/A.astro'
+import { MdxComponents } from '@components/markdown/mdx-components'
+import MainLayout from '@layouts/main-layout.astro'
 import { getEntry, render } from 'astro:content'
 
 const entry = await getEntry('collective', 'dev-sites')
 
 if (!entry) {
-  throw new Error('Could not find dev-china')
+    throw new Error('Could not find dev-china')
 }
 
 const { Content } = await render(entry)
 ---
 
-<MainLayout title="Developer Sites" description="Sites I Enjoy Reading.">
-  <section
-    class="prose container max-w-[948px] px-4 py-3 md:px-16 dark:prose-invert"
-  >
-    <h1 class="scroll-m-20 pt-4 text-3xl font-bold md:pt-8">
-      Developer Sites I Enjoy Reading.
-    </h1>
-    <article class="relative overflow-auto">
-      <p class="mt-0 mb-2 scroll-m-20 text-gray-900">
-        下面网站的排名不分先后:
-      </p>
-      <Content
-        components={{
-          ...MdxComponents,
-          a: A
-        }}
-      />
-    </article>
-  </section>
+<MainLayout
+    title='Developer Sites'
+    description='Sites I Enjoy Reading.'
+>
+    <section class='prose dark:prose-invert container max-w-[948px] px-4 py-3 md:px-16'>
+        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>
+            Developer Sites I Enjoy Reading.
+        </h1>
+        <article class='relative overflow-auto'>
+            <p class='mt-0 mb-2 scroll-m-20 text-gray-900'>
+                下面网站的排名不分先后:
+            </p>
+            <Content
+                components={{
+                    ...MdxComponents,
+                    a: A
+                }}
+            />
+        </article>
+    </section>
 </MainLayout>

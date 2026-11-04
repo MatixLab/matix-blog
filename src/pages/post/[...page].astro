@@ -1,9 +1,9 @@
 ---
+import Pagination from '@components/common/Pagination.astro'
+import { siteConfig } from '@config/site'
+import { getPosts } from '@lib/fetchers'
 import type { PaginateFunction } from 'astro'
 import type { CollectionEntry } from 'astro:content'
-import Pagination from '@/components/common/Pagination.astro'
-import { siteConfig } from '@/config/site'
-import { getPosts } from '@/lib/fetchers'
 import BlogList from './_components/BlogList.astro'
 import BlogLayout from './_layout/BlogLayout.astro'
 

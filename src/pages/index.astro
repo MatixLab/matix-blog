@@ -1,20 +1,14 @@
 ---
 import MainLayout from '@layouts/main-layout.astro'
-import Container from '@/components/shared/base-container.astro'
 import Intro from './_components/Intro.astro'
 import RecentPosts from './_components/RecentPosts.astro'
 import RecentShort from './_components/RecentShort.astro'
 ---
 
-<MainLayout
-    title='About'
-    description="Anthony's homepage"
->
-    <Container>
-        <div class='space-y-8 pt-8 lg:mb-0'>
-            <Intro />
-            <RecentPosts />
-            <RecentShort />
-        </div>
-    </Container>
+<MainLayout title='About' description="Anthony's homepage">
+    <div class='space-y-8 pt-8 lg:mb-0'>
+        <Intro />
+        <RecentPosts />
+        <RecentShort />
+    </div>
 </MainLayout>

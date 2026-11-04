@@ -1,16 +1,14 @@
 ---
 interface Props {
-  tags: string[]
+    tags: string[]
 }
 const { tags } = Astro.props
 ---
 
-{
-  tags.map((tag: string) => {
+{tags.map((tag: string) => {
     return (
-      <span class="text-xs text-black inline-flex items-center rounded p-1 bg-gray-500/10">
-        {tag}
-      </span>
+        <span class='inline-flex items-center rounded bg-gray-500/10 p-1 text-xs text-black'>
+            {tag}
+        </span>
     )
-  })
-}
+})}

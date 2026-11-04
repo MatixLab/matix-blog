@@ -8,15 +8,13 @@ export default defineConfig({
     jsxSingleQuote: true,
     printWidth: 85,
     semi: false,
-    singleAttributePerLine: true,
+    singleAttributePerLine: false,
     singleQuote: true,
     sortImports: {
         ignoreCase: true,
         newlinesBetween: false,
         order: 'asc'
     },
-
     tabWidth: 4,
-
     trailingComma: 'none'
 })

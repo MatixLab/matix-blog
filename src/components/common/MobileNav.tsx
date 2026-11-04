@@ -1,15 +1,15 @@
-import { cn } from '@utils/tv'
-import { ArrowUpRightIcon, Menu } from 'lucide-react'
-import * as React from 'react'
 import {
     Drawer,
     DrawerContent,
     DrawerDescription,
     DrawerTitle,
     DrawerTrigger
-} from '@/components/ui/drawer'
-import { links } from '@/config/menu'
-import { siteConfig } from '@/config/site'
+} from '@components/ui/drawer'
+import { links } from '@config/menu'
+import { siteConfig } from '@config/site'
+import { cn } from '@utils/tv'
+import { ArrowUpRightIcon, Menu } from 'lucide-react'
+import * as React from 'react'
 import { Icons } from '@/icons'
 import { Button } from '../ui/button'
 

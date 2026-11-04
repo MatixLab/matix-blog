@@ -9,18 +9,11 @@ type Props = {
 const { className } = Astro.props
 ---
 
-<header class:list={['bg-background sticky top-0 z-50 h-12', className]}>
+<header class:list={['bg-background z-50 h-12', className]}>
     <div class='relative container flex size-full items-center space-x-12'>
         <div class='hidden items-center gap-6 md:flex md:gap-8 lg:gap-10'>
-            <Link
-                href='/'
-                class='items-center space-x-2'
-                title='Home'
-            >
-                <Icon
-                    name='lucide:asterisk'
-                    class='size-8'
-                />
+            <Link href='/' class='items-center space-x-2' title='Home'>
+                <Icon name='lucide:asterisk' class='size-8' />
             </Link>
         </div>
 

@@ -1,26 +1,31 @@
 ---
-import type { CreditItem } from '@/types'
-import Link from '@/components/common/Link.astro'
+import Link from '@components/common/Link.astro'
 import { Icon } from 'astro-icon/components'
+import type { CreditItem } from '@/types'
 
 interface Props {
-  credits: CreditItem[]
+    credits: CreditItem[]
 }
 const { credits } = Astro.props
 ---
 
-{
-  credits.map((item: CreditItem) => {
+{credits.map((item: CreditItem) => {
     return (
-      <li class="mt-2">
-        <span class="text-[15px] text-gray-1000">{item.desc} </span>
-        <Link href={`${item.url}?ref=antzhu.com`} title={item.title} class="break-words no-underline">
-          <h3 class="inline-flex leading-[2] mt-0 mb-0 font-medium common-link link-animate text-base text-black!">
-            {item.title}
-          </h3>
-          <Icon name="lucide:arrow-up-right" class="inline-flex size-4 p-0.5 shrink-0 text-gray-700 -mt-0.5" />
-        </Link>
-      </li>
+        <li class='mt-2'>
+            <span class='text-gray-1000 text-[15px]'>{item.desc} </span>
+            <Link
+                href={`${item.url}?ref=antzhu.com`}
+                title={item.title}
+                class='break-words no-underline'
+            >
+                <h3 class='common-link link-animate mt-0 mb-0 inline-flex text-base leading-[2] font-medium text-black!'>
+                    {item.title}
+                </h3>
+                <Icon
+                    name='lucide:arrow-up-right'
+                    class='-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-gray-700'
+                />
+            </Link>
+        </li>
     )
-  })
-}
+})}

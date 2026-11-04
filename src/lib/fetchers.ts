@@ -7,16 +7,19 @@ export async function getCategories() {
 }
 
 export async function getPosts() {
-    const posts = (await getCollection('post')).sort(
+    let posts = await getCollection('post')
+    posts = posts.toSorted(
         (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
     )
     return posts
 }
 
 export async function getShorts() {
-    return (await getCollection('short')).sort(
+    let shorts = await getCollection('short')
+    shorts = shorts.toSorted(
         (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
     )
+    return shorts
 }
 
 export async function getShortCategories() {
@@ -25,29 +28,20 @@ export async function getShortCategories() {
 }
 
 export async function getShortsByYear(year: string) {
-    const posts = (await getCollection('short'))
-        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-        .filter((ele) => {
-            return ele.id.substring(0, 4) === year.toString()
-        })
-    return posts
+    let shorts = await getCollection('short')
+    shorts = shorts
+        .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+        .filter((ele) => ele.id.substring(0, 4) === year)
+    return shorts
 }
 
 export async function getPostsByCategory(category: string) {
-    const posts = (await getCollection('post'))
+    let posts = await getCollection('post')
+    posts = posts
         .filter((post) => post.data.category.includes(category))
-        .sort((a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf())
+        .toSorted(
+            (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
+        )
 
     return posts
-}
-
-export async function getProjects() {
-    return (await getCollection('projects'))
-        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-        .map((project) => {
-            return {
-                id: project.id,
-                name: project.data.name
-            }
-        })
 }

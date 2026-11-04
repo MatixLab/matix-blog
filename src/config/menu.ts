@@ -9,10 +9,7 @@ export const links: MainNavItem[] = [
         href: '/short/',
         title: 'Short'
     },
-    {
-        href: '/projects/',
-        title: 'Projects'
-    },
+
     {
         href: '/uses/',
         title: 'Uses'

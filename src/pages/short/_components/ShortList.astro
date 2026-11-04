@@ -1,14 +1,12 @@
 ---
+import Link from '@components/common/Link.astro'
+import Tags from '@components/common/tags.astro'
+import { formatSimpleDate } from '@lib/utils'
 import { cn } from '@utils/tv.ts'
 import type { CollectionEntry } from 'astro:content'
-import Link from '@/components/common/Link.astro'
-import Tags from '@/components/common/Tags.astro'
-import { formatSimpleDate } from '@/lib/utils'
 
 type Props = {
-    shorts: {
-        [prop: string]: CollectionEntry<'short'>[]
-    }
+    shorts: Record<string, CollectionEntry<'short'>[]>
     years: string[]
 }
 
