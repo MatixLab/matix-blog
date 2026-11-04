@@ -1,0 +1,21 @@
+[
+    {
+        "id": "awesome-site",
+        "description": "记录一些日常收藏的网站",
+        "pubDate": "2024/12/25"
+    },
+    {
+        "id": "matix-blog",
+        "description": "A simple portfolio template built with Astro",
+        "pubDate": "2024/10/31",
+        "skills": [
+            "Astro",
+            "React",
+            "shadcn/ui",
+            "Tailwind CSS",
+            "Cloudflare",
+            "Shiki",
+            "MDX"
+        ]
+    }
+]

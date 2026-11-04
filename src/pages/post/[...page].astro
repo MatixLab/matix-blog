@@ -7,58 +7,50 @@ import { getPosts } from '@/lib/fetchers'
 import BlogList from './_components/BlogList.astro'
 import BlogLayout from './_layout/BlogLayout.astro'
 
-export async function getStaticPaths({
-  paginate,
-}: {
-  paginate: PaginateFunction
-}) {
-  const allPosts = await getPosts()
-  return paginate(
-    allPosts,
-    {
-      pageSize: siteConfig.pagination.pageSize,
-    },
-  )
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+    const allPosts = await getPosts()
+    return paginate(allPosts, {
+        pageSize: siteConfig.pagination.pageSize
+    })
 }
 
 const { page } = Astro.props
 const posts: {
-  [prop: string]: CollectionEntry<'post'>[]
+    [prop: string]: CollectionEntry<'post'>[]
 } = {}
 
 page.data.forEach((post) => {
-  const year = post.data.pubDate.getFullYear()
-  if (!posts[year]) {
-    posts[year] = []
-  }
-  posts[year].push(post)
+    const year = post.data.pubDate.getFullYear()
+    if (!posts[year]) {
+        posts[year] = []
+    }
+    posts[year].push(post)
 })
 const years = Object.keys(posts).sort((a, b) => {
-  return Number(b) - Number(a)
+    return Number(b) - Number(a)
 })
-
 ---
+
 <BlogLayout
-  title="Posts"
-  description="Writing record."
+    title='Posts'
+    description='Writing record.'
 >
-  <div slot="right-content">
-    <div class="pt-8">
-      <BlogList years={years} posts={posts} />
-    </div>
-    {
-      page.total && page.total > siteConfig.pagination.pageSize
-      ? (
-        <div class="mt-6">
-          <Pagination
-            currentPage={page.currentPage}
-            totalPages={page.lastPage}
-            prevUrl={page.url.prev || ''}
-            nextUrl={page.url.next || ''}
-          />
+    <div slot='right-content'>
+        <div class='pt-8'>
+            <BlogList
+                years={years}
+                posts={posts}
+            />
         </div>
-      )
-      : null
-    }
-  </div>
+        {page.total && page.total > siteConfig.pagination.pageSize ? (
+            <div class='mt-6'>
+                <Pagination
+                    currentPage={page.currentPage}
+                    totalPages={page.lastPage}
+                    prevUrl={page.url.prev || ''}
+                    nextUrl={page.url.next || ''}
+                />
+            </div>
+        ) : null}
+    </div>
 </BlogLayout>

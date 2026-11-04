@@ -1,52 +1,60 @@
 ---
-import MainNav from "@/components/common/MainNav.astro";
-import { MobileNav } from "@/components/common/MobileNav";
-import SiteFooter from "@/components/layout/SiteFooter.astro";
-import SiteHeader from "@/components/layout/SiteHeader.astro";
-import { extractSegmentURL } from "@lib/utils";
-import BaseLayout from "@layouts/base-layout.astro";
-import BaseContainer from "@/components/shared/base-container.astro";
+import BaseLayout from '@layouts/base-layout.astro'
+import { extractSegmentURL } from '@lib/utils'
+import MainNav from '@/components/common/MainNav.astro'
+import { MobileNav } from '@/components/common/MobileNav'
+import SiteFooter from '@/components/layout/SiteFooter.astro'
+import SiteHeader from '@/components/layout/SiteHeader.astro'
+import BaseContainer from '@/components/shared/base-container.astro'
+import { cn } from '@/utils/tv'
 
 type Props = {
-  title: string;
-  description?: string;
-  image?: string;
-  imageAlt?: string;
-  mainClass?: string;
-};
+    title: string
+    description?: string
+    image?: string
+    imageAlt?: string
+    mainClass?: string
+}
 
-const segment = extractSegmentURL(Astro.url.pathname);
+const segment = extractSegmentURL(Astro.url.pathname)
 
-let imageDefault = segment ? Astro.url.pathname : "/home";
-if (imageDefault.endsWith("/")) {
-  imageDefault = imageDefault.substring(0, imageDefault.lastIndexOf("/"));
+let imageDefault = segment ? Astro.url.pathname : '/home'
+if (imageDefault.endsWith('/')) {
+    imageDefault = imageDefault.substring(0, imageDefault.lastIndexOf('/'))
 }
 
 const {
-  title,
-  description,
-  mainClass,
-  image = `https://images.antzhu.com${imageDefault}.webp`,
-  imageAlt,
-} = Astro.props;
+    title,
+    description,
+    mainClass,
+    image = `https://images.antzhu.com${imageDefault}.webp`,
+    imageAlt
+} = Astro.props
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
-  image={image}
-  imageAlt={imageAlt}
+    title={title}
+    description={description}
+    image={image}
+    imageAlt={imageAlt}
 >
-  <div class="flex min-h-screen flex-col mx-auto">
-    <BaseContainer className="mx-auto  flex-1">
-      <SiteHeader>
-        <MainNav slot="nav-header" segment={segment} />
-        <MobileNav segment={segment} slot="mobile-nav-header" client:load />
-      </SiteHeader>
-      <main class:list={['mx-auto container', mainClass]}>
-        <slot />
-      </main>
-    </BaseContainer>
-    <SiteFooter />
-  </div>
+    <div class='mx-auto flex min-h-screen flex-col'>
+        <BaseContainer className='mx-auto flex-1'>
+            <SiteHeader>
+                <MainNav
+                    slot='nav-header'
+                    segment={segment}
+                />
+                <MobileNav
+                    segment={segment}
+                    slot='mobile-nav-header'
+                    client:load
+                />
+            </SiteHeader>
+            <main class={cn('container mx-auto', mainClass)}>
+                <slot />
+            </main>
+        </BaseContainer>
+        <SiteFooter />
+    </div>
 </BaseLayout>

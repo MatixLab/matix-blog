@@ -10,5 +10,5 @@ export const deployConfig = {
     cache: {
         provider: cacheCloudflare()
     },
-    output: 'server'
+    output: 'static'
 } satisfies Pick<AstroUserConfig, 'adapter' | 'cache' | 'output'>

@@ -1,63 +1,43 @@
-import { glob } from 'astro/loaders'
-import { defineCollection, z } from 'astro:content'
+import { file, glob } from 'astro/loaders'
+import { z } from 'astro/zod'
+import { defineCollection } from 'astro:content'
+import { craftSchema, postSchema, shortSchema } from './schemas/content.schema'
 
 export const post = defineCollection({
-    loader: glob({ base: './src/content/post', pattern: '**/[^_]*.mdx' }),
+    loader: glob({ base: './src/content/post', pattern: '**/*.{md,mdx}' }),
     schema: ({ image }) =>
-        z.object({
-            category: z.string().array(),
-            cover: image().optional(),
-            coverAlt: z.string().optional(),
-            description: z.string(),
-            pubDate: z
-                .string()
-                .or(z.date())
-                .transform((val) => new Date(val)),
-            title: z.string(),
-            updatedDate: z
-                .string()
-                .or(z.date())
-                .transform((val) => new Date(val))
+        postSchema.safeExtend({
+            cover: image().optional()
         })
 })
 
 export const short = defineCollection({
-    loader: glob({ base: './src/content/short', pattern: '**/[^_]*.mdx' }),
+    loader: glob({ base: './src/content/short', pattern: '**/*.{md,mdx}' }),
     schema: ({ image }) =>
-        z.object({
-            category: z.string().array(),
-            cover: image().optional(),
-            coverAlt: z.string().optional(),
-            description: z.string(),
-            pubDate: z
-                .string()
-                .or(z.date())
-                .transform((val) => new Date(val)),
-            title: z.string(),
-            updatedDate: z
-                .string()
-                .or(z.date())
-                .transform((val) => new Date(val))
+        shortSchema.safeExtend({
+            cover: image().optional()
         })
 })
 
 export const collective = defineCollection({
-    loader: glob({ base: './src/content/collective', pattern: '**/[^_]*.mdx' })
+    loader: glob({ base: './src/content/collective', pattern: '**/*.{md,mdx}' })
 })
 
 export const projects = defineCollection({
-    loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.mdx' }),
+    loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
     schema: ({ image }) =>
         z.object({
             cover: image().optional(),
             coverAlt: z.string().optional(),
             description: z.string(),
             name: z.string(),
-            pubDate: z
-                .string()
-                .or(z.date())
-                .transform((val) => new Date(val))
+            pubDate: z.coerce.date()
         })
 })
 
-export const collections = { collective, post, projects, short }
+export const crafts = defineCollection({
+    loader: file('./src/data/crafts.json'),
+    schema: () => craftSchema
+})
+
+export const collections = { collective, post, projects, short, crafts }

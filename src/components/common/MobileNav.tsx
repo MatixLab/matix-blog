@@ -1,5 +1,5 @@
 import { cn } from '@utils/tv'
-import { ArrowUpRightIcon, Github, Menu } from 'lucide-react'
+import { ArrowUpRightIcon, Menu } from 'lucide-react'
 import * as React from 'react'
 import {
     Drawer,
@@ -26,18 +26,23 @@ export function MobileNav({ segment }: MobileNavProps) {
 
     const [open, setOpen] = React.useState(false)
     return (
-        <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerTrigger asChild>
-                <Button
-                    variant='ghost'
-                    size='icon'
-                    title='Toggle drawer'
-                    className='my-auto md:hidden [&_svg]:size-6'
-                >
-                    <Menu strokeWidth={1.5} />
-                    <span className='sr-only'>Toggle Menu</span>
-                </Button>
-            </DrawerTrigger>
+        <Drawer
+            open={open}
+            onOpenChange={setOpen}
+        >
+            <DrawerTrigger
+                render={
+                    <Button
+                        variant='ghost'
+                        size='icon'
+                        title='Toggle drawer'
+                        className='my-auto md:hidden [&_svg]:size-6'
+                    >
+                        <Menu strokeWidth={1.5} />
+                        <span className='sr-only'>Toggle Menu</span>
+                    </Button>
+                }
+            />
             <DrawerContent className='h-fit'>
                 <DrawerDescription />
                 <div className='overflow-y-auto p-4'>
@@ -90,7 +95,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
-                                        <Github size={16} /> Github
+                                        <Icons.github className='size-4' /> GitHub
                                     </span>
                                     <ArrowUpRightIcon size={16} />
                                 </a>

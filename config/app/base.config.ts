@@ -9,6 +9,9 @@ export const baseConfig = {
     env: {
         validateSecrets: false
     },
+    devToolbar: {
+      enabled: false
+    },
     fonts: [{
       cssVariable: "--font-mono",
       fallbacks: ["monospace"],
