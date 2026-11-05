@@ -26,10 +26,7 @@ export function MobileNav({ segment }: MobileNavProps) {
 
     const [open, setOpen] = React.useState(false)
     return (
-        <Drawer
-            open={open}
-            onOpenChange={setOpen}
-        >
+        <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger
                 render={
                     <Button
@@ -53,6 +50,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     className='inline-flex items-center gap-2 p-2'
                                     title='Home'
                                     href='/'
+                                    aria-label='home'
                                 >
                                     <div className='flex flex-row'>
                                         <span className='font-bold'>
@@ -67,6 +65,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                         key={item.title}
                                         href={item.href}
                                         title={item.title}
+                                        aria-label={item.title}
                                         className={cn(
                                             'group text-gray-1000 flex items-center justify-between rounded-lg p-2',
                                             item.href.startsWith(`/${segment}`) &&
