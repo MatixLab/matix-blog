@@ -3,11 +3,11 @@ import type { MainNavItem } from '@/types'
 export const links: MainNavItem[] = [
     {
         href: '/post/',
-        title: 'Post'
+        title: 'Posts'
     },
     {
         href: '/short/',
-        title: 'Short'
+        title: 'Shorts'
     },
 
     {

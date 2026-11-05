@@ -6,6 +6,7 @@ import SiteHeader from '@components/layout/site-header.astro'
 import BaseLayout from '@layouts/base-layout.astro'
 import { extractSegmentURL } from '@lib/utils'
 import { cn } from '@/utils/tv'
+import RightSection from '@/components/layout/right-section.astro'
 
 type Props = {
     title: string
@@ -38,27 +39,17 @@ const {
     imageAlt={imageAlt}
 >
     <div class='mx-auto flex min-h-screen flex-col lg:h-screen lg:overflow-hidden'>
-        <div
-            class={cn(
-                'mx-auto flex w-full max-w-300 flex-1 flex-col px-8 py-12',
-                'lg:flex-row lg:gap-16 lg:overflow-hidden'
-            )}
-        >
+      <div class='mx-auto flex w-full max-w-[80rem] flex-1 flex-col  py-12 lg:flex-row lg:gap-12 lg:overflow-hidden'>
             <div class='w-full lg:hidden'>
                 <MobileNav segment={segment} client:load />
             </div>
 
-            <aside class='no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:overflow-y-auto lg:pr-6'>
+            <aside class='no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:overflow-y-auto'>
                 <main class={cn('flex-1', mainClass)}>
                     <slot />
                 </main>
             </aside>
-
-            <aside class='no-scrollbar hidden w-64 shrink-0 lg:block lg:h-full lg:overflow-y-auto'>
-                <SiteHeader>
-                    <MainNav slot='nav-header' segment={segment} />
-                </SiteHeader>
-            </aside>
+            <RightSection/>
         </div>
         <SiteFooter />
     </div>

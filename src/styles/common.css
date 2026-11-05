@@ -44,7 +44,6 @@
   @apply duration-500 ease-in-out decoration-1;
 }
 
-/* 隐藏滚动条但保留滚动功能 */
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none; /* 针对 Chrome, Safari 和 Edge */

@@ -10,7 +10,7 @@ import { siteConfig } from '@config/site'
 import { cn } from '@utils/tv'
 import { ArrowUpRightIcon, Menu } from 'lucide-react'
 import * as React from 'react'
-import { Icons } from '@/icons'
+import { GitHub, X, Bluesky } from '@/icons'
 import { Button } from '../ui/button'
 
 interface MobileNavProps {
@@ -94,7 +94,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
-                                        <Icons.github className='size-4' /> GitHub
+                                        <GitHub className='size-4' /> GitHub
                                     </span>
                                     <ArrowUpRightIcon size={16} />
                                 </a>
@@ -105,7 +105,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
-                                        <Icons.x className='size-4' /> X (Twitter)
+                                        <X className='size-4' /> X (Twitter)
                                     </span>
                                     <ArrowUpRightIcon size={16} />
                                 </a>
@@ -116,7 +116,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     className='text-gray-1000 flex items-center justify-between gap-2 rounded-lg p-2'
                                 >
                                     <span className='inline-flex items-center gap-2 font-medium'>
-                                        <Icons.bluesky className='size-4' /> BlueSky
+                                        <Bluesky className='size-4' /> BlueSky
                                     </span>
                                     <ArrowUpRightIcon size={16} />
                                 </a>

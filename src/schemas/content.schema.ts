@@ -3,10 +3,10 @@ import { reference } from 'astro:content'
 
 const baseSchema = z.object({
     category: z.string().array(),
-    tags: z.string().array().optional(),
     coverAlt: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    tags: z.string().array().optional(),
     title: z.string(),
     updatedDate: z.coerce.date()
 })
@@ -19,11 +19,19 @@ const shortSchema = baseSchema.extend({
 })
 
 const craftSchema = z.object({
-    id: z.string(),
-    description: z.string(),
-    pubDate: z.string(),
     coverUrl: z.string().optional(),
+    description: z.string(),
+    id: z.string(),
+    pubDate: z.string(),
     skills: z.string().array().optional()
 })
 
-export { postSchema, shortSchema, craftSchema }
+const useSchema = z.object({
+    intro: z.string().optional(),
+    link: z.string(),
+    months: z.number().optional(),
+    name: z.string(),
+    type: z.enum(['Device', 'App']).default('Device')
+})
+
+export { postSchema, shortSchema, craftSchema, useSchema }
