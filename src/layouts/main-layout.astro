@@ -1,12 +1,9 @@
 ---
-import MainNav from '@components/common/MainNav.astro'
 import { MobileNav } from '@components/common/MobileNav'
-import SiteFooter from '@components/layout/site-footer.astro'
-import SiteHeader from '@components/layout/site-header.astro'
 import BaseLayout from '@layouts/base-layout.astro'
 import { extractSegmentURL } from '@lib/utils'
-import { cn } from '@/utils/tv'
 import RightSection from '@/components/layout/right-section.astro'
+import { cn } from '@/utils/tv'
 
 type Props = {
     title: string
@@ -39,7 +36,7 @@ const {
     imageAlt={imageAlt}
 >
     <div class='mx-auto flex min-h-screen flex-col lg:h-screen lg:overflow-hidden'>
-      <div class='mx-auto flex w-full max-w-[80rem] flex-1 flex-col  py-12 lg:flex-row lg:gap-12 lg:overflow-hidden'>
+        <div class='mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 py-12 lg:flex-row lg:gap-14 lg:overflow-hidden'>
             <div class='w-full lg:hidden'>
                 <MobileNav segment={segment} client:load />
             </div>
@@ -49,8 +46,7 @@ const {
                     <slot />
                 </main>
             </aside>
-            <RightSection/>
+            <RightSection />
         </div>
-        <SiteFooter />
     </div>
 </BaseLayout>

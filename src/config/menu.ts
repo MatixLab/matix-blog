@@ -21,5 +21,9 @@ export const links: MainNavItem[] = [
     {
         href: '/collective/',
         title: 'Collective'
+    },
+    {
+        href: '/credits/',
+        title: 'Credits'
     }
 ]

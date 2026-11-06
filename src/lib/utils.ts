@@ -16,3 +16,9 @@ export function extractSegmentURL(path: string) {
     }
     return path.split('/')[1]
 }
+
+const REGEX = /\/$/u
+
+export function trimTrailingSlash(value: string) {
+    return value.replace(REGEX, '')
+}
