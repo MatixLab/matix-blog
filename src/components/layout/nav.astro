@@ -1,0 +1,41 @@
+---
+import Link from '@components/common/Link.astro'
+import { links } from '@config/menu'
+import { extractSegmentURL } from '@lib/utils'
+import { cn, cva } from '@utils/tv'
+import type { MainNavItem } from '~types/index'
+
+const segment = extractSegmentURL(Astro.url.pathname)
+
+const navLinkVariants = cva({
+    base: 'group flex cursor-pointer items-center gap-2 text-sm disabled:opacity-50',
+    defaultVariants: {
+        isActive: false
+    },
+    variants: {
+        isActive: {
+            false: 'text-muted-foreground hover:text-foreground',
+            true: 'text-foreground'
+        }
+    }
+})
+---
+
+<ul class='flex flex-col items-start gap-2'>
+    {links.map((item: MainNavItem) => (
+        <li class='relative list-none'>
+            <Link
+                href={item.href}
+                title={item.title}
+                class={cn(
+                    'link text-sm transition-all duration-500 ease-linear',
+                    navLinkVariants({
+                        isActive: item.href.startsWith(`/${segment}`)
+                    })
+                )}
+            >
+                {item.title}
+            </Link>
+        </li>
+    ))}
+</ul>

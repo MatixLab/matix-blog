@@ -26,6 +26,9 @@ export type SiteConfig = {
     home: {
         displayNumber: number
     }
+    color: {
+        mode: 'light' | 'dark' | 'auto'
+    }
 }
 
 type CommonItem = {

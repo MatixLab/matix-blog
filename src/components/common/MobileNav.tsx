@@ -1,3 +1,4 @@
+import { GitHub, X, Bluesky } from '@components/icons'
 import {
     Drawer,
     DrawerContent,
@@ -10,7 +11,6 @@ import { siteConfig } from '@config/site'
 import { cn } from '@utils/tv'
 import { ArrowUpRightIcon, Menu } from 'lucide-react'
 import * as React from 'react'
-import { GitHub, X, Bluesky } from '@/icons'
 import { Button } from '../ui/button'
 
 interface MobileNavProps {

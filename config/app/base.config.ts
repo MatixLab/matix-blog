@@ -6,11 +6,11 @@ import { fontProviders } from 'astro/config'
 export const baseConfig = {
   ...deployConfig,
   ...contentConfig,
-    env: {
-        validateSecrets: false
-    },
     devToolbar: {
       enabled: false
+    },
+    env: {
+        validateSecrets: false
     },
     fonts: [{
       cssVariable: "--font-mono",

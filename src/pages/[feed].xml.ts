@@ -30,14 +30,13 @@ export const GET: APIRoute = async (context: APIContext) => {
     const postFeedItems: Item[] = []
     const shortFeedItems: Item[] = []
 
-    const posts = await getPosts()
-    const shorts = await getShorts()
+    const [posts, shorts] = await Promise.all([getPosts(), getShorts()])
 
     posts.forEach((post) => {
         postFeedItems.push({
             author: [AUTHOR],
-            content: sanitizeHtml(parser.render(post.body || ''), {
-                allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+            content: sanitizeHtml(parser.render(post.body ?? ''), {
+                allowedTags: [...sanitizeHtml.defaults.allowedTags, 'img']
             }).replace('href="/', `href="${context.site?.href}`),
             date: post.data.updatedDate,
             description: post.data.description,
@@ -50,8 +49,8 @@ export const GET: APIRoute = async (context: APIContext) => {
     shorts.forEach((short) => {
         shortFeedItems.push({
             author: [AUTHOR],
-            content: sanitizeHtml(parser.render(short.body || ''), {
-                allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+            content: sanitizeHtml(parser.render(short.body ?? ''), {
+                allowedTags: [...sanitizeHtml.defaults.allowedTags, 'img']
             }).replace('href="/', `href="${context.site?.href}`),
             date: short.data.updatedDate,
             description: short.data.description,
@@ -62,20 +61,18 @@ export const GET: APIRoute = async (context: APIContext) => {
     })
 
     const feed = new Feed({
-        title: siteConfig.title,
-        id: `${BASE_URL}/`,
-        link: `${BASE_URL}/`,
-        description: siteConfig.description,
-        // optional, used only in RSS 2.0.
-        // possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-        language: 'zh-CN',
-        favicon: `${BASE_URL}/favicon.svg`,
+        author: AUTHOR,
         copyright: 'CC BY-NC-SA 4.0 2021 © Anthony Zhu',
+        description: siteConfig.description,
+        favicon: `${BASE_URL}/favicon.svg`,
         feedLinks: {
             atom: `${BASE_URL}/atom.xml`,
             rss: `${BASE_URL}/rss.xml`
         },
-        author: AUTHOR
+        id: `${BASE_URL}/`,
+        language: 'zh-CN',
+        link: `${BASE_URL}/`,
+        title: siteConfig.title
     })
 
     if (feedType === 'rss' || feedType === 'atom') {

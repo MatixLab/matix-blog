@@ -1,8 +1,10 @@
 ---
-import Theme from '@components/common/theme.astro'
 import BaseFont from '@components/seo/base-font.astro'
+import BaseScript from '@components/seo/base-script.astro'
+import BaseCanonical from '@components/seo/canonical.astro'
+import BaseOg from '@components/seo/og.astro'
+import '@base/src/styles/global.css'
 import { siteConfig } from '@config/site'
-import '@/styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 
 type Props = {
@@ -11,8 +13,8 @@ type Props = {
     image?: string
     imageAlt?: string
 }
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const { title, description, image, imageAlt } = Astro.props
+const { mode: defaultMode } = siteConfig.color
 ---
 
 <head>
@@ -31,57 +33,64 @@ const { title, description, image, imageAlt } = Astro.props
     />
     <meta name='description' content={description} />
     <meta name='author' content={siteConfig.author} />
-
-    <!-- Canonical URL -->
-    <link rel='canonical' href={canonicalURL} />
-    <link rel='sitemap' href='/sitemap-index.xml' />
-    <link rel='robots' href='/robots.txt' />
-    <link
-        rel='alternate'
-        type='application/rss+xml'
-        title={siteConfig.title}
-        href={new URL('rss.xml', Astro.site)}
+    <BaseCanonical />
+    <BaseOg
+        title={title}
+        description={description}
+        image={image}
+        imageAlt={imageAlt}
     />
-
-    <!-- OG -->
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={Astro.url} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    {image ? <meta property='og:image' content={new URL(image, Astro.url)} /> : null}
-    {imageAlt ? <meta property='og:image:alt' content={imageAlt} /> : null}
-    <meta property='og:image:width' content='1200' />
-    <meta property='og:image:height' content='628' />
-
-    <!-- Twitter -->
-    <meta property='twitter:card' content='summary_large_image' />
-    <meta property='twitter:site' content='@hukucha10' />
-    <meta property='twitter:creator' content='@hukucha10' />
-    <meta property='twitter:title' content={title} />
-    <meta property='twitter:description' content={description} />
-    {image ? (
-        <meta property='twitter:image' content={new URL(image, Astro.url)} />
-    ) : null}
-    {imageAlt ? <meta property='twitter:image:alt' content={imageAlt} /> : null}
-
     <BaseFont />
+    <script
+        is:inline
+        define:vars={{
+            defaultMode
+        }}
+    >
+        ;(function () {
+            function isCurrentDark() {
+                const currentTheme = localStorage.getItem('theme')
+                if (currentTheme) {
+                    return currentTheme === 'dark'
+                }
 
-    <!-- Global View Transition -->
-    <ClientRouter fallback='none' />
+                if (defaultMode !== 'auto') {
+                    return defaultMode === 'dark'
+                }
 
-    <!-- Theme Toggle -->
-    <Theme />
+                return window.matchMedia('(prefers-color-scheme: dark)').matches
+            }
 
-    <!-- Google analytics -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-GSZGX09RBK' />
-    <!-- partytown -->
-    <script type='text/partytown'>
-        window.dataLayer = window.dataLayer || []
-        window.gtag = function gtag() {
-            // eslint-disable-next-line prefer-rest-params
-            dataLayer.push(arguments)
-        }
-        gtag('js', new Date())
-        gtag('config', 'G-GSZGX09RBK')
+            function initTheme(doc = document) {
+                const isDark = isCurrentDark()
+                doc.documentElement.classList.toggle('dark', isDark)
+            }
+
+            function initMotionPref(doc = document) {
+                const prefersReducedMotion = window.matchMedia(
+                    '(prefers-reduced-motion: reduce)'
+                ).matches
+                const supportsViewTransitions = 'startViewTransition' in doc
+                const shouldReduceMotion =
+                    prefersReducedMotion || !supportsViewTransitions
+
+                doc.documentElement.classList.toggle(
+                    'reduce-motion',
+                    shouldReduceMotion
+                )
+            }
+
+            document.addEventListener('astro:before-swap', ({ newDocument }) => {
+                initTheme(newDocument)
+                initMotionPref(newDocument)
+            })
+
+            // Initialize theme on first load
+            initTheme()
+            initMotionPref()
+        })()
     </script>
+
+    <BaseScript />
+    <ClientRouter fallback='none' />
 </head>

@@ -1,70 +1,67 @@
 @utility list-container {
-    @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
-    &:last-of-type {
-        @apply mb-0;
-    }
+  @apply mb-12 grid grid-cols-12 gap-4 gap-y-2 sm:mb-16 sm:gap-y-4;
+  &:last-of-type {
+    @apply mb-0;
+  }
 }
 @utility list-title {
-    @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 sm:col-span-4 dark:border-neutral-900;
+  @apply col-span-12 border-t border-solid border-neutral-500/10 pt-4 sm:col-span-4 dark:border-neutral-900;
 }
 
 @utility list-content {
-    @apply col-span-12 border-solid border-neutral-500/10 pt-4 sm:col-span-8 sm:border-t dark:border-neutral-900;
+  @apply col-span-12 border-solid border-neutral-500/10 pt-4 sm:col-span-8 sm:border-t dark:border-neutral-900;
 }
 
 @utility link {
-    position: relative;
-    &:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 1px;
-        width: 100%;
-        transform-origin: bottom right;
-        transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(0) scaleY(1.2);
-        background-color: currentColor;
-        transition-property: transform;
-        transition-duration: 0.3s;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        animation-duration: 0.3s;
-        content: '';
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    &:hover:after {
-        transform-origin: bottom left;
-        transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
-    }
+  position: relative;
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform-origin: bottom right;
+    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(0) scaleY(1.2);
+    background-color: currentColor;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-duration: 0.3s;
+    content: "";
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover:after {
+    transform-origin: bottom left;
+    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
+  }
 }
-
 @utility common-link {
-    @apply text-gray-800 underline decoration-gray-500 underline-offset-4 hover:decoration-gray-900;
+  @apply text-muted-foreground underline decoration-gray-500 underline-offset-4 hover:decoration-gray-900;
 }
-
 @utility link-animate {
-    @apply decoration-1 duration-500 ease-in-out;
+  @apply decoration-1 duration-500 ease-in-out;
 }
 
 @layer utilities {
-    .no-scrollbar::-webkit-scrollbar {
-        display: none; /* 针对 Chrome, Safari 和 Edge */
-    }
-
-    .no-scrollbar {
-        -ms-overflow-style: none; /* 针对 IE 和旧版 Edge */
-        scrollbar-width: none; /* 针对 Firefox */
-    }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @theme {
-    --animate-icon-bounce: icon-bounce 0.65s ease-in-out 2;
-    @keyframes icon-bounce {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-
-        50% {
-            transform: translateY(-3px);
-        }
+  --animate-icon-bounce: icon-bounce 0.65s ease-in-out 2;
+  @keyframes icon-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
     }
+
+    50% {
+      transform: translateY(-3px);
+    }
+  }
 }

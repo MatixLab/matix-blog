@@ -3,9 +3,9 @@ import Link from '@components/common/Link.astro'
 import MainLayout from '@layouts/main-layout.astro'
 import { formatDateWithYear } from '@lib/utils'
 import { cn } from '@utils/tv'
-import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import { ArrowUpLeft, Hash } from 'lucide-react'
 
 type Props = CollectionEntry<'post'>
 
@@ -13,11 +13,7 @@ const { title, description, updatedDate, cover, category, coverAlt } =
     Astro.props.data
 ---
 
-<MainLayout
-    title={title}
-    description={description}
-    mainClass='px-2 md:px-10'
->
+<MainLayout title={title} description={description} mainClass='px-2 md:px-10'>
     <section
         class:list={[
             'prose dark:prose-invert relative container max-w-[948px]',
@@ -41,10 +37,7 @@ const { title, description, updatedDate, cover, category, coverAlt } =
                                     'after:content-none! hover:no-underline!'
                                 )}
                             >
-                                <Icon
-                                    name='lucide:hash'
-                                    class='hover:text-gray-1000 size-3 text-gray-600 duration-150 ease-in-out hover:scale-110'
-                                />
+                                <Hash className='hover:text-gray-1000 size-3 text-gray-600 duration-150 ease-in-out hover:scale-110' />
                                 <span class='link hover:text-gray-1000 mr-2 text-sm text-gray-600'>
                                     {cat}
                                 </span>
@@ -82,10 +75,7 @@ const { title, description, updatedDate, cover, category, coverAlt } =
         onclick='history.back()'
         class='fixed top-32 hidden opacity-50 duration-500 ease-in-out hover:cursor-pointer hover:opacity-85 xl:inline-flex'
     >
-        <Icon
-            name='lucide:arrow-up-left'
-            class='my-auto mr-0.5 size-4 text-gray-600'
-        />
+        <ArrowUpLeft className='my-auto mr-0.5 size-4 text-gray-600' />
         <span class='text-xs text-gray-800 no-underline'> Back </span>
     </div>
 </MainLayout>

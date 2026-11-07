@@ -1,13 +1,9 @@
-import type { MainNavItem } from '@/types'
+import type { MainNavItem } from '~types/index'
 
 export const links: MainNavItem[] = [
     {
         href: '/post/',
         title: 'Posts'
-    },
-    {
-        href: '/short/',
-        title: 'Shorts'
     },
 
     {

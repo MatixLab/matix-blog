@@ -1,7 +1,81 @@
 [
-  {
-    "name": "Apple iPhone 14",
-    "link": "https://www.apple.com.cn/shop/buy-iphone/iphone-14/",
-    "type": "Device"
-  }
+    {
+        "id": "MacBook Pro (Intel)",
+        "type": "Device"
+    },
+    {
+        "id": "Apple iPhone 14",
+        "link": "https://www.apple.com.cn/shop/buy-iphone/iphone-14/",
+        "type": "Device"
+    },
+    {
+        "id": "Apple Watch S9",
+        "link": "https://item.jd.com/100066896768.html",
+        "type": "Device"
+    },
+    {
+        "id": "Dell U2720QM",
+        "type": "Device"
+    },
+    {
+        "id": "Keychron K3 Pro",
+        "link": "https://item.jd.com/10073839082426.html",
+        "type": "Device"
+    },
+    {
+        "id": "Logitech G102",
+        "link": "https://item.jd.com/100012720924.html",
+        "type": "Device"
+    },
+    {
+        "id": "Chrome",
+        "desc": "浏览器",
+        "type": "App"
+    },
+    {
+        "id": "Follow",
+        "desc": "Rss 管理",
+        "type": "App"
+    },
+    {
+        "id": "ClashX",
+        "desc": "系统代理",
+        "type": "App"
+    },
+    {
+        "id": "DBeaver",
+        "desc": "数据库管理",
+        "link": "https://dbeaver.io/",
+        "type": "App"
+    },
+    {
+        "id": "Notion",
+        "desc": "All-in-one 笔记",
+        "link": "https://www.notion.so/",
+        "type": "App"
+    },
+    {
+        "id": "VSCode",
+        "desc": "Coding",
+        "link": "https://code.visualstudio.com/",
+        "type": "App"
+    },
+    {
+        "id": "Obsidian",
+        "desc": "知识管理",
+        "link": "https://obsidian.md/",
+        "type": "App"
+    },
+    {
+        "id": "MonitorControl",
+        "desc": "Mac 显示器控制",
+        "link": "https://monitorcontrol.app/",
+        "type": "App"
+    },
+    {
+        "id": "Ollama",
+        "desc": "LLM 管理",
+        "link": "https://ollama.com/",
+        "type": "App"
+    }
 ]

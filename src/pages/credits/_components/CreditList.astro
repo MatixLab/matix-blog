@@ -1,7 +1,7 @@
 ---
 import Link from '@components/common/Link.astro'
-import { Icon } from 'astro-icon/components'
-import type { CreditItem } from '@/types'
+import { ArrowUpRight } from 'lucide-react'
+import type { CreditItem } from '~types/index'
 
 interface Props {
     credits: CreditItem[]
@@ -21,10 +21,7 @@ const { credits } = Astro.props
                 <h3 class='common-link link-animate mt-0 mb-0 inline-flex text-base leading-[2] font-medium text-black!'>
                     {item.title}
                 </h3>
-                <Icon
-                    name='lucide:arrow-up-right'
-                    class='-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-gray-700'
-                />
+                <ArrowUpRight className='-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-gray-700' />
             </Link>
         </li>
     )

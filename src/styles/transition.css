@@ -1,0 +1,24 @@
+@keyframes reveal {
+  from {
+    clip-path: inset(var(--from));
+  }
+}
+::view-transition-new(theme-toggle-transition) {
+  z-index: 99;
+  clip-path: inset(0 0 0 0);
+  animation: reveal 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+::view-transition-old(theme-toggle-transition) {
+  z-index: -1;
+  animation: none;
+}
+
+html.dark {
+  --from: 0 0 100% 0;
+}
+html:not(.dark) {
+  --from: 100% 0 0 0;
+}
+html[data-theme-changing] [data-disable-theme-toggle-transition] {
+  view-transition-name: none !important;
+}

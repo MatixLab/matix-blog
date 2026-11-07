@@ -3,11 +3,7 @@ import { satteri } from "@astrojs/markdown-satteri"
 
 export const markdownConfig = {
   markdown: {
-    processor: satteri({
-      features: {
-        headingAttributes: true
-      }
-    }),
+    processor: satteri(),
     shikiConfig: {
       themes: {
         dark: 'vesper',

@@ -1,4 +1,4 @@
-import type { SiteConfig } from '@/types'
+import type { SiteConfig } from '~types/index'
 
 export const siteConfig: SiteConfig = {
     author: 'Anthony Zhu',
@@ -21,5 +21,9 @@ export const siteConfig: SiteConfig = {
     },
     home: {
         displayNumber: 5
+    },
+    color: {
+        // default theme mode
+        mode: 'light' // light | dark | auto
     }
 }

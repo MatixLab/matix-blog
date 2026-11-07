@@ -1,21 +1,18 @@
 import { z } from 'astro/zod'
 import { reference } from 'astro:content'
 
-const baseSchema = z.object({
+export const USE_TYPES = ['Device', 'App'] as const
+export type UseType = (typeof USE_TYPES)[number]
+
+const postSchema = z.object({
     category: z.string().array(),
     coverAlt: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    relatedPosts: z.array(reference('post')).optional(),
     tags: z.string().array().optional(),
     title: z.string(),
     updatedDate: z.coerce.date()
-})
-
-const postSchema = baseSchema.extend({
-    relatedPosts: z.array(reference('post')).optional()
-})
-const shortSchema = baseSchema.extend({
-    relatedPosts: z.array(reference('short')).optional()
 })
 
 const craftSchema = z.object({
@@ -27,11 +24,15 @@ const craftSchema = z.object({
 })
 
 const useSchema = z.object({
+    id: z.string(),
     intro: z.string().optional(),
-    link: z.string(),
+    link: z.string().optional(),
     months: z.number().optional(),
-    name: z.string(),
-    type: z.enum(['Device', 'App']).default('Device')
+    type: z.enum(USE_TYPES).default('Device')
 })
 
-export { postSchema, shortSchema, craftSchema, useSchema }
+export type Post = z.infer<typeof useSchema>
+export type Craft = z.infer<typeof craftSchema>
+export type Use = z.infer<typeof useSchema>
+
+export { postSchema, craftSchema, useSchema }

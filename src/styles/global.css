@@ -5,16 +5,10 @@
 /*@import "./typeset.css";*/
 @import "./mdx.css";
 @import "./common.css";
+@import "./mdx.css";
+@import "./transition.css";
 
 @custom-variant dark (&:is(.dark *));
-html.theme-switching,
-html.theme-switching *,
-html.theme-switching *::before,
-html.theme-switching *::after {
-  transition: none !important;
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-}
 
 @theme inline {
   /* header var */
@@ -143,7 +137,6 @@ html.theme-switching *::after {
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground relative;
   }
@@ -158,5 +151,17 @@ html.theme-switching *::after {
 
   html {
     @apply font-sans;
+  }
+
+  html.dark .astro-code,
+  html.dark .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+  .lucide {
+    stroke-width: 1.5px;
   }
 }

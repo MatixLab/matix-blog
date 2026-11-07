@@ -11,7 +11,7 @@
   }
   & ul li:before {
     @apply mr-2 -ml-6 inline-block font-medium;
-    content: '-';
+    content: "-";
   }
 }
 
@@ -44,7 +44,7 @@
       background: var(--diff-remove);
     }
     .line.diff.remove::before {
-      content: '-';
+      content: "-";
       color: var(--color-red-700);
       margin-right: 4px;
     }
@@ -52,7 +52,7 @@
       background: var(--highlight);
     }
     .line.diff.add::before {
-      content: '+';
+      content: "+";
       color: var(--color-green-700);
       margin-right: 4px;
     }

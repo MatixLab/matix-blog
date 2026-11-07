@@ -2,44 +2,24 @@
 
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { Button } from '@components/ui/button'
+import { cn } from '@utils/tv'
 import { XIcon } from 'lucide-react'
 import * as React from 'react'
-import { cn } from '@/utils/tv'
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
-    return (
-        <DialogPrimitive.Root
-            data-slot='dialog'
-            {...props}
-        />
-    )
+    return <DialogPrimitive.Root data-slot='dialog' {...props} />
 }
 
 function DialogTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
-    return (
-        <DialogPrimitive.Trigger
-            data-slot='dialog-trigger'
-            {...props}
-        />
-    )
+    return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />
 }
 
 function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
-    return (
-        <DialogPrimitive.Portal
-            data-slot='dialog-portal'
-            {...props}
-        />
-    )
+    return <DialogPrimitive.Portal data-slot='dialog-portal' {...props} />
 }
 
 function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
-    return (
-        <DialogPrimitive.Close
-            data-slot='dialog-close'
-            {...props}
-        />
-    )
+    return <DialogPrimitive.Close data-slot='dialog-close' {...props} />
 }
 
 function DialogOverlay({ className, ...props }: DialogPrimitive.Backdrop.Props) {

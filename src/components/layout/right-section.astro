@@ -1,23 +1,28 @@
 ---
-import { Icon } from 'astro-icon/components'
-import { Bot, GitBranch, GitCommit, GitCommitVertical, GitMerge } from 'lucide-react'
-import { links } from '@/config/menu'
-import { siteConfig } from '@/config/site'
-import { extractSegmentURL, trimTrailingSlash } from '@/lib/utils'
-import type { MainNavItem } from '@/types'
-import { cn } from '@/utils/tv'
-import Link from '../common/Link.astro'
+import Link from '@components/common/Link.astro'
+import ThemeToggle from '@components/common/theme-toggle.astro'
+import Nav from '@components/layout/nav.astro'
+import { Bot, GitMerge, Rss } from 'lucide-react'
+import { siteConfig } from '@config/site'
+import { trimTrailingSlash } from '@lib/utils'
+import type { MainNavItem } from '~types/index'
+import { MapDot } from '@components/icons'
 
-const segment = extractSegmentURL(Astro.url.pathname)
+export const links: MainNavItem[] = [
+    { href: '/post/', title: 'Posts' },
+    { href: '/uses/', title: 'Uses' },
+    { href: '/now/', title: 'Now' },
+    { href: '/collective/', title: 'Collective' },
+    { href: '/credits/', title: 'Credits' }
+]
 ---
 
 <div class='no-scrollbar hidden w-64 shrink-0 flex-col gap-6 md:grid-rows-[auto_1fr_auto] lg:grid lg:h-full lg:overflow-y-auto'>
     <section class='pt-6' id='top-section'>
         <div class='flex flex-col gap-6'>
-            <!-- <Link href='/' class='items-center' title='Home'>
-                <Icon name='lucide:asterisk' class='size-6' />
-            </Link> -->
-            <strong>{siteConfig.author}</strong>
+            <Link href='/'>
+                <strong>{siteConfig.author}</strong>
+            </Link>
             <span class='text-muted-foreground/65 text-sm select-none'>
                 {siteConfig.slogan}
             </span>
@@ -25,36 +30,17 @@ const segment = extractSegmentURL(Astro.url.pathname)
     </section>
 
     <div></div>
-
     <section class='flex flex-col gap-6 pb-12' id='footer-section'>
-        <ul class='flex flex-col items-start gap-2'>
-            {links.map((item: MainNavItem) => (
-                <li class='relative list-none'>
-                    <Link
-                        href={item.href}
-                        title={item.title}
-                        class={cn(
-                            'text-sm transition-all duration-500 ease-linear hover:text-black',
-                            item.href.startsWith(`/${segment}`)
-                                ? 'text-black dark:text-white'
-                                : 'text-gray-400'
-                        )}
-                    >
-                        {item.title}
-                    </Link>
-                </li>
-            ))}
-        </ul>
-
+        <Nav />
+        <ThemeToggle />
         <div class='flex flex-col gap-2'>
-            <div>ThemeToggle</div>
             <div class='text-muted-foreground flex h-5 gap-2'>
                 <Link
                     class='hover:text-foreground text-xs'
                     href='/rss.xml'
                     title='RSS'
                 >
-                    <Icon name='lucide:rss' class='size-4' />
+                    <Rss className='size-4' />
                 </Link>
                 <Link
                     class='hover:text-foreground text-xs'
@@ -72,17 +58,7 @@ const segment = extractSegmentURL(Astro.url.pathname)
                 </Link>
             </div>
             <div class='text-muted-foreground group/site flex gap-1.5 text-xs'>
-                <svg
-                    xmlns=''
-                    width='7'
-                    height='16'
-                    fill='none'
-                    viewBox='0 0 7 16'
-                    class='group-hover/site:animate-icon-bounce group-hover/site:fill-accent fill-current'
-                >
-                    <path d='M3 6.5h1v6l-.5 1-.5-1v-6z'></path>
-                    <path d='M3.5 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-1-3a.5.5 0 100-1 .5.5 0 000 1z'></path>
-                </svg>
+                <MapDot className='group-hover/site:animate-icon-bounce group-hover/site:fill-accent fill-current' />
                 Made in JiangSu, CN
             </div>
         </div>

@@ -1,5 +1,5 @@
 import type { AstroUserConfig } from 'astro'
-import { markdownConfig } from '#/config/markdown/shiki.config'
+import { markdownConfig } from '@base/config/markdown/shiki.config'
 
 export const contentConfig = {
     experimental: {

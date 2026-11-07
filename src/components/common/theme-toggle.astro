@@ -1,0 +1,73 @@
+---
+import { ThemeDot } from '@components/icons'
+---
+
+<!-- Theme Toggle -->
+<button
+    id='theme-toggle-button'
+    class='c-secondary hover:c-primary aspect-square w-4 active:scale-90'
+    aria-label='Switch light/dark theme'
+>
+    <ThemeDot aria-hidden='true' fill='currentColor' />
+</button>
+
+<script>
+    // Apply theme changes
+    function applyTheme(isDark: boolean) {
+        document.documentElement.classList.toggle('dark', isDark)
+
+        localStorage.setItem('theme', isDark ? 'dark' : 'light')
+        document.dispatchEvent(new Event('theme-changed'))
+    }
+
+    // Toggle theme mode
+    function toggleTheme() {
+        const isDark = !document.documentElement.classList.contains('dark')
+        applyTheme(isDark)
+    }
+
+    // Handle theme toggle click events
+    function handleThemeToggle(e: MouseEvent) {
+        if (!(e.target instanceof Element)) {
+            return
+        }
+
+        if (!e.target.closest('#theme-toggle-button')) {
+            return
+        }
+
+        // If reduceMotion is enabled, update theme directly
+        if (document.documentElement.classList.contains('reduce-motion')) {
+            toggleTheme()
+            return
+        }
+
+        document.documentElement.style.setProperty(
+            'view-transition-name',
+            'theme-toggle-transition'
+        )
+        document.documentElement.dataset.themeChanging = ''
+
+        const transition = document.startViewTransition(toggleTheme)
+
+        transition.finished
+            .then(() => {
+                document.documentElement.style.removeProperty('view-transition-name')
+                delete document.documentElement.dataset.themeChanging
+            })
+            .catch(() => {
+                //
+            })
+    }
+
+    // Listen to system theme changes in real time
+    function handleSystemChange(event: MediaQueryListEvent) {
+        const isDark = event.matches
+        applyTheme(isDark)
+    }
+
+    document.addEventListener('click', handleThemeToggle)
+    window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', handleSystemChange)
+</script>

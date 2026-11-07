@@ -1,3 +1,4 @@
+import type { UseType } from '@schemas/content.schema'
 import { getCollection } from 'astro:content'
 
 export async function getCategories() {
@@ -14,27 +15,6 @@ export async function getPosts() {
     return posts
 }
 
-export async function getShorts() {
-    let shorts = await getCollection('short')
-    shorts = shorts.toSorted(
-        (a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf()
-    )
-    return shorts
-}
-
-export async function getShortCategories() {
-    const shorts = await getCollection('short')
-    return [...new Set(shorts.flatMap((short) => short.data.category))]
-}
-
-export async function getShortsByYear(year: string) {
-    let shorts = await getCollection('short')
-    shorts = shorts
-        .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-        .filter((ele) => ele.id.substring(0, 4) === year)
-    return shorts
-}
-
 export async function getPostsByCategory(category: string) {
     let posts = await getCollection('post')
     posts = posts
@@ -44,4 +24,12 @@ export async function getPostsByCategory(category: string) {
         )
 
     return posts
+}
+
+export async function getUses(type?: UseType) {
+    let uses = await getCollection('uses')
+    if (type) {
+        uses = uses.filter((u) => u.data.type === type)
+    }
+    return uses
 }

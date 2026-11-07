@@ -1,5 +1,5 @@
+import { cn } from '@utils/tv'
 import * as React from 'react'
-import { cn } from '@/utils/tv'
 
 function Card({
     className,

@@ -1,9 +1,4 @@
-import {
-    craftSchema,
-    postSchema,
-    shortSchema,
-    useSchema
-} from '@schemas/content.schema'
+import { craftSchema, postSchema, useSchema } from '@schemas/content.schema'
 import { file, glob } from 'astro/loaders'
 import { defineCollection } from 'astro:content'
 
@@ -11,14 +6,6 @@ export const post = defineCollection({
     loader: glob({ base: './src/content/post', pattern: '**/*.{md,mdx}' }),
     schema: ({ image }) =>
         postSchema.safeExtend({
-            cover: image().optional()
-        })
-})
-
-export const short = defineCollection({
-    loader: glob({ base: './src/content/short', pattern: '**/*.{md,mdx}' }),
-    schema: ({ image }) =>
-        shortSchema.safeExtend({
             cover: image().optional()
         })
 })
@@ -37,4 +24,4 @@ export const uses = defineCollection({
     schema: () => useSchema
 })
 
-export const collections = { collective, crafts, post, short }
+export const collections = { collective, crafts, post, uses }

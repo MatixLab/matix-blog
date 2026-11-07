@@ -94,3 +94,24 @@ export const X = ({ ...props }: LucideProps) => (
         <path d='M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772' />
     </svg>
 )
+
+export const MapDot = ({ ...props }: LucideProps) => (
+    <svg
+        xmlns=''
+        width='7'
+        height='16'
+        fill='none'
+        strokeWidth='1.5'
+        viewBox='0 0 7 16'
+        {...props}
+    >
+        <path d='M3 6.5h1v6l-.5 1-.5-1v-6z' />
+        <path d='M3.5 6a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-1-3a.5.5 0 100-1 .5.5 0 000 1z' />
+    </svg>
+)
+
+export const ThemeDot = ({ ...props }: LucideProps) => (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' {...props}>
+        <path d='M12.06.61C5.66.61.46 5.71.46 12.11s5.1 11.5 11.6 11.5 11.5-5.1 11.5-11.5S18.46.61 12.06.61m0 21c-6.07 0-10.94-4.2-10.94-9.5s4.87-9.4 10.94-9.4S23 6.91 23 12.21s-4.88 9.4-10.94 9.4' />
+    </svg>
+)

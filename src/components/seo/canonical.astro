@@ -1,0 +1,16 @@
+---
+import { siteConfig } from '@config/site'
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+---
+
+<!-- Canonical URL -->
+<link rel='canonical' href={canonicalURL} />
+<link rel='sitemap' href='/sitemap-index.xml' />
+<link rel='robots' href='/robots.txt' />
+<link
+    rel='alternate'
+    type='application/rss+xml'
+    title={siteConfig.title}
+    href={new URL('rss.xml', Astro.site)}
+/>

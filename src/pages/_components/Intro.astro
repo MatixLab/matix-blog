@@ -1,17 +1,14 @@
 ---
 import Link from '@components/common/Link.astro'
 import { siteConfig } from '@config/site'
-import { Icon } from 'astro-icon/components'
+import { Mail } from 'lucide-react'
+import { Bluesky, GitHub, X } from '@components/icons'
 ---
 
 <dl class='list-container'>
     <dt class='list-title border-none! px-2 pt-0 pb-4 leading-relaxed sm:pb-0'>
         <h1 class='flex items-center gap-1'>
-            <Link
-                href='/'
-                title={siteConfig.author}
-                class='font-bold'
-            >
+            <Link href='/' title={siteConfig.author} class='font-bold'>
                 {siteConfig.author}
             </Link>
         </h1>
@@ -48,50 +45,23 @@ import { Icon } from 'astro-icon/components'
 
         <p>You can also find me on :</p>
         <div class='ml-4 flex space-x-8'>
-            <Link
-                href={siteConfig.links.github}
-                title='Github'
-            >
-                <Icon
-                    name='simple-icons:github'
-                    class='inline-flex size-5 opacity-50 hover:opacity-100'
-                />
+            <Link href={siteConfig.links.github} title='Github'>
+                <GitHub className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
-            <Link
-                href={siteConfig.links.twitter}
-                title='x'
-            >
-                <Icon
-                    name='simple-icons:x'
-                    class='inline-flex size-5 opacity-50 hover:opacity-100'
-                />
+            <Link href={siteConfig.links.twitter} title='x'>
+                <X className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
-            <Link
-                href={siteConfig.links.blueSky}
-                title='blueSky'
-            >
-                <Icon
-                    name='simple-icons:bluesky'
-                    class='inline-flex size-5 opacity-50 hover:text-blue-500 hover:opacity-100'
-                />
+            <Link href={siteConfig.links.blueSky} title='blueSky'>
+                <Bluesky className='inline-flex size-5 opacity-50 hover:text-blue-500 hover:opacity-100' />
             </Link>
-            <Link
-                href={siteConfig.links.notion}
-                title='notion'
-            >
-                <Icon
+            <!-- <Link href={siteConfig.links.notion} title='notion'>
+                <Notion
                     name='simple-icons:notion'
                     class='inline-flex size-5 opacity-50 hover:opacity-100'
                 />
-            </Link>
-            <Link
-                href={`mailto:${siteConfig.links.email}`}
-                title='email'
-            >
-                <Icon
-                    name='simple-icons:gmail'
-                    class='inline-flex size-5 opacity-50 hover:opacity-100'
-                />
+            </Link> -->
+            <Link href={`mailto:${siteConfig.links.email}`} title='email'>
+                <Mail className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
         </div>
     </dd>
