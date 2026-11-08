@@ -1,8 +1,9 @@
 ---
 import { MobileNav } from '@components/common/MobileNav'
+import RightSection from '@components/layout/right-section.astro'
+import SoundEffect from '@components/shared/sound-effect.astro'
 import BaseLayout from '@layouts/base-layout.astro'
 import { extractSegmentURL } from '@lib/utils'
-import RightSection from '@components/layout/right-section.astro'
 import { cn } from '@utils/tv'
 
 type Props = {
@@ -29,12 +30,7 @@ const {
 } = Astro.props
 ---
 
-<BaseLayout
-    title={title}
-    description={description}
-    image={image}
-    imageAlt={imageAlt}
->
+<BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
     <div class='mx-auto flex min-h-screen flex-col lg:h-screen lg:overflow-hidden'>
         <div class='mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 py-12 lg:flex-row lg:gap-14 lg:overflow-hidden'>
             <div class='w-full lg:hidden'>
@@ -47,6 +43,7 @@ const {
                 </main>
             </aside>
             <RightSection />
+            <SoundEffect />
         </div>
     </div>
 </BaseLayout>

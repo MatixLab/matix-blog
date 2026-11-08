@@ -6,7 +6,7 @@ export default defineConfig({
 
     astro: true,
     jsxSingleQuote: true,
-    printWidth: 85,
+    printWidth: 95,
     semi: false,
     singleAttributePerLine: false,
     singleQuote: true,

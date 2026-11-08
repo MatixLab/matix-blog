@@ -1,0 +1,136 @@
+<!--
+https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/components/Widgets/SoundEffect.astro
+-->
+
+<script>
+    const soundTypes = {
+        click: 'tap'
+    } as const
+    type SoundType = (typeof soundTypes)[keyof typeof soundTypes]
+    const volumeSettings: Record<SoundType, number> = {
+        [soundTypes.click]: 0.8
+    }
+
+    const clickTargets = ['#language-switcher', '#theme-toggle-button'] as const
+
+    const ignoredKeys = new Set([
+        'Shift',
+        'Control',
+        'Alt',
+        'Meta',
+        'Tab',
+        'Escape',
+        'CapsLock'
+    ])
+
+    const clickSelector = clickTargets.join(',')
+
+    const isMobileDevice = (): boolean => window.matchMedia('(max-width: 1023px)').matches
+
+    const getBasePath = (): string => {
+        const sitemap = document.head.querySelector('link[rel="sitemap"]')
+        const href = sitemap?.getAttribute('href')
+        return href?.replace('/sitemap-index.xml', '') || ''
+    }
+
+    class SoundEffectManager {
+        private audioContext: AudioContext | null = null
+        private audioBuffers: Record<SoundType, AudioBuffer[]> = {
+            [soundTypes.click]: []
+        }
+
+        private initPromise: Promise<void> | null = null
+
+        // Preload all sound files during browser idle time
+        constructor() {
+            if (!isMobileDevice() && 'requestIdleCallback' in window) {
+                requestIdleCallback(() => this.initialize())
+            }
+        }
+
+        // Fetch, decode and cache a single sound file
+        private async fetchAndCacheSound(type: SoundType, index: number): Promise<void> {
+            if (!this.audioContext) {
+                throw new Error('Audio context not initialized')
+            }
+            const soundId = `${type}_0${index + 1}`
+            const response = await fetch(`${getBasePath()}/sounds/${soundId}.wav`)
+            const arrayBuffer = await response.arrayBuffer()
+            const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer)
+            this.audioBuffers[type].push(audioBuffer)
+        }
+
+        // Preload all sound variants
+        private async preloadAllSounds(): Promise<void> {
+            const soundTypeValues = Object.values(soundTypes) as SoundType[]
+            const allPromises = soundTypeValues.flatMap((type) =>
+                Array.from({ length: 5 }, (_, i) => this.fetchAndCacheSound(type, i))
+            )
+
+            await Promise.allSettled(allPromises)
+        }
+
+        // Initialize audio context and preload sound files (executes only once)
+        private async initialize(): Promise<void> {
+            return (this.initPromise ??= (async () => {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext
+                this.audioContext = new AudioContextClass()
+                await this.preloadAllSounds()
+            })())
+        }
+
+        // Play a random sound of the specified type
+        public async playSound(soundType: SoundType): Promise<void> {
+            try {
+                await this.initialize()
+
+                if (!this.audioContext) {
+                    return
+                }
+
+                // Resume audio context if suspended
+                if (this.audioContext.state === 'suspended') {
+                    await this.audioContext.resume()
+                }
+
+                // Get matching sound buffers for the requested type
+                const buffers = this.audioBuffers[soundType]
+                if (buffers.length === 0) {
+                    return
+                }
+
+                // Select random sound from available buffers
+                const source = this.audioContext.createBufferSource()
+                source.buffer = buffers[Math.floor(Math.random() * buffers.length)]
+
+                // Create and configure audio nodes
+                const gainNode = this.audioContext.createGain()
+                gainNode.gain.value = volumeSettings[soundType]
+
+                // Connect nodes and play sound
+                source.connect(gainNode).connect(this.audioContext.destination)
+                source.start(0)
+            } catch (error) {
+                console.warn('Sound playback failed:', error)
+            }
+        }
+    }
+
+    const soundManager = new SoundEffectManager()
+
+    // Handle click events on interactive elements
+    const handleGlobalClick = (event: MouseEvent) => {
+        if (isMobileDevice()) {
+            return
+        }
+
+        const target = event.target as Element | null
+        if (!target?.closest(clickSelector)) {
+            return
+        }
+
+        soundManager.playSound(soundTypes.click)
+    }
+
+    document.addEventListener('click', handleGlobalClick)
+</script>
