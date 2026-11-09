@@ -115,3 +115,26 @@ export const ThemeDot = ({ ...props }: LucideProps) => (
         <path d='M12.06.61C5.66.61.46 5.71.46 12.11s5.1 11.5 11.6 11.5 11.5-5.1 11.5-11.5S18.46.61 12.06.61m0 21c-6.07 0-10.94-4.2-10.94-9.5s4.87-9.4 10.94-9.4S23 6.91 23 12.21s-4.88 9.4-10.94 9.4' />
     </svg>
 )
+
+export const Line = ({ ...props }: LucideProps) => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox='0 0 240 24'
+        fill='none'
+        stroke='currentColor'
+        stroke-width='1.25'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        aria-hidden='true'
+        {...props}
+    >
+        <path d='M 18 12 C 40 12, 52 4, 74 12 S 96 20, 108 12' />
+        <path d='M 14 12 c -2 -2, -2 2, 0 0 z' />
+        <circle cx='120' cy='12' r='2.4' fill='currentColor' stroke='none' />
+        <path d='M 116 12 L 108 12 M 124 12 L 132 12' />
+        <circle cx='108' cy='12' r='1' fill='currentColor' stroke='none' />
+        <circle cx='132' cy='12' r='1' fill='currentColor' stroke='none' />
+        <path d='M 132 12 C 144 4, 166 20, 188 12 S 222 12, 222 12' />
+        <path d='M 226 12 c 2 -2, 2 2, 0 0 z' />
+    </svg>
+)

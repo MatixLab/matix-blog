@@ -21,7 +21,6 @@
     "@astrojs/sitemap": "^3.7.4",
     "@base-ui/react": "^1.9.0",
     "@cloudflare/workers-types": "^5.20261107.1",
-    "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "@playform/compress": "^0.2.5",
     "@tailwindcss/vite": "^4.3.5",
@@ -31,13 +30,12 @@
     "motion": "^14.10.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "satteri-expressive-code": "^0.1.32",
     "shadcn": "^4.23.0",
     "sharp": "^0.35.5",
     "shiki": "^4.6.0",
     "tailwind-variants": "^4.0.1",
-    "tailwindcss": "4.3.5",
-    "use-sound": "^5.0.0",
-    "zod": "^4.6.7"
+    "tailwindcss": "4.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
