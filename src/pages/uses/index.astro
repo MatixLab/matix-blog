@@ -2,9 +2,9 @@
 import Link from '@components/common/Link.astro'
 import MainLayout from '@layouts/main-layout.astro'
 import { getUses } from '@lib/fetchers'
-import { ArrowUpRight } from 'lucide-react'
 import { USE_TYPES } from '@schemas/content.schema'
 import type { UseType } from '@schemas/content.schema'
+import { ArrowUpRight } from 'lucide-react'
 
 const uses = await getUses()
 
@@ -13,29 +13,23 @@ const groupedUses: Record<UseType, typeof uses> = {
     Device: []
 }
 for (const item of uses) {
-    const {type} = item.data
+    const { type } = item.data
     groupedUses[type].push(item)
 }
 ---
 
 <MainLayout title='Uses' description='Things of Choice.'>
     <section class='prose dark:prose-invert container max-w-237 px-4 py-3 md:px-16'>
-        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>
-            Things of Choice.
-        </h1>
+        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>Things of Choice.</h1>
         <article class='relative flex flex-col overflow-auto'>
             {USE_TYPES.map((type: UseType) => {
-                // 获取当前 type 下的所有项
                 const items = groupedUses[type]
 
-                // 如果没有数据，直接跳过
                 if (items.length === 0) return null
 
                 return (
                     <Fragment>
-                        <h2 class='mt-6 mb-0 scroll-m-20 text-2xl font-semibold'>
-                            {type}
-                        </h2>
+                        <h2 class='mt-6 mb-0 scroll-m-20 text-2xl font-semibold'>{type}</h2>
                         <ul class='ml-1 list-disc'>
                             {items.map((item) => {
                                 const { id, link, intro } = item.data
@@ -50,7 +44,7 @@ for (const item of uses) {
                                         <Link
                                             href={`${link}?ref=antzhu.com`}
                                             title={id}
-                                            class='pl-0! break-words no-underline'
+                                            class='pl-0! wrap-break-word no-underline'
                                         >
                                             <h3 class='common-link link-animate mt-0 mb-0 inline-flex text-base leading-[2] font-medium text-black!'>
                                                 {id}

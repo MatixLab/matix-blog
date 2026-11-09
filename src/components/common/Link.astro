@@ -1,16 +1,46 @@
 ---
+import { cn, cva } from '@utils/tv'
+import type { VariantProps } from '@utils/tv'
+import { ArrowUpRight } from 'lucide-react'
+
+const linkVariants = cva({
+    base: 'transition-all duration-500 ease-linear disabled:opacity-50',
+    defaultVariants: {
+        linkType: 'common'
+    },
+    variants: {
+        linkType: {
+            common: 'text-muted-foreground hover:text-foreground',
+            unset: ''
+        }
+    }
+})
+
 type Props = {
     href: string
     title?: string
     class?: string
-}
+    type?: 'icon' | 'link'
+} & VariantProps<typeof linkVariants>
 
-const { class: className, href, title } = Astro.props
-const target = href.startsWith('/') ? '' : '_blank'
+const { class: className, href, title, type = 'link', linkType = 'common' } = Astro.props
+const innerLink = href.startsWith('/')
+const target = innerLink ? '' : '_blank'
 ---
 
-<a href={href} target={target} aria-label={title} title={title} class={className}>
-    <slot>
-        <span>{title}</span>
-    </slot>
-</a>
+<div class='inline-flex items-center space-x-0.5'>
+    <a
+        href={href}
+        target={target}
+        aria-label={title}
+        title={title}
+        class={cn(
+            'transition-all duration-500 ease-linear disabled:opacity-50',
+            linkVariants({ linkType }),
+            className
+        )}
+    >
+        <slot>{title}</slot>
+    </a>
+    {!innerLink && type === 'link' ? <ArrowUpRight className='size-4' /> : null}
+</div>

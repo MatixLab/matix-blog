@@ -9,15 +9,14 @@ import { ArrowUpLeft, Hash } from 'lucide-react'
 
 type Props = CollectionEntry<'post'>
 
-const { title, description, updatedDate, cover, category, coverAlt } =
-    Astro.props.data
+const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data
 ---
 
 <MainLayout title={title} description={description} mainClass='px-2 md:px-10'>
     <section
         class:list={[
             'prose dark:prose-invert relative container max-w-[948px]',
-            'flex w-full flex-col py-3 pl-4 md:pl-28'
+            'flex w-full flex-col py-3 pl-4'
         ]}
     >
         <article class='overflow-auto pt-2 pb-6 md:col-span-4 md:pt-4'>
@@ -70,12 +69,4 @@ const { title, description, updatedDate, cover, category, coverAlt } =
             <slot />
         </article>
     </section>
-    <div
-        title='back'
-        onclick='history.back()'
-        class='fixed top-32 hidden opacity-50 duration-500 ease-in-out hover:cursor-pointer hover:opacity-85 xl:inline-flex'
-    >
-        <ArrowUpLeft className='my-auto mr-0.5 size-4 text-gray-600' />
-        <span class='text-xs text-gray-800 no-underline'> Back </span>
-    </div>
 </MainLayout>

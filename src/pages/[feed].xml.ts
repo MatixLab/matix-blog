@@ -1,5 +1,5 @@
 import { siteConfig } from '@config/site'
-import { getPosts, getShorts } from '@lib/fetchers'
+import { getPosts } from '@lib/fetchers'
 import type { APIContext, APIRoute } from 'astro'
 import type { Item } from 'feed'
 import { Feed } from 'feed'
@@ -12,7 +12,7 @@ const parser = new MarkdownIt({
     linkify: true
 })
 
-const feedTypes: string[] = ['rss', 'post', 'short', 'atom']
+const feedTypes: string[] = ['rss', 'post', 'atom']
 
 export function getStaticPaths() {
     return feedTypes.map((feed) => ({ params: { feed } }))
@@ -28,9 +28,8 @@ const AUTHOR = {
 export const GET: APIRoute = async (context: APIContext) => {
     const feedType = context.params.feed
     const postFeedItems: Item[] = []
-    const shortFeedItems: Item[] = []
 
-    const [posts, shorts] = await Promise.all([getPosts(), getShorts()])
+    const posts = await getPosts()
 
     posts.forEach((post) => {
         postFeedItems.push({
@@ -43,20 +42,6 @@ export const GET: APIRoute = async (context: APIContext) => {
             id: `${BASE_URL}/${post.collection}/${post.id}/`,
             link: `${BASE_URL}/${post.collection}/${post.id}/`,
             title: post.data.title
-        })
-    })
-
-    shorts.forEach((short) => {
-        shortFeedItems.push({
-            author: [AUTHOR],
-            content: sanitizeHtml(parser.render(short.body ?? ''), {
-                allowedTags: [...sanitizeHtml.defaults.allowedTags, 'img']
-            }).replace('href="/', `href="${context.site?.href}`),
-            date: short.data.updatedDate,
-            description: short.data.description,
-            id: `${BASE_URL}/${short.collection}/${short.id}/`,
-            link: `${BASE_URL}/${short.collection}/${short.id}/`,
-            title: short.data.title
         })
     })
 
@@ -75,22 +60,15 @@ export const GET: APIRoute = async (context: APIContext) => {
         title: siteConfig.title
     })
 
-    if (feedType === 'rss' || feedType === 'atom') {
-        postFeedItems.concat(shortFeedItems).forEach((item: Item) => {
-            feed.addItem(item)
-        })
-    }
-    if (feedType === 'post') {
-        postFeedItems.forEach((item: Item) => {
-            feed.addItem(item)
-        })
-    }
-    if (feedType === 'short') {
-        shortFeedItems.forEach((item: Item) => {
-            feed.addItem(item)
-        })
-    }
+    postFeedItems.forEach((item: Item) => {
+        feed.addItem(item)
+    })
 
+    if (feedType === 'atom') {
+        return new Response(feed.atom1(), {
+            headers: { 'Content-Type': 'application/xml' }
+        })
+    }
     return new Response(feed.rss2(), {
         headers: { 'Content-Type': 'application/xml' }
     })

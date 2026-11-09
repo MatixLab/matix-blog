@@ -1,68 +1,52 @@
 ---
 import Link from '@components/common/Link.astro'
+import { Bluesky, GitHub, X } from '@components/icons'
 import { siteConfig } from '@config/site'
 import { Mail } from 'lucide-react'
-import { Bluesky, GitHub, X } from '@components/icons'
 ---
 
-<dl class='list-container'>
-    <dt class='list-title border-none! px-2 pt-0 pb-4 leading-relaxed sm:pb-0'>
-        <h1 class='flex items-center gap-1'>
-            <Link href='/' title={siteConfig.author} class='font-bold'>
-                {siteConfig.author}
-            </Link>
-        </h1>
-        <span class='dark:text-silver-dark text-[15px] text-gray-800'>
-            Full Stack Developer
-        </span>
-    </dt>
-    <dd class='list-content space-y-4 border-none! px-2 text-[15px]'>
-        <p>
-            Hey 👋 I'm {siteConfig.author}, a full stack developer at
-            <Link
-                href='https://www.oki.com/'
-                title='OKI'
-                class='common-link link-animate text-sm'
-            />
-            .{}
-            Previously, I was a developer at
-            <Link
-                href='https://www.winning.com.cn/'
-                title='WinningHealth'
-                class='common-link link-animate text-sm'
-            />
-            in ChangZhou.
-        </p>
-        <p>
-            You can see what I'm up to on
-            <Link
-                href='/now/'
-                title='my now page'
-                class='common-link link-animate text-sm'
-            />
-            .
-        </p>
+<div class='list-content space-y-4 border-none px-2'>
+    <div>
+        Hey 👋 I'm {siteConfig.author}, a full stack developer at
+        <Link
+            href='https://www.oki.com/'
+            title='OKI'
+            class='link text-muted-foreground ml-2'
+        />
+        .
+    </div>
+    <div>
+        Previously, I was a developer at
+        <Link
+            href='https://www.winning.com.cn/'
+            title='WinningHealth'
+            class='link text-muted-foreground ml-2'
+        />
+        in ChangZhou. You can see what I'm up to on
+        <Link href='/now/' title='my now page' class='link text-muted-foreground ml-2' />.
+    </div>
 
-        <p>You can also find me on :</p>
+    <div class='space-y-2'>
+        <div>You can also find me on :</div>
         <div class='ml-4 flex space-x-8'>
-            <Link href={siteConfig.links.github} title='Github'>
+            <Link href={siteConfig.links.github} title='Github' type='icon'>
                 <GitHub className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
-            <Link href={siteConfig.links.twitter} title='x'>
+            <Link href={siteConfig.links.twitter} title='x' type='icon'>
                 <X className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
-            <Link href={siteConfig.links.blueSky} title='blueSky'>
+            <Link href={siteConfig.links.blueSky} title='blueSky' type='icon'>
                 <Bluesky className='inline-flex size-5 opacity-50 hover:text-blue-500 hover:opacity-100' />
             </Link>
-            <!-- <Link href={siteConfig.links.notion} title='notion'>
-                <Notion
-                    name='simple-icons:notion'
-                    class='inline-flex size-5 opacity-50 hover:opacity-100'
-                />
-            </Link> -->
-            <Link href={`mailto:${siteConfig.links.email}`} title='email'>
+            <!-- <Link href={siteConfig.links.notion} title='notion' type='icon'>
+                    <Notion
+                        name='simple-icons:notion'
+                        class='inline-flex size-5 opacity-50 hover:opacity-100'
+                    />
+                </Link> -->
+            <Link href={`mailto:${siteConfig.links.email}`} title='email' type='icon'>
                 <Mail className='inline-flex size-5 opacity-50 hover:opacity-100' />
             </Link>
         </div>
-    </dd>
-</dl>
+    </div>
+</div>
