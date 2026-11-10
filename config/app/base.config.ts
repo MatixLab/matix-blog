@@ -13,15 +13,9 @@ export const baseConfig = {
         validateSecrets: false
     },
     fonts: [{
-      cssVariable: "--font-mono",
-      fallbacks: ["monospace"],
-      name: "IBM Plex Mono",
-      provider: fontProviders.fontsource(),
-      subsets: ["latin", "latin-ext"],
-    },{
       cssVariable: "--font-sans",
       fallbacks: ["sans-serif"],
-      name: "IBM Plex Sans",
+      name: "geist",
       provider: fontProviders.fontsource(),
     }],
     prefetch: true,

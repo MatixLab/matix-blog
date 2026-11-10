@@ -1,0 +1,33 @@
+---
+import { getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
+import type { CollectionEntry } from 'astro:content'
+import YearPostList from './_components/YearPostList.astro'
+import BlogLayout from './_layout/BlogLayout.astro'
+
+export async function getStaticPaths() {
+    const allPosts = await getPosts()
+    const postsByYear = groupPostsByYear(allPosts)
+    const years = getPostYears(postsByYear)
+
+    return Object.entries(postsByYear).map(([year, posts]) => ({
+        params: { year },
+        props: { posts, years }
+    }))
+}
+
+type Props = {
+    posts: CollectionEntry<'post'>[]
+    years: string[]
+}
+
+const { posts, years } = Astro.props
+const { year = '' } = Astro.params
+---
+
+<BlogLayout title={`Posts in ${year}`} description='Writing record.'>
+    <div slot='right-content'>
+        <div class='pt-4'>
+            <YearPostList year={year} years={years} posts={posts} />
+        </div>
+    </div>
+</BlogLayout>

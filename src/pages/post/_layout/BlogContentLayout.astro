@@ -13,60 +13,58 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
 ---
 
 <MainLayout title={title} description={description} mainClass='px-2 md:px-10'>
-    <section
-        class:list={[
-            'prose dark:prose-invert relative container max-w-[948px]',
-            'flex w-full flex-col py-3 pl-4'
-        ]}
+    <article
+        class={cn(
+            'prose dark:prose-invert relative container max-w-237',
+            'flex w-full flex-col gap-y-4 py-3 pl-4'
+        )}
     >
-        <article class='overflow-auto pt-2 pb-6 md:col-span-4 md:pt-4'>
-            <h1 class='mt-4 text-3xl'>{title}</h1>
-            <div class='flex flex-wrap items-center font-normal'>
-                <div class='mr-2 text-sm text-gray-600 md:mr-4'>
-                    Updated On {formatDateWithYear(updatedDate)}
-                </div>
-                <div class='flex'>
-                    {category.map((cat: string) => {
-                        return (
-                            <Link
-                                href={`/post/category/${cat}/`}
-                                title={cat}
-                                class={cn(
-                                    'group flex items-center justify-center font-normal no-underline',
-                                    'after:content-none! hover:no-underline!'
-                                )}
-                            >
-                                <Hash className='hover:text-gray-1000 size-3 text-gray-600 duration-150 ease-in-out hover:scale-110' />
-                                <span class='link hover:text-gray-1000 mr-2 text-sm text-gray-600'>
-                                    {cat}
-                                </span>
-                            </Link>
-                        )
-                    })}
-                </div>
+        <h1 class='mt-4 text-3xl'>{title}</h1>
+        <div class='flex flex-wrap items-center font-normal'>
+            <div class='text-muted-foreground/80 mr-2 text-sm md:mr-4'>
+                Updated On {formatDateWithYear(updatedDate)}
             </div>
-            {cover ? (
-                <figure>
-                    <Image
-                        class='overflow-hidden rounded-xl'
-                        width={720}
-                        height={360}
-                        src={cover}
-                        alt={title}
-                        loading='lazy'
-                    />
+            <div class='flex gap-0.5'>
+                {category.map((cat: string) => {
+                    return (
+                        <Link
+                            href={`/post/category/${cat}/`}
+                            title={cat}
+                            class={cn(
+                                'group flex items-center justify-center font-normal no-underline'
+                            )}
+                        >
+                            <Hash className='hover:text-accent text-muted-foreground/80 size-3 duration-150 ease-in-out hover:scale-110' />
+                            <span class='link hover:text-accent text-muted-foreground/80 mr-2 text-sm'>
+                                {cat}
+                            </span>
+                        </Link>
+                    )
+                })}
+            </div>
+        </div>
 
-                    {coverAlt && (
-                        <figcaption class='mt-2 text-center text-xs break-all text-gray-600'>
-                            {coverAlt}
-                        </figcaption>
-                    )}
-                </figure>
-            ) : null}
-            <blockquote class='mt-6 border-l-2 pl-6 font-normal text-gray-700'>
-                {description}
-            </blockquote>
-            <slot />
-        </article>
-    </section>
+        {cover ? (
+            <figure>
+                <Image
+                    class='overflow-hidden rounded-xl'
+                    width={720}
+                    height={360}
+                    src={cover}
+                    alt={title}
+                    loading='lazy'
+                />
+                {coverAlt && (
+                    <figcaption class='mt-2 text-center text-xs break-all text-gray-600'>
+                        {coverAlt}
+                    </figcaption>
+                )}
+            </figure>
+        ) : null}
+
+        <blockquote class='mt-6 border-l-2 pl-6 font-normal text-gray-700'>
+            {description}
+        </blockquote>
+        <slot />
+    </article>
 </MainLayout>

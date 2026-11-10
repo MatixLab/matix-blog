@@ -16,9 +16,11 @@ export const markdownConfig = {
               tooltipSuccessBackground: '#000'
             }
           },
+          themeCssSelector: (theme) => theme.type === 'dark' ? '.dark' : false,
           themes: [
-            'dracula-soft', 'vitesse-light'
-          ]
+            'vitesse-light', 'dracula-soft'
+          ],
+          useDarkModeMediaQuery: false
         })
       ]
     }),

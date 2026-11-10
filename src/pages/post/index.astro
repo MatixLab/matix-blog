@@ -1,0 +1,19 @@
+---
+import { getDefaultPostYear, getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
+import YearPostList from './_components/YearPostList.astro'
+import BlogLayout from './_layout/BlogLayout.astro'
+
+const allPosts = await getPosts()
+const postsByYear = groupPostsByYear(allPosts)
+const years = getPostYears(postsByYear)
+const year = getDefaultPostYear(postsByYear)
+const posts = postsByYear[year] ?? []
+---
+
+<BlogLayout title='Posts' description='Writing record.'>
+    <div slot='right-content'>
+        <div class='pt-4'>
+            <YearPostList year={year} years={years} posts={posts} />
+        </div>
+    </div>
+</BlogLayout>

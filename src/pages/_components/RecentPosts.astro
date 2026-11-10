@@ -10,7 +10,7 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
 
 <div class='space-y-4'>
     <div class='flex justify-between px-2 align-middle'>
-        <h2 class='font-semibold'>Recent &nbsp; Post</h2>
+        <h2 class='font-bold'>Recent&nbsp;Post</h2>
         <div class='text-end md:text-start'>
             {allPosts.length ? (
                 <>
@@ -24,9 +24,9 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
             ) : null}
         </div>
     </div>
-    <div class='space-y-1'>
+    <>
         {allPosts.length ? (
-            <div class='text-[15px]'>
+            <div class='text-sm'>
                 <div class='group/list-wrapper'>
                     <ul class='space-y-4'>
                         {allPosts.map((item) => {
@@ -56,5 +56,5 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
                 That's all for now. Come back later for more.
             </div>
         )}
-    </div>
+    </>
 </div>

@@ -1,0 +1,68 @@
+---
+import Link from '@components/common/Link.astro'
+import { formatDateWithYear } from '@lib/utils'
+import { cn } from '@utils/tv'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+    basePath?: string
+    posts: CollectionEntry<'post'>[]
+    year: string
+    years: string[]
+}
+
+const { basePath = '/post', year, years, posts } = Astro.props
+---
+
+<div class='bg-muted my-4 h-px w-full' />
+<nav aria-label='Posts by year' class='flex items-center gap-6 overflow-x-auto text-sm'>
+    {years.map((item) => {
+        return (
+            <Link
+                href={`${basePath}/${item}/`}
+                title={item}
+                linkType='unset'
+                class={cn(
+                    'shrink-0 tabular-nums transition-colors duration-300',
+                    item === year
+                        ? 'text-foreground font-bold'
+                        : 'text-muted-foreground hover:text-foreground font-medium'
+                )}
+            >
+                {item}
+            </Link>
+        )
+    })}
+</nav>
+
+<div class='mt-8 text-sm'>
+    {posts.length ? (
+        <div class='group/list-wrapper'>
+            <ul class='space-y-4'>
+                {posts.map((item) => {
+                    return (
+                        <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2'>
+                            <div class='group-hover/list-item:text-accent flex justify-between'>
+                                <Link
+                                    title={item.data.title}
+                                    href={`/post/${item.id}/`}
+                                    class='col-span-2 line-clamp-1'
+                                    linkType='unset'
+                                >
+                                    {item.data.title}
+                                </Link>
+                                <time datetime={item.data.pubDate.toDateString()}>
+                                    {formatDateWithYear(item.data.pubDate)}
+                                </time>
+                            </div>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    ) : (
+        <div class='flex size-full items-center text-center text-sm'>
+            No posts for this year yet. Come back later for more.
+        </div>
+    )}
+</div>
