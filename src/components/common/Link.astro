@@ -1,46 +1,53 @@
 ---
-import { cn, cva } from '@utils/tv'
+import { linkVariants } from '@components/common/base-control'
+import { cn } from '@utils/tv'
 import type { VariantProps } from '@utils/tv'
 import { ArrowUpRight } from 'lucide-react'
-
-const linkVariants = cva({
-    base: 'transition-all duration-500 ease-linear disabled:opacity-50',
-    defaultVariants: {
-        linkType: 'common'
-    },
-    variants: {
-        linkType: {
-            common: 'text-muted-foreground hover:text-foreground',
-            unset: ''
-        }
-    }
-})
 
 type Props = {
     href: string
     title?: string
     class?: string
     type?: 'icon' | 'link'
+    [key: string]: unknown
 } & VariantProps<typeof linkVariants>
 
-const { class: className, href, title, type = 'link', linkType = 'common' } = Astro.props
-const innerLink = href.startsWith('/')
-const target = innerLink ? '' : '_blank'
+const {
+    class: className,
+    href,
+    title,
+    type = 'link',
+    linkType = 'common',
+    ...props
+} = Astro.props as Props
+
+const innerLink = href.startsWith('/') || href.startsWith('#')
+const isExternalHttp = /^https?:\/\//iu.test(href)
+
+let resolvedHref = href
+
+if (isExternalHttp) {
+    const url = new URL(href)
+    url.searchParams.set('ref', 'antzhu.com')
+    resolvedHref = url.toString()
+}
 ---
 
-<div class='inline-flex items-center space-x-0.5'>
-    <a
-        href={href}
-        target={target}
-        aria-label={title}
-        title={title}
-        class={cn(
-            'transition-all duration-500 ease-linear disabled:opacity-50',
-            linkVariants({ linkType }),
-            className
-        )}
-    >
-        <slot>{title}</slot>
-    </a>
-    {!innerLink && type === 'link' ? <ArrowUpRight className='size-4' /> : null}
-</div>
+<a
+    href={resolvedHref}
+    title={title}
+    aria-label={title}
+    target={innerLink ? undefined : '_blank'}
+    rel={innerLink ? undefined : 'noopener noreferrer'}
+    class={cn(
+        'inline-flex items-center gap-0.5 transition-all duration-500 ease-linear disabled:opacity-50',
+        linkVariants({ linkType }),
+        className
+    )}
+    {...props}
+>
+    <slot>{title}</slot>
+    {!innerLink && type === 'link' ? (
+        <ArrowUpRight aria-hidden='true' className='size-4 shrink-0' />
+    ) : null}
+</a>

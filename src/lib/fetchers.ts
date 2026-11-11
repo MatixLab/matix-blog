@@ -1,3 +1,4 @@
+import { USE_TYPES } from '@schemas/content.schema'
 import type { UseType } from '@schemas/content.schema'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
@@ -53,4 +54,12 @@ export async function getUses(type?: UseType) {
         uses = uses.filter((u) => u.data.type === type)
     }
     return uses
+}
+
+export function getUseTypes(uses: CollectionEntry<'uses'>[]) {
+    return USE_TYPES.filter((type) => uses.some((u) => u.data.type === type))
+}
+
+export function getDefaultUseType(uses: CollectionEntry<'uses'>[]) {
+    return getUseTypes(uses)[0] ?? USE_TYPES[0]
 }

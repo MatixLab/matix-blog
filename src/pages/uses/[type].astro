@@ -1,0 +1,37 @@
+---
+import { getUses, getUseTypes } from '@lib/fetchers'
+import type { UseType } from '@schemas/content.schema'
+import type { CollectionEntry } from 'astro:content'
+import UseTypeList from './_components/use-type-list.astro'
+import UsesLayout from './_layout/uses-layout.astro'
+
+export async function getStaticPaths() {
+    const allUses = await getUses()
+    const types = getUseTypes(allUses)
+
+    return types.map((type) => ({
+        params: { type: type.toLowerCase() },
+        props: {
+            type,
+            types,
+            uses: allUses.filter((item) => item.data.type === type)
+        }
+    }))
+}
+
+type Props = {
+    type: UseType
+    types: UseType[]
+    uses: CollectionEntry<'uses'>[]
+}
+
+const { type, types, uses } = Astro.props
+---
+
+<UsesLayout title={`Uses · ${type}`} description='Things of Choice.'>
+    <div slot='right-content'>
+        <div class='pt-4'>
+            <UseTypeList type={type} types={types} uses={uses} />
+        </div>
+    </div>
+</UsesLayout>

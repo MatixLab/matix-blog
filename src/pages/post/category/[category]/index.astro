@@ -1,8 +1,8 @@
 ---
 import { getDefaultPostYear, getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
 import type { CollectionEntry } from 'astro:content'
-import YearPostList from '../../_components/YearPostList.astro'
-import BlogLayout from '../../_layout/BlogLayout.astro'
+import YearPostList from '../../_components/year-post-list.astro'
+import BlogLayout from '../../_layout/blog-layout.astro'
 
 export async function getStaticPaths() {
     const allPosts = await getPosts()

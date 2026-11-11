@@ -15,7 +15,7 @@ export const baseConfig = {
     fonts: [{
       cssVariable: "--font-sans",
       fallbacks: ["sans-serif"],
-      name: "geist",
+      name: "Geist",
       provider: fontProviders.fontsource(),
     }],
     prefetch: true,

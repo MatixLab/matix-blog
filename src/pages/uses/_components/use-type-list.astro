@@ -1,0 +1,67 @@
+---
+import Link from '@components/common/Link.astro'
+import type { UseType } from '@schemas/content.schema'
+import { cn } from '@utils/tv'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+    basePath?: string
+    type: UseType
+    types: UseType[]
+    uses: CollectionEntry<'uses'>[]
+}
+
+const { basePath = '/uses', type, types, uses } = Astro.props
+---
+
+<div class='bg-muted my-4 h-px w-full' />
+<nav aria-label='Uses by type' class='flex items-center gap-6 overflow-x-auto text-sm'>
+    {types.map((item) => {
+        return (
+            <Link
+                href={`${basePath}/${item.toLowerCase()}/`}
+                title={item}
+                linkType='unset'
+                class={cn(
+                    'shrink-0 transition-colors duration-300',
+                    item === type
+                        ? 'text-foreground font-bold'
+                        : 'text-muted-foreground hover:text-foreground font-medium'
+                )}
+            >
+                {item}
+            </Link>
+        )
+    })}
+</nav>
+
+<div class='mt-8'>
+    {uses.length ? (
+        <ul class='my-6 ml-1 list-disc'>
+            {uses.map((item) => {
+                const { id, intro, link } = item.data
+
+                return (
+                    <li class='mt-2'>
+                        {intro && <span class='pr-1'>{intro} : </span>}
+                        {link ? (
+                            <Link
+                                href={link}
+                                title={id}
+                                class='pl-0 wrap-break-word no-underline'
+                            >
+                                {id}
+                            </Link>
+                        ) : (
+                            <span>{id}</span>
+                        )}
+                    </li>
+                )
+            })}
+        </ul>
+    ) : (
+        <div class='flex size-full items-center text-center text-sm'>
+            No items for this type yet. Come back later for more.
+        </div>
+    )}
+</div>

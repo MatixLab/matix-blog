@@ -1,7 +1,7 @@
 ---
 import { getDefaultPostYear, getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
-import YearPostList from './_components/YearPostList.astro'
-import BlogLayout from './_layout/BlogLayout.astro'
+import YearPostList from './_components/year-post-list.astro'
+import BlogLayout from './_layout/blog-layout.astro'
 
 const allPosts = await getPosts()
 const postsByYear = groupPostsByYear(allPosts)

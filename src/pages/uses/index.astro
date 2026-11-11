@@ -1,74 +1,22 @@
 ---
-import Link from '@components/common/Link.astro'
-import MainLayout from '@layouts/main-layout.astro'
-import { getUses } from '@lib/fetchers'
-import { USE_TYPES } from '@schemas/content.schema'
-import type { UseType } from '@schemas/content.schema'
-import { ArrowUpRight } from 'lucide-react'
+import {
+    getDefaultUseType,
+    getUses,
+    getUseTypes
+} from '@lib/fetchers'
+import UseTypeList from './_components/use-type-list.astro'
+import UsesLayout from './_layout/uses-layout.astro'
 
-const uses = await getUses()
-
-const groupedUses: Record<UseType, typeof uses> = {
-    App: [],
-    Device: []
-}
-for (const item of uses) {
-    const { type } = item.data
-    groupedUses[type].push(item)
-}
+const allUses = await getUses()
+const types = getUseTypes(allUses)
+const type = getDefaultUseType(allUses)
+const uses = allUses.filter((item) => item.data.type === type)
 ---
 
-<MainLayout title='Uses' description='Things of Choice.'>
-    <section class='prose dark:prose-invert container max-w-237 px-4 py-3 md:px-16'>
-        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>Things of Choice.</h1>
-        <article class='relative flex flex-col overflow-auto'>
-            {USE_TYPES.map((type: UseType) => {
-                const items = groupedUses[type]
-
-                if (items.length === 0) return null
-
-                return (
-                    <Fragment>
-                        <h2 class='mt-6 mb-0 scroll-m-20 text-2xl font-semibold'>{type}</h2>
-                        <ul class='ml-1 list-disc'>
-                            {items.map((item) => {
-                                const { id, link, intro } = item.data
-
-                                return link ? (
-                                    <li class='mt-2'>
-                                        {intro && (
-                                            <span class='text-gray-1000 pr-1 text-[15px]'>
-                                                {intro} :{' '}
-                                            </span>
-                                        )}
-                                        <Link
-                                            href={`${link}?ref=antzhu.com`}
-                                            title={id}
-                                            class='pl-0! wrap-break-word no-underline'
-                                        >
-                                            <h3 class='common-link link-animate mt-0 mb-0 inline-flex text-base leading-[2] font-medium text-black!'>
-                                                {id}
-                                            </h3>
-                                            <ArrowUpRight className='-mt-0.5 inline-flex size-4 shrink-0 p-0.5 text-gray-700' />
-                                        </Link>
-                                    </li>
-                                ) : (
-                                    <li class='mt-2'>
-                                        {intro && (
-                                            <span class='text-gray-1000 pr-1 text-[15px]'>
-                                                {intro} :{' '}
-                                            </span>
-                                        )}
-                                        <span class='text-gray-1000 pl-0! text-base font-medium'>
-                                            {id}
-                                        </span>
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </Fragment>
-                )
-            })}
-        </article>
-    </section>
-</MainLayout>
+<UsesLayout title='Uses' description='Things of Choice.'>
+    <div slot='right-content'>
+        <div class='pt-4'>
+            <UseTypeList type={type} types={types} uses={uses} />
+        </div>
+    </div>
+</UsesLayout>

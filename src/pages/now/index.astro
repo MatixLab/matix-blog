@@ -1,5 +1,5 @@
 ---
-import A from '@components/markdown/A.astro'
+import Link from '@components/common/Link.astro'
 import { MdxComponents } from '@components/markdown/mdx-components'
 import MainLayout from '@layouts/main-layout.astro'
 import { Content } from '@content/now.mdx'
@@ -15,7 +15,7 @@ import { Content } from '@content/now.mdx'
             <Content
                 components={{
                     ...MdxComponents,
-                    a: A
+                    a: Link
                 }}
             />
         </article>

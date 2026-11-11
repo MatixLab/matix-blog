@@ -41,7 +41,7 @@ const { basePath = '/post', year, years, posts } = Astro.props
             <ul class='space-y-4'>
                 {posts.map((item) => {
                     return (
-                        <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2'>
+                        <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid'>
                             <div class='group-hover/list-item:text-accent flex justify-between'>
                                 <Link
                                     title={item.data.title}
