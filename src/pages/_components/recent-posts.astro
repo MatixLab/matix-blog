@@ -9,8 +9,8 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
 ---
 
 <div class='space-y-4'>
-    <div class='flex justify-between px-2 align-middle'>
-        <h2 class='font-bold'>Recent&nbsp;Post</h2>
+    <div class='flex items-center justify-between px-2'>
+        <h2 class='text-lg font-medium tracking-tight'>Recent posts</h2>
         <div class='text-end md:text-start'>
             {allPosts.length ? (
                 <>
@@ -28,10 +28,10 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
         {allPosts.length ? (
             <div class='text-sm'>
                 <div class='group/list-wrapper'>
-                    <ul class='space-y-4'>
+                    <ul class='divide-line border-line divide-y border-b'>
                         {allPosts.map((item) => {
                             return (
-                                <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2'>
+                                <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2 py-3'>
                                     <div class='group-hover/list-item:text-accent flex justify-between'>
                                         <Link
                                             title={item.data.title}

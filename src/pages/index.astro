@@ -5,8 +5,41 @@ import RecentPosts from './_components/recent-posts.astro'
 ---
 
 <MainLayout title='About' description="Anthony's homepage">
-    <div class='space-y-8 lg:mb-0'>
-        <Intro />
+    <div class='home-blueprint space-y-8 lg:mb-0'>
+        <section class='home-profile relative py-5'>
+            <Intro />
+        </section>
+        <div class='home-hatch h-8' aria-hidden='true'></div>
         <RecentPosts />
     </div>
 </MainLayout>
+
+<style>
+    .home-hatch {
+        position: relative;
+    }
+
+    .home-hatch::before {
+        position: absolute;
+        inset-block: 0;
+        left: calc(50% - 50vw);
+        width: 100vw;
+        border-block: 1px solid var(--line);
+        background: repeating-linear-gradient(
+            135deg,
+            transparent 0,
+            transparent 4px,
+            color-mix(in oklch, var(--line) 70%, transparent) 4px,
+            color-mix(in oklch, var(--line) 70%, transparent) 5px
+        );
+        content: '';
+        pointer-events: none;
+    }
+
+    @media (min-width: 64rem) {
+        .home-hatch::before {
+            left: calc(31rem - 50vw);
+            width: 100vw;
+        }
+    }
+</style>

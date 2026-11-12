@@ -31,13 +31,29 @@ const {
 ---
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
-    <div class='mx-auto flex min-h-screen flex-col lg:h-screen lg:overflow-hidden'>
-        <div class='mx-auto flex w-full max-w-5xl flex-1 flex-col p-4 md:py-8 lg:flex-row lg:gap-14 lg:overflow-hidden'>
+    <div
+        class={cn(
+            'mx-auto flex min-h-screen flex-col lg:h-screen',
+            Astro.url.pathname !== '/' && 'lg:overflow-hidden'
+        )}
+    >
+        <div
+            class={cn(
+                'mx-auto flex w-full max-w-5xl flex-1 flex-col p-4 md:py-8 lg:flex-row lg:gap-14',
+                Astro.url.pathname !== '/' && 'lg:overflow-hidden',
+                Astro.url.pathname === '/' && 'home-frame'
+            )}
+        >
             <div class='w-full lg:hidden'>
                 <MobileNav segment={segment} client:load />
             </div>
 
-            <aside class='no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:overflow-y-auto'>
+            <aside
+                class={cn(
+                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full',
+                    Astro.url.pathname !== '/' && 'lg:overflow-y-auto'
+                )}
+            >
                 <main class={cn('flex-1', mainClass)}>
                     <slot />
                 </main>
@@ -47,3 +63,46 @@ const {
         </div>
     </div>
 </BaseLayout>
+
+<style>
+    @media (min-width: 64rem) {
+        .home-frame {
+            position: relative;
+            overflow: visible;
+            box-shadow:
+                inset 1px 0 var(--line),
+                inset -1px 0 var(--line);
+        }
+
+        .home-frame::before {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            width: 100vw;
+            height: 1px;
+            transform: translateX(-50%);
+            background: var(--line);
+            content: '';
+            pointer-events: none;
+        }
+
+        .home-frame::after {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            width: 100vw;
+            height: 2rem;
+            transform: translateX(-50%);
+            border-block: 1px solid var(--line);
+            background: repeating-linear-gradient(
+                135deg,
+                transparent 0,
+                transparent 4px,
+                color-mix(in oklch, var(--line) 70%, transparent) 4px,
+                color-mix(in oklch, var(--line) 70%, transparent) 5px
+            );
+            content: '';
+            pointer-events: none;
+        }
+    }
+</style>
