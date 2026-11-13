@@ -1,0 +1,40 @@
+---
+import { getDefaultPostYear, getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
+import { getPostPaginationPaths } from '@lib/post-pagination'
+import type { PostListPagination } from '@lib/post-pagination'
+import type { CollectionEntry } from 'astro:content'
+import YearPostList from '../_components/year-post-list.astro'
+import BlogLayout from '../_layout/blog-layout.astro'
+
+export async function getStaticPaths() {
+    const allPosts = await getPosts()
+    const postsByYear = groupPostsByYear(allPosts)
+    const years = getPostYears(postsByYear)
+    const year = getDefaultPostYear(postsByYear)
+
+    return getPostPaginationPaths(postsByYear[year] ?? [], '/post', {}).map(
+        ({ params, props }) => ({
+            params,
+            props: { ...props, year, years }
+        })
+    )
+}
+
+type Props = {
+    posts: CollectionEntry<'post'>[]
+    pagination: PostListPagination
+    years: string[]
+    year: string
+}
+
+const { posts, pagination, years, year } = Astro.props
+const { page = '2' } = Astro.params
+---
+
+<BlogLayout title={`Posts · ${page}`} description='Writing record.'>
+    <div slot='right-content'>
+        <div class='pt-4'>
+            <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
+        </div>
+    </div>
+</BlogLayout>

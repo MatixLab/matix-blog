@@ -1,5 +1,6 @@
 ---
 import { getDefaultPostYear, getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
+import { paginatePosts } from '@lib/post-pagination'
 import YearPostList from './_components/year-post-list.astro'
 import BlogLayout from './_layout/blog-layout.astro'
 
@@ -7,13 +8,13 @@ const allPosts = await getPosts()
 const postsByYear = groupPostsByYear(allPosts)
 const years = getPostYears(postsByYear)
 const year = getDefaultPostYear(postsByYear)
-const posts = postsByYear[year] ?? []
+const { posts, pagination } = paginatePosts(postsByYear[year] ?? [], 1, '/post')
 ---
 
 <BlogLayout title='Posts' description='Writing record.'>
     <div slot='right-content'>
         <div class='pt-4'>
-            <YearPostList year={year} years={years} posts={posts} />
+            <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
         </div>
     </div>
 </BlogLayout>

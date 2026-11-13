@@ -1,5 +1,7 @@
 ---
 import Link from '@components/common/Link.astro'
+import Pagination from '@components/common/Pagination.astro'
+import type { PostListPagination } from '@lib/post-pagination'
 import { formatDateWithYear } from '@lib/utils'
 import { cn } from '@utils/tv'
 import type { CollectionEntry } from 'astro:content'
@@ -9,9 +11,10 @@ type Props = {
     posts: CollectionEntry<'post'>[]
     year: string
     years: string[]
+    pagination?: PostListPagination
 }
 
-const { basePath = '/post', year, years, posts } = Astro.props
+const { basePath = '/post', year, years, posts, pagination } = Astro.props
 ---
 
 <div class='bg-muted my-4 h-px w-full' />
@@ -65,4 +68,5 @@ const { basePath = '/post', year, years, posts } = Astro.props
             No posts for this year yet. Come back later for more.
         </div>
     )}
+    {pagination && <Pagination {...pagination} />}
 </div>

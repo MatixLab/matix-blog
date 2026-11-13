@@ -1,5 +1,6 @@
 ---
 import { getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
+import { paginatePosts } from '@lib/post-pagination'
 import type { CollectionEntry } from 'astro:content'
 import YearPostList from '../../_components/year-post-list.astro'
 import BlogLayout from '../../_layout/blog-layout.astro'
@@ -28,6 +29,7 @@ type Props = {
 
 const { category = '', year = '' } = Astro.params
 const { posts, years } = Astro.props
+const paginatedPosts = paginatePosts(posts, 1, `/post/category/${category}/${year}`)
 ---
 
 <BlogLayout title={`${category} in ${year}`} description={`All posts for ${category}`}>
@@ -37,7 +39,8 @@ const { posts, years } = Astro.props
                 basePath={`/post/category/${category}`}
                 year={year}
                 years={years}
-                posts={posts}
+                posts={paginatedPosts.posts}
+                pagination={paginatedPosts.pagination}
             />
         </div>
     </div>
