@@ -19,7 +19,7 @@ const { basePath = '/post', year, years, posts } = Astro.props
     {years.map((item) => {
         return (
             <Link
-                href={`${basePath}/${item}/`}
+                href={`${basePath}/${item}`}
                 title={item}
                 linkType='unset'
                 class={cn(
@@ -45,7 +45,7 @@ const { basePath = '/post', year, years, posts } = Astro.props
                             <div class='group-hover/list-item:text-accent flex justify-between'>
                                 <Link
                                     title={item.data.title}
-                                    href={`/post/${item.id}/`}
+                                    href={`/post/${item.id}`}
                                     class='col-span-2 line-clamp-1'
                                     linkType='unset'
                                 >

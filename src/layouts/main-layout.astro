@@ -37,24 +37,18 @@ const {
             Astro.url.pathname !== '/' && 'lg:overflow-hidden'
         )}
     >
-        <div
-            class={cn(
-                'mx-auto flex w-full max-w-5xl flex-1 flex-col p-4 md:py-8 lg:flex-row lg:gap-14',
-                Astro.url.pathname !== '/' && 'lg:overflow-hidden',
-                Astro.url.pathname === '/' && 'home-frame'
-            )}
-        >
+        <div class='page-frame mx-auto flex w-full max-w-5xl flex-1 flex-col p-4 md:py-8 lg:min-h-0 lg:flex-row lg:gap-14'>
             <div class='w-full lg:hidden'>
                 <MobileNav segment={segment} client:load />
             </div>
 
             <aside
                 class={cn(
-                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full',
+                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-0',
                     Astro.url.pathname !== '/' && 'lg:overflow-y-auto'
                 )}
             >
-                <main class={cn('flex-1', mainClass)}>
+                <main class={cn('flex-1 lg:min-h-0', mainClass)}>
                     <slot />
                 </main>
             </aside>
@@ -66,7 +60,7 @@ const {
 
 <style>
     @media (min-width: 64rem) {
-        .home-frame {
+        .page-frame {
             position: relative;
             overflow: visible;
             box-shadow:
@@ -74,7 +68,7 @@ const {
                 inset -1px 0 var(--line);
         }
 
-        .home-frame::before {
+        .page-frame::before {
             position: absolute;
             top: 1rem;
             left: 50%;
@@ -86,7 +80,7 @@ const {
             pointer-events: none;
         }
 
-        .home-frame::after {
+        .page-frame::after {
             position: absolute;
             bottom: 2.5rem;
             left: 50%;
@@ -94,14 +88,6 @@ const {
             height: 2rem;
             transform: translateX(-50%);
             border-block: 1px solid var(--line);
-            background: repeating-linear-gradient(
-                135deg,
-                transparent 0,
-                transparent 4px,
-                color-mix(in oklch, var(--line) 70%, transparent) 4px,
-                color-mix(in oklch, var(--line) 70%, transparent) 5px
-            );
-            content: '';
             pointer-events: none;
         }
     }

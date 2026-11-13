@@ -11,7 +11,7 @@ const { title, description, mainClass } = Astro.props
 ---
 
 <MainLayout title={title} description={description} mainClass={mainClass}>
-    <section class='container px-4 py-3 md:px-16'>
+    <section class='container px-4 py-3'>
         <slot name='head-name'>
             <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>{description}</h1>
         </slot>

@@ -13,14 +13,9 @@ const collectiveData: CollectiveItem[] = [
 ]
 ---
 
-<MainLayout
-    title='Collective'
-    description='Collective records.'
->
+<MainLayout title='Collective' description='Collective records.'>
     <section class='prose dark:prose-invert container max-w-[948px] px-4 py-3 md:px-16'>
-        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>
-            Collective records.
-        </h1>
+        <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>Collective records.</h1>
         <article class='relative flex flex-col overflow-auto'>
             <p class='mt-0 mb-2 scroll-m-20 text-gray-900'>
                 如今很难找到优质的博客,因为很多都被 AI
@@ -31,7 +26,7 @@ const collectiveData: CollectiveItem[] = [
                     return (
                         <li class='mt-2'>
                             <Link
-                                href={`/collective/${item.subPath}/`}
+                                href={`/collective/${item.subPath}`}
                                 title={item.title}
                                 class='pl-0! break-words no-underline'
                             >

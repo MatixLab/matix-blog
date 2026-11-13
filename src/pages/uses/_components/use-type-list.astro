@@ -19,7 +19,7 @@ const { basePath = '/uses', type, types, uses } = Astro.props
     {types.map((item) => {
         return (
             <Link
-                href={`${basePath}/${item.toLowerCase()}/`}
+                href={`${basePath}/${item.toLowerCase()}`}
                 title={item}
                 linkType='unset'
                 class={cn(

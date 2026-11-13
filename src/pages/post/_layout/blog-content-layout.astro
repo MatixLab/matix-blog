@@ -12,10 +12,10 @@ type Props = CollectionEntry<'post'>
 const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data
 ---
 
-<MainLayout title={title} description={description} mainClass='px-2 md:px-10'>
+<MainLayout title={title} description={description} mainClass='px-4'>
     <article
         class={cn(
-            'prose dark:prose-invert relative container max-w-237',
+            'prose dark:prose-invert relative container',
             'flex w-full flex-col gap-y-4 py-3 pl-4'
         )}
     >
@@ -28,7 +28,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
                 {category.map((cat: string) => {
                     return (
                         <Link
-                            href={`/post/category/${cat}/`}
+                            href={`/post/category/${cat}`}
                             title={cat}
                             class={cn(
                                 'group flex items-center justify-center font-normal no-underline'

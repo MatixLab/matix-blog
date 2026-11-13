@@ -5,25 +5,24 @@ import RecentPosts from './_components/recent-posts.astro'
 ---
 
 <MainLayout title='About' description="Anthony's homepage">
-    <div class='home-blueprint space-y-8 lg:mb-0'>
-        <section class='home-profile relative py-5'>
+    <div class='space-y-8 lg:mb-0'>
+        <section class='relative py-5'>
             <Intro />
         </section>
-        <div class='home-hatch h-8' aria-hidden='true'></div>
+        <div class='home-shadow h-6' aria-hidden='true'></div>
         <RecentPosts />
     </div>
 </MainLayout>
 
 <style>
-    .home-hatch {
+    .home-shadow {
         position: relative;
     }
 
-    .home-hatch::before {
+    .home-shadow::before {
         position: absolute;
         inset-block: 0;
-        left: calc(50% - 50vw);
-        width: 100vw;
+        inset-inline: -1rem;
         border-block: 1px solid var(--line);
         background: repeating-linear-gradient(
             135deg,
@@ -37,9 +36,8 @@ import RecentPosts from './_components/recent-posts.astro'
     }
 
     @media (min-width: 64rem) {
-        .home-hatch::before {
-            left: calc(31rem - 50vw);
-            width: 100vw;
+        .home-shadow::before {
+            right: -1.75rem;
         }
     }
 </style>
