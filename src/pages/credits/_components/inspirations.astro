@@ -1,11 +1,11 @@
 ---
-import { credits } from '../_data'
+import { getCredits } from '@lib/fetchers'
 import CreditList from './credit-list.astro'
----
-<h2 class="scroll-m-20 mt-0 mb-2 text-2xl font-semibold">
-  Inspirations
-</h2>
-<ul class="ml-1 list-disc">
-  <CreditList credits={credits.Inspiration} />
-</ul>
 
+const Inspiration = await getCredits('Inspiration')
+---
+
+<h2 class='mt-0 mb-2 scroll-m-20 text-2xl font-semibold'>Inspirations</h2>
+<ul class='ml-1 list-disc'>
+    <CreditList credits={Inspiration} />
+</ul>

@@ -1,4 +1,4 @@
-import { craftSchema, postSchema, useSchema } from '@schemas/content.schema'
+import { craftSchema, creditSchema, postSchema, useSchema } from '@schemas/content.schema'
 import { file, glob } from 'astro/loaders'
 import { defineCollection } from 'astro:content'
 
@@ -19,9 +19,14 @@ export const crafts = defineCollection({
     schema: () => craftSchema
 })
 
+export const credits = defineCollection({
+    loader: file('./src/data/credits.json'),
+    schema: () => creditSchema
+})
+
 export const uses = defineCollection({
     loader: file('./src/data/uses.json'),
     schema: () => useSchema
 })
 
-export const collections = { collective, crafts, post, uses }
+export const collections = { collective, crafts, credits, post, uses }

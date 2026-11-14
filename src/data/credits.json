@@ -1,0 +1,32 @@
+[
+  {
+    "id": "Netlify",
+    "url": "https://www.netlify.com",
+    "desc": "Hosting On",
+    "type": "Colophon"
+  },
+  {
+    "id": "Astro",
+    "url": "https://astro.build",
+    "desc": "Built With",
+    "type": "Colophon"
+  },
+  {
+    "id": "Fabian Schultz",
+    "url": "https://www.fabianschultz.com",
+    "desc": "Idea of simple home page is inspired from",
+    "type": "Inspiration"
+  },
+  {
+    "id": "Hiran Venugopalan",
+    "url": "https://hiran.in/index.html",
+    "desc": "Credits page and uses page is inspired from",
+    "type": "Inspiration"
+  },
+  {
+    "id": "Vorillaz",
+    "url": "https://www.vorillaz.com",
+    "desc": "Site typography is inspired from",
+    "type": "Inspiration"
+  }
+]

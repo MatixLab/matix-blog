@@ -1,5 +1,5 @@
 import { USE_TYPES } from '@schemas/content.schema'
-import type { UseType } from '@schemas/content.schema'
+import type { CreditType, UseType } from '@schemas/content.schema'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 
@@ -58,6 +58,14 @@ export async function getUses(type?: UseType) {
 
 export function getUseTypes(uses: CollectionEntry<'uses'>[]) {
     return USE_TYPES.filter((type) => uses.some((u) => u.data.type === type))
+}
+
+export async function getCredits(type?: CreditType) {
+    let credits = await getCollection('credits')
+    if (type) {
+        credits = credits.filter((u) => u.data.type === type)
+    }
+    return credits
 }
 
 export function getDefaultUseType(uses: CollectionEntry<'uses'>[]) {
