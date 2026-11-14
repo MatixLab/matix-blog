@@ -16,7 +16,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
     <article
         class={cn(
             'prose dark:prose-invert relative container',
-            'flex w-full flex-col gap-y-4 py-3 pl-4'
+            'flex w-full flex-col py-3 pl-4'
         )}
     >
         <h1 class='mt-4 text-3xl'>{title}</h1>
@@ -62,7 +62,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
             </figure>
         ) : null}
 
-        <blockquote class='mt-6 border-l-2 pl-6 font-normal text-gray-700'>
+        <blockquote class='text-muted-foreground mt-6 border-l-2 pl-6 font-normal'>
             {description}
         </blockquote>
         <slot />

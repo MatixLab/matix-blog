@@ -5,7 +5,6 @@ export const links: MainNavItem[] = [
         href: '/post/',
         title: 'Posts'
     },
-
     {
         href: '/uses/',
         title: 'Uses'

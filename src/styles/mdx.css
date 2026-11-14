@@ -1,66 +1,100 @@
 @utility prose {
-  & img {
-    @apply mt-0 mb-0;
-  }
+    & img {
+        @apply mt-0 mb-0;
+    }
 
-  & ul {
-    list-style-type: none;
-  }
-  & ul > li {
-    @apply relative pl-2;
-  }
-  & ul li:before {
-    @apply mr-2 -ml-6 inline-block font-medium;
-    content: "-";
-  }
+    & ul {
+        list-style-type: none;
+    }
+    & ul > li {
+        @apply relative pl-2;
+    }
+    & ul li:before {
+        @apply mr-2 -ml-6 inline-block font-medium;
+        content: '-';
+    }
+
+    & :is(h1, h2, h3, h4, h5, h6) {
+        @apply relative scroll-mt-24;
+    }
+
+    & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor {
+        @apply border-line bg-background text-muted-foreground absolute top-1/2 -left-6 flex size-5 -translate-y-1/2 items-center justify-center rounded-sm border no-underline opacity-0 transition duration-150 ease-in-out;
+    }
+
+    & :is(h1, h2, h3, h4, h5, h6):hover > .subheading-anchor,
+    & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor:focus-visible {
+        @apply opacity-100;
+    }
+
+    & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor:hover {
+        @apply text-foreground;
+    }
 }
 
 @utility not-prose {
-  &.code-wrapper {
-    @apply relative rounded border-[1px] border-solid border-gray-300;
-    pre code {
-      @apply grid py-4 text-sm;
-    }
-    pre code .line {
-      @apply pr-2 pl-4 leading-6;
-    }
-    .code-header {
-      @apply flex h-12 items-center justify-between border-b-[1px] border-solid border-b-gray-300 px-4;
-    }
+    &.code-wrapper {
+        @apply border-line relative mt-4 rounded-xs border border-solid;
+        pre {
+            @apply w-full overflow-x-auto;
+        }
+        pre code {
+            @apply grid py-4 text-sm;
+        }
+        pre code .line {
+            @apply pr-2 pl-4 leading-6;
+        }
 
-    .line.has-highlight {
-      background: var(--highlight);
-    }
+        .copy-code-button {
+            @apply text-muted-foreground hover:text-foreground;
+            @apply absolute top-2 right-2 z-50 inline-flex size-8 items-center justify-center duration-150 ease-in-out;
+        }
 
-    span.highlighted-word {
-      background-color: var(--highlight);
-      border: 1px solid var(--highlight);
-      padding: 1px 3px;
-      margin: -1px -3px;
-      border-radius: 4px;
-    }
+        .copy-code-button .check-icon {
+            display: none;
+        }
 
-    .line.diff.remove {
-      background: var(--diff-remove);
+        .copy-code-button[data-copied] .copy-icon {
+            display: none;
+        }
+
+        .copy-code-button[data-copied] .check-icon {
+            display: block;
+        }
+
+        .line.has-highlight {
+            background: var(--highlight);
+        }
+
+        span.highlighted-word {
+            background-color: var(--highlight);
+            border: 1px solid var(--highlight);
+            padding: 1px 3px;
+            margin: -1px -3px;
+            border-radius: 4px;
+        }
+
+        .line.diff.remove {
+            background: var(--diff-remove);
+        }
+        .line.diff.remove::before {
+            content: '-';
+            color: var(--color-red-700);
+            margin-right: 4px;
+        }
+        .line.diff.add {
+            background: var(--highlight);
+        }
+        .line.diff.add::before {
+            content: '+';
+            color: var(--color-green-700);
+            margin-right: 4px;
+        }
     }
-    .line.diff.remove::before {
-      content: "-";
-      color: var(--color-red-700);
-      margin-right: 4px;
-    }
-    .line.diff.add {
-      background: var(--highlight);
-    }
-    .line.diff.add::before {
-      content: "+";
-      color: var(--color-green-700);
-      margin-right: 4px;
-    }
-  }
 }
 
 @layer utilities {
-  :not(pre) > code {
-    @apply relative rounded bg-background text-sm text-foreground;
-  }
+    :not(pre) > code {
+        @apply bg-background text-foreground relative rounded text-sm;
+    }
 }

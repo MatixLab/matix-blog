@@ -1,12 +1,3 @@
-import dayjs from 'dayjs'
-
-export function formatSimpleDate(date: Date) {
-    return dayjs(date).format('MM/DD')
-}
-export function formatDateWithYear(date: Date) {
-    return dayjs(date).format('YYYY, MM/DD')
-}
-
 export function extractSegmentURL(path: string) {
     if (!path) {
         return ''
@@ -21,4 +12,14 @@ const REGEX = /\/$/u
 
 export function trimTrailingSlash(value: string) {
     return value.replace(REGEX, '')
+}
+
+const pad2 = (n: number) => String(n).padStart(2, '0')
+
+export function formatSimpleDate(date: Date) {
+    return `${pad2(date.getMonth() + 1)}/${pad2(date.getDate())}`
+}
+
+export function formatDateWithYear(date: Date) {
+    return `${date.getFullYear()}, ${pad2(date.getMonth() + 1)}/${pad2(date.getDate())}`
 }

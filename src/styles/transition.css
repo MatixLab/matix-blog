@@ -1,8 +1,10 @@
+/* theme toggle */
 @keyframes reveal {
   from {
     clip-path: inset(var(--from));
   }
 }
+
 ::view-transition-new(theme-toggle-transition) {
   z-index: 99;
   clip-path: inset(0 0 0 0);
@@ -21,4 +23,24 @@ html:not(.dark) {
 }
 html[data-theme-changing] [data-disable-theme-toggle-transition] {
   view-transition-name: none !important;
+}
+
+/* define arrow animate  */
+[href] svg[class*="arrow-up-right"],
+[href] svg[class*="arrow-right"],
+[type] svg[class*="arrow-up-right"],
+[type] svg[class*="arrow-right"] {
+  @apply will-change-transform;
+  @apply duration-250;
+}
+
+[href]:hover svg[class*="arrow-up-right"],
+[type]:hover svg[class*="arrow-up-right"] {
+  @apply translate-x-[0.1em];
+  @apply rotate-12;
+}
+
+[href]:hover svg[class*="arrow-right"],
+[type]:hover svg[class*="arrow-right"] {
+  @apply translate-x-[0.15em];
 }

@@ -14,7 +14,7 @@ const collectiveData: CollectiveItem[] = [
 ---
 
 <MainLayout title='Collective' description='Collective records.'>
-    <section class='prose dark:prose-invert container max-w-[948px] px-4 py-3 md:px-16'>
+    <section class='prose dark:prose-invert container max-w-237 space-y-4 px-4'>
         <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>Collective records.</h1>
         <article class='relative flex flex-col overflow-auto'>
             <p class='mt-0 mb-2 scroll-m-20 text-gray-900'>
@@ -28,9 +28,9 @@ const collectiveData: CollectiveItem[] = [
                             <Link
                                 href={`/collective/${item.subPath}`}
                                 title={item.title}
-                                class='pl-0! break-words no-underline'
+                                class='pl-0! wrap-break-word no-underline'
                             >
-                                <h3 class='common-link link-animate mt-0 mb-0 inline-flex text-base leading-[2] font-medium text-black!'>
+                                <h3 class='mt-0 mb-0 inline-flex text-base leading-loose font-medium text-black!'>
                                     {item.title}
                                 </h3>
                             </Link>

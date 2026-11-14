@@ -1,6 +1,6 @@
-import { baseConfig } from '@base/config/app/base.config'
-import { integrations } from '@base/config/app/integration.config'
-import { viteConfig } from '@base/config/app/vite.config'
+import { baseConfig } from './config/base.config'
+import { integrations } from './config/integration.config'
+import { viteConfig } from './config/vite.config'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({

@@ -26,14 +26,14 @@ import { Mail } from 'lucide-react'
         <Link href='/now/' title='my now page' class='link text-muted-foreground ml-2' />.
     </div>
 
-    <div class='space-y-3 pt-4'>
+    <div class='space-y-2'>
         <div class='text-muted-foreground text-sm'>You can also find me on:</div>
         <div class='flex gap-2'>
             <Link
                 href={siteConfig.links.github}
                 title='Github'
                 type='icon'
-                class='hover:bg-secondary group flex size-9 items-center justify-center transition-colors'
+                class='group flex size-9 items-center justify-center transition-colors'
             >
                 <GitHub className='size-4 opacity-60 transition-opacity group-hover:opacity-100' />
             </Link>
@@ -41,7 +41,7 @@ import { Mail } from 'lucide-react'
                 href={siteConfig.links.twitter}
                 title='x'
                 type='icon'
-                class='hover:bg-secondary group flex size-9 items-center justify-center transition-colors'
+                class='group flex size-9 items-center justify-center transition-colors'
             >
                 <X className='size-4 opacity-60 transition-opacity group-hover:opacity-100' />
             </Link>
@@ -49,9 +49,9 @@ import { Mail } from 'lucide-react'
                 href={siteConfig.links.blueSky}
                 title='blueSky'
                 type='icon'
-                class='hover:bg-secondary group flex size-9 items-center justify-center transition-colors'
+                class='group flex size-9 items-center justify-center transition-colors'
             >
-                <Bluesky className='size-4 opacity-60 transition-opacity group-hover:opacity-100' />
+                <Bluesky className='size-4 opacity-60 transition-opacity group-hover:text-blue-500 group-hover:opacity-100' />
             </Link>
             <!-- <Link href={siteConfig.links.notion} title='notion' type='icon'>
                     <Notion
@@ -63,7 +63,7 @@ import { Mail } from 'lucide-react'
                 href={`mailto:${siteConfig.links.email}`}
                 title='email'
                 type='icon'
-                class='hover:bg-secondary group flex size-9 items-center justify-center transition-colors'
+                class='group flex size-9 items-center justify-center transition-colors'
             >
                 <Mail className='size-4 opacity-60 transition-opacity group-hover:opacity-100' />
             </Link>

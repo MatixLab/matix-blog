@@ -3,7 +3,7 @@ import partytown from '@astrojs/partytown'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import playformCompress from '@playform/compress'
-import type {  AstroIntegration } from 'astro'
+import type { AstroIntegration } from 'astro'
 
 export const integrations: AstroIntegration[] = [
     mdx(),
