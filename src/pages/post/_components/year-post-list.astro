@@ -49,6 +49,7 @@ const { basePath = '/post', year, years, posts, pagination } = Astro.props
                                 <Link
                                     title={item.data.title}
                                     href={`/post/${item.id}`}
+                                    style={`view-transition-name: post-title-${item.id}`}
                                     class='col-span-2 line-clamp-1'
                                     linkType='unset'
                                 >

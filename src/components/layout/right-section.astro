@@ -7,21 +7,14 @@ import { siteConfig } from '@config/site'
 import { trimTrailingSlash } from '@lib/utils'
 import { Bot, GitMerge, Rss } from 'lucide-react'
 import type { MainNavItem } from '~types/index'
-
-export const links: MainNavItem[] = [
-    { href: '/post/', title: 'Posts' },
-    { href: '/uses/', title: 'Uses' },
-    { href: '/now/', title: 'Now' },
-    { href: '/collective/', title: 'Collective' },
-    { href: '/credits/', title: 'Credits' }
-]
 ---
 
 <div class='right-section no-scrollbar hidden w-64 shrink-0 flex-col gap-6 py-4 md:grid-rows-[auto_1fr_auto] lg:grid lg:h-full'>
     <section id='top-section'>
         <div class='flex flex-col gap-6'>
-            <Link href='/' linkType='unset'>
+            <Link href='/' linkType='unset' class='my-auto flex items-center gap-2'>
                 <strong>{siteConfig.author}</strong>
+                <span class='size-4 rounded-full bg-orange-600 dark:bg-blue-200'></span>
             </Link>
             <span class='text-muted-foreground/65 text-sm select-none'>
                 {siteConfig.slogan}

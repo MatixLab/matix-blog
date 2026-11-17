@@ -1,27 +1,54 @@
 /* theme toggle */
+@keyframes page-slide-out-forward {
+    to {
+        opacity: 0;
+        transform: translateX(-2rem) scale(0.9);
+    }
+}
+
+@keyframes page-slide-in-forward {
+    from {
+        opacity: 0;
+        transform: translateX(2rem) scale(0.9);
+    }
+}
+
+@keyframes page-slide-out-backward {
+    to {
+        opacity: 0;
+        transform: translateX(2rem) scale(0.9);
+    }
+}
+
+@keyframes page-slide-in-backward {
+    from {
+        opacity: 0;
+        transform: translateX(-2rem) scale(0.9);
+    }
+}
+
 @keyframes reveal {
-  from {
-    clip-path: inset(var(--from));
-  }
+    from {
+        clip-path: inset(var(--from));
+    }
 }
 
 ::view-transition-new(theme-toggle-transition) {
-  z-index: 99;
-  clip-path: inset(0 0 0 0);
-  animation: reveal 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 99;
+    clip-path: inset(0 0 0 0);
+    animation: reveal 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 ::view-transition-old(theme-toggle-transition) {
-  z-index: -1;
-  animation: none;
+    z-index: -1;
+    animation: none;
 }
 
 html.dark {
-  --from: 0 0 100% 0;
+    --from: 0 0 100% 0;
 }
 html:not(.dark) {
-  --from: 100% 0 0 0;
+    --from: 100% 0 0 0;
 }
 html[data-theme-changing] [data-disable-theme-toggle-transition] {
-  view-transition-name: none !important;
+    view-transition-name: none !important;
 }
-

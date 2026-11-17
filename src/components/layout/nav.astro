@@ -1,11 +1,18 @@
 ---
 import Link from '@components/common/Link.astro'
-import { links } from '@config/menu'
 import { extractSegmentURL } from '@lib/utils'
 import { cn, cva } from '@utils/tv'
 import type { MainNavItem } from '~types/index'
 
 const segment = extractSegmentURL(Astro.url.pathname)
+
+export const links: MainNavItem[] = [
+    { href: '/post', title: 'Posts' },
+    { href: '/uses', title: 'Uses' },
+    { href: '/now', title: 'Now' },
+    { href: '/collective', title: 'Collective' },
+    { href: '/credits', title: 'Credits' }
+]
 
 const navLinkVariants = cva({
     base: 'group flex cursor-pointer items-center gap-2 text-sm disabled:opacity-50',

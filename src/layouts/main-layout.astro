@@ -28,6 +28,37 @@ const {
     image = `https://images.antzhu.com${imageDefault}.webp`,
     imageAlt
 } = Astro.props
+
+const pageSlideTransition = {
+    backwards: {
+        new: {
+            duration: '350ms',
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fillMode: 'both',
+            name: 'page-slide-in-backward'
+        },
+        old: {
+            duration: '350ms',
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fillMode: 'both',
+            name: 'page-slide-out-backward'
+        }
+    },
+    forwards: {
+        new: {
+            duration: '350ms',
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fillMode: 'both',
+            name: 'page-slide-in-forward'
+        },
+        old: {
+            duration: '350ms',
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fillMode: 'both',
+            name: 'page-slide-out-forward'
+        }
+    }
+}
 ---
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
@@ -48,7 +79,10 @@ const {
                     Astro.url.pathname !== '/' && 'lg:overflow-y-auto'
                 )}
             >
-                <main class={cn('flex-1 lg:min-h-0', mainClass)}>
+                <main
+                    class={cn('flex-1 lg:min-h-0', mainClass)}
+                    transition:animate={pageSlideTransition}
+                >
                     <slot />
                 </main>
             </aside>

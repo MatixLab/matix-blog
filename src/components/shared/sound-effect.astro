@@ -71,9 +71,10 @@ https://github.com/radishzzz/astro-theme-retypeset/blob/master/src/components/Wi
         }
 
         // Initialize audio context and preload sound files (executes only once)
+        // oxlint-disable-next-line require-await
         private async initialize(): Promise<void> {
             return (this.initPromise ??= (async () => {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext
+                const AudioContextClass = window.AudioContext
                 this.audioContext = new AudioContextClass()
                 await this.preloadAllSounds()
             })())

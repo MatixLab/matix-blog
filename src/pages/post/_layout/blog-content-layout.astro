@@ -9,7 +9,8 @@ import { ArrowUpLeft, Hash } from 'lucide-react'
 
 type Props = CollectionEntry<'post'>
 
-const { title, description, updatedDate, cover, category, coverAlt } = Astro.props.data
+const post = Astro.props
+const { title, description, updatedDate, cover, category, coverAlt } = post.data
 ---
 
 <MainLayout title={title} description={description} mainClass='px-4'>
@@ -19,7 +20,9 @@ const { title, description, updatedDate, cover, category, coverAlt } = Astro.pro
             'flex w-full flex-col py-3 pl-4'
         )}
     >
-        <h1 class='mt-4 text-3xl'>{title}</h1>
+        <h1 style={`view-transition-name: post-title-${post.id}`} class='mt-4 text-3xl'>
+            {title}
+        </h1>
         <div class='flex flex-wrap items-center font-normal'>
             <div class='text-muted-foreground/80 mr-2 text-sm md:mr-4'>
                 Updated On {formatDateWithYear(updatedDate)}
