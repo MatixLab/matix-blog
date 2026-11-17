@@ -20,8 +20,7 @@ interface MobileNavProps {
 export function MobileNav({ segment }: MobileNavProps) {
     const mergedLinks = links?.filter(
         (item, index, self) =>
-            index ===
-            self.findIndex((t) => t.href === item.href && t.title === item.title)
+            index === self.findIndex((t) => t.href === item.href && t.title === item.title)
     )
 
     const [open, setOpen] = React.useState(false)
@@ -30,7 +29,7 @@ export function MobileNav({ segment }: MobileNavProps) {
             <DrawerTrigger
                 render={
                     <Button
-                        variant='ghost'
+                        variant='link'
                         size='icon'
                         title='Toggle drawer'
                         className='my-auto md:hidden [&_svg]:size-6'
@@ -53,9 +52,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                     aria-label='home'
                                 >
                                     <div className='flex flex-row'>
-                                        <span className='font-bold'>
-                                            {siteConfig.author}
-                                        </span>
+                                        <span className='font-bold'>{siteConfig.author}</span>
                                     </div>
                                 </a>
                             </DrawerTitle>
@@ -76,9 +73,7 @@ export function MobileNav({ segment }: MobileNavProps) {
                                         }}
                                     >
                                         <span className='flex items-center gap-2'>
-                                            <span className='font-medium'>
-                                                {item.title}
-                                            </span>
+                                            <span className='font-medium'>{item.title}</span>
                                         </span>
                                     </a>
                                 ))}

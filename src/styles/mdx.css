@@ -37,6 +37,27 @@
         @apply border-line relative mt-4 rounded-xs border border-solid;
         pre {
             @apply w-full overflow-x-auto;
+            scrollbar-color: var(--muted-foreground) transparent;
+            scrollbar-width: thin;
+        }
+        pre::-webkit-scrollbar {
+            height: 0.375rem;
+        }
+        pre::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        pre::-webkit-scrollbar-thumb {
+            border: 1px solid transparent;
+            border-radius: 9999px;
+            background: var(--muted-foreground);
+            background-clip: padding-box;
+        }
+        pre::-webkit-scrollbar-thumb:hover {
+            background: var(--foreground);
+            background-clip: padding-box;
+        }
+        pre::-webkit-scrollbar-button {
+            display: none;
         }
         pre code {
             @apply grid py-4 text-sm;

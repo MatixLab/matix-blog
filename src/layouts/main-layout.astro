@@ -68,11 +68,10 @@ const pageSlideTransition = {
             Astro.url.pathname !== '/' && 'lg:overflow-hidden'
         )}
     >
+        <div class='sticky top-0 z-100 w-full lg:hidden'>
+            <MobileNav segment={segment} client:load />
+        </div>
         <div class='page-frame mx-auto flex w-full max-w-5xl flex-1 flex-col p-4 md:py-8 lg:min-h-0 lg:flex-row lg:gap-14'>
-            <div class='w-full lg:hidden'>
-                <MobileNav segment={segment} client:load />
-            </div>
-
             <aside
                 class={cn(
                     'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-0',
