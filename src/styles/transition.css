@@ -49,6 +49,7 @@ html.dark {
 html:not(.dark) {
     --from: 100% 0 0 0;
 }
-html[data-theme-changing] [data-disable-theme-toggle-transition] {
+html[data-theme-changing] [data-disable-theme-toggle-transition],
+html[data-theme-changing] [data-disable-theme-toggle-transition] * {
     view-transition-name: none !important;
 }
