@@ -29,32 +29,36 @@ const {
     imageAlt
 } = Astro.props
 
+const pageEnterTransition = {
+    duration: '220ms',
+    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+    fillMode: 'both'
+}
+
+const pageExitTransition = {
+    duration: '150ms',
+    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+    fillMode: 'both'
+}
+
 const pageSlideTransition = {
     backwards: {
         new: {
-            duration: '350ms',
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fillMode: 'both',
+            ...pageEnterTransition,
             name: 'page-slide-in-backward'
         },
         old: {
-            duration: '350ms',
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fillMode: 'both',
+            ...pageExitTransition,
             name: 'page-slide-out-backward'
         }
     },
     forwards: {
         new: {
-            duration: '350ms',
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fillMode: 'both',
+            ...pageEnterTransition,
             name: 'page-slide-in-forward'
         },
         old: {
-            duration: '350ms',
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fillMode: 'both',
+            ...pageExitTransition,
             name: 'page-slide-out-forward'
         }
     }

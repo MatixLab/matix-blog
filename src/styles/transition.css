@@ -2,28 +2,28 @@
 @keyframes page-slide-out-forward {
     to {
         opacity: 0;
-        transform: translateX(-2rem) scale(0.9);
+        transform: translateX(-0.75rem);
     }
 }
 
 @keyframes page-slide-in-forward {
     from {
         opacity: 0;
-        transform: translateX(2rem) scale(0.9);
+        transform: translateX(0.75rem);
     }
 }
 
 @keyframes page-slide-out-backward {
     to {
         opacity: 0;
-        transform: translateX(2rem) scale(0.9);
+        transform: translateX(0.75rem);
     }
 }
 
 @keyframes page-slide-in-backward {
     from {
         opacity: 0;
-        transform: translateX(-2rem) scale(0.9);
+        transform: translateX(-0.75rem);
     }
 }
 
