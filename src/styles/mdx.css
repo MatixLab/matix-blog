@@ -116,6 +116,6 @@
 
 @layer utilities {
     :not(pre) > code {
-        @apply bg-background text-foreground relative rounded text-sm;
+        @apply text-foreground bg-line/75 relative ms-1 me-1 rounded ps-1 pe-1 text-sm;
     }
 }

@@ -13,7 +13,7 @@ import { ThemeDot } from '@components/icons'
 
 <script>
     // Apply theme changes
-    function applyTheme(isDark: boolean) {
+    const applyTheme = (isDark: boolean) => {
         document.documentElement.classList.toggle('dark', isDark)
 
         localStorage.setItem('theme', isDark ? 'dark' : 'light')
@@ -21,13 +21,13 @@ import { ThemeDot } from '@components/icons'
     }
 
     // Toggle theme mode
-    function toggleTheme() {
+    const toggleTheme = () => {
         const isDark = !document.documentElement.classList.contains('dark')
         applyTheme(isDark)
     }
 
     // Handle theme toggle click events
-    function handleThemeToggle(e: MouseEvent) {
+    const handleThemeToggle = (e: MouseEvent) => {
         if (!(e.target instanceof Element)) {
             return
         }
@@ -61,7 +61,7 @@ import { ThemeDot } from '@components/icons'
     }
 
     // Listen to system theme changes in real time
-    function handleSystemChange(event: MediaQueryListEvent) {
+    const handleSystemChange = (event: MediaQueryListEvent) => {
         const isDark = event.matches
         applyTheme(isDark)
     }

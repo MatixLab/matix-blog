@@ -1,0 +1,31 @@
+---
+import { cn, cva } from '@utils/tv'
+import type { VariantProps } from '@utils/tv'
+import type { HTMLAttributes } from 'astro/types'
+
+const headingVariants = cva({
+    defaultVariants: {
+        size: 'default'
+    },
+    variants: {
+        size: {
+            default: 'text-base',
+            lg: 'text-lg',
+            md: 'text-md',
+            sm: 'text-sm',
+            xl: 'text-xl'
+        }
+    }
+})
+
+interface Props extends HTMLAttributes<'h1'>, VariantProps<typeof headingVariants> {
+    as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    className?: string
+}
+
+const { as: As = 'h2', size = 'default', className, ...props } = Astro.props
+---
+
+<As class={cn(headingVariants({ size }), className)} {...props}>
+    <slot />
+</As>

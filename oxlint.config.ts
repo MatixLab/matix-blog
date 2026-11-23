@@ -17,12 +17,13 @@ export default defineConfig({
     "func-style": "allow",
     "jsx-a11y/heading-has-content": "allow",
     "no-use-before-define": "allow",
+    "promise/always-return": "allow",
     "react/function-component-definition": "allow",
     "typescript/consistent-type-definitions": "allow",
     "unicorn/filename-case": "allow",
     "unicorn/no-array-for-each": "allow",
     "unicorn/prefer-spread": "allow",
-    "unicorn/prefer-string-slice": "allow",
+    "unicorn/prefer-string-slice": "allow"
   },
   settings: jsPluginSettings
 });

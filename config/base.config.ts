@@ -16,7 +16,12 @@ export const baseConfig = {
         {
             cssVariable: '--font-sans',
             fallbacks: ['sans-serif'],
-            name: 'Geist',
+            name: 'IBM Plex Sans',
+            provider: fontProviders.fontsource()
+        },
+        {
+            cssVariable: '--font-mono',
+            name: 'IBM Plex Mono',
             provider: fontProviders.fontsource()
         }
     ],
