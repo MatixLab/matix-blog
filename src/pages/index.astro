@@ -1,11 +1,10 @@
 ---
-import { Line } from '@components/icons'
 import MainLayout from '@layouts/main-layout.astro'
 import Intro from './_components/intro.astro'
 import RecentPosts from './_components/recent-posts.astro'
 ---
 
-<MainLayout title='About' description="Anthony's homepage">
+<MainLayout title='About' description="Anthony's homepage" mainClass='pt-4'>
     <div class='space-y-4 lg:mb-0'>
         <section class='relative py-5'>
             <Intro />
@@ -24,7 +23,7 @@ import RecentPosts from './_components/recent-posts.astro'
     .home-shadow::before {
         position: absolute;
         inset-block: 0;
-        inset-inline: -1rem;
+        inset-inline: 0rem;
         border-block: 1px solid var(--line);
         background: repeating-linear-gradient(
             135deg,
@@ -37,9 +36,4 @@ import RecentPosts from './_components/recent-posts.astro'
         pointer-events: none;
     }
 
-    @media (min-width: 64rem) {
-        .home-shadow::before {
-            right: -1.75rem;
-        }
-    }
 </style>
