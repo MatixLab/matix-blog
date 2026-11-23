@@ -13,18 +13,13 @@ if (!entry) {
 const { Content } = await render(entry)
 ---
 
-<MainLayout
-    title='China Developer Sites'
-    description='China Developer Sites I Enjoy Reading.'
->
+<MainLayout title='China Developer Sites' description='China Developer Sites I Enjoy Reading.'>
     <section class='prose dark:prose-invert container max-w-237 px-4 py-3'>
         <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>
             China Developer Sites I Enjoy Reading.
         </h1>
-        <article class='relative overflow-auto'>
-            <p class='mt-0 mb-2 scroll-m-20 '>
-                下面网站的排名不分先后:
-            </p>
+        <article class='relative overflow-auto pl-4'>
+            <p class='mt-0 mb-2 scroll-m-20'>下面网站的排名不分先后:</p>
             <Content
                 components={{
                     ...MdxComponents,
