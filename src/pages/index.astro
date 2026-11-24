@@ -1,17 +1,34 @@
 ---
+import { Line } from '@components/icons'
 import MainLayout from '@layouts/main-layout.astro'
 import Intro from './_components/intro.astro'
 import RecentPosts from './_components/recent-posts.astro'
 ---
 
 <MainLayout title='About' description="Anthony's homepage" mainClass='pt-4'>
-    <div class='space-y-4 lg:mb-0'>
+    <div class='lg:mb-0'>
         <section class='relative py-5'>
             <Intro />
         </section>
-        <div class='home-shadow h-6' aria-hidden='true'></div>
+        <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
+            <Line />
+        </div>
+        <!-- <div class='home-shadow h-6' aria-hidden='true'></div> -->
         <RecentPosts />
-        <div class='bg-line h-px' />
+
+        <div class='home-shadow mt-4 h-6' aria-hidden='true'></div>
+
+        <div class='mx-auto w-full grid-cols-3 justify-between gap-y-0 *:first:border-l-0 *:last:border-r-0 md:grid md:grid-cols-3 md:gap-x-4 lg:gap-x-8'>
+            <div class='border-x border-b border-gray-950/5 pl-2 not-md:border-0 md:border-b-0 dark:border-white/10'>
+                <h3 class='font-semibold'>Tailwind CSS</h3>
+            </div>
+            <div class='border-x border-b border-gray-950/5 pl-2 not-md:border-0 sm:border-b-0 dark:border-white/10'>
+                <h3 class='font-semibold'>Resources</h3>
+            </div>
+            <div class='border-x border-gray-950/5 pl-2 not-md:border-0 dark:border-white/10'>
+                <h3 class='font-semibold'>Community</h3>
+            </div>
+        </div>
     </div>
 </MainLayout>
 
@@ -35,5 +52,4 @@ import RecentPosts from './_components/recent-posts.astro'
         content: '';
         pointer-events: none;
     }
-
 </style>
