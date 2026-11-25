@@ -96,6 +96,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --line: oklch(0.922 0 0 / 95%);
+  --right-section-half-width: 8rem;
   --highlight: oklch(0.85 0.05 142.77 / 0.2);
   --diff-remove: oklch(0.94 0.02 26.18);
 }

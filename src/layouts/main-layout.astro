@@ -75,20 +75,15 @@ const pageSlideTransition = {
         <div class='sticky top-0 z-100 w-full lg:hidden'>
             <MobileNav segment={segment} client:load />
         </div>
-        <div class={cn(
-            'mx-auto flex w-full max-w-5xl flex-1 flex-col lg:relative lg:min-h-0 lg:flex-row lg:border-r border-line',
-            'page-frame',
-        )}>
-            <div class='page-frame-top-lines' aria-hidden='true'>
-                <div class='page-frame-top-lines__content'>
-                    <div class='page-frame-top-lines__main'></div>
-                    <div class='page-frame-top-lines__sidebar'></div>
-                </div>
-            </div>
+        <div
+            class={cn(
+                'border-line mx-auto flex w-full max-w-5xl flex-1 flex-col lg:relative lg:min-h-0 lg:flex-row lg:border-r'
+            )}
+        >
             <aside
                 class={cn(
                     'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-0',
-                    'lg:border-x lg:border-line',
+                    'lg:border-line lg:border-x',
                     Astro.url.pathname !== '/' && 'lg:overflow-y-auto'
                 )}
             >
@@ -105,59 +100,3 @@ const pageSlideTransition = {
         </div>
     </div>
 </BaseLayout>
-
-<style>
-    @media (min-width: 64rem) {
-
-        .page-frame::before {
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            left: 50%;
-            width: 100vw;
-            height: 1rem;
-            transform: translateX(-50%);
-            border-bottom: 1px solid var(--line);
-            background-color: var(--background);
-            content: '';
-            pointer-events: none;
-        }
-
-        .page-frame-top-lines {
-            position: absolute;
-            inset: 0 -1px auto 0;
-            z-index: 2;
-            height: 1rem;
-            border-right: 1px solid var(--line);
-            pointer-events: none;
-        }
-
-        .page-frame-top-lines__content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-        }
-
-        .page-frame-top-lines__main {
-            min-width: 0;
-            flex: 1;
-            border-inline: 1px solid var(--line);
-        }
-
-        .page-frame-top-lines__sidebar {
-            width: 16rem;
-            flex: 0 0 16rem;
-        }
-
-        .page-frame::after {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            width: 100vw;
-            height: 2rem;
-            transform: translateX(-50%);
-            border-block: 1px solid var(--line);
-            pointer-events: none;
-        }
-    }
-</style>

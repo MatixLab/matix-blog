@@ -1,53 +1,81 @@
 @utility link {
-  position: relative;
-  &:after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    transform-origin: bottom right;
-    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(0) scaleY(1.2);
-    background-color: currentColor;
-    transition-property: transform;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    animation-duration: 0.3s;
-    content: "";
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  &:hover:after {
-    transform-origin: bottom left;
-    transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
-  }
+    position: relative;
+    &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        transform-origin: bottom right;
+        transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(0) scaleY(1.2);
+        background-color: currentColor;
+        transition-property: transform;
+        transition-duration: 0.3s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        animation-duration: 0.3s;
+        content: '';
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &:hover:after {
+        transform-origin: bottom left;
+        transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1.2);
+    }
 }
 @utility common-link {
-  @apply text-muted-foreground underline decoration-gray-500 underline-offset-4 hover:decoration-gray-900;
+    @apply text-muted-foreground underline decoration-gray-500 underline-offset-4 hover:decoration-gray-900;
 }
 @utility link-animate {
-  @apply decoration-1 duration-500 ease-in-out;
+    @apply decoration-1 duration-500 ease-in-out;
 }
 
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+@utility screen-line-top {
+    @apply relative;
+    &:before {
+        content: '';
+        @apply bg-line absolute top-0 left-1/2 -z-1 h-px w-dvw -translate-x-1/2 lg:left-[calc(50%+var(--right-section-half-width))];
+    }
+}
+
+@utility screen-line-top-* {
+    &:before {
+        background-color: --value(--color-*, [color]);
+    }
+}
+
+@utility screen-line-bottom {
+    @apply relative;
+    &:after {
+        content: '';
+        @apply bg-line absolute bottom-0 left-[-100vw] -z-1 h-px w-dvw;
+    }
+}
+
+@utility screen-line-bottom-* {
+    &:after {
+        background-color: --value(--color-*, [color]);
+    }
 }
 
 @theme {
-  --animate-icon-bounce: icon-bounce 0.65s ease-in-out 2;
-  @keyframes icon-bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
+    --animate-icon-bounce: icon-bounce 0.65s ease-in-out 2;
+    @keyframes icon-bounce {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
 
-    50% {
-      transform: translateY(-3px);
+        50% {
+            transform: translateY(-3px);
+        }
     }
-  }
 }

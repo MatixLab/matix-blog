@@ -7,13 +7,12 @@ import RecentPosts from './_components/recent-posts.astro'
 
 <MainLayout title='About' description="Anthony's homepage" mainClass='pt-4'>
     <div class='lg:mb-0'>
-        <section class='relative py-5'>
+        <section class='screen-line-top relative py-5'>
             <Intro />
         </section>
         <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
             <Line />
         </div>
-        <!-- <div class='home-shadow h-6' aria-hidden='true'></div> -->
         <RecentPosts />
 
         <div class='home-shadow mt-4 h-6' aria-hidden='true'></div>
