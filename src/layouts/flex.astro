@@ -1,0 +1,17 @@
+---
+import { cn } from '@utils/tv'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'> & {
+    as?: 'div' | 'section'
+    className?: string
+}
+
+const { className, as: As = 'div', ...props } = Astro.props
+---
+
+<As class={cn('flex flex-row', className)} {...props}>
+    <slot name='left-section' />
+    <slot name='middle-section' />
+    <slot name='right-section' />
+</As>
