@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from 'tailwind-variants'
+
+type Props = Omit<HTMLAttributes<'div'>, 'class'> & {
+    as?: 'div' | 'p' | 'section'
+    className?: string
+}
+
+const { as: As = 'div', className, ...props } = Astro.props
+---
+
+<As class={cn('px-4', className)} {...props}>
+    <slot />
+</As>

@@ -1,54 +1,25 @@
 ---
 import { Line } from '@components/icons'
+import Container from '@components/shared/container.astro'
 import MainLayout from '@layouts/main-layout.astro'
 import Intro from './_components/intro.astro'
 import RecentPosts from './_components/recent-posts.astro'
 ---
 
-<MainLayout title='About' description="Anthony's homepage" mainClass='pt-4'>
-    <div class='lg:mb-0'>
-        <section class='screen-line-top relative py-5'>
-            <Intro />
-        </section>
-        <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
-            <Line />
-        </div>
-        <RecentPosts />
+<MainLayout title='About' description="Anthony's homepage" mainClass='lg:pt-4'>
+    <Container className='pb-4'>
+        <Intro />
+    </Container>
 
-        <div class='home-shadow mt-4 h-6' aria-hidden='true'></div>
-
-        <div class='mx-auto w-full grid-cols-3 justify-between gap-y-0 *:first:border-l-0 *:last:border-r-0 md:grid md:grid-cols-3 md:gap-x-4 lg:gap-x-8'>
-            <div class='border-x border-b border-gray-950/5 pl-2 not-md:border-0 md:border-b-0 dark:border-white/10'>
-                <h3 class='font-semibold'>Tailwind CSS</h3>
-            </div>
-            <div class='border-x border-b border-gray-950/5 pl-2 not-md:border-0 sm:border-b-0 dark:border-white/10'>
-                <h3 class='font-semibold'>Resources</h3>
-            </div>
-            <div class='border-x border-gray-950/5 pl-2 not-md:border-0 dark:border-white/10'>
-                <h3 class='font-semibold'>Community</h3>
-            </div>
-        </div>
+    <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
+        <Line />
     </div>
+
+    <RecentPosts className='py-6' />
+
+    <div class='screen-line-top h-6' aria-hidden='true' />
+
+    <!-- <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
+        <Line />
+    </div> -->
 </MainLayout>
-
-<style>
-    .home-shadow {
-        position: relative;
-    }
-
-    .home-shadow::before {
-        position: absolute;
-        inset-block: 0;
-        inset-inline: 0rem;
-        border-block: 1px solid var(--line);
-        background: repeating-linear-gradient(
-            135deg,
-            transparent 0,
-            transparent 4px,
-            color-mix(in oklch, var(--line) 70%, transparent) 4px,
-            color-mix(in oklch, var(--line) 70%, transparent) 5px
-        );
-        content: '';
-        pointer-events: none;
-    }
-</style>

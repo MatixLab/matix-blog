@@ -34,12 +34,7 @@ const { mode: defaultMode } = siteConfig.color
     <meta name='description' content={description} />
     <meta name='author' content={siteConfig.author} />
     <BaseCanonical />
-    <BaseOg
-        title={title}
-        description={description}
-        image={image}
-        imageAlt={imageAlt}
-    />
+    <BaseOg title={title} description={description} image={image} imageAlt={imageAlt} />
     <BaseFont />
     <script
         is:inline
@@ -71,13 +66,9 @@ const { mode: defaultMode } = siteConfig.color
                     '(prefers-reduced-motion: reduce)'
                 ).matches
                 const supportsViewTransitions = 'startViewTransition' in doc
-                const shouldReduceMotion =
-                    prefersReducedMotion || !supportsViewTransitions
+                const shouldReduceMotion = prefersReducedMotion || !supportsViewTransitions
 
-                doc.documentElement.classList.toggle(
-                    'reduce-motion',
-                    shouldReduceMotion
-                )
+                doc.documentElement.classList.toggle('reduce-motion', shouldReduceMotion)
             }
 
             document.addEventListener('astro:before-swap', ({ newDocument }) => {

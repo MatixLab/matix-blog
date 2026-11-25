@@ -17,7 +17,6 @@ type Props = {
 const { basePath = '/post', year, years, posts, pagination } = Astro.props
 ---
 
-<div class='bg-muted my-4 h-px w-full' />
 <nav aria-label='Posts by year' class='flex items-center gap-6 overflow-x-auto text-sm'>
     {years.map((item) => {
         return (

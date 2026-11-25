@@ -1,29 +1,24 @@
 ---
-import BaseHead from "@components/seo/base-head.astro"
 import TailwindIndicator from '@components/dev/tailwind-indicator.astro'
-import { cn } from "@utils/tv";
+import BaseHead from '@components/seo/base-head.astro'
+import { cn } from '@utils/tv'
 
 interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-  imageAlt?: string;
-  bodyClass?: string;
+    title: string
+    description?: string
+    image?: string
+    imageAlt?: string
+    bodyClass?: string
 }
 
-const { title, description, bodyClass, image, imageAlt } = Astro.props;
+const { title, description, bodyClass, image, imageAlt } = Astro.props
 ---
 
 <!doctype html>
-<html lang="zh">
-  <BaseHead
-    title={title}
-    description={description}
-    image={image}
-    imageAlt={imageAlt}
-  />
-  <body class={cn('bg-background', bodyClass)}>
-    <slot />
-    <TailwindIndicator />
-  </body>
+<html lang='zh'>
+    <BaseHead title={title} description={description} image={image} imageAlt={imageAlt} />
+    <body class={cn('bg-background', bodyClass)}>
+        <slot />
+        <TailwindIndicator />
+    </body>
 </html>

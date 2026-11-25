@@ -66,12 +66,7 @@ const pageSlideTransition = {
 ---
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
-    <div
-        class={cn(
-            'mx-auto flex min-h-screen flex-col lg:h-screen',
-            Astro.url.pathname !== '/' && 'lg:overflow-hidden'
-        )}
-    >
+    <div class={cn('mx-auto flex min-h-screen flex-col lg:h-screen')}>
         <div class='sticky top-0 z-100 w-full lg:hidden'>
             <MobileNav segment={segment} client:load />
         </div>
@@ -83,8 +78,7 @@ const pageSlideTransition = {
             <aside
                 class={cn(
                     'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-0',
-                    'lg:border-line lg:border-x',
-                    Astro.url.pathname !== '/' && 'lg:overflow-y-auto'
+                    'lg:border-line lg:border-x'
                 )}
             >
                 <main

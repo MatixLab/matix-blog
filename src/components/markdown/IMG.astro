@@ -1,19 +1,17 @@
 ---
 import { Image } from 'astro:assets'
 
-const {props} = Astro;
+const { props } = Astro
 ---
 
 <figure>
-  <Image
-    alt={props.alt}
-    src={props.src}
-    class="w-full object-cover"
-    style="color: transparent;"
-  />
-  <figcaption
-    class="mt-2 break-all text-center text-xs text-gray-600"
-  >
-    {props.alt}
-  </figcaption>
+    <Image
+        alt={props.alt}
+        src={props.src}
+        class='w-full object-cover'
+        style='color: transparent;'
+    />
+    <figcaption class='mt-2 text-center text-xs break-all text-gray-600'>
+        {props.alt}
+    </figcaption>
 </figure>

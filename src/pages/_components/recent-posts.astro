@@ -3,12 +3,20 @@ import Link from '@components/common/Link.astro'
 import { siteConfig } from '@config/site'
 import { getPosts } from '@lib/fetchers'
 import { formatDateWithYear } from '@lib/utils'
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from 'tailwind-variants'
 
 let allPosts = await getPosts()
 allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
+
+type Props = Omit<HTMLAttributes<'div'>, 'class'> & {
+    className?: string
+}
+
+const { className } = Astro.props
 ---
 
-<div class='space-y-4'>
+<div class={cn('space-y-4', className)}>
     <div class='flex items-center justify-between px-2'>
         <h2 class='text-lg font-bold'>Recent posts</h2>
         <div class='text-end md:text-start'>
@@ -21,37 +29,35 @@ allPosts = allPosts.slice(0, siteConfig.home.displayNumber)
             ) : null}
         </div>
     </div>
-    <>
-        {allPosts.length ? (
-            <div class='text-sm'>
-                <div class='group/list-wrapper'>
-                    <ul class='divide-line border-line divide-y border-t'>
-                        {allPosts.map((item) => {
-                            return (
-                                <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2 py-3'>
-                                    <div class='group-hover/list-item:text-accent flex justify-between'>
-                                        <Link
-                                            title={item.data.title}
-                                            href={`/post/${item.id}`}
-                                            class='col-span-2 line-clamp-1'
-                                            linkType='unset'
-                                        >
-                                            {item.data.title}
-                                        </Link>
-                                        <time datetime={item.data.pubDate.toDateString()}>
-                                            {formatDateWithYear(item.data.pubDate)}
-                                        </time>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </div>
+    {allPosts.length ? (
+        <div class='text-sm'>
+            <div class='group/list-wrapper'>
+                <ul class='divide-line border-line divide-y border-t'>
+                    {allPosts.map((item) => {
+                        return (
+                            <li class='group/list-item group-hover/list-wrapper:text-muted-foreground/35 grid px-2 py-3'>
+                                <div class='group-hover/list-item:text-accent flex justify-between'>
+                                    <Link
+                                        title={item.data.title}
+                                        href={`/post/${item.id}`}
+                                        class='col-span-2 line-clamp-1'
+                                        linkType='unset'
+                                    >
+                                        {item.data.title}
+                                    </Link>
+                                    <time datetime={item.data.pubDate.toDateString()}>
+                                        {formatDateWithYear(item.data.pubDate)}
+                                    </time>
+                                </div>
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
-        ) : (
-            <div class='flex size-full items-center text-center text-sm'>
-                That's all for now. Come back later for more.
-            </div>
-        )}
-    </>
+        </div>
+    ) : (
+        <div class='flex size-full items-center text-center text-sm'>
+            That's all for now. Come back later for more.
+        </div>
+    )}
 </div>

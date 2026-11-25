@@ -3,18 +3,17 @@ import Link from '@components/common/Link.astro'
 import ThemeToggle from '@components/common/theme-toggle.astro'
 import { MapDot } from '@components/icons'
 import Nav from '@components/layout/nav.astro'
+import Container from '@components/shared/container.astro'
 import { siteConfig } from '@config/site'
 import { trimTrailingSlash } from '@lib/utils'
 import { Bot, GitMerge, Rss } from 'lucide-react'
 import { cn } from 'tailwind-variants'
 ---
 
-<div class={cn(
-    'no-scrollbar hidden w-[calc(var(--right-section-half-width)+var(--right-section-half-width))] shrink-0 flex-col gap-6 px-4 md:grid-rows-[auto_1fr_auto] lg:grid lg:h-full',
-    Astro.url.pathname === '/' ? 'pt-9' : 'pt-8',
-    // 'right-section'
-)}>
-    <section id='top-section'>
+<div
+    class='no-scrollbar hidden shrink-0 flex-col md:grid-rows-[auto_1fr_auto] lg:grid lg:h-full lg:pt-4'
+>
+    <Container id='top-section' as='section'>
         <div class='flex flex-col gap-6'>
             <div class='flex flex-row gap-2'>
                 <strong>{siteConfig.author}</strong>
@@ -26,10 +25,10 @@ import { cn } from 'tailwind-variants'
                 {siteConfig.slogan}
             </span>
         </div>
-    </section>
+    </Container>
 
     <div></div>
-    <section class='flex flex-col gap-6 pb-12' id='footer-section'>
+    <Container className='flex flex-col gap-6 pb-12' as='section' id='footer-section'>
         <Nav />
         <ThemeToggle />
         <div class='flex flex-col gap-2'>
@@ -54,23 +53,5 @@ import { cn } from 'tailwind-variants'
                 Made in JiangSu, CN
             </div>
         </div>
-    </section>
+    </Container>
 </div>
-
-<style>
-    @media (min-width: 64rem) {
-        .right-section {
-            position: relative;
-        }
-
-        .right-section::before {
-            position: absolute;
-            inset-block: -2rem;
-            left: -1.75rem;
-            width: 1px;
-            background: var(--line);
-            content: '';
-            pointer-events: none;
-        }
-    }
-</style>

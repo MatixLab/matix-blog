@@ -24,7 +24,5 @@ const { title, description, image, imageAlt } = Astro.props
 <meta property='twitter:creator' content='@hukucha10' />
 <meta property='twitter:title' content={title} />
 <meta property='twitter:description' content={description} />
-{image ? (
-    <meta property='twitter:image' content={new URL(image, Astro.url)} />
-) : null}
+{image ? <meta property='twitter:image' content={new URL(image, Astro.url)} /> : null}
 {imageAlt ? <meta property='twitter:image:alt' content={imageAlt} /> : null}
