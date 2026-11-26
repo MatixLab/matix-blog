@@ -1,36 +1,14 @@
 /* theme toggle */
-@keyframes page-slide-out-forward {
-    to {
-        opacity: 0;
-        transform: translateX(-0.75rem);
-    }
-}
-
-@keyframes page-slide-in-forward {
-    from {
-        opacity: 0;
-        transform: translateX(0.75rem);
-    }
-}
-
-@keyframes page-slide-out-backward {
-    to {
-        opacity: 0;
-        transform: translateX(0.75rem);
-    }
-}
-
-@keyframes page-slide-in-backward {
-    from {
-        opacity: 0;
-        transform: translateX(-0.75rem);
-    }
-}
-
 @keyframes reveal {
     from {
         clip-path: inset(var(--from));
     }
+}
+
+/* Disable the default page fade so only the shared title transition plays */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
 }
 
 ::view-transition-new(theme-toggle-transition) {

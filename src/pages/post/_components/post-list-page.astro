@@ -1,0 +1,28 @@
+---
+import type { PostListPagination } from '@lib/post-pagination'
+import type { CollectionEntry } from 'astro:content'
+import BlogLayout from '../_layout/blog-layout.astro'
+import YearPostList from './year-post-list.astro'
+
+type Props = {
+    title: string
+    description: string
+    basePath?: string
+    year: string
+    years: string[]
+    posts: CollectionEntry<'post'>[]
+    pagination?: PostListPagination
+}
+
+const { title, description, basePath, year, years, posts, pagination } = Astro.props
+---
+
+<BlogLayout title={title} description={description}>
+    <YearPostList
+        basePath={basePath}
+        year={year}
+        years={years}
+        posts={posts}
+        pagination={pagination}
+    />
+</BlogLayout>

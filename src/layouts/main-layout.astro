@@ -28,41 +28,6 @@ const {
     image = `https://images.antzhu.com${imageDefault}.webp`,
     imageAlt
 } = Astro.props
-
-const pageEnterTransition = {
-    duration: '220ms',
-    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
-    fillMode: 'both'
-}
-
-const pageExitTransition = {
-    duration: '150ms',
-    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
-    fillMode: 'both'
-}
-
-const pageSlideTransition = {
-    backwards: {
-        new: {
-            ...pageEnterTransition,
-            name: 'page-slide-in-backward'
-        },
-        old: {
-            ...pageExitTransition,
-            name: 'page-slide-out-backward'
-        }
-    },
-    forwards: {
-        new: {
-            ...pageEnterTransition,
-            name: 'page-slide-in-forward'
-        },
-        old: {
-            ...pageExitTransition,
-            name: 'page-slide-out-forward'
-        }
-    }
-}
 ---
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
@@ -84,7 +49,6 @@ const pageSlideTransition = {
                 <main
                     class={cn('flex-1 lg:min-h-0 lg:pt-4', mainClass)}
                     data-disable-theme-toggle-transition
-                    transition:animate={pageSlideTransition}
                 >
                     <slot />
                 </main>

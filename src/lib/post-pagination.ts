@@ -34,10 +34,10 @@ export function paginatePosts(
     }
 }
 
-export function getPostPaginationPaths(
+export function getPostPaginationPaths<T extends Record<string, string>>(
     posts: CollectionEntry<'post'>[],
     basePath: string,
-    routeParams: Record<string, string>
+    routeParams: T
 ) {
     const totalPages = Math.ceil(posts.length / siteConfig.pagination.pageSize)
 

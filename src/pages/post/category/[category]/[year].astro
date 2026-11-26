@@ -2,8 +2,7 @@
 import { getPosts, getPostYears, groupPostsByYear } from '@lib/fetchers'
 import { paginatePosts } from '@lib/post-pagination'
 import type { CollectionEntry } from 'astro:content'
-import YearPostList from '../../_components/year-post-list.astro'
-import BlogLayout from '../../_layout/blog-layout.astro'
+import PostListPage from '../../_components/post-list-page.astro'
 
 export async function getStaticPaths() {
     const allPosts = await getPosts()
@@ -32,12 +31,12 @@ const { posts, years } = Astro.props
 const paginatedPosts = paginatePosts(posts, 1, `/post/category/${category}/${year}`)
 ---
 
-<BlogLayout title={`${category} in ${year}`} description={`All posts for ${category}`}>
-    <YearPostList
-        basePath={`/post/category/${category}`}
-        year={year}
-        years={years}
-        posts={paginatedPosts.posts}
-        pagination={paginatedPosts.pagination}
-    />
-</BlogLayout>
+<PostListPage
+    title={`${category} in ${year}`}
+    description={`All posts for ${category}`}
+    basePath={`/post/category/${category}`}
+    year={year}
+    years={years}
+    posts={paginatedPosts.posts}
+    pagination={paginatedPosts.pagination}
+/>

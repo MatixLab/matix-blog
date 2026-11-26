@@ -10,19 +10,6 @@ const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props
 
 const prev = currentPage > 1 ? '' : 'disabled'
 const next = currentPage < totalPages ? '' : 'disabled'
-const getTransitionName = (href: string) => {
-    const { pathname } = new URL(href, Astro.url)
-    const pathIdentifier = Array.from(pathname, (character) => {
-        const codePoint = character.codePointAt(0)
-        if (codePoint === undefined) {
-            throw new Error('Unable to generate pagination transition name')
-        }
-
-        return codePoint.toString(16)
-    }).join('-')
-
-    return `pagination-${pathIdentifier}`
-}
 ---
 
 <div class='mt-8'>
@@ -30,27 +17,14 @@ const getTransitionName = (href: string) => {
         <nav aria-label='Pagination' class='flex gap-4 text-sm'>
             {prev === 'disabled' && <span aria-disabled>Prev</span>}
             {prev !== 'disabled' && (
-                <a
-                    aria-label='Prev'
-                    data-astro-prefetch='viewport'
-                    href={prevUrl}
-                    style={`view-transition-name: ${getTransitionName(prevUrl)}`}
-                >
+                <a aria-label='Prev' data-astro-prefetch='viewport' href={prevUrl}>
                     <span>Prev</span>
                 </a>
             )}
-            <span style={`view-transition-name: ${getTransitionName(Astro.url.pathname)}`}>
-                {currentPage}
-            </span>{' '}
-            / {totalPages}
+            <span>{currentPage}</span> / {totalPages}
             {next === 'disabled' && <span aria-disabled>Next</span>}
             {next !== 'disabled' && (
-                <a
-                    href={nextUrl}
-                    aria-label='Next'
-                    data-astro-prefetch='viewport'
-                    style={`view-transition-name: ${getTransitionName(nextUrl)}`}
-                >
+                <a href={nextUrl} aria-label='Next' data-astro-prefetch='viewport'>
                     <span>Next</span>
                 </a>
             )}
