@@ -11,8 +11,6 @@ const year = getDefaultPostYear(postsByYear)
 const { posts, pagination } = paginatePosts(postsByYear[year] ?? [], 1, '/post')
 ---
 
-<BlogLayout title='Posts' description='Writing record.' mainClass='lg:pt-4'>
-    <div slot='content'>
-        <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
-    </div>
+<BlogLayout title='Posts' description='Writing record.'>
+    <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
 </BlogLayout>

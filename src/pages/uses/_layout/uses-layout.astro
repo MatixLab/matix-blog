@@ -1,4 +1,5 @@
 ---
+import Heading from '@components/shared/heading.astro'
 import MainLayout from '@layouts/main-layout.astro'
 
 type Props = {
@@ -12,11 +13,11 @@ const { title, description, mainClass } = Astro.props
 
 <MainLayout title={title} description={description} mainClass={mainClass}>
     <section class='prose dark:prose-invert container max-w-237 px-6 py-3'>
-        <slot name='head-name'>
-            <h1 class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>{description}</h1>
-        </slot>
+        <Heading as='h1' class='scroll-m-20 pt-4 text-3xl font-bold md:pt-8'>
+            {description}
+        </Heading>
         <section class='relative flex flex-col'>
-            <slot name='right-content' />
+            <slot />
         </section>
     </section>
 </MainLayout>

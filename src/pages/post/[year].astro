@@ -26,15 +26,11 @@ const { year = '' } = Astro.params
 const paginatedPosts = paginatePosts(posts, 1, `/post/${year}`)
 ---
 
-<BlogLayout title={`Posts in ${year}`} description='Writing record.'>
-    <div slot='right-content'>
-        <div class='pt-4'>
-            <YearPostList
-                year={year}
-                years={years}
-                posts={paginatedPosts.posts}
-                pagination={paginatedPosts.pagination}
-            />
-        </div>
-    </div>
+<BlogLayout title={`Posts in ${year}`} description='Writing recordss.'>
+    <YearPostList
+        year={year}
+        years={years}
+        posts={paginatedPosts.posts}
+        pagination={paginatedPosts.pagination}
+    />
 </BlogLayout>

@@ -37,15 +37,11 @@ const { category = '', page = '2' } = Astro.params
 ---
 
 <BlogLayout title={`${category} · ${page}`} description={`All posts for ${category}`}>
-    <div slot='right-content'>
-        <div class='pt-4'>
-            <YearPostList
-                basePath={`/post/category/${category}`}
-                year={year}
-                years={years}
-                posts={posts}
-                pagination={pagination}
-            />
-        </div>
-    </div>
+    <YearPostList
+        basePath={`/post/category/${category}`}
+        year={year}
+        years={years}
+        posts={posts}
+        pagination={pagination}
+    />
 </BlogLayout>

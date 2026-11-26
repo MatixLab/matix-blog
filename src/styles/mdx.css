@@ -60,7 +60,7 @@
             display: none;
         }
         pre code {
-            @apply grid py-4 text-sm;
+            @apply grid py-4 text-xs;
         }
         pre code .line {
             @apply pr-2 pl-4 leading-6;

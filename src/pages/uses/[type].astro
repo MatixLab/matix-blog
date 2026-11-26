@@ -29,9 +29,5 @@ const { type, types, uses } = Astro.props
 ---
 
 <UsesLayout title={`Uses · ${type}`} description='Things of Choice.'>
-    <div slot='right-content'>
-        <div class='pt-4'>
-            <UseTypeList type={type} types={types} uses={uses} />
-        </div>
-    </div>
+    <UseTypeList type={type} types={types} uses={uses} />
 </UsesLayout>

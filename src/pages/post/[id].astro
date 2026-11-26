@@ -2,9 +2,15 @@
 import Link from '@components/common/Link.astro'
 import IMG from '@components/markdown/IMG.astro'
 import { MdxComponents } from '@components/markdown/mdx-components'
+import Container from '@components/shared/container.astro'
+import Heading from '@components/shared/heading.astro'
+import MainLayout from '@layouts/main-layout.astro'
+import { formatDateWithYear } from '@lib/utils'
+import { cn } from '@utils/tv'
+import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
-import BlogContentLayout from './_layout/blog-content-layout.astro'
+import { Hash } from 'lucide-react'
 
 export async function getStaticPaths() {
     const posts = await getCollection('post')
@@ -18,7 +24,6 @@ type Props = CollectionEntry<'post'>
 
 const post = Astro.props
 const { id } = Astro.params
-const { Content } = await render(post)
 
 if (!id || !post) {
     return new Response(null, {
@@ -26,15 +31,71 @@ if (!id || !post) {
         statusText: 'Not found'
     })
 }
+const { Content } = await render(post)
+const { title, description, updatedDate, cover, category, coverAlt } = post.data
 ---
 
-<BlogContentLayout {...post}>
-    <Content
-        components={{
-            ...MdxComponents,
-            img: IMG,
-            Image: IMG,
-            a: Link
-        }}
-    />
-</BlogContentLayout>
+<MainLayout title={title} description={description}>
+    <Container className='prose dark:prose-invert relative flex w-full flex-col space-y-2 px-8'>
+        <Heading
+            as='h1'
+            style={`view-transition-name: post-title-${post.id}`}
+            class='text-3xl font-semibold'
+        >
+            {title}
+        </Heading>
+        <div class='flex flex-wrap items-center gap-2 text-sm'>
+            <div class='text-muted-foreground/80'>
+                Updated On {formatDateWithYear(updatedDate)}
+            </div>
+            <div class='flex gap-1'>
+                {category.map((cat: string) => {
+                    return (
+                        <Link
+                            href={`/post/category/${cat}`}
+                            title={cat}
+                            class={cn(
+                                'group flex items-center justify-center font-normal no-underline'
+                            )}
+                        >
+                            <Hash className='hover:text-accent text-muted-foreground/80 size-3 duration-150 ease-in-out hover:scale-110' />
+                            <span class='link hover:text-accent text-muted-foreground/80 mr-2 text-sm'>
+                                {cat}
+                            </span>
+                        </Link>
+                    )
+                })}
+            </div>
+        </div>
+
+        {cover ? (
+            <figure>
+                <Image
+                    class='overflow-hidden rounded-xl'
+                    width={720}
+                    height={360}
+                    src={cover}
+                    alt={title}
+                    loading='lazy'
+                />
+                {coverAlt && (
+                    <figcaption class='mt-2 text-center text-xs break-all text-gray-600'>
+                        {coverAlt}
+                    </figcaption>
+                )}
+            </figure>
+        ) : null}
+
+        <blockquote class='text-muted-foreground mt-6 border-l-2 pl-6 font-normal'>
+            {description}
+        </blockquote>
+        <Content
+            components={{
+                ...MdxComponents,
+                img: IMG,
+                Image: IMG,
+                a: Link
+            }}
+        />
+    </Container>
+</MainLayout>

@@ -31,10 +31,6 @@ const { posts, pagination, years, year } = Astro.props
 const { page = '2' } = Astro.params
 ---
 
-<BlogLayout title={`Posts · ${page}`} description='Writing record.'>
-    <div slot='right-content'>
-        <div class='pt-4'>
-            <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
-        </div>
-    </div>
+<BlogLayout title={`Posts · ${page}`} description='Writing records.'>
+    <YearPostList year={year} years={years} posts={posts} pagination={pagination} />
 </BlogLayout>

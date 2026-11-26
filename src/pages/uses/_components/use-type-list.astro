@@ -14,7 +14,6 @@ type Props = {
 const { basePath = '/uses', type, types, uses } = Astro.props
 ---
 
-<div class='bg-muted my-4 h-px w-full' />
 <nav aria-label='Uses by type' class='flex items-center gap-6 overflow-x-auto text-sm'>
     {types.map((item) => {
         return (

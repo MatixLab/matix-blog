@@ -10,9 +10,5 @@ const uses = allUses.filter((item) => item.data.type === type)
 ---
 
 <UsesLayout title='Uses' description='Things of Choice.'>
-    <div slot='right-content'>
-        <div class='pt-4'>
-            <UseTypeList type={type} types={types} uses={uses} />
-        </div>
-    </div>
+    <UseTypeList type={type} types={types} uses={uses} />
 </UsesLayout>

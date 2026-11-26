@@ -6,20 +6,18 @@ import MainLayout from '@layouts/main-layout.astro'
 type Props = {
     title: string
     description?: string
-    mainClass?: string
 }
 
-const { title, description, mainClass } = Astro.props
+const { title, description } = Astro.props
 ---
 
-<MainLayout title={title} description={description} mainClass={mainClass}>
+<MainLayout title={title} description={description}>
     <Container>
         <Heading as='h1' class='pb-12 text-3xl font-bold'>
             {description}
         </Heading>
     </Container>
-    <div class='screen-line-top h-6' aria-hidden='true' />
-    <Container as='section' className='selative flex flex-col overflow-auto'>
-        <slot name='content' />
+    <Container as='section' className='relative flex flex-col overflow-auto'>
+        <slot />
     </Container>
 </MainLayout>
