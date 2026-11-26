@@ -1,0 +1,88 @@
+---
+import Container from '@components/shared/container.astro'
+---
+
+<Container
+    className='text-muted-foreground/45 border-line border-y py-2 font-mono text-sm font-light'
+    as='p'
+>
+    {`[Credits]`}
+</Container>
+<div class='relative'>
+    <!-- line -->
+    <div
+        class='border-line pointer-events-none absolute inset-y-0 left-1/4 -z-1 w-px border-r border-solid max-sm:hidden'
+        aria-hidden='true'
+    />
+    <div
+        class='border-line pointer-events-none absolute inset-y-0 left-1/2 -z-1 w-px border-r border-solid max-sm:hidden'
+        aria-hidden='true'
+    />
+    <div
+        class='border-line pointer-events-none absolute inset-y-0 left-3/4 -z-1 w-px border-r border-solid max-sm:hidden'
+        aria-hidden='true'
+    />
+    <div
+        class='border-line credits-row-divider pointer-events-none invisible absolute inset-x-0 top-1/2 -z-1 h-px border-b border-solid max-sm:hidden'
+        aria-hidden='true'
+    />
+
+    <dl class='grid grid-cols-4 gap-px font-mono'>
+        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
+            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
+                Crafted by
+            </dt>
+            <dd class='flex-1 text-sm'>
+                <a
+                    class='link-underline'
+                    href='https://x.com/iamncdai'
+                    target='_blank'
+                    rel='noopener'
+                >
+                    @iamncdai
+                </a>
+            </dd>
+        </div>
+        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
+            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>Build</dt>
+            <dd class='flex-1 text-sm'>
+                <a
+                    class='link-underline'
+                    href='https://github.com/ncdai/chanhdai.com/commit/69664230bb73b706a867d73c70805421025cd779'
+                    target='_blank'
+                    rel='noopener'
+                >
+                    6966423
+                </a>
+            </dd>
+        </div>
+        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
+            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
+                Crafted by
+            </dt>
+            <dd class='flex-1 text-sm'>
+                <a
+                    class='link-underline'
+                    href='https://x.com/iamncdai'
+                    target='_blank'
+                    rel='noopener'
+                >
+                    @iamncdai
+                </a>
+            </dd>
+        </div>
+        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
+            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>Build</dt>
+            <dd class='flex-1 text-sm'>
+                <a
+                    class='link-underline'
+                    href='https://github.com/ncdai/chanhdai.com/commit/69664230bb73b706a867d73c70805421025cd779'
+                    target='_blank'
+                    rel='noopener'
+                >
+                    6966423
+                </a>
+            </dd>
+        </div>
+    </dl>
+</div>

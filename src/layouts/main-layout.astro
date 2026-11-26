@@ -66,18 +66,18 @@ const pageSlideTransition = {
 ---
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
-    <div class={cn('mx-auto flex min-h-screen flex-col lg:h-screen')}>
+    <div class={cn('mx-auto flex min-h-screen flex-col')}>
         <div class='sticky top-0 z-100 w-full lg:hidden'>
             <MobileNav segment={segment} client:load />
         </div>
         <div
             class={cn(
-                'border-line mx-auto flex w-full max-w-5xl flex-1 flex-col lg:relative lg:min-h-0 lg:flex-row lg:border-r'
+                'border-line mx-auto flex w-full max-w-5xl flex-1 flex-col lg:relative lg:min-h-screen lg:flex-row lg:border-r'
             )}
         >
             <aside
                 class={cn(
-                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-0',
+                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-screen',
                     'lg:border-line lg:border-x'
                 )}
             >

@@ -1,0 +1,44 @@
+---
+import Container from '@components/shared/container.astro'
+
+// oxlint-disable-next-line sort-keys
+const Stacks: Record<string, string[]> = {
+    Language: ['TypeScript', 'C#', 'Java'],
+    Frontend: ['Astro', 'Vue', 'React', 'TanStack', 'TailwindCss', 'BaseUI', 'Radix UI'],
+    'Backend & Database': ['Bun', 'Node', 'Postgres', 'Redis'],
+    'Workflow & AI': ['Github', 'Pi', 'OpenCode', 'Deepseek']
+}
+---
+
+<Container
+    className='text-muted-foreground/45 border-line border-b py-2 font-mono text-sm font-light'
+    as='p'
+>
+    {`[Stack]`}
+</Container>
+<div class='relative'>
+    <div
+        class='border-line pointer-events-none absolute inset-y-0 left-1/4 -z-1 w-px border-r border-dashed max-sm:hidden'
+        aria-hidden='true'
+    />
+    {Object.keys(Stacks).map((k: string) => {
+        return (
+            <Container
+                className='border-line grid items-start gap-y-2 border-b py-4 last:border-none sm:grid-cols-4'
+                as='section'
+                id=`${k}Section`
+            >
+                <span class='text-sm'>{k}</span>
+                <Container className='flex flex-wrap gap-2 sm:col-span-3'>
+                    {Stacks[k].map((s: string) => {
+                        return (
+                            <div class='bg-line/45 text-muted-foreground rounded-xs px-1.5 py-0.5 text-[13px]'>
+                                {s}
+                            </div>
+                        )
+                    })}
+                </Container>
+            </Container>
+        )
+    })}
+</div>

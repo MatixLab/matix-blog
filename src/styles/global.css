@@ -148,6 +148,7 @@
 
     html {
         @apply font-sans;
+        overflow-x: clip;
     }
     html.dark .astro-code,
     html.dark .astro-code span {

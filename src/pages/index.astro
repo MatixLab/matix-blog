@@ -2,8 +2,10 @@
 import { Line } from '@components/icons'
 import Container from '@components/shared/container.astro'
 import MainLayout from '@layouts/main-layout.astro'
+import Info from './_components/info.astro'
 import Intro from './_components/intro.astro'
 import RecentPosts from './_components/recent-posts.astro'
+import Stack from './_components/stack.astro'
 ---
 
 <MainLayout title='About' description="Anthony's homepage" mainClass='lg:pt-4'>
@@ -15,9 +17,10 @@ import RecentPosts from './_components/recent-posts.astro'
         <Line />
     </div>
 
-    <RecentPosts className='py-6' />
+    <RecentPosts className='border-line border-b py-6' />
 
-    <div class='screen-line-top h-6' aria-hidden='true' />
+    <Stack />
+    <Info />
 
     <!-- <div class='text-muted-foreground flex justify-center [&_svg]:h-5 [&_svg]:w-auto'>
         <Line />
