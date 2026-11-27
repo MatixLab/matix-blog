@@ -1,23 +1,24 @@
 ---
 import Link from '@components/common/Link.astro'
 import { MdxComponents } from '@components/markdown/mdx-components'
+import Container from '@components/shared/container.astro'
 import Heading from '@components/shared/heading.astro'
 import { Content } from '@content/now.mdx'
 import MainLayout from '@layouts/main-layout.astro'
 ---
 
 <MainLayout title='Now' description="What I'm up to.">
-    <section class='prose dark:prose-invert container max-w-237 px-4'>
-        <Heading as='h1' class='scroll-m-20 text-3xl font-bold'>
-            What I'm up to.
-        </Heading>
-        <article class='relative overflow-auto pl-6'>
+    <Container className='prose dark:prose-invert relative flex w-full flex-col space-y-2 px-8'>
+        <section class='prose dark:prose-invert container max-w-237'>
+            <Heading as='h1' class='scroll-m-20 pb-2 text-3xl font-bold'>
+                What I'm up to.
+            </Heading>
             <Content
                 components={{
                     ...MdxComponents,
                     a: Link
                 }}
             />
-        </article>
-    </section>
+        </section>
+    </Container>
 </MainLayout>

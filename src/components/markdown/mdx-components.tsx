@@ -8,43 +8,49 @@ interface Props {
 export const MdxComponents = {
     blockquote: ({ className, ...props }: Props) => (
         <blockquote
-            className={cn('text-muted-foreground/80 mt-4 border-l-2 pl-6 italic', className)}
+            className={cn('text-muted-foreground/80 my-2.5 border-l-2 pl-6 italic', className)}
             {...props}
         />
     ),
     h1: ({ className, ...props }: Props) => (
-        <h1 className={cn('mt-2 scroll-m-20 text-4xl font-semibold', className)} {...props} />
+        <h1 className={cn('scroll-m-20 text-4xl font-semibold', className)} {...props} />
     ),
     h2: ({ className, ...props }: Props) => (
         <h2
-            className={cn('mt-10 scroll-m-20 pb-1 text-2xl font-semibold', className)}
+            className={cn('my-2.5 scroll-m-20 pb-1 text-2xl font-semibold', className)}
             {...props}
         />
     ),
     h3: ({ className, ...props }: Props) => (
-        <h3 className={cn('mt-8 scroll-m-20 text-2xl font-semibold', className)} {...props} />
+        <h3
+            className={cn('my-2.5 scroll-m-20 text-2xl font-semibold', className)}
+            {...props}
+        />
     ),
     h4: ({ className, ...props }: Props) => (
-        <h4 className={cn('mt-8 scroll-m-20 text-xl font-semibold', className)} {...props} />
+        <h4 className={cn('my-2.5 scroll-m-20 text-xl font-semibold', className)} {...props} />
     ),
     h5: ({ className, ...props }: Props) => (
-        <h5 className={cn('mt-8 scroll-m-20 text-lg font-semibold', className)} {...props} />
+        <h5 className={cn('my-2.5 scroll-m-20 text-lg font-semibold', className)} {...props} />
     ),
     h6: ({ className, ...props }: Props) => (
-        <h6 className={cn('mt-8 scroll-m-20 text-base font-semibold', className)} {...props} />
+        <h6
+            className={cn('my-2.5 scroll-m-20 text-base font-semibold', className)}
+            {...props}
+        />
     ),
-    hr: ({ ...props }) => <hr className='my-4 md:my-8' {...props} />,
+    hr: ({ ...props }) => <hr className='my-4' {...props} />,
     li: ({ className, ...props }: Props) => (
-        <li className={cn('mt-2', className)} {...props} />
+        <li className={cn('my-2', className)} {...props} />
     ),
     ol: ({ className, ...props }: Props) => (
-        <ol className={cn('my-6 ml-1 list-decimal', className)} {...props} />
+        <ol className={cn('my-2.5 list-decimal', className)} {...props} />
     ),
     p: ({ className, ...props }: Props) => (
-        <p className={cn('leading-7 not-first:mt-6', className)} {...props} />
+        <p className={cn('leading-7 not-first:my-2', className)} {...props} />
     ),
     table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-        <div className='my-6 w-full overflow-y-auto'>
+        <div className='my-2.5 w-full overflow-y-auto'>
             <table className={cn('w-full', className)} {...props} />
         </div>
     ),
@@ -70,6 +76,6 @@ export const MdxComponents = {
         <tr className={cn('even:bg-muted m-0 border-t p-0', className)} {...props} />
     ),
     ul: ({ className, ...props }: Props) => (
-        <ul className={cn('my-6 ml-1 list-disc', className)} {...props} />
+        <ul className={cn('my-2.5 ml-1 list-disc', className)} {...props} />
     )
 }

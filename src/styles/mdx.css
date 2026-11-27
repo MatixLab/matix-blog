@@ -3,6 +3,14 @@
         @apply mt-0 mb-0;
     }
 
+    & ol {
+        @apply pl-6;
+    }
+
+    & ol > li {
+        @apply relative pl-2;
+    }
+
     & ul {
         list-style-type: none;
     }
@@ -10,23 +18,20 @@
         @apply relative pl-2;
     }
     & ul li:before {
-        @apply mr-2 -ml-6 inline-block font-medium;
+        @apply me-2 -ms-2 inline-block font-medium;
         content: '-';
     }
 
     & :is(h1, h2, h3, h4, h5, h6) {
         @apply relative scroll-mt-24;
     }
-
     & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor {
         @apply border-line bg-background text-muted-foreground absolute top-1/2 -left-6 flex size-5 -translate-y-1/2 items-center justify-center rounded-sm border no-underline opacity-0 transition duration-150 ease-in-out;
     }
-
     & :is(h1, h2, h3, h4, h5, h6):hover > .subheading-anchor,
     & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor:focus-visible {
         @apply opacity-100;
     }
-
     & :is(h1, h2, h3, h4, h5, h6) > .subheading-anchor:hover {
         @apply text-foreground;
     }
