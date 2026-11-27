@@ -1,6 +1,6 @@
 ---
+import { cn } from '@utils/tv'
 import type { HTMLAttributes } from 'astro/types'
-import { cn } from 'tailwind-variants'
 
 type Props = Omit<HTMLAttributes<'div'>, 'class'> & {
     as?: 'div' | 'p' | 'section' | 'article'

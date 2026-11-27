@@ -5,6 +5,7 @@ import { MdxComponents } from '@components/markdown/mdx-components'
 import Container from '@components/shared/container.astro'
 import Heading from '@components/shared/heading.astro'
 import MainLayout from '@layouts/main-layout.astro'
+import { ViewTransitionName } from '@lib/animate'
 import { formatDateWithYear } from '@lib/utils'
 import { cn } from '@utils/tv'
 import { Image } from 'astro:assets'
@@ -39,7 +40,7 @@ const { title, description, updatedDate, cover, category, coverAlt } = post.data
     <Container className='prose dark:prose-invert relative flex w-full flex-col space-y-2 px-8'>
         <Heading
             as='h1'
-            style={`view-transition-name: post-title-${post.id}`}
+            transition:name={ViewTransitionName.POST_TITLE(post.id)}
             class='text-3xl font-semibold'
         >
             {title}

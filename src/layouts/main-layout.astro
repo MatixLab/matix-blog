@@ -32,22 +32,22 @@ const {
 
 <BaseLayout title={title} description={description} image={image} imageAlt={imageAlt}>
     <div class={cn('mx-auto flex min-h-screen flex-col')}>
-        <div class='sticky top-0 z-100 w-full lg:hidden'>
+        <div class='bg-background sticky top-0 z-100 w-full md:hidden'>
             <MobileNav segment={segment} client:load />
         </div>
         <div
             class={cn(
-                'border-line mx-auto flex w-full max-w-5xl flex-1 flex-col lg:relative lg:min-h-screen lg:flex-row lg:border-r'
+                'border-line mx-auto flex w-full max-w-5xl flex-1 flex-col md:relative md:min-h-screen md:flex-row md:border-r'
             )}
         >
             <aside
                 class={cn(
-                    'no-scrollbar flex min-w-0 flex-1 flex-col lg:h-full lg:min-h-screen',
-                    'lg:border-line lg:border-x'
+                    'no-scrollbar flex min-w-0 flex-1 flex-col md:h-full md:min-h-screen',
+                    'md:border-line md:border-x'
                 )}
             >
                 <main
-                    class={cn('flex-1 lg:min-h-0 lg:pt-4', mainClass)}
+                    class={cn('flex-1 md:min-h-0 md:pt-8', mainClass)}
                     data-disable-theme-toggle-transition
                 >
                     <slot />

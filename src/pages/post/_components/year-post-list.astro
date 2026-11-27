@@ -1,6 +1,7 @@
 ---
 import Link from '@components/common/Link.astro'
 import Pagination from '@components/common/Pagination.astro'
+import { ViewTransitionName } from '@lib/animate'
 import type { PostListPagination } from '@lib/post-pagination'
 import { formatDateWithYear } from '@lib/utils'
 import { cn } from '@utils/tv'
@@ -48,7 +49,7 @@ const { basePath = '/post', year, years, posts, pagination } = Astro.props
                                 <Link
                                     title={item.data.title}
                                     href={`/post/${item.id}`}
-                                    style={`view-transition-name: post-title-${item.id}`}
+                                    transition:name={ViewTransitionName.POST_TITLE(item.id)}
                                     class='col-span-2 line-clamp-1'
                                     linkType='unset'
                                 >
