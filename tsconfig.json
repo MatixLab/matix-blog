@@ -6,6 +6,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "types": ["node"],
+    "skipLibCheck": true,
     "paths": {
       "@config/*": ["./src/config/*"],
       "@plugins/*": ["./config/plugins/*"],

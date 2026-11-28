@@ -3,8 +3,8 @@ import Link from '@components/common/Link.astro'
 import { siteConfig } from '@config/site'
 import { ViewTransitionName } from '@lib/animate'
 import { getPosts } from '@lib/fetchers'
+import { cn } from '@lib/tv'
 import { formatDateWithYear } from '@lib/utils'
-import { cn } from '@utils/tv'
 import type { HTMLAttributes } from 'astro/types'
 
 let allPosts = await getPosts()
@@ -22,11 +22,21 @@ const { className } = Astro.props
         <h2 class='text-lg font-bold'>Recent posts</h2>
         <div class='text-end md:text-start'>
             {allPosts.length ? (
-                <>
-                    <Link href='/post.xml' title='Feed post rss' class='link ml-2 text-xs'>
+                <div class='flex gap-2'>
+                    <Link href='/post' title='Feed post rss' class='link text-xs uppercase'>
+                        more
+                    </Link>
+                    <span class='text-muted-foreground/45 items-center justify-center text-sm'>
+                        /
+                    </span>
+                    <Link
+                        href='/post.xml'
+                        title='Feed post rss'
+                        class='link text-xs uppercase'
+                    >
                         Rss
                     </Link>
-                </>
+                </div>
             ) : null}
         </div>
     </div>

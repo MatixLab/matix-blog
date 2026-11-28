@@ -1,7 +1,10 @@
 import { USE_TYPES } from '@schemas/content.schema'
-import type { CreditType, UseType } from '@schemas/content.schema'
+import type { UseType } from '@schemas/content.schema'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
+import { dependencies } from '~build/package'
+import now from '~build/time'
+import type { CommonItem } from '~types/index'
 
 export async function getCategories() {
     const posts = await getCollection('post')
@@ -60,14 +63,30 @@ export function getUseTypes(uses: CollectionEntry<'uses'>[]) {
     return USE_TYPES.filter((type) => uses.some((u) => u.data.type === type))
 }
 
-export async function getCredits(type?: CreditType) {
-    let credits = await getCollection('credits')
-    if (type) {
-        credits = credits.filter((u) => u.data.type === type)
-    }
-    return credits
-}
-
 export function getDefaultUseType(uses: CollectionEntry<'uses'>[]) {
     return getUseTypes(uses)[0] ?? USE_TYPES[0]
+}
+
+export const getCredits = (): Record<string, CommonItem[]> => {
+    const prefixes = ['@cloudflare', '@fontsource', '@playform', '@astro', '@tailwindcss']
+    const depends = Object.entries(dependencies).flatMap(([key, value]) =>
+        prefixes.every((p) => !key.startsWith(p)) ? [{ title: key, version: value }] : []
+    )
+    return {
+        'Deployed on': [{ title: 'Netlify', url: 'https://www.netlify.com' }],
+        Date: [{ title: now.toLocaleDateString() }],
+        Packages: depends,
+        License: [
+            { title: 'MIT', url: 'https://github.com/MatixLab/matix-blog/blob/V7/LICENSE' }
+        ],
+        Agents: [
+            { title: 'llms.txt', url: '/llms.txt' },
+            { title: 'index.md', url: '/index.md' }
+        ],
+        Typeface: [{ title: 'IBM Plex', url: 'https://www.ibm.com/plex/' }],
+        'Inspired by': [
+            { title: 'Hiran Venugopalan', url: 'https://hiran.in/index.html' },
+            { title: 'Fabian Schultz', url: 'https://www.fabianschultz.com' }
+        ]
+    }
 }

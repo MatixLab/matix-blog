@@ -1,88 +1,87 @@
 ---
+import Link from '@components/common/Link.astro'
 import Container from '@components/shared/container.astro'
+import { getCredits } from '@lib/fetchers'
+import type { CommonItem } from '~types/index'
+
+const credits: Record<string, CommonItem[]> = getCredits()
+
+type Column = {
+    label: string
+    items: CommonItem[]
+    span?: 2
+    showVersion?: boolean
+}
+
+const topColumns: Column[] = [
+    { label: 'Packages', items: credits['Packages'], span: 2, showVersion: true },
+    { label: 'Date', items: credits['Date'] },
+    { label: 'Deployed on', items: credits['Deployed on'] }
+]
+
+const bottomColumns: Column[] = [
+    { label: 'License', items: credits['License'] },
+    { label: 'For Agents', items: credits['Agents'] },
+    { label: 'Typeface', items: credits['Typeface'] },
+    { label: 'Inspired by', items: credits['Inspired by'] }
+]
 ---
 
 <Container
-    className='text-muted-foreground/45 border-line border-y py-2 font-mono text-sm font-light'
+    className='text-muted-foreground/45 border-line border-y py-2 font-mono text-sm font-light select-none'
     as='p'
+    role={'img'}
 >
     {`[Credits]`}
 </Container>
-<div class='relative'>
-    <!-- line -->
-    <div
-        class='border-line pointer-events-none absolute inset-y-0 left-1/4 -z-1 w-px border-r border-solid max-sm:hidden'
-        aria-hidden='true'
-    />
-    <div
-        class='border-line pointer-events-none absolute inset-y-0 left-1/2 -z-1 w-px border-r border-solid max-sm:hidden'
-        aria-hidden='true'
-    />
-    <div
-        class='border-line pointer-events-none absolute inset-y-0 left-3/4 -z-1 w-px border-r border-solid max-sm:hidden'
-        aria-hidden='true'
-    />
-    <div
-        class='border-line credits-row-divider pointer-events-none invisible absolute inset-x-0 top-1/2 -z-1 h-px border-b border-solid max-sm:hidden'
-        aria-hidden='true'
-    />
 
-    <dl class='grid grid-cols-4 gap-px font-mono'>
-        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
-            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
-                Crafted by
-            </dt>
-            <dd class='flex-1 text-sm'>
-                <a
-                    class='link-underline'
-                    href='https://x.com/iamncdai'
-                    target='_blank'
-                    rel='noopener'
-                >
-                    @iamncdai
-                </a>
-            </dd>
-        </div>
-        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
-            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>Build</dt>
-            <dd class='flex-1 text-sm'>
-                <a
-                    class='link-underline'
-                    href='https://github.com/ncdai/chanhdai.com/commit/69664230bb73b706a867d73c70805421025cd779'
-                    target='_blank'
-                    rel='noopener'
-                >
-                    6966423
-                </a>
-            </dd>
-        </div>
-        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
-            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
-                Crafted by
-            </dt>
-            <dd class='flex-1 text-sm'>
-                <a
-                    class='link-underline'
-                    href='https://x.com/iamncdai'
-                    target='_blank'
-                    rel='noopener'
-                >
-                    @iamncdai
-                </a>
-            </dd>
-        </div>
-        <div class='flex min-w-0 flex-col gap-1 px-4 py-3'>
-            <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>Build</dt>
-            <dd class='flex-1 text-sm'>
-                <a
-                    class='link-underline'
-                    href='https://github.com/ncdai/chanhdai.com/commit/69664230bb73b706a867d73c70805421025cd779'
-                    target='_blank'
-                    rel='noopener'
-                >
-                    6966423
-                </a>
-            </dd>
-        </div>
+<div class='border-line relative border-b'>
+    <dl class='max-sm:divide-line grid grid-cols-2 gap-px font-mono max-sm:gap-y-0 max-sm:divide-y sm:grid-cols-4'>
+        {topColumns.map(({ label, items, span, showVersion }, index) => (
+            <Container
+                className={`flex min-w-0 flex-col gap-2 py-3 max-sm:col-span-2 ${span === 2 ? 'sm:col-span-2' : ''} ${index < 2 ? 'sm:border-line sm:border-r' : ''}`}
+            >
+                <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
+                    {label}
+                </dt>
+                <dd class='flex-1 space-y-1 text-[13px]/4'>
+                    {items.map((x) => {
+                        const title = showVersion ? `${x.title}${x.version ?? ''}` : x.title
+                        return x.url ? (
+                            <Link href={x.url} class='w-full'>
+                                {title}
+                            </Link>
+                        ) : (
+                            <p>{title}</p>
+                        )
+                    })}
+                </dd>
+            </Container>
+        ))}
+    </dl>
+</div>
+
+<div class='border-line relative border-b'>
+    <dl class='grid grid-cols-2 gap-px font-mono sm:grid-cols-4'>
+        {bottomColumns.map(({ label, items }, index) => (
+            <Container
+                className={`flex min-w-0 flex-col gap-2 py-3 ${index < bottomColumns.length - 1 ? 'sm:border-line sm:border-r' : ''} ${index % 2 === 1 ? 'border-line max-sm:border-l' : ''}`}
+            >
+                <dt class='text-muted-foreground text-[13px]/4 font-medium uppercase'>
+                    {label}
+                </dt>
+                <dd class='flex-1 space-y-1 text-[13px]/4'>
+                    {items.map((x) =>
+                        x.url ? (
+                            <Link href={x.url} class='w-full'>
+                                {x.title}
+                            </Link>
+                        ) : (
+                            <p>{x.title}</p>
+                        )
+                    )}
+                </dd>
+            </Container>
+        ))}
     </dl>
 </div>

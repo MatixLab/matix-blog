@@ -7,6 +7,7 @@ import Container from '@components/shared/container.astro'
 import { siteConfig } from '@config/site'
 import { trimTrailingSlash } from '@lib/utils'
 import { Bot, GitMerge, Rss } from 'lucide-react'
+import { abbreviatedSha } from '~build/git'
 ---
 
 <div class='no-scrollbar hidden shrink-0 flex-col md:sticky md:top-0 md:grid md:h-screen md:grid-rows-[auto_1fr_auto] md:self-start md:pt-8'>
@@ -38,7 +39,7 @@ import { Bot, GitMerge, Rss } from 'lucide-react'
                 </Link>
                 <Link
                     class='hover:text-foreground text-xs'
-                    href={`${trimTrailingSlash(siteConfig.repoUrl)}/commit/${PUBLIC_GIT_REVISION_INFO}`}
+                    href={`${trimTrailingSlash(siteConfig.repoUrl)}/commit/${abbreviatedSha}`}
                     type='icon'
                     title='matix-blog'
                 >

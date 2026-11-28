@@ -1,3 +1,5 @@
+import type { SvgComponent } from 'astro/types'
+
 export type MainNavItem = {
     icon?: string
     class?: string
@@ -33,13 +35,13 @@ export type SiteConfig = {
 
 type CommonItem = {
     title: string
-    icon?: ''
+    icon?: SvgComponent
+    version?: string
     url?: string
     desc?: string
 }
 
 export type UsingItem = CommonItem
-export type CreditItem = CommonItem
 
 export type CollectiveItem = {
     name: string

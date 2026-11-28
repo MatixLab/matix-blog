@@ -1,13 +1,5 @@
 import type { AstroUserConfig } from 'astro'
-import ChildProcess from 'node:child_process'
-import { promisify } from 'node:util'
 import tailwindcss from '@tailwindcss/vite'
-
-
-const execAsync = promisify(ChildProcess.exec)
-const generateGitData = async () => (await execAsync('git rev-parse HEAD')).stdout
-const gitRevision = JSON.stringify(await generateGitData())
-
 
 export const viteConfig = {
     build: {
@@ -25,16 +17,6 @@ export const viteConfig = {
         ]
     },
     plugins: [
-        {
-            config() {
-                return {
-                    define: {
-                        PUBLIC_GIT_REVISION_INFO: gitRevision
-                    }
-                }
-            },
-            name: 'vite-plugin-git-revision-info'
-        },
         tailwindcss()
     ],
     resolve: {

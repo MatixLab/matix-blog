@@ -1,4 +1,4 @@
-import { cn } from '@utils/tv'
+import { cn } from '@lib/tv'
 import * as React from 'react'
 
 interface Props {

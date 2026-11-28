@@ -26,13 +26,6 @@ const craftSchema = z.object({
     skills: z.string().array().optional()
 })
 
-const creditSchema = z.object({
-    desc: z.string().optional(),
-    id: z.string(),
-    type: z.enum(CREDIT_TYPES).default('Colophon'),
-    url: z.string().optional()
-})
-
 const useSchema = z.object({
     id: z.string(),
     intro: z.string().optional(),
@@ -43,7 +36,6 @@ const useSchema = z.object({
 
 export type Post = z.infer<typeof useSchema>
 export type Craft = z.infer<typeof craftSchema>
-export type Credit = z.infer<typeof creditSchema>
 export type Use = z.infer<typeof useSchema>
 
-export { postSchema, craftSchema, useSchema, creditSchema }
+export { postSchema, craftSchema, useSchema }

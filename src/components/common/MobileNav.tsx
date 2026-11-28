@@ -8,7 +8,7 @@ import {
 } from '@components/ui/drawer'
 import { links } from '@config/menu'
 import { siteConfig } from '@config/site'
-import { cn } from '@utils/tv'
+import { cn } from '@lib/tv'
 import { ArrowUpRightIcon, Menu } from 'lucide-react'
 import * as React from 'react'
 import { Button } from '../ui/button'

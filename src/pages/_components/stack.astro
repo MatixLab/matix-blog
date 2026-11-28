@@ -6,12 +6,13 @@ const Stacks: Record<string, string[]> = {
     Language: ['TypeScript', 'C#', 'Java'],
     Frontend: ['Astro', 'Vue', 'React', 'TanStack', 'TailwindCss', 'BaseUI', 'Radix UI'],
     'Backend & Database': ['Bun', 'Node', 'Postgres', 'Redis'],
-    'Workflow & AI': ['Github', 'Pi', 'OpenCode', 'Deepseek']
+    'Workflow & AI': ['GitHub', 'Pi', 'OpenCode', 'Deepseek', 'Claude']
 }
 ---
 
 <Container
-    className='text-muted-foreground/45 border-line border-b py-2 font-mono text-sm font-light'
+    className='text-muted-foreground/45 border-line border-b py-2 font-mono text-sm font-light select-none'
+    role={'img'}
     as='p'
 >
     {`[Stack]`}
@@ -32,7 +33,7 @@ const Stacks: Record<string, string[]> = {
                 <Container className='flex flex-wrap gap-2 sm:col-span-3'>
                     {Stacks[k].map((s: string) => {
                         return (
-                            <div class='bg-line/45 text-muted-foreground rounded-xs px-1.5 py-0.5 text-[13px]'>
+                            <div class='bg-line/45 text-muted-foreground rounded-xs px-1.5 py-0.5 text-[13px] select-none'>
                                 {s}
                             </div>
                         )

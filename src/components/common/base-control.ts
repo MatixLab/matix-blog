@@ -1,4 +1,4 @@
-import { cva } from '@utils/tv'
+import { cva } from '@lib/tv'
 
 export const linkVariants = cva({
     base: 'transition-all duration-500 ease-linear disabled:opacity-50',
